@@ -1,0 +1,6 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="800" height="800" viewBox="0 0 800 800">
+<rect width="800" height="800" rx="56" fill="#eef8f4"/>
+<circle cx="650" cy="120" r="95" fill="#f7ba32" opacity=".13"/><circle cx="135" cy="650" r="105" fill="#1e7f62" opacity=".08"/>
+<path d="M245 275Q245 205 320 205H480Q555 205 555 275V585H245Z" fill="white" stroke="#1e7f62" stroke-width="18"/><path d="M300 205Q310 120 400 120Q490 120 500 205" fill="none" stroke="#f7ba32" stroke-width="22"/><rect x="300" y="350" width="200" height="120" rx="28" fill="#f7ba32" opacity=".75"/><path d="M245 330H555" stroke="#1e7f62" stroke-width="16" opacity=".35"/>
+<text x="400" y="715" text-anchor="middle" font-family="Arial, sans-serif" font-size="25" font-weight="700" fill="#303844">Hộp bút Canvas Basic</text>
+</svg>

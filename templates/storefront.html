@@ -1,0 +1,526 @@
+<!doctype html>
+<html lang="vi">
+  <head>
+    <meta charset="UTF-8" />
+    <meta
+      name="viewport"
+      content="width=device-width,initial-scale=1"
+    />
+    <meta
+      name="description"
+      content="KhaiHoanShop — Văn phòng phẩm, dụng cụ học tập và họa phẩm mỗi ngày."
+    />
+    <title>KhaiHoanShop | KhaiHoan Stationery</title>
+    <!-- SHOP_STYLES -->
+  </head>
+  <body>
+    <a
+      href="#main"
+      class="skip"
+    >
+      Đến nội dung chính
+    </a>
+    <header>
+      <div class="top">
+        <div class="wrap">
+          <span>Chào mừng đến KhaiHoanShop · Giao hàng toàn quốc</span>
+          <span class="links">
+            <a
+              href="#"
+              data-login
+            >
+              Đăng nhập
+            </a>
+          </span>
+        </div>
+      </div>
+      <div class="wrap head">
+        <a
+          href="#"
+          class="logo"
+        >
+          KhaiHoanShop
+          <small>KHAIHOAN STATIONERY</small>
+        </a>
+        <form
+          class="search"
+          id="header-search"
+        >
+          <input
+            aria-label="Tìm kiếm sản phẩm"
+            name="q"
+            placeholder="Tìm bút, vở, giấy A4, dụng cụ học tập..."
+            type="search"
+          />
+          <button
+            aria-label="Tìm kiếm"
+            type="submit"
+          >
+            ⌕
+          </button>
+        </form>
+        <div class="actions">
+          <button
+            class="action"
+            data-login
+            aria-label="Đăng nhập"
+          >
+            ♙
+            <span class="label">Đăng nhập</span>
+          </button>
+          <button
+            class="action"
+            id="cart-button"
+            aria-label="Mở giỏ hàng"
+          >
+            Giỏ hàng
+            <span
+              class="count"
+              id="cart-count"
+            >
+              0
+            </span>
+          </button>
+        </div>
+      </div>
+      <nav>
+        <div class="wrap nav">
+          <a href="#danh-muc">☰ Danh mục</a>
+          <a href="#">Trang chủ</a>
+          <a href="#tat-ca">Sản phẩm</a>
+          <a href="#san-pham-moi">Sản phẩm mới</a>
+          <a href="#ban-chay">Bán chạy</a>
+          <a href="#khuyen-mai">Khuyến mãi</a>
+          <a href="#tin-tuc">Tin tức</a>
+          <a href="#lien-he">Liên hệ</a>
+        </div>
+      </nav>
+      <div class="category-menu">
+        <div
+          class="wrap"
+          id="category-menu"
+        ></div>
+      </div>
+    </header>
+    <main id="main">
+      <section class="hero-area">
+        <div class="wrap">
+          <h1 class="sr-only">KhaiHoanShop — Đồng hành cùng bạn đến trường</h1>
+          <a
+            class="banner-link"
+            href="#tat-ca"
+            aria-label="Khám phá đồ dùng học tập KhaiHoanShop"
+          >
+            <img
+              class="shop-banner"
+              src="/images/stationery/banner.png"
+              width="3168"
+              height="1344"
+              fetchpriority="high"
+              alt="KhaiHoanShop — Đồng hành cùng bạn đến trường, với balo, vở, bút và dụng cụ học tập"
+            />
+          </a>
+          <div class="buttons banner-actions">
+            <a
+              class="btn"
+              href="#tat-ca"
+            >
+              Khám phá sản phẩm →
+            </a>
+            <a
+              class="btn light"
+              href="#khuyen-mai"
+            >
+              Săn ưu đãi
+            </a>
+          </div>
+          <div class="tiles">
+            <a
+              href="#tat-ca"
+              data-category="giay"
+              class="tile"
+            >
+              <div>
+                <small>Gọn gàng & hiệu quả</small>
+                <strong>Đồ dùng cho văn phòng</strong>
+              </div>
+              <span>→</span>
+            </a>
+            <a
+              href="#tat-ca"
+              data-category="hoa-pham"
+              class="tile"
+            >
+              <div>
+                <small>Thỏa sức sáng tạo</small>
+                <strong>Sắc màu & họa phẩm</strong>
+              </div>
+              <span>→</span>
+            </a>
+          </div>
+        </div>
+      </section>
+      <div class="wrap trust">
+        <div>
+          ♧ Giao hàng toàn quốc
+          <span>Hỗ trợ giao hàng đến nhiều tỉnh thành.</span>
+        </div>
+        <div>
+          ✓ Sản phẩm rõ thông tin
+          <span>Thương hiệu và quy cách dễ tìm hiểu.</span>
+        </div>
+        <div>
+          ♡ Hỗ trợ mua hàng
+          <span>Tìm kiếm, chọn đồ dùng thật dễ dàng.</span>
+        </div>
+        <div>
+          ▣ Lưu giỏ hàng tiện lợi
+          <span>Giữ những món yêu thích trên trình duyệt.</span>
+        </div>
+      </div>
+      <section
+        class="section"
+        id="danh-muc"
+      >
+        <div class="wrap">
+          <div class="section-head">
+            <div>
+              <span class="eyebrow">Mua theo danh mục</span>
+              <h2>Chọn đồ dùng bạn cần</h2>
+            </div>
+            <a href="#tat-ca">Xem tất cả →</a>
+          </div>
+          <div
+            class="categories"
+            id="categories"
+          ></div>
+        </div>
+      </section>
+      <section
+        class="section"
+        id="noi-bat"
+      >
+        <div class="wrap">
+          <div class="section-head">
+            <div>
+              <span class="eyebrow">Lựa chọn từ cửa hàng</span>
+              <h2>Sản phẩm nổi bật</h2>
+            </div>
+            <a href="#tat-ca">Xem tất cả →</a>
+          </div>
+          <div
+            class="grid"
+            id="featured-grid"
+          ></div>
+        </div>
+      </section>
+      <section
+        class="section surface"
+        id="ban-chay"
+      >
+        <div class="wrap">
+          <div class="section-head">
+            <div>
+              <span class="eyebrow">Góc yêu thích</span>
+              <h2>Sản phẩm bán chạy</h2>
+            </div>
+            <a href="#tat-ca">Xem tất cả →</a>
+          </div>
+          <div
+            class="grid"
+            id="best-grid"
+          ></div>
+        </div>
+      </section>
+      <section class="section surface">
+        <div class="wrap">
+          <div class="promo">
+            <div>
+              <span class="eyebrow">Chọn món yêu thích · Giá thêm xinh</span>
+              <h2>Góc ưu đãi của KhaiHoanShop</h2>
+              <p>Bút viết, vở sổ và đồ dùng học tập đang có giá tốt.</p>
+            </div>
+            <a
+              href="#khuyen-mai"
+              class="btn light"
+            >
+              Xem ưu đãi →
+            </a>
+          </div>
+        </div>
+      </section>
+      <section
+        class="section"
+        id="san-pham-moi"
+      >
+        <div class="wrap">
+          <div class="section-head">
+            <div>
+              <span class="eyebrow">Vừa lên kệ</span>
+              <h2>Sản phẩm mới</h2>
+            </div>
+            <a href="#tat-ca">Khám phá thêm →</a>
+          </div>
+          <div
+            class="grid"
+            id="new-grid"
+          ></div>
+        </div>
+      </section>
+      <section
+        class="section surface"
+        id="khuyen-mai"
+      >
+        <div class="wrap">
+          <div class="section-head">
+            <div>
+              <span class="eyebrow">Mua sắm tiết kiệm</span>
+              <h2>Sản phẩm khuyến mãi</h2>
+            </div>
+            <a href="#tat-ca">Xem tất cả →</a>
+          </div>
+          <div
+            class="grid"
+            id="sale-grid"
+          ></div>
+        </div>
+      </section>
+      <section
+        class="section surface"
+        id="but-viet"
+      >
+        <div class="wrap">
+          <div class="section-head">
+            <div>
+              <span class="eyebrow">Thiên Long · Bizner</span>
+              <h2>Bút viết</h2>
+            </div>
+            <a
+              href="#tat-ca"
+              data-category="but"
+            >
+              Xem danh mục →
+            </a>
+          </div>
+          <div
+            class="grid"
+            id="pen-grid"
+          ></div>
+        </div>
+      </section>
+      <section
+        class="section"
+        id="tat-ca"
+      >
+        <div class="wrap">
+          <div class="section-head">
+            <div>
+              <span class="eyebrow">Cửa hàng KhaiHoanShop</span>
+              <h2>Tất cả sản phẩm</h2>
+            </div>
+            <span
+              id="results"
+              class="muted"
+              aria-live="polite"
+            ></span>
+          </div>
+          <div class="catalog-tools">
+            <input
+              type="search"
+              id="catalog-search"
+              aria-label="Tìm trong danh sách sản phẩm"
+              placeholder="Tìm sản phẩm..."
+            />
+            <select
+              id="filter-category"
+              aria-label="Lọc danh mục"
+            >
+              <option value="all">Tất cả danh mục</option>
+            </select>
+            <select
+              id="sort"
+              aria-label="Sắp xếp"
+            >
+              <option value="featured">Nổi bật</option>
+              <option value="asc">Giá thấp đến cao</option>
+              <option value="desc">Giá cao đến thấp</option>
+              <option value="name">Tên A-Z</option>
+            </select>
+          </div>
+          <div
+            class="grid"
+            id="all-grid"
+          ></div>
+        </div>
+      </section>
+      <section
+        class="section surface"
+        id="tin-tuc"
+      >
+        <div class="wrap">
+          <div class="section-head">
+            <div>
+              <span class="eyebrow">Góc chia sẻ</span>
+              <h2>Cảm hứng mỗi ngày</h2>
+            </div>
+          </div>
+          <div class="news">
+            <article>
+              <small>GÓC HỌC TẬP</small>
+              <h3>5 món đồ nên có trên bàn học</h3>
+              <p>
+                Bút viết, sổ ghi chép, giấy note, thước và hộp bút giúp bạn bắt đầu một
+                buổi học gọn gàng.
+              </p>
+            </article>
+            <article>
+              <small>CHO VĂN PHÒNG</small>
+              <h3>Chọn giấy A4 phù hợp</h3>
+              <p>
+                Giấy 70gsm dành cho in ấn hằng ngày. Giấy 80gsm dày hơn, phù hợp tài
+                liệu hai mặt.
+              </p>
+            </article>
+            <article>
+              <small>SẮP XẾP THÔNG MINH</small>
+              <h3>Hộp bút gọn hơn mỗi ngày</h3>
+              <p>
+                Phân loại bút, bỏ đồ dùng đã hết mực và dành một ngăn nhỏ cho thước, tẩy
+                và phụ kiện.
+              </p>
+            </article>
+          </div>
+        </div>
+      </section>
+    </main>
+    <main
+      id="product-detail"
+      hidden
+      aria-labelledby="detail-title"
+    ></main>
+    <footer id="lien-he">
+      <div class="wrap">
+        <div class="footer-grid">
+          <div>
+            <div class="logo">
+              KhaiHoanShop
+              <small style="color: #b8d4ef">KhaiHoan Stationery</small>
+            </div>
+            <p>
+              Đồ dùng học tập, văn phòng phẩm và họa phẩm cho những ý tưởng mỗi ngày.
+              Tìm nhanh, chọn dễ cùng KhaiHoanShop.
+            </p>
+          </div>
+          <div>
+            <strong>Liên hệ cửa hàng</strong>
+            <p>
+              0365392002
+              <br />
+              khaihoanhuetran@gmail.com
+              <br />
+              08:00 - 21:00, Thứ 2 - Chủ nhật
+            </p>
+          </div>
+          <div>
+            <strong>Mua sắm cùng KhaiHoanShop</strong>
+            <p>
+              <a href="#danh-muc">Danh mục sản phẩm</a>
+              <br />
+              <a href="#ban-chay">Sản phẩm bán chạy</a>
+              <br />
+              <a href="#khuyen-mai">Ưu đãi hiện có</a>
+            </p>
+          </div>
+        </div>
+        <div class="copyright">
+          © 2026 KhaiHoanShop. Website mẫu phục vụ đồ án Front-end.
+        </div>
+      </div>
+    </footer>
+    <dialog
+      id="cart-dialog"
+      aria-labelledby="cart-title"
+    >
+      <div class="dialog-head">
+        <h2 id="cart-title">Giỏ hàng của bạn</h2>
+        <button
+          class="close"
+          data-close
+          aria-label="Đóng giỏ hàng"
+        >
+          ×
+        </button>
+      </div>
+      <div id="cart-lines"></div>
+      <div
+        class="total"
+        id="cart-total"
+      ></div>
+      <p class="muted">
+        Giỏ hàng được lưu trên trình duyệt. Bản HTML chưa hỗ trợ đặt hàng hoặc thanh
+        toán thực tế.
+      </p>
+      <button
+        class="btn"
+        data-close
+      >
+        Tiếp tục mua sắm
+      </button>
+    </dialog>
+    <dialog
+      id="login-dialog"
+      aria-labelledby="login-title"
+    >
+      <div class="dialog-head">
+        <h2 id="login-title">Đăng nhập</h2>
+        <button
+          class="close"
+          data-close
+          aria-label="Đóng đăng nhập"
+        >
+          ×
+        </button>
+      </div>
+      <p class="muted">Form minh họa Front-end, chưa kết nối hệ thống tài khoản.</p>
+      <form
+        class="login-form"
+        id="login-form"
+      >
+        <label>
+          Email
+          <input
+            type="email"
+            required
+            autocomplete="email"
+          />
+        </label>
+        <label>
+          Mật khẩu
+          <input
+            type="password"
+            required
+            autocomplete="current-password"
+          />
+        </label>
+        <button
+          class="btn"
+          type="submit"
+        >
+          Đăng nhập
+        </button>
+        <p
+          id="login-status"
+          role="status"
+          class="muted"
+        ></p>
+      </form>
+    </dialog>
+    <div
+      id="toast"
+      class="toast"
+      role="status"
+      hidden
+    ></div>
+    <!-- SHOP_SCRIPT -->
+  </body>
+</html>

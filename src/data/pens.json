@@ -1,0 +1,263 @@
+[
+  {
+    "id": "but-bi-tl-027",
+    "sku": "TL-027",
+    "name": "Bút bi Thiên Long TL-027",
+    "brand": "Thiên Long",
+    "pack": "1 cây",
+    "category": "but",
+    "price": 4000,
+    "shortDescription": "Đầu bi 0.5mm nét mảnh, mực ra đều, thiết kế dạng bấm tiện lợi",
+    "description": ["Đầu bi 0.5mm nét mảnh, mực ra đều, thiết kế dạng bấm tiện lợi"],
+    "image": "/images/products/pens/but027xanh.jpg",
+    "images": [
+      "/images/products/pens/but027xanh.jpg",
+      "/images/products/pens/but027den.jpg",
+      "/images/products/pens/but027do.jpg"
+    ],
+    "alt": "Bút bi Thiên Long TL-027",
+    "stock": 100,
+    "units": [
+      {
+        "id": "cay",
+        "label": "Cây",
+        "count": 1,
+        "price": 4000
+      }
+    ],
+    "colors": [
+      {
+        "id": "xanh",
+        "label": "Xanh",
+        "hex": "#176bc0",
+        "image": "/images/products/pens/but027xanh.jpg"
+      },
+      {
+        "id": "do",
+        "label": "Đỏ",
+        "hex": "#ef2222",
+        "image": "/images/products/pens/but027do.jpg"
+      },
+      {
+        "id": "den",
+        "label": "Đen",
+        "hex": "#161616",
+        "image": "/images/products/pens/but027den.jpg"
+      }
+    ],
+    "isHot": true,
+    "isNew": false
+  },
+  {
+    "id": "but-gel-gel-012",
+    "sku": "Gel-012",
+    "name": "Bút gel Thiên Long GEL-012",
+    "brand": "Thiên Long",
+    "pack": "1 cây",
+    "category": "but",
+    "price": 7000,
+    "shortDescription": "Mực gel đậm màu, đầu bi 0.5mm viết êm, không lem giấy",
+    "description": ["Mực gel đậm màu, đầu bi 0.5mm viết êm, không lem giấy"],
+    "image": "/images/products/pens/butgel012xanh.jpg",
+    "images": [
+      "/images/products/pens/butgel012xanh.jpg",
+      "/images/products/pens/butgel012den.jpg",
+      "/images/products/pens/butgel012do.jpg"
+    ],
+    "alt": "Bút gel Thiên Long GEL-012",
+    "stock": 90,
+    "units": [
+      {
+        "id": "cay",
+        "label": "Cây",
+        "count": 1,
+        "price": 7000,
+        "oldPrice": 8000
+      }
+    ],
+    "colors": [
+      {
+        "id": "xanh",
+        "label": "Xanh",
+        "hex": "#176bc0",
+        "image": "/images/products/pens/butgel012xanh.jpg"
+      },
+      {
+        "id": "do",
+        "label": "Đỏ",
+        "hex": "#ef2222",
+        "image": "/images/products/pens/butgel012do.jpg"
+      },
+      {
+        "id": "den",
+        "label": "Đen",
+        "hex": "#161616",
+        "image": "/images/products/pens/butgel012den.jpg"
+      }
+    ],
+    "isHot": false,
+    "isNew": false,
+    "oldPrice": 8000
+  },
+  {
+    "id": "but-bi-bizner-biz-01",
+    "sku": "BIZ-01",
+    "name": "Bút bi cao cấp Bizner BIZ-01",
+    "brand": "Bizner",
+    "pack": "1 cây",
+    "category": "but",
+    "price": 980000,
+    "shortDescription": "Thân kim loại sơn đen bóng, chi tiết mạ vàng 18K sang trọng, ruột Thụy Sĩ ngòi 1.0mm",
+    "description": [
+      "Thân kim loại sơn đen bóng, chi tiết mạ vàng 18K sang trọng, ruột Thụy Sĩ ngòi 1.0mm"
+    ],
+    "image": "/images/products/pens/butbicaocap.jpg",
+    "images": ["/images/products/pens/butbicaocap.jpg"],
+    "alt": "Bút bi cao cấp Bizner BIZ-01",
+    "stock": 10,
+    "units": [
+      {
+        "id": "cay",
+        "label": "Cây",
+        "count": 1,
+        "price": 980000,
+        "oldPrice": 1200000
+      }
+    ],
+    "colors": [
+      {
+        "id": "xanh",
+        "label": "Xanh",
+        "hex": "#176bc0",
+        "image": "/images/products/pens/butbicaocap.jpg"
+      }
+    ],
+    "isHot": true,
+    "isNew": false,
+    "oldPrice": 1200000
+  },
+  {
+    "id": "but-da-quang-hl-03",
+    "sku": "HL-03",
+    "name": "Bút dạ quang Thiên Long HL-03",
+    "brand": "Thiên Long",
+    "pack": "1 cây",
+    "category": "but",
+    "price": 8000,
+    "shortDescription": "Ngòi vát dẹp, mực màu dạ quang tươi sáng, không làm lem chữ in",
+    "description": ["Ngòi vát dẹp, mực màu dạ quang tươi sáng, không làm lem chữ in"],
+    "image": "/images/products/pens/butdaquang1.jpg",
+    "images": [
+      "/images/products/pens/butdaquang1.jpg",
+      "/images/products/pens/butdaquangxanh.jpg",
+      "/images/products/pens/butdaquangcam.jpg",
+      "/images/products/pens/butdaquangvang.jpg"
+    ],
+    "alt": "Bút dạ quang Thiên Long HL-03",
+    "stock": 100,
+    "units": [
+      {
+        "id": "cay",
+        "label": "Cây",
+        "count": 1,
+        "price": 8000
+      },
+      {
+        "id": "hop-10",
+        "label": "Hộp 10 cây",
+        "count": 10,
+        "price": 80000
+      }
+    ],
+    "colors": [
+      {
+        "id": "xanh",
+        "label": "Xanh",
+        "hex": "#176bc0",
+        "image": "/images/products/pens/butdaquangxanh.jpg"
+      },
+      {
+        "id": "cam",
+        "label": "Cam",
+        "hex": "#ff8526",
+        "image": "/images/products/pens/butdaquangcam.jpg"
+      },
+      {
+        "id": "vang",
+        "label": "Vàng",
+        "hex": "#f7d52b",
+        "image": "/images/products/pens/butdaquangvang.jpg"
+      }
+    ],
+    "isHot": false,
+    "isNew": false
+  },
+  {
+    "id": "but-chi-gp-01-2b",
+    "sku": "DCHT-TL-PC02",
+    "name": "Bút chì gỗ Thiên Long GP-01 2B",
+    "brand": "Thiên Long",
+    "pack": "1 cây",
+    "category": "but",
+    "price": 4000,
+    "shortDescription": "Ruột chì 2B mềm đậm, dễ chuốt, phù hợp viết chính tả và vẽ kỹ thuật",
+    "description": [
+      "Ruột chì 2B mềm đậm, dễ chuốt, phù hợp viết chính tả và vẽ kỹ thuật"
+    ],
+    "image": "/images/products/pens/butchigo.jpg",
+    "images": ["/images/products/pens/butchigo.jpg"],
+    "alt": "Bút chì gỗ Thiên Long GP-01 2B",
+    "stock": 60,
+    "units": [
+      {
+        "id": "cay",
+        "label": "Cây",
+        "count": 1,
+        "price": 4000
+      },
+      {
+        "id": "hop-10",
+        "label": "Hộp 10 cây",
+        "count": 10,
+        "price": 38000
+      }
+    ],
+    "colors": [],
+    "isHot": false,
+    "isNew": false,
+    "isBestSeller": true
+  },
+  {
+    "id": "but-xoa-cp-02",
+    "sku": "BX-TL-CP02",
+    "name": "Bút xóa nước Thiên Long CP-02",
+    "brand": "Thiên Long",
+    "pack": "1 cây",
+    "category": "but",
+    "price": 20000,
+    "shortDescription": "Mực xóa trắng đục, mau khô, độ che phủ cao, đầu bút kim loại điều tiết mực tốt",
+    "description": [
+      "Mực xóa trắng đục, mau khô, độ che phủ cao, đầu bút kim loại điều tiết mực tốt"
+    ],
+    "image": "/images/products/pens/butxoanuoc1.jpg",
+    "images": [
+      "/images/products/pens/butxoanuoc1.jpg",
+      "/images/products/pens/butxoanuoc2.jpg",
+      "/images/products/pens/butxoanuoc3.jpg"
+    ],
+    "alt": "Bút xóa nước Thiên Long CP-02",
+    "stock": 30,
+    "units": [
+      {
+        "id": "cay",
+        "label": "Cây",
+        "count": 1,
+        "price": 20000
+      }
+    ],
+    "colors": [],
+    "isHot": false,
+    "isNew": false,
+    "isBestSeller": true
+  }
+]

@@ -1,0 +1,355 @@
+[
+  {
+    "id": "vo-4-o-ly-96",
+    "sku": "TT-V001",
+    "name": "Vở 4 ô ly 96 trang School Day",
+    "brand": "PaperGo",
+    "pack": "1 quyển",
+    "category": "vo-so",
+    "shortDescription": "Vở 96 trang, giấy sáng dịu, đường kẻ 4 ô ly rõ nét.",
+    "image": "/images/stationery/vo-4-o-ly-96.svg",
+    "alt": "Vở bốn ô ly School Day",
+    "price": 14000,
+    "oldPrice": 16000,
+    "rank": 2,
+    "description": [
+      "Thiết kế dành cho học sinh tiểu học với dòng kẻ đều và dễ quan sát.",
+      "Bìa cán mờ, họa tiết trẻ trung, gáy ghim chắc chắn."
+    ],
+    "isNew": false,
+    "isHot": true
+  },
+  {
+    "id": "vo-ke-ngang-a5",
+    "sku": "TT-V002",
+    "name": "Vở kẻ ngang A5 Minimal",
+    "brand": "PaperGo",
+    "pack": "1 quyển",
+    "category": "vo-so",
+    "shortDescription": "Vở A5 120 trang, phong cách tối giản, giấy 70gsm.",
+    "image": "/images/stationery/vo-ke-ngang-a5.svg",
+    "alt": "Vở kẻ ngang A5 Minimal",
+    "price": 22000,
+    "description": [
+      "Phù hợp ghi bài, ghi chú công việc hoặc sử dụng làm sổ học ngoại ngữ.",
+      "Giấy có độ trắng vừa phải, viết bút bi và bút gel rõ nét."
+    ],
+    "isNew": true,
+    "isHot": false
+  },
+  {
+    "id": "so-lo-xo-b5",
+    "sku": "TT-V003",
+    "name": "Sổ lò xo B5 Study Plan",
+    "brand": "NoteLab",
+    "pack": "1 quyển",
+    "category": "vo-so",
+    "shortDescription": "Sổ B5 160 trang, lò xo đôi, bìa cứng bền đẹp.",
+    "image": "/images/stationery/so-lo-xo-b5.svg",
+    "alt": "Sổ lò xo B5 Study Plan",
+    "price": 48000,
+    "oldPrice": 55000,
+    "rank": 4,
+    "description": [
+      "Trang giấy kẻ ngang dễ ghi chép, phù hợp lập kế hoạch học tập và công việc.",
+      "Lò xo đôi giúp mở phẳng trang và lật giấy thuận tiện."
+    ],
+    "isNew": false,
+    "isHot": false
+  },
+  {
+    "id": "so-tay-bia-da",
+    "sku": "TT-V004",
+    "name": "Sổ tay bìa da Office A5",
+    "brand": "OfficePro",
+    "pack": "1 quyển",
+    "category": "vo-so",
+    "shortDescription": "Sổ tay bìa da PU, khổ A5, phong cách lịch sự.",
+    "image": "/images/stationery/so-tay-bia-da.svg",
+    "alt": "Sổ tay bìa da khổ A5",
+    "price": 89000,
+    "description": [
+      "Thiết kế gọn gàng phù hợp họp, ghi chú công việc và làm quà tặng.",
+      "Bìa PU dễ lau, dây đánh dấu trang và giấy kẻ ngang."
+    ],
+    "isNew": false,
+    "isHot": false
+  },
+  {
+    "id": "giay-a4-70",
+    "sku": "TT-G001",
+    "name": "Giấy in A4 70gsm Bright",
+    "brand": "PaperGo",
+    "pack": "Ream 500 tờ",
+    "category": "giay",
+    "shortDescription": "Giấy A4 70gsm cho nhu cầu in ấn văn phòng hằng ngày.",
+    "image": "/images/stationery/giay-a4-70.svg",
+    "alt": "Ream giấy in A4 70gsm",
+    "price": 76000,
+    "oldPrice": 82000,
+    "rank": 3,
+    "description": [
+      "Bề mặt giấy tương đối mịn, phù hợp máy in laser và máy in phun phổ thông.",
+      "Quy cách 500 tờ/ream, dễ bảo quản và dùng cho văn phòng, trường học."
+    ],
+    "isNew": false,
+    "isHot": true
+  },
+  {
+    "id": "giay-a4-80",
+    "sku": "TT-G002",
+    "name": "Giấy in A4 80gsm Premium",
+    "brand": "PaperGo",
+    "pack": "Ream 500 tờ",
+    "category": "giay",
+    "shortDescription": "Giấy A4 80gsm dày hơn, phù hợp in tài liệu hai mặt.",
+    "image": "/images/stationery/giay-a4-80.svg",
+    "alt": "Ream giấy A4 80gsm",
+    "price": 94000,
+    "description": [
+      "Định lượng 80gsm tạo cảm giác chắc tay, phù hợp hợp đồng, báo cáo và tài liệu quan trọng.",
+      "Bề mặt mịn giúp bản in rõ và hạn chế kẹt giấy khi sử dụng đúng cách."
+    ],
+    "isNew": true,
+    "isHot": false
+  },
+  {
+    "id": "note-pastel-5",
+    "sku": "TT-G003",
+    "name": "Giấy note Pastel 5 màu",
+    "brand": "NoteLab",
+    "pack": "5 xấp",
+    "category": "giay",
+    "shortDescription": "Giấy ghi chú pastel nhiều màu, kích thước 76 x 76mm.",
+    "image": "/images/stationery/note-pastel-5.svg",
+    "alt": "Bộ giấy note pastel năm màu",
+    "price": 28000,
+    "oldPrice": 32000,
+    "description": [
+      "Thích hợp ghi việc cần làm, đánh dấu trang hoặc trang trí góc học tập.",
+      "Keo dán vừa phải, dễ bóc và dán lại trên nhiều bề mặt phẳng."
+    ],
+    "isNew": false,
+    "isHot": false
+  },
+  {
+    "id": "giay-thu-cong-20",
+    "sku": "TT-G004",
+    "name": "Giấy thủ công 20 màu",
+    "brand": "ColorJoy",
+    "pack": "Tập 20 tờ",
+    "category": "giay",
+    "shortDescription": "Tập giấy màu dùng cắt dán, thủ công và trang trí.",
+    "image": "/images/stationery/giay-thu-cong-20.svg",
+    "alt": "Tập giấy thủ công nhiều màu",
+    "price": 25000,
+    "description": [
+      "Bảng màu đa dạng, phù hợp hoạt động mỹ thuật ở trường và DIY tại nhà.",
+      "Giấy dễ cắt, gấp và dán bằng keo thông dụng."
+    ],
+    "isNew": false,
+    "isHot": false
+  },
+  {
+    "id": "keo-van-phong-18",
+    "sku": "TT-D001",
+    "name": "Kéo văn phòng 18cm",
+    "brand": "OfficePro",
+    "pack": "1 cây",
+    "category": "dung-cu",
+    "shortDescription": "Kéo 18cm, tay cầm nhựa, dùng cắt giấy và vật liệu mỏng.",
+    "image": "/images/stationery/keo-van-phong-18.svg",
+    "alt": "Kéo văn phòng 18cm",
+    "price": 42000,
+    "description": [
+      "Thiết kế tay cầm vừa tay, thích hợp cho bàn làm việc, lớp học và gia đình.",
+      "Lưỡi thép không gỉ cho đường cắt gọn trên giấy và bìa mỏng."
+    ],
+    "isNew": false,
+    "isHot": false
+  },
+  {
+    "id": "dap-ghim-mini",
+    "sku": "TT-D002",
+    "name": "Dập ghim Mini No.10",
+    "brand": "OfficePro",
+    "pack": "1 cái",
+    "category": "dung-cu",
+    "shortDescription": "Dập ghim nhỏ gọn, phù hợp ghim tài liệu hằng ngày.",
+    "image": "/images/stationery/dap-ghim-mini.svg",
+    "alt": "Dập ghim mini màu đỏ",
+    "price": 39000,
+    "oldPrice": 45000,
+    "description": [
+      "Kích thước gọn, dễ đặt trong ngăn bàn hoặc hộp dụng cụ học tập.",
+      "Sử dụng kim ghim No.10 phổ biến, thao tác nhẹ và ổn định."
+    ],
+    "isNew": false,
+    "isHot": true
+  },
+  {
+    "id": "thuoc-20cm",
+    "sku": "TT-D003",
+    "name": "Thước nhựa trong 20cm",
+    "brand": "StudyMate",
+    "pack": "1 cây",
+    "category": "dung-cu",
+    "shortDescription": "Thước 20cm trong suốt, vạch chia rõ và dễ đọc.",
+    "image": "/images/stationery/thuoc-20cm.svg",
+    "alt": "Thước nhựa trong 20cm",
+    "price": 9000,
+    "description": [
+      "Phù hợp đo, kẻ trong học tập và công việc văn phòng.",
+      "Chất liệu nhựa trong giúp quan sát nội dung bên dưới khi kẻ."
+    ],
+    "isNew": false,
+    "isHot": false
+  },
+  {
+    "id": "bo-hinh-hoc",
+    "sku": "TT-D004",
+    "name": "Bộ dụng cụ hình học 5 món",
+    "brand": "StudyMate",
+    "pack": "Hộp 5 món",
+    "category": "dung-cu",
+    "shortDescription": "Bộ compa, thước thẳng, ê-ke và thước đo góc.",
+    "image": "/images/stationery/bo-hinh-hoc.svg",
+    "alt": "Bộ dụng cụ hình học năm món",
+    "price": 52000,
+    "description": [
+      "Bộ dụng cụ cơ bản phục vụ môn Toán, vẽ kỹ thuật và các bài tập hình học.",
+      "Đóng hộp gọn gàng, thuận tiện mang theo trong balo."
+    ],
+    "isNew": true,
+    "isHot": false
+  },
+  {
+    "id": "mau-nuoc-12",
+    "sku": "TT-H001",
+    "name": "Màu nước Water Joy 12 màu",
+    "brand": "ColorJoy",
+    "pack": "Hộp 12 màu",
+    "category": "hoa-pham",
+    "shortDescription": "Hộp màu nước 12 màu kèm cọ, phù hợp học mỹ thuật.",
+    "image": "/images/stationery/mau-nuoc-12.svg",
+    "alt": "Hộp màu nước 12 màu",
+    "price": 78000,
+    "oldPrice": 89000,
+    "description": [
+      "Màu dễ hòa nước, phù hợp luyện tập tô màu, minh họa và sáng tạo thủ công.",
+      "Hộp nhựa gọn, có nắp dùng làm khay pha màu tiện lợi."
+    ],
+    "isNew": false,
+    "isHot": true
+  },
+  {
+    "id": "sap-dau-24",
+    "sku": "TT-H002",
+    "name": "Sáp dầu Color Joy 24 màu",
+    "brand": "ColorJoy",
+    "pack": "Hộp 24 cây",
+    "category": "hoa-pham",
+    "shortDescription": "Sáp dầu màu tươi, bám giấy tốt, dễ phối màu.",
+    "image": "/images/stationery/sap-dau-24.svg",
+    "alt": "Hộp sáp dầu 24 màu",
+    "price": 68000,
+    "description": [
+      "Bảng màu 24 sắc phù hợp học sinh, vẽ tranh và làm bài mỹ thuật.",
+      "Thân sáp bọc giấy giúp cầm sạch tay và dễ nhận biết màu."
+    ],
+    "isNew": false,
+    "isHot": false
+  },
+  {
+    "id": "bo-co-6",
+    "sku": "TT-H003",
+    "name": "Bộ cọ vẽ 6 size",
+    "brand": "ColorJoy",
+    "pack": "Bộ 6 cây",
+    "category": "hoa-pham",
+    "shortDescription": "Bộ 6 cọ đầu tròn và đầu dẹt cho nhiều nét vẽ.",
+    "image": "/images/stationery/bo-co-6.svg",
+    "alt": "Bộ cọ vẽ sáu kích thước",
+    "price": 56000,
+    "description": [
+      "Phù hợp màu nước, gouache và acrylic dành cho người mới bắt đầu.",
+      "Cán gỗ nhẹ, nhiều kích thước hỗ trợ tô mảng và đi chi tiết."
+    ],
+    "isNew": true,
+    "isHot": false
+  },
+  {
+    "id": "hop-but-canvas",
+    "sku": "TT-A001",
+    "name": "Hộp bút Canvas Basic",
+    "brand": "StudyMate",
+    "pack": "1 cái",
+    "category": "balo",
+    "shortDescription": "Hộp bút vải canvas ngăn rộng, khóa kéo chắc chắn.",
+    "image": "/images/stationery/hop-but-canvas.svg",
+    "alt": "Hộp bút canvas màu be",
+    "price": 65000,
+    "oldPrice": 75000,
+    "description": [
+      "Thiết kế tối giản, đủ chỗ cho bút viết, thước ngắn và phụ kiện học tập.",
+      "Chất liệu canvas dễ phối với balo và phù hợp nhiều độ tuổi."
+    ],
+    "isNew": false,
+    "isHot": false
+  },
+  {
+    "id": "balo-school-lite",
+    "sku": "TT-A002",
+    "name": "Balo School Lite 18L",
+    "brand": "StudyMate",
+    "pack": "1 cái",
+    "category": "balo",
+    "shortDescription": "Balo 18L nhẹ, nhiều ngăn, phù hợp đi học hằng ngày.",
+    "image": "/images/stationery/balo-school-lite.svg",
+    "alt": "Balo học sinh School Lite",
+    "price": 329000,
+    "oldPrice": 379000,
+    "description": [
+      "Ngăn chính rộng, có ngăn phụ phía trước và hai túi hông cho bình nước.",
+      "Quai đeo có lớp đệm, thiết kế đơn giản và dễ sử dụng."
+    ],
+    "isNew": false,
+    "isHot": true
+  },
+  {
+    "id": "bang-trang-a4",
+    "sku": "TT-D005",
+    "name": "Bảng trắng mini A4",
+    "brand": "StudyMate",
+    "pack": "1 bảng + 1 bút",
+    "category": "dung-cu",
+    "shortDescription": "Bảng trắng mini khổ A4 dùng ghi chú và học tập.",
+    "image": "/images/stationery/bang-trang-a4.svg",
+    "alt": "Bảng trắng mini khổ A4",
+    "price": 72000,
+    "description": [
+      "Bề mặt dễ viết và lau với bút lông bảng thông dụng.",
+      "Kích thước nhỏ gọn phù hợp học từ vựng, làm nháp và ghi việc cần nhớ."
+    ],
+    "isNew": false,
+    "isHot": false
+  },
+  {
+    "id": "bang-keo-trong",
+    "sku": "TT-D006",
+    "name": "Băng keo trong 18mm",
+    "brand": "OfficePro",
+    "pack": "Lốc 6 cuộn",
+    "category": "dung-cu",
+    "shortDescription": "Băng keo trong dùng đóng gói nhẹ và dán giấy.",
+    "image": "/images/stationery/bang-keo-trong.svg",
+    "alt": "Lốc băng keo trong sáu cuộn",
+    "price": 36000,
+    "description": [
+      "Độ bám ổn định trên giấy, bìa carton mỏng và bề mặt sạch.",
+      "Lốc 6 cuộn phù hợp văn phòng, trường học hoặc sử dụng tại nhà."
+    ],
+    "isNew": false,
+    "isHot": false
+  }
+]
