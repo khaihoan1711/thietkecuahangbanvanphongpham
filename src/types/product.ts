@@ -1,12 +1,7 @@
 export type Region = "bac" | "trung" | "nam";
 
-export type ProductCategory =
-  | "but"
-  | "vo-so"
-  | "giay"
-  | "dung-cu"
-  | "hoa-pham"
-  | "balo";
+// Mã danh mục (ví dụ "but", "vo-so"). Admin có thể thêm danh mục mới nên đây là chuỗi tự do.
+export type ProductCategory = string;
 
 export interface Product {
   id: string;

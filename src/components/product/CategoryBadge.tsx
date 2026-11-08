@@ -1,4 +1,6 @@
-import { categoryInfo } from "@/data/products";
+"use client";
+
+import { useCatalog } from "@/context/CatalogContext";
 import type { ProductCategory } from "@/types/product";
 
 export default function CategoryBadge({
@@ -8,11 +10,13 @@ export default function CategoryBadge({
   category: ProductCategory;
   className?: string;
 }) {
+  const { getCategoryLabel } = useCatalog();
+
   return (
     <span
       className={`inline-flex items-center rounded-full bg-navy-soft px-2.5 py-1 text-xs font-semibold text-navy ${className}`}
     >
-      {categoryInfo[category].label}
+      {getCategoryLabel(category)}
     </span>
   );
 }

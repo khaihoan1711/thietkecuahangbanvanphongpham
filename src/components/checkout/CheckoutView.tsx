@@ -1,13 +1,17 @@
 "use client";
 
 import Link from "next/link";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { btnBase, btnPrimary } from "@/components/ui/buttons";
+import { useAuth } from "@/context/AuthContext";
 import { useCart } from "@/context/CartContext";
+import { useCatalog } from "@/context/CatalogContext";
+import { useOrders } from "@/context/OrderContext";
+import { useToast } from "@/context/ToastContext";
 import { calculateTotals } from "@/data/cart";
 import { formatVND } from "@/lib/format";
-import { cartKey, selectedProduct } from "@/lib/product-options";
-import type { Product } from "@/types/product";
+import { cartKey } from "@/lib/product-options";
+import { getCartLines, toOrderItems } from "@/lib/cart-lines";
 
 type FormValues = {
   fullName: string;
@@ -69,13 +73,36 @@ const fieldStyle =
 const fieldOk = "border-line focus:border-primary focus:ring-primary-soft";
 const fieldBad = "border-sale focus:border-sale focus:ring-sale/20";
 
-// `products` comes from the local front-end data. The cart itself only stores ids and quantities.
-export default function CheckoutView({ products }: { products: Product[] }) {
-  const { items, isReady } = useCart();
+// The cart only stores ids and quantities; the products come from the shared catalog.
+export default function CheckoutView() {
+  const { items, isReady, clearCart } = useCart();
+  const { products } = useCatalog();
+  const { currentUser } = useAuth();
+  const { placeOrder } = useOrders();
+  const { showToast } = useToast();
   const [values, setValues] = useState<FormValues>(emptyForm);
   const [errors, setErrors] = useState<Errors>({});
   const [payment, setPayment] = useState<"cod" | "bank">("cod");
-  const [success, setSuccess] = useState(false);
+  // Mã đơn hàng vừa đặt (sau khi đặt, giỏ hàng được làm trống)
+  const [placedOrderId, setPlacedOrderId] = useState<string | null>(null);
+
+  // Người dùng đã đăng nhập thì điền sẵn thông tin giao hàng đã lưu trong tài khoản.
+  useEffect(() => {
+    if (!currentUser) {
+      return;
+    }
+
+    setValues((current) => ({
+      ...current,
+      fullName: current.fullName || currentUser.fullName,
+      phone: current.phone || currentUser.phone,
+      email: current.email || currentUser.email,
+      province: current.province || currentUser.address?.province || "",
+      district: current.district || currentUser.address?.district || "",
+      ward: current.ward || currentUser.address?.ward || "",
+      address: current.address || currentUser.address?.address || "",
+    }));
+  }, [currentUser?.id]);
 
   // Wait for localStorage, otherwise the empty message would flash on every page load
   if (!isReady) {
@@ -83,12 +110,39 @@ export default function CheckoutView({ products }: { products: Product[] }) {
   }
 
   // Join each cart line with its product. Ids that no longer exist are skipped.
-  const lines = items.flatMap((item) => {
-    const product = products.find((product) => product.id === item.productId);
-    return product
-      ? [{ product: selectedProduct(product, item), quantity: item.quantity, item }]
-      : [];
-  });
+  const lines = getCartLines(items, products);
+
+  if (placedOrderId && lines.length === 0) {
+    return (
+      <div className="rounded-xl border border-line bg-white px-6 py-16 text-center">
+        <p
+          role="status"
+          className="font-display text-2xl font-semibold text-primary"
+        >
+          Đặt hàng thành công! Cảm ơn bạn đã mua sắm tại KhaiHoanShop.
+        </p>
+        <p className="mt-2 text-ink-muted">
+          Mã đơn hàng của bạn là <strong className="text-ink">{placedOrderId}</strong>.
+        </p>
+        <div className="mt-6 flex flex-wrap justify-center gap-3">
+          {currentUser && (
+            <Link
+              href="/tai-khoan?tab=orders"
+              className={`${btnBase} ${btnPrimary}`}
+            >
+              Xem đơn hàng của tôi
+            </Link>
+          )}
+          <Link
+            href="/san-pham"
+            className={`${btnBase} border-primary bg-white text-primary hover:bg-primary-soft`}
+          >
+            Tiếp tục mua sắm
+          </Link>
+        </div>
+      </div>
+    );
+  }
 
   if (lines.length === 0) {
     return (
@@ -112,7 +166,6 @@ export default function CheckoutView({ products }: { products: Product[] }) {
 
   function handleChange(field: keyof FormValues, value: string) {
     setValues({ ...values, [field]: value });
-    setSuccess(false);
     // Remove the error of this field as soon as the user edits it
     if (errors[field]) setErrors({ ...errors, [field]: undefined });
   }
@@ -124,14 +177,36 @@ export default function CheckoutView({ products }: { products: Product[] }) {
 
     const firstInvalid = requiredMessages.find(([field]) => newErrors[field]);
     if (firstInvalid) {
-      setSuccess(false);
       document.getElementById(firstInvalid[0])?.focus();
       return;
     }
 
-    // Frontend only for now: no real order is created and the cart is kept.
-    // Backend: create the order here, then clear the cart.
-    setSuccess(true);
+    // Tạo đơn hàng (lưu trong LocalStorage) rồi làm trống giỏ hàng.
+    const order = placeOrder({
+      userId: currentUser?.id ?? null,
+      customer: {
+        fullName: values.fullName.trim(),
+        phone: values.phone.trim(),
+        email: values.email.trim().toLowerCase(),
+      },
+      shipping: {
+        province: values.province.trim(),
+        district: values.district.trim(),
+        ward: values.ward.trim(),
+        address: values.address.trim(),
+      },
+      note: values.note.trim(),
+      payment,
+      items: toOrderItems(lines),
+      subtotal,
+      shippingFee: shipping,
+      discount,
+      total,
+    });
+
+    clearCart();
+    setPlacedOrderId(order.id);
+    showToast(`Đặt hàng thành công. Mã đơn: ${order.id}`);
   }
 
   // One labelled text field with its error message
@@ -315,14 +390,6 @@ export default function CheckoutView({ products }: { products: Product[] }) {
             className="mt-4 text-sm text-sale"
           >
             Vui lòng kiểm tra lại các thông tin được đánh dấu.
-          </p>
-        )}
-        {success && (
-          <p
-            role="status"
-            className="mt-4 rounded-lg bg-primary-soft px-4 py-3 text-sm font-medium text-primary"
-          >
-            Đặt hàng thành công! Cảm ơn bạn đã mua sắm tại KhaiHoanShop.
           </p>
         )}
         <Link

@@ -1,7 +1,8 @@
 "use client";
 
 import { createContext, useContext, useEffect, useState } from "react";
-import { allProducts, getProductById } from "@/data/products";
+import { useCatalog } from "@/context/CatalogContext";
+import { readJson, STORAGE_KEYS, writeJson } from "@/lib/storage";
 import {
   cartKey,
   normalizeCart,
@@ -17,36 +18,38 @@ type CartContextValue = {
   addToCart: (id: string, quantity: number, selection?: ProductSelection) => void;
   setQuantity: (id: string, quantity: number, selection?: ProductSelection) => void;
   removeFromCart: (id: string, selection?: ProductSelection) => void;
+  // Xóa toàn bộ giỏ hàng (dùng sau khi đặt hàng thành công)
+  clearCart: () => void;
 };
 
-const STORAGE_KEY = "khaihoanstatinery-cart";
 const CartContext = createContext<CartContextValue | null>(null);
 
 export function CartProvider({ children }: { children: React.ReactNode }) {
+  // Sản phẩm lấy từ kho dữ liệu chung, nên Admin sửa giá hoặc tồn kho thì giỏ hàng cũng cập nhật.
+  const { products, isReady: catalogReady, getProduct } = useCatalog();
   const [items, setItems] = useState<CartItem[]>([]);
   const [isReady, setIsReady] = useState(false);
 
-  // Đọc giỏ hàng sau khi trình duyệt tải xong.
+  // Đọc giỏ hàng sau khi danh sách sản phẩm đã sẵn sàng.
   useEffect(() => {
-    try {
-      const saved = localStorage.getItem(STORAGE_KEY) ?? "[]";
-      setItems(normalizeCart(JSON.parse(saved), allProducts));
-    } catch {
-      setItems([]);
+    if (!catalogReady) {
+      return;
     }
 
+    const saved = readJson<unknown>(STORAGE_KEYS.cart, []);
+
+    setItems(normalizeCart(saved, products));
     setIsReady(true);
-  }, []);
+    // Chỉ đọc một lần khi dữ liệu sản phẩm vừa tải xong.
+  }, [catalogReady]);
 
   // Chỉ lưu sau khi đã đọc dữ liệu cũ để tránh ghi đè giỏ hàng.
   useEffect(() => {
-    if (!isReady) return;
-
-    try {
-      localStorage.setItem(STORAGE_KEY, JSON.stringify(items));
-    } catch {
-      // Giỏ hàng vẫn dùng được khi trình duyệt không cho phép lưu.
+    if (!isReady) {
+      return;
     }
+
+    writeJson(STORAGE_KEYS.cart, items);
   }, [items, isReady]);
 
   function updateCart(
@@ -55,8 +58,11 @@ export function CartProvider({ children }: { children: React.ReactNode }) {
     selection: ProductSelection,
     add: boolean,
   ) {
-    const product = getProductById(id);
-    if (!product) return;
+    const product = getProduct(id);
+
+    if (!product) {
+      return;
+    }
 
     setItems((current) => putCartItem(current, product, quantity, selection, add));
   }
@@ -70,18 +76,34 @@ export function CartProvider({ children }: { children: React.ReactNode }) {
   }
 
   function removeFromCart(id: string, selection: ProductSelection = {}) {
-    const product = getProductById(id);
-    if (!product) return;
+    const product = getProduct(id);
+
+    if (!product) {
+      return;
+    }
 
     const key = cartKey({ productId: id, ...selectionFor(product, selection) });
+
     setItems((current) => current.filter((item) => cartKey(item) !== key));
+  }
+
+  function clearCart() {
+    setItems([]);
   }
 
   const totalQuantity = items.reduce((sum, item) => sum + item.quantity, 0);
 
   return (
     <CartContext.Provider
-      value={{ items, totalQuantity, isReady, addToCart, setQuantity, removeFromCart }}
+      value={{
+        items,
+        totalQuantity,
+        isReady,
+        addToCart,
+        setQuantity,
+        removeFromCart,
+        clearCart,
+      }}
     >
       {children}
     </CartContext.Provider>

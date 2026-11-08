@@ -1,17 +1,22 @@
 "use client";
 
 import { useState } from "react";
-import Field from "@/components/account/Field";
+import Field from "@/components/ui/Field";
 import { btnBase, btnPrimary } from "@/components/ui/buttons";
-import { mockProfile } from "@/data/account";
+import { useAuth } from "@/context/AuthContext";
+import { useToast } from "@/context/ToastContext";
 import { isValidEmail, isValidPhone } from "@/lib/validation";
+import type { User } from "@/types/store";
 
 type Errors = { fullName?: string; email?: string; phone?: string };
 
-export default function ProfileSection() {
-  const [fullName, setFullName] = useState(mockProfile.fullName);
-  const [email, setEmail] = useState(mockProfile.email);
-  const [phone, setPhone] = useState(mockProfile.phone);
+// Xem và chỉnh sửa thông tin cá nhân. Dữ liệu được lưu vào LocalStorage.
+export default function ProfileSection({ user }: { user: User }) {
+  const { updateProfile } = useAuth();
+  const { showToast } = useToast();
+  const [fullName, setFullName] = useState(user.fullName);
+  const [email, setEmail] = useState(user.email);
+  const [phone, setPhone] = useState(user.phone);
   const [errors, setErrors] = useState<Errors>({});
   const [success, setSuccess] = useState(false);
 
@@ -20,22 +25,45 @@ export default function ProfileSection() {
     setSuccess(false);
 
     const newErrors: Errors = {};
-    if (fullName.trim() === "") newErrors.fullName = "Vui lòng nhập họ và tên";
-    if (email.trim() === "") newErrors.email = "Vui lòng nhập email";
-    else if (!isValidEmail(email))
+
+    if (fullName.trim() === "") {
+      newErrors.fullName = "Vui lòng nhập họ và tên";
+    }
+
+    if (email.trim() === "") {
+      newErrors.email = "Vui lòng nhập email";
+    } else if (!isValidEmail(email)) {
       newErrors.email = "Email không hợp lệ (ví dụ: ten@email.com)";
-    if (phone.trim() === "") newErrors.phone = "Vui lòng nhập số điện thoại";
-    else if (!isValidPhone(phone))
+    }
+
+    if (phone.trim() === "") {
+      newErrors.phone = "Vui lòng nhập số điện thoại";
+    } else if (!isValidPhone(phone)) {
       newErrors.phone = "Số điện thoại không hợp lệ (ví dụ: 0901234567)";
+    }
+
     setErrors(newErrors);
 
     const firstInvalid = (["fullName", "email", "phone"] as const).find(
       (field) => newErrors[field],
     );
-    if (firstInvalid) return document.getElementById(firstInvalid)?.focus();
 
-    // TODO (backend): send the updated profile to the server here. Nothing is stored in the browser.
+    if (firstInvalid) {
+      document.getElementById(firstInvalid)?.focus();
+      return;
+    }
+
+    const result = updateProfile({ fullName, email, phone });
+
+    if (!result.ok) {
+      // Lỗi duy nhất có thể xảy ra ở đây là email trùng với tài khoản khác.
+      setErrors({ email: result.message });
+      showToast(result.message, "error");
+      return;
+    }
+
     setSuccess(true);
+    showToast("Đã lưu thông tin cá nhân.");
   }
 
   return (
@@ -47,6 +75,7 @@ export default function ProfileSection() {
       <h2 className="font-display text-2xl font-semibold text-ink">
         Thông tin cá nhân
       </h2>
+
       <Field
         id="fullName"
         label="Họ và tên"
@@ -85,12 +114,14 @@ export default function ProfileSection() {
           setErrors({ ...errors, phone: undefined });
         }}
       />
+
       <button
         type="submit"
         className={`${btnBase} ${btnPrimary}`}
       >
         Lưu thay đổi
       </button>
+
       {success && (
         <p
           role="status"

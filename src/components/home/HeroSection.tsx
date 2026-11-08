@@ -48,7 +48,7 @@ export default function HeroSection() {
         </div>
         <div className="mt-5 grid gap-4 sm:grid-cols-2">
           <Link
-            href="/san-pham?category=giay"
+            href="/danh-muc/giay"
             className="flex items-center justify-between gap-4 rounded-2xl bg-blue-100 px-6 py-5 text-navy transition hover:shadow-soft"
           >
             <div>
@@ -60,7 +60,7 @@ export default function HeroSection() {
             <Icon name="arrow" />
           </Link>
           <Link
-            href="/san-pham?category=hoa-pham"
+            href="/danh-muc/hoa-pham"
             className="flex items-center justify-between gap-4 rounded-2xl bg-sky-100 px-6 py-5 text-navy transition hover:shadow-soft"
           >
             <div>

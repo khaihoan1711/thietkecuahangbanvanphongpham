@@ -115,6 +115,118 @@ document.getElementById("category-menu").innerHTML = Object.entries(categories)
     `,
   )
   .join("");
+const menuGroups = [
+  {
+    category: "but",
+    label: "Bút viết",
+    children: [
+      {
+        label: "Bút bi",
+        q: "bút bi",
+        children: [
+          { label: "Bút bi Thiên Long", q: "bút bi thiên long" },
+          { label: "Bút bi cao cấp", q: "cao cấp" },
+        ],
+      },
+      { label: "Bút gel", q: "bút gel" },
+      { label: "Bút chì", q: "bút chì" },
+      { label: "Bút dạ quang", q: "dạ quang" },
+      { label: "Bút xóa", q: "bút xóa" },
+    ],
+  },
+  {
+    category: "vo-so",
+    label: "Vở & Sổ",
+    children: [
+      { label: "Vở học sinh", q: "vở" },
+      {
+        label: "Sổ tay",
+        q: "sổ",
+        children: [
+          { label: "Sổ lò xo", q: "sổ lò xo" },
+          { label: "Sổ bìa da", q: "bìa da" },
+        ],
+      },
+    ],
+  },
+  {
+    category: "giay",
+    label: "Giấy văn phòng",
+    children: [
+      { label: "Giấy in A4", q: "giấy in" },
+      { label: "Giấy note", q: "giấy note" },
+      { label: "Giấy thủ công", q: "thủ công" },
+    ],
+  },
+  {
+    category: "dung-cu",
+    label: "Dụng cụ",
+    children: [
+      { label: "Kéo văn phòng", q: "kéo" },
+      { label: "Dập ghim", q: "dập ghim" },
+      { label: "Băng keo", q: "băng keo" },
+      { label: "Thước & hình học", q: "thước" },
+      { label: "Bảng trắng", q: "bảng trắng" },
+    ],
+  },
+  {
+    category: "hoa-pham",
+    label: "Họa phẩm",
+    children: [
+      { label: "Màu nước", q: "màu nước" },
+      { label: "Sáp dầu", q: "sáp" },
+      { label: "Cọ vẽ", q: "cọ" },
+    ],
+  },
+  {
+    category: "balo",
+    label: "Balo & Hộp bút",
+    children: [
+      { label: "Balo", q: "balo" },
+      { label: "Hộp bút", q: "hộp bút" },
+    ],
+  },
+];
+const categoryHref = (category, q) =>
+  "#danh-muc/" + category + (q ? "?q=" + encodeURIComponent(q) : "");
+const subLink = (group, item) =>
+  `<a href="${categoryHref(group.category, item.q)}">${esc(item.label)}${
+    item.children ? '<span aria-hidden="true">›</span>' : ""
+  }</a>`;
+document.getElementById("mega-menu").innerHTML =
+  '<li><a class="mega-top" href="#">Trang chủ</a></li>' +
+  menuGroups
+    .map(
+      (group) =>
+        `<li class="mega-item"><a class="mega-top" href="${categoryHref(group.category)}">${esc(group.label)}<i aria-hidden="true"></i></a>` +
+        `<ul class="mega-drop">${group.children
+          .map(
+            (item) =>
+              `<li class="${item.children ? "has-sub" : ""}">${subLink(group, item)}${
+                item.children
+                  ? `<ul class="mega-sub">${item.children
+                      .map((child) => `<li>${subLink(group, child)}</li>`)
+                      .join("")}</ul>`
+                  : ""
+              }</li>`,
+          )
+          .join("")}</ul></li>`,
+    )
+    .join("") +
+  '<li><a class="mega-top" href="#khuyen-mai">Khuyến mãi</a></li>' +
+  '<li><a class="mega-top" href="#tin-tuc">Tin tức</a></li>' +
+  '<li><a class="mega-top" href="#lien-he">Liên hệ</a></li>';
+// Các banner dùng chung một ảnh đã nhúng sẵn ở đầu trang để HTML không bị nặng thêm.
+const bannerSrc = document.querySelector(".shop-banner").src;
+document.querySelectorAll("img[data-banner]").forEach((img) => (img.src = bannerSrc));
+render(
+  "notebook-grid",
+  products.filter((p) => p.category === "vo-so").slice(0, 8),
+);
+render(
+  "office-grid",
+  products.filter((p) => p.category === "giay" || p.category === "dung-cu").slice(0, 8),
+);
 document.getElementById("filter-category").innerHTML += Object.entries(categories)
   .map(
     ([id, [label]]) => /* HTML */ `
@@ -187,7 +299,11 @@ let activeProduct = null,
   activeImages = [],
   activeSelection = {},
   activeImage = "";
+let orderPlaced = false;
+
 function save() {
+  orderPlaced = false;
+  document.getElementById("order-status").textContent = "";
   try {
     localStorage.setItem("khaihoanshop-html-cart", JSON.stringify(cart));
   } catch {}
@@ -195,6 +311,7 @@ function save() {
   if (activeProduct) syncDetail();
 }
 function refreshCart() {
+  document.getElementById("place-order").disabled = cart.length === 0 || orderPlaced;
   document.getElementById("cart-count").textContent = cart.reduce(
     (sum, item) => sum + item.quantity,
     0,
@@ -269,6 +386,7 @@ function toast(text) {
 function showHome() {
   document.getElementById("main").hidden = false;
   detailRoot.hidden = true;
+  categoryRoot.hidden = true;
   activeProduct = null;
   document.title = "KhaiHoanShop | KhaiHoan Stationery";
 }
@@ -611,13 +729,195 @@ function renderDetail(product) {
     </section>
   `;
   document.getElementById("main").hidden = true;
+  categoryRoot.hidden = true;
   detailRoot.hidden = false;
   document.title = product.name + " — KhaiHoanShop";
   syncDetail();
   window.scrollTo({ top: 0, behavior: "instant" });
   document.getElementById("detail-title").focus({ preventScroll: true });
 }
+const categoryRoot = document.getElementById("category-page");
+const priceRanges = [
+  ["under-50", "Dưới 50.000₫", 0, 50000],
+  ["50-100", "50.000₫ - 100.000₫", 50000, 100000],
+  ["100-200", "100.000₫ - 200.000₫", 100000, 200000],
+  ["over-200", "Trên 200.000₫", 200000, Infinity],
+];
+let categoryState = { category: "", search: "", brands: [], prices: [], sort: "featured" };
+function categoryProducts() {
+  const s = categoryState,
+    needle = simplify(s.search.trim());
+  const list = products.filter(
+    (p) =>
+      p.category === s.category &&
+      (!needle ||
+        simplify(p.name + " " + p.brand + " " + p.sku + " " + p.shortDescription).includes(
+          needle,
+        )) &&
+      (!s.brands.length || s.brands.includes(p.brand)) &&
+      (!s.prices.length ||
+        priceRanges.some(
+          ([id, , min, max]) => s.prices.includes(id) && p.price >= min && p.price < max,
+        )),
+  );
+  if (s.sort === "asc") list.sort((a, b) => a.price - b.price);
+  if (s.sort === "desc") list.sort((a, b) => b.price - a.price);
+  if (s.sort === "name") list.sort((a, b) => a.name.localeCompare(b.name, "vi"));
+  if (s.sort === "featured")
+    list.sort((a, b) => Number(Boolean(b.isHot)) - Number(Boolean(a.isHot)));
+  return list;
+}
+function refreshCategory() {
+  const list = categoryProducts(),
+    s = categoryState;
+  document.getElementById("category-grid").innerHTML = list.length
+    ? list.map(card).join("")
+    : '<p class="empty">Không có sản phẩm phù hợp. Hãy bỏ bớt bộ lọc.</p>';
+  document.getElementById("category-count").innerHTML =
+    "Tìm thấy <strong>" + list.length + "</strong> sản phẩm";
+  document.getElementById("category-chips").innerHTML =
+    s.search || s.brands.length || s.prices.length
+      ? (s.search
+          ? `<button type="button" class="chip" data-category-clear="search">Từ khóa: ${esc(s.search)} ✕</button>`
+          : "") +
+        '<button type="button" class="chip plain" data-category-clear="all">Xóa bộ lọc</button>'
+      : "";
+}
+function renderCategory(category, search) {
+  categoryState = { category, search, brands: [], prices: [], sort: "featured" };
+  const label = categories[category][0],
+    brands = [
+      ...new Set(products.filter((p) => p.category === category).map((p) => p.brand)),
+    ].sort();
+  const checkbox = (attribute, value, text) =>
+    `<label><input type="checkbox" ${attribute}="${esc(value)}" /> ${esc(text)}</label>`;
+  categoryRoot.innerHTML = /* HTML */ `
+    <section class="category-page">
+      <div class="wrap">
+        <nav
+          class="category-crumbs"
+          aria-label="Đường dẫn"
+        >
+          <a href="#">Trang chủ</a>
+          <span aria-hidden="true">/</span>
+          <a href="#tat-ca">Danh mục</a>
+          <span aria-hidden="true">/</span>
+          <span aria-current="page">${esc(label)}</span>
+        </nav>
+        <h1
+          id="category-title"
+          tabindex="-1"
+        >
+          ${esc(label)}
+        </h1>
+        <div class="category-layout">
+          <aside
+            class="category-side"
+            aria-label="Bộ lọc sản phẩm"
+          >
+            <div class="category-sort">
+              <label for="category-sort">Sắp xếp</label>
+              <select id="category-sort">
+                <option value="featured">Nổi bật</option>
+                <option value="asc">Giá thấp đến cao</option>
+                <option value="desc">Giá cao đến thấp</option>
+                <option value="name">Tên A-Z</option>
+              </select>
+            </div>
+            <details
+              class="category-filter"
+              open
+            >
+              <summary>Nhãn hàng</summary>
+              <div>
+                ${brands.map((b) => checkbox("data-category-brand", b, b)).join("")}
+              </div>
+            </details>
+            <details
+              class="category-filter"
+              open
+            >
+              <summary>Lọc giá</summary>
+              <div>
+                ${priceRanges
+                  .map(([id, text]) => checkbox("data-category-price", id, text))
+                  .join("")}
+              </div>
+            </details>
+          </aside>
+          <div class="category-main">
+            <img
+              class="category-banner"
+              src="${bannerSrc}"
+              alt="Banner danh mục ${esc(label)}"
+            />
+            <div
+              class="category-chips"
+              id="category-chips"
+            ></div>
+            <p
+              class="muted"
+              id="category-count"
+              aria-live="polite"
+            ></p>
+            <div
+              class="grid category-grid"
+              id="category-grid"
+            ></div>
+          </div>
+        </div>
+      </div>
+    </section>
+  `;
+  document.getElementById("main").hidden = true;
+  detailRoot.hidden = true;
+  categoryRoot.hidden = false;
+  activeProduct = null;
+  document.title = label + " — KhaiHoanShop";
+  refreshCategory();
+  window.scrollTo({ top: 0, behavior: "instant" });
+}
+categoryRoot.addEventListener("change", (event) => {
+  const t = event.target,
+    s = categoryState,
+    flip = (list, value) =>
+      t.checked ? [...new Set([...list, value])] : list.filter((v) => v !== value);
+  if (t.id === "category-sort") s.sort = t.value;
+  else if (t.dataset.categoryBrand !== undefined)
+    s.brands = flip(s.brands, t.dataset.categoryBrand);
+  else if (t.dataset.categoryPrice !== undefined)
+    s.prices = flip(s.prices, t.dataset.categoryPrice);
+  else return;
+  refreshCategory();
+});
+categoryRoot.addEventListener("click", (event) => {
+  const clear = event.target.closest("[data-category-clear]");
+  if (!clear) return;
+  categoryState.search = "";
+  if (clear.dataset.categoryClear === "all") {
+    categoryState.brands = [];
+    categoryState.prices = [];
+    categoryRoot
+      .querySelectorAll('input[type="checkbox"]')
+      .forEach((box) => (box.checked = false));
+  }
+  refreshCategory();
+});
 function route() {
+  if (location.hash.startsWith("#danh-muc/")) {
+    const [slug, query = ""] = location.hash.slice(10).split("?");
+    let category = "";
+    try {
+      category = decodeURIComponent(slug);
+    } catch {}
+    if (Object.hasOwn(categories, category)) {
+      renderCategory(category, new URLSearchParams(query).get("q") || "");
+      return;
+    }
+    showHome();
+    toast("Không tìm thấy danh mục. Vui lòng chọn danh mục khác.");
+    return;
+  }
   if (location.hash.startsWith("#san-pham/")) {
     let id;
     try {
@@ -634,7 +934,7 @@ function route() {
     toast("Không tìm thấy sản phẩm. Vui lòng chọn sản phẩm khác.");
     return;
   }
-  const wasDetail = !detailRoot.hidden;
+  const wasDetail = !detailRoot.hidden || !categoryRoot.hidden;
   showHome();
   if (wasDetail) {
     const target = document.getElementById(location.hash.slice(1));
@@ -656,12 +956,7 @@ document.addEventListener("click", (event) => {
   const category = target.closest("[data-category]");
   if (category) {
     event.preventDefault();
-    showHome();
-    location.hash = "tat-ca";
-    document.getElementById("filter-category").value = category.dataset.category;
-    document.getElementById("catalog-search").value = "";
-    catalog();
-    document.getElementById("tat-ca").scrollIntoView();
+    location.hash = "danh-muc/" + category.dataset.category;
   }
   const remove = target.closest("[data-remove]");
   if (remove) {
@@ -671,6 +966,10 @@ document.addEventListener("click", (event) => {
   if (target.closest("[data-login]")) {
     event.preventDefault();
     document.getElementById("login-dialog").showModal();
+  }
+  if (target.closest("[data-register]")) {
+    event.preventDefault();
+    document.getElementById("register-dialog").showModal();
   }
   const close = target.closest("[data-close]");
   if (close) close.closest("dialog").close();
@@ -736,10 +1035,36 @@ document.addEventListener("change", (event) => {
 document
   .getElementById("cart-button")
   .addEventListener("click", () => document.getElementById("cart-dialog").showModal());
+document.getElementById("place-order").addEventListener("click", () => {
+  if (!cart.length || orderPlaced) return;
+  orderPlaced = true;
+  document.getElementById("order-status").textContent = "Đặt hàng thành công";
+  refreshCart();
+});
+
 document.getElementById("login-form").addEventListener("submit", (event) => {
   event.preventDefault();
   document.getElementById("login-status").textContent =
     "Đây là form minh họa. Chưa xác thực hoặc lưu tài khoản.";
 });
+const registerForm = document.getElementById("register-form");
+
+registerForm.addEventListener("input", () => {
+  registerForm.elements.confirmPassword.setCustomValidity("");
+  document.getElementById("register-status").textContent = "";
+});
+
+registerForm.addEventListener("submit", (event) => {
+  event.preventDefault();
+  const fields = registerForm.elements;
+  if (fields.password.value !== fields.confirmPassword.value) {
+    fields.confirmPassword.setCustomValidity("Mật khẩu xác nhận không khớp.");
+    fields.confirmPassword.reportValidity();
+    return;
+  }
+  document.getElementById("register-status").textContent =
+    "Đây là form minh họa. Chưa tạo hoặc lưu tài khoản.";
+});
+
 window.addEventListener("hashchange", route);
 route();

@@ -1,10 +1,11 @@
 "use client";
 
 import { useState } from "react";
+import { useCatalog } from "@/context/CatalogContext";
 import ProductCard from "@/components/product/ProductCard";
 import ProductFilters from "@/components/products/ProductFilters";
 import ProductToolbar from "@/components/products/ProductToolbar";
-import type { Product, ProductCategory } from "@/types/product";
+import type { ProductCategory } from "@/types/product";
 
 function simplify(text: string) {
   return text
@@ -25,15 +26,15 @@ function matchesPrice(price: number, range: string) {
   return true;
 }
 
+// Danh sách sản phẩm lấy từ kho dữ liệu chung, nên luôn khớp với những gì Admin quản lý.
 export default function ProductListing({
-  products,
   initialSearch = "",
   initialCategory = "all",
 }: {
-  products: Product[];
   initialSearch?: string;
   initialCategory?: ProductCategory | "all";
 }) {
+  const { products } = useCatalog();
   const [search, setSearch] = useState(initialSearch);
   const [category, setCategory] = useState<ProductCategory | "all">(initialCategory);
   const [brands, setBrands] = useState<string[]>([]);

@@ -1,8 +1,11 @@
 "use client";
 
 import Link from "next/link";
+import { useRouter } from "next/navigation";
 import { useState } from "react";
 import { btnBase, btnPrimary } from "@/components/ui/buttons";
+import { useAuth } from "@/context/AuthContext";
+import { useToast } from "@/context/ToastContext";
 import { isValidEmail, isValidPhone } from "@/lib/validation";
 
 type FormValues = {
@@ -63,13 +66,17 @@ function validate(values: FormValues): Errors {
 }
 
 export default function RegisterForm() {
+  const router = useRouter();
+  const { register } = useAuth();
+  const { showToast } = useToast();
   const [values, setValues] = useState<FormValues>(emptyForm);
   const [errors, setErrors] = useState<Errors>({});
-  const [success, setSuccess] = useState(false);
+  // Lỗi trả về từ kho tài khoản (ví dụ: email đã được đăng ký)
+  const [formError, setFormError] = useState("");
 
   function handleChange(field: keyof FormValues, value: string) {
     setValues({ ...values, [field]: value });
-    setSuccess(false);
+    setFormError("");
     // Remove the error of this field as soon as the user edits it
     if (errors[field]) setErrors({ ...errors, [field]: undefined });
   }
@@ -81,15 +88,27 @@ export default function RegisterForm() {
 
     const firstInvalid = fieldOrder.find((field) => newErrors[field]);
     if (firstInvalid) {
-      setSuccess(false);
       document.getElementById(firstInvalid)?.focus();
       return;
     }
 
-    // TODO (real authentication): create the account on the backend / Auth provider here.
-    // Until then nothing is saved: no user, no password, no "logged in" state.
-    setValues({ ...values, password: "", confirmPassword: "" });
-    setSuccess(true);
+    // Lưu tài khoản mới vào LocalStorage (có kiểm tra email đã đăng ký) và đăng nhập luôn.
+    const result = register({
+      fullName: values.fullName,
+      email: values.email,
+      phone: values.phone,
+      password: values.password,
+    });
+
+    if (!result.ok) {
+      setFormError(result.message);
+      setErrors({ ...errors, email: result.message });
+      document.getElementById("email")?.focus();
+      return;
+    }
+
+    showToast("Đăng ký thành công! Chào mừng bạn đến KhaiHoanShop.");
+    router.push("/");
   }
 
   // One labelled input with its error message
@@ -149,12 +168,12 @@ export default function RegisterForm() {
         Đăng ký
       </button>
 
-      {success && (
+      {formError && (
         <p
-          role="status"
-          className="rounded-lg bg-primary-soft px-4 py-3 text-sm font-medium text-primary"
+          role="alert"
+          className="rounded-lg bg-red-50 px-4 py-3 text-sm font-medium text-red-700"
         >
-          Đăng ký thành công!
+          {formError}
         </p>
       )}
 

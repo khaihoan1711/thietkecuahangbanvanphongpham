@@ -79,10 +79,23 @@ img {
 }
 .top .wrap {
   display: flex;
+  align-items: center;
   justify-content: space-between;
+  gap: 12px;
+}
+.top .wrap > span:first-child {
+  min-width: 0;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+.top .links {
+  display: flex;
+  flex-shrink: 0;
+  gap: 16px;
 }
 .top a {
-  margin-left: 20px;
+  white-space: nowrap;
 }
 header {
   position: sticky;
@@ -652,9 +665,6 @@ dialog::backdrop {
     padding-left: 16px;
     padding-right: 16px;
   }
-  .top .links {
-    display: none;
-  }
   .head {
     flex-wrap: wrap;
     gap: 10px;
@@ -671,9 +681,6 @@ dialog::backdrop {
   .action {
     padding: 9px;
     font-size: 13px;
-  }
-  .action .label {
-    display: none;
   }
   .search {
     order: 3;
@@ -1094,6 +1101,359 @@ dialog::backdrop {
   }
 }
 
+/* ---------- Menu danh mục có xổ xuống (máy tính) ---------- */
+.mega {
+  display: none;
+}
+@media (min-width: 1001px) {
+  .nav-simple,
+  .category-menu {
+    display: none;
+  }
+  .mega {
+    display: block;
+  }
+  header nav {
+    background: #e6f2ff;
+  }
+}
+.mega-list {
+  display: flex;
+  align-items: stretch;
+  gap: 4px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+.mega-list > li {
+  position: relative;
+  display: flex;
+}
+.mega-top {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  height: 50px;
+  padding: 0 12px;
+  font-size: 13px;
+  font-weight: bold;
+  letter-spacing: 0.3px;
+  text-transform: uppercase;
+  white-space: nowrap;
+}
+.mega-top i {
+  width: 6px;
+  height: 6px;
+  border-right: 2px solid currentColor;
+  border-bottom: 2px solid currentColor;
+  transform: rotate(45deg) translateY(-2px);
+  transition: transform 0.2s;
+}
+.mega-top:hover,
+.mega-item:hover > .mega-top,
+.mega-item:focus-within > .mega-top {
+  color: var(--primary);
+}
+.mega-item:hover > .mega-top i,
+.mega-item:focus-within > .mega-top i {
+  transform: rotate(225deg) translate(-1px, -1px);
+}
+.mega-drop,
+.mega-sub {
+  position: absolute;
+  z-index: 30;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  background: white;
+  border: 1px solid var(--line);
+  box-shadow: 0 10px 30px #14365b26;
+  visibility: hidden;
+  opacity: 0;
+  transition:
+    opacity 0.15s,
+    visibility 0.15s;
+}
+.mega-drop {
+  top: 100%;
+  left: 0;
+  width: 280px;
+  border-radius: 0 0 8px 8px;
+}
+.mega-sub {
+  top: -1px;
+  left: 100%;
+  width: 250px;
+  border-radius: 8px;
+}
+.mega-item:hover > .mega-drop,
+.mega-item:focus-within > .mega-drop,
+.has-sub:hover > .mega-sub,
+.has-sub:focus-within > .mega-sub {
+  visibility: visible;
+  opacity: 1;
+}
+.mega-drop li {
+  position: relative;
+  border-bottom: 1px solid var(--line);
+}
+.mega-drop li:last-child {
+  border-bottom: 0;
+}
+.mega-drop a {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 12px 20px;
+  font-size: 15px;
+  font-weight: normal;
+}
+.mega-drop a:hover {
+  background: #e6f2ff;
+  color: var(--primary);
+}
+
+/* ---------- Khu sản phẩm có banner ở góc trái ---------- */
+.section-head a.pill {
+  background: var(--dark);
+  color: white;
+  border-radius: 28px;
+  padding: 10px 20px;
+}
+.section-head a.pill:hover {
+  background: var(--primary);
+}
+.showcase {
+  display: grid;
+  grid-template-columns: 300px minmax(0, 1fr);
+  gap: 16px;
+}
+.showcase-banner {
+  position: relative;
+  display: block;
+  min-height: 420px;
+  overflow: hidden;
+  border-radius: 16px;
+  background: var(--dark);
+}
+.showcase-banner img {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.5s;
+}
+.showcase-banner:hover img {
+  transform: scale(1.05);
+}
+.showcase-banner span {
+  position: absolute;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  padding: 64px 20px 20px;
+  color: white;
+  font-size: 14px;
+  font-weight: bold;
+  background: linear-gradient(to top, #14365be6, transparent);
+}
+.showcase-banner strong {
+  display: block;
+  margin-bottom: 4px;
+  font-size: 18px;
+  line-height: 1.3;
+}
+.showcase-row {
+  display: flex;
+  gap: 16px;
+  overflow-x: auto;
+  padding-bottom: 10px;
+  scroll-snap-type: x proximity;
+  scrollbar-width: none;
+}
+.showcase-row::-webkit-scrollbar {
+  display: none;
+}
+.showcase-row .card {
+  flex: 0 0 230px;
+  scroll-snap-align: start;
+}
+@media (max-width: 1000px) {
+  .showcase {
+    grid-template-columns: 1fr;
+  }
+  .showcase-banner {
+    min-height: 200px;
+  }
+}
+@media (max-width: 700px) {
+  .showcase-row .card {
+    flex-basis: 190px;
+  }
+}
+
+/* ---------- Trang danh mục riêng ---------- */
+.category-page {
+  padding: 20px 0 64px;
+}
+.category-crumbs {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  font-size: 14px;
+}
+.category-crumbs a:hover {
+  color: var(--primary);
+}
+.category-crumbs span:not([aria-current]) {
+  color: var(--muted);
+}
+.category-page h1 {
+  margin: 24px 0;
+  padding-left: 276px;
+  text-align: center;
+  font-size: 48px;
+  line-height: 1.2;
+}
+.category-layout {
+  display: grid;
+  grid-template-columns: 260px minmax(0, 1fr);
+  gap: 16px;
+  align-items: start;
+}
+.category-side {
+  display: grid;
+  gap: 16px;
+}
+.category-sort,
+.category-filter {
+  background: white;
+  border-radius: 8px;
+  box-shadow: 0 2px 12px #14365b14;
+}
+.category-sort {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 0 16px;
+}
+.category-sort label {
+  font-size: 14px;
+  font-weight: bold;
+  color: var(--muted);
+}
+.category-sort select {
+  flex: 1;
+  min-width: 0;
+  height: 48px;
+  border: 0;
+  background: transparent;
+  color: var(--dark);
+}
+.category-filter summary {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 16px 20px;
+  border-bottom: 1px solid var(--line);
+  font-size: 18px;
+  cursor: pointer;
+  list-style: none;
+}
+.category-filter summary::-webkit-details-marker {
+  display: none;
+}
+.category-filter summary::after {
+  content: "";
+  width: 8px;
+  height: 8px;
+  border-right: 2px solid var(--muted);
+  border-bottom: 2px solid var(--muted);
+  transform: rotate(45deg);
+}
+.category-filter[open] summary::after {
+  transform: rotate(225deg);
+}
+.category-filter div {
+  padding: 8px 20px 12px;
+}
+.category-filter label {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  min-height: 40px;
+  cursor: pointer;
+}
+.category-filter input {
+  width: 20px;
+  height: 20px;
+  accent-color: var(--primary);
+}
+.category-banner {
+  width: 100%;
+  aspect-ratio: 3168 / 1344;
+  object-fit: cover;
+  border-radius: 12px;
+}
+.category-chips {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-top: 16px;
+}
+.category-chips:empty {
+  display: none;
+}
+.chip {
+  border: 0;
+  border-radius: 20px;
+  padding: 6px 12px;
+  background: white;
+  color: var(--primary);
+  font-size: 14px;
+  font-weight: bold;
+  box-shadow: 0 2px 12px #14365b14;
+}
+.chip.plain {
+  background: none;
+  color: var(--muted);
+  box-shadow: none;
+}
+.category-main .muted {
+  margin: 16px 0;
+}
+.category-grid {
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 16px;
+}
+.category-grid .empty {
+  grid-column: 1 / -1;
+}
+@media (min-width: 1200px) {
+  .category-grid {
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+  }
+}
+@media (max-width: 1000px) {
+  .category-page h1 {
+    padding-left: 0;
+    font-size: 36px;
+  }
+  .category-layout {
+    grid-template-columns: 1fr;
+  }
+}
+@media (max-width: 700px) {
+  .category-page h1 {
+    font-size: 30px;
+  }
+  .category-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 12px;
+  }
+}
+
 .card-art img {
   object-fit: contain;
   background: white;
@@ -1321,6 +1681,12 @@ button:disabled {
             >
               Đăng nhập
             </a>
+            <a
+              href="#"
+              data-register
+            >
+              Đăng ký
+            </a>
           </span>
         </div>
       </div>
@@ -1352,14 +1718,6 @@ button:disabled {
         <div class="actions">
           <button
             class="action"
-            data-login
-            aria-label="Đăng nhập"
-          >
-            ♙
-            <span class="label">Đăng nhập</span>
-          </button>
-          <button
-            class="action"
             id="cart-button"
             aria-label="Mở giỏ hàng"
           >
@@ -1374,7 +1732,7 @@ button:disabled {
         </div>
       </div>
       <nav>
-        <div class="wrap nav">
+        <div class="wrap nav nav-simple">
           <a href="#danh-muc">☰ Danh mục</a>
           <a href="#">Trang chủ</a>
           <a href="#tat-ca">Sản phẩm</a>
@@ -1383,6 +1741,15 @@ button:disabled {
           <a href="#khuyen-mai">Khuyến mãi</a>
           <a href="#tin-tuc">Tin tức</a>
           <a href="#lien-he">Liên hệ</a>
+        </div>
+        <div
+          class="wrap mega"
+          aria-label="Danh mục sản phẩm"
+        >
+          <ul
+            class="mega-list"
+            id="mega-menu"
+          ></ul>
         </div>
       </nav>
       <div class="category-menu">
@@ -1586,16 +1953,113 @@ button:disabled {
               <h2>Bút viết</h2>
             </div>
             <a
-              href="#tat-ca"
-              data-category="but"
+              class="pill"
+              href="#danh-muc/but"
             >
-              Xem danh mục →
+              Xem tất cả →
             </a>
           </div>
-          <div
-            class="grid"
-            id="pen-grid"
-          ></div>
+          <div class="showcase">
+            <a
+              class="showcase-banner"
+              href="#danh-muc/but"
+              aria-label="Bút viết — KhaiHoanShop"
+            >
+              <img
+                data-banner
+                style="object-position: 96% 50%"
+                alt="Bút viết — KhaiHoanShop"
+              />
+              <span>
+                <strong>Bút viết cho học tập & văn phòng</strong>
+                Xem tất cả →
+              </span>
+            </a>
+            <div
+              class="showcase-row"
+              id="pen-grid"
+            ></div>
+          </div>
+        </div>
+      </section>
+      <section
+        class="section"
+        id="vo-so"
+      >
+        <div class="wrap">
+          <div class="section-head">
+            <div>
+              <span class="eyebrow">Cho học tập</span>
+              <h2>Vở & sổ</h2>
+            </div>
+            <a
+              class="pill"
+              href="#danh-muc/vo-so"
+            >
+              Xem tất cả →
+            </a>
+          </div>
+          <div class="showcase">
+            <a
+              class="showcase-banner"
+              href="#danh-muc/vo-so"
+              aria-label="Vở & sổ — KhaiHoanShop"
+            >
+              <img
+                data-banner
+                style="object-position: 78% 40%"
+                alt="Vở & sổ — KhaiHoanShop"
+              />
+              <span>
+                <strong>Vở & sổ cho năm học mới</strong>
+                Xem tất cả →
+              </span>
+            </a>
+            <div
+              class="showcase-row"
+              id="notebook-grid"
+            ></div>
+          </div>
+        </div>
+      </section>
+      <section
+        class="section surface"
+        id="van-phong"
+      >
+        <div class="wrap">
+          <div class="section-head">
+            <div>
+              <span class="eyebrow">Cho văn phòng</span>
+              <h2>Giấy & dụng cụ văn phòng</h2>
+            </div>
+            <a
+              class="pill"
+              href="#danh-muc/giay"
+            >
+              Xem tất cả →
+            </a>
+          </div>
+          <div class="showcase">
+            <a
+              class="showcase-banner"
+              href="#danh-muc/giay"
+              aria-label="Giấy và dụng cụ văn phòng — KhaiHoanShop"
+            >
+              <img
+                data-banner
+                style="object-position: 70% 90%"
+                alt="Giấy và dụng cụ văn phòng — KhaiHoanShop"
+              />
+              <span>
+                <strong>Giấy & dụng cụ văn phòng</strong>
+                Xem tất cả →
+              </span>
+            </a>
+            <div
+              class="showcase-row"
+              id="office-grid"
+            ></div>
+          </div>
         </div>
       </section>
       <section
@@ -1684,6 +2148,11 @@ button:disabled {
       </section>
     </main>
     <main
+      id="category-page"
+      hidden
+      aria-labelledby="category-title"
+    ></main>
+    <main
       id="product-detail"
       hidden
       aria-labelledby="detail-title"
@@ -1709,16 +2178,28 @@ button:disabled {
         class="total"
         id="cart-total"
       ></div>
-      <p class="muted">
-        Giỏ hàng được lưu trên trình duyệt. Bản HTML chưa hỗ trợ đặt hàng hoặc thanh
-        toán thực tế.
-      </p>
-      <button
-        class="btn"
-        data-close
-      >
-        Tiếp tục mua sắm
-      </button>
+      <div class="buttons">
+        <button
+          id="place-order"
+          type="button"
+          class="btn"
+          disabled
+        >
+          Đặt hàng
+        </button>
+        <button
+          type="button"
+          class="btn light"
+          data-close
+        >
+          Tiếp tục mua sắm
+        </button>
+      </div>
+      <p
+        id="order-status"
+        role="status"
+        class="purchase-message"
+      ></p>
     </dialog>
     <dialog
       id="login-dialog"
@@ -1734,7 +2215,6 @@ button:disabled {
           ×
         </button>
       </div>
-      <p class="muted">Form minh họa Front-end, chưa kết nối hệ thống tài khoản.</p>
       <form
         class="login-form"
         id="login-form"
@@ -1763,6 +2243,84 @@ button:disabled {
         </button>
         <p
           id="login-status"
+          role="status"
+          class="muted"
+        ></p>
+      </form>
+    </dialog>
+
+    <dialog
+      id="register-dialog"
+      aria-labelledby="register-title"
+    >
+      <div class="dialog-head">
+        <h2 id="register-title">Đăng ký</h2>
+        <button
+          class="close"
+          data-close
+          aria-label="Đóng đăng ký"
+        >
+          ×
+        </button>
+      </div>
+      <form
+        class="login-form"
+        id="register-form"
+      >
+        <label>
+          Họ và tên
+          <input
+            name="fullName"
+            required
+            autocomplete="name"
+          />
+        </label>
+        <label>
+          Email
+          <input
+            name="email"
+            type="email"
+            required
+            autocomplete="email"
+          />
+        </label>
+        <label>
+          Số điện thoại
+          <input
+            name="phone"
+            type="tel"
+            required
+            autocomplete="tel"
+          />
+        </label>
+        <label>
+          Mật khẩu
+          <input
+            name="password"
+            type="password"
+            required
+            minlength="6"
+            autocomplete="new-password"
+          />
+        </label>
+        <label>
+          Xác nhận mật khẩu
+          <input
+            name="confirmPassword"
+            type="password"
+            required
+            minlength="6"
+            autocomplete="new-password"
+          />
+        </label>
+        <button
+          class="btn"
+          type="submit"
+        >
+          Đăng ký
+        </button>
+        <p
+          id="register-status"
           role="status"
           class="muted"
         ></p>
@@ -2645,6 +3203,118 @@ document.getElementById("category-menu").innerHTML = Object.entries(categories)
     `,
   )
   .join("");
+const menuGroups = [
+  {
+    category: "but",
+    label: "Bút viết",
+    children: [
+      {
+        label: "Bút bi",
+        q: "bút bi",
+        children: [
+          { label: "Bút bi Thiên Long", q: "bút bi thiên long" },
+          { label: "Bút bi cao cấp", q: "cao cấp" },
+        ],
+      },
+      { label: "Bút gel", q: "bút gel" },
+      { label: "Bút chì", q: "bút chì" },
+      { label: "Bút dạ quang", q: "dạ quang" },
+      { label: "Bút xóa", q: "bút xóa" },
+    ],
+  },
+  {
+    category: "vo-so",
+    label: "Vở & Sổ",
+    children: [
+      { label: "Vở học sinh", q: "vở" },
+      {
+        label: "Sổ tay",
+        q: "sổ",
+        children: [
+          { label: "Sổ lò xo", q: "sổ lò xo" },
+          { label: "Sổ bìa da", q: "bìa da" },
+        ],
+      },
+    ],
+  },
+  {
+    category: "giay",
+    label: "Giấy văn phòng",
+    children: [
+      { label: "Giấy in A4", q: "giấy in" },
+      { label: "Giấy note", q: "giấy note" },
+      { label: "Giấy thủ công", q: "thủ công" },
+    ],
+  },
+  {
+    category: "dung-cu",
+    label: "Dụng cụ",
+    children: [
+      { label: "Kéo văn phòng", q: "kéo" },
+      { label: "Dập ghim", q: "dập ghim" },
+      { label: "Băng keo", q: "băng keo" },
+      { label: "Thước & hình học", q: "thước" },
+      { label: "Bảng trắng", q: "bảng trắng" },
+    ],
+  },
+  {
+    category: "hoa-pham",
+    label: "Họa phẩm",
+    children: [
+      { label: "Màu nước", q: "màu nước" },
+      { label: "Sáp dầu", q: "sáp" },
+      { label: "Cọ vẽ", q: "cọ" },
+    ],
+  },
+  {
+    category: "balo",
+    label: "Balo & Hộp bút",
+    children: [
+      { label: "Balo", q: "balo" },
+      { label: "Hộp bút", q: "hộp bút" },
+    ],
+  },
+];
+const categoryHref = (category, q) =>
+  "#danh-muc/" + category + (q ? "?q=" + encodeURIComponent(q) : "");
+const subLink = (group, item) =>
+  `<a href="${categoryHref(group.category, item.q)}">${esc(item.label)}${
+    item.children ? '<span aria-hidden="true">›</span>' : ""
+  }</a>`;
+document.getElementById("mega-menu").innerHTML =
+  '<li><a class="mega-top" href="#">Trang chủ</a></li>' +
+  menuGroups
+    .map(
+      (group) =>
+        `<li class="mega-item"><a class="mega-top" href="${categoryHref(group.category)}">${esc(group.label)}<i aria-hidden="true"></i></a>` +
+        `<ul class="mega-drop">${group.children
+          .map(
+            (item) =>
+              `<li class="${item.children ? "has-sub" : ""}">${subLink(group, item)}${
+                item.children
+                  ? `<ul class="mega-sub">${item.children
+                      .map((child) => `<li>${subLink(group, child)}</li>`)
+                      .join("")}</ul>`
+                  : ""
+              }</li>`,
+          )
+          .join("")}</ul></li>`,
+    )
+    .join("") +
+  '<li><a class="mega-top" href="#khuyen-mai">Khuyến mãi</a></li>' +
+  '<li><a class="mega-top" href="#tin-tuc">Tin tức</a></li>' +
+  '<li><a class="mega-top" href="#lien-he">Liên hệ</a></li>';
+// Các banner dùng chung một ảnh đã nhúng sẵn ở đầu trang để HTML không bị nặng thêm.
+const bannerSrc = document.querySelector(".shop-banner").src;
+document.querySelectorAll("img[data-banner]").forEach((img) => (img.src = bannerSrc));
+render(
+  "notebook-grid",
+  products.filter((p) => p.category === "vo-so").slice(0, 8),
+);
+render(
+  "office-grid",
+  products.filter((p) => p.category === "giay" || p.category === "dung-cu").slice(0, 8),
+);
 document.getElementById("filter-category").innerHTML += Object.entries(categories)
   .map(
     ([id, [label]]) => /* HTML */ `
@@ -2717,7 +3387,11 @@ let activeProduct = null,
   activeImages = [],
   activeSelection = {},
   activeImage = "";
+let orderPlaced = false;
+
 function save() {
+  orderPlaced = false;
+  document.getElementById("order-status").textContent = "";
   try {
     localStorage.setItem("khaihoanshop-html-cart", JSON.stringify(cart));
   } catch {}
@@ -2725,6 +3399,7 @@ function save() {
   if (activeProduct) syncDetail();
 }
 function refreshCart() {
+  document.getElementById("place-order").disabled = cart.length === 0 || orderPlaced;
   document.getElementById("cart-count").textContent = cart.reduce(
     (sum, item) => sum + item.quantity,
     0,
@@ -2799,6 +3474,7 @@ function toast(text) {
 function showHome() {
   document.getElementById("main").hidden = false;
   detailRoot.hidden = true;
+  categoryRoot.hidden = true;
   activeProduct = null;
   document.title = "KhaiHoanShop | KhaiHoan Stationery";
 }
@@ -3141,13 +3817,195 @@ function renderDetail(product) {
     </section>
   `;
   document.getElementById("main").hidden = true;
+  categoryRoot.hidden = true;
   detailRoot.hidden = false;
   document.title = product.name + " — KhaiHoanShop";
   syncDetail();
   window.scrollTo({ top: 0, behavior: "instant" });
   document.getElementById("detail-title").focus({ preventScroll: true });
 }
+const categoryRoot = document.getElementById("category-page");
+const priceRanges = [
+  ["under-50", "Dưới 50.000₫", 0, 50000],
+  ["50-100", "50.000₫ - 100.000₫", 50000, 100000],
+  ["100-200", "100.000₫ - 200.000₫", 100000, 200000],
+  ["over-200", "Trên 200.000₫", 200000, Infinity],
+];
+let categoryState = { category: "", search: "", brands: [], prices: [], sort: "featured" };
+function categoryProducts() {
+  const s = categoryState,
+    needle = simplify(s.search.trim());
+  const list = products.filter(
+    (p) =>
+      p.category === s.category &&
+      (!needle ||
+        simplify(p.name + " " + p.brand + " " + p.sku + " " + p.shortDescription).includes(
+          needle,
+        )) &&
+      (!s.brands.length || s.brands.includes(p.brand)) &&
+      (!s.prices.length ||
+        priceRanges.some(
+          ([id, , min, max]) => s.prices.includes(id) && p.price >= min && p.price < max,
+        )),
+  );
+  if (s.sort === "asc") list.sort((a, b) => a.price - b.price);
+  if (s.sort === "desc") list.sort((a, b) => b.price - a.price);
+  if (s.sort === "name") list.sort((a, b) => a.name.localeCompare(b.name, "vi"));
+  if (s.sort === "featured")
+    list.sort((a, b) => Number(Boolean(b.isHot)) - Number(Boolean(a.isHot)));
+  return list;
+}
+function refreshCategory() {
+  const list = categoryProducts(),
+    s = categoryState;
+  document.getElementById("category-grid").innerHTML = list.length
+    ? list.map(card).join("")
+    : '<p class="empty">Không có sản phẩm phù hợp. Hãy bỏ bớt bộ lọc.</p>';
+  document.getElementById("category-count").innerHTML =
+    "Tìm thấy <strong>" + list.length + "</strong> sản phẩm";
+  document.getElementById("category-chips").innerHTML =
+    s.search || s.brands.length || s.prices.length
+      ? (s.search
+          ? `<button type="button" class="chip" data-category-clear="search">Từ khóa: ${esc(s.search)} ✕</button>`
+          : "") +
+        '<button type="button" class="chip plain" data-category-clear="all">Xóa bộ lọc</button>'
+      : "";
+}
+function renderCategory(category, search) {
+  categoryState = { category, search, brands: [], prices: [], sort: "featured" };
+  const label = categories[category][0],
+    brands = [
+      ...new Set(products.filter((p) => p.category === category).map((p) => p.brand)),
+    ].sort();
+  const checkbox = (attribute, value, text) =>
+    `<label><input type="checkbox" ${attribute}="${esc(value)}" /> ${esc(text)}</label>`;
+  categoryRoot.innerHTML = /* HTML */ `
+    <section class="category-page">
+      <div class="wrap">
+        <nav
+          class="category-crumbs"
+          aria-label="Đường dẫn"
+        >
+          <a href="#">Trang chủ</a>
+          <span aria-hidden="true">/</span>
+          <a href="#tat-ca">Danh mục</a>
+          <span aria-hidden="true">/</span>
+          <span aria-current="page">${esc(label)}</span>
+        </nav>
+        <h1
+          id="category-title"
+          tabindex="-1"
+        >
+          ${esc(label)}
+        </h1>
+        <div class="category-layout">
+          <aside
+            class="category-side"
+            aria-label="Bộ lọc sản phẩm"
+          >
+            <div class="category-sort">
+              <label for="category-sort">Sắp xếp</label>
+              <select id="category-sort">
+                <option value="featured">Nổi bật</option>
+                <option value="asc">Giá thấp đến cao</option>
+                <option value="desc">Giá cao đến thấp</option>
+                <option value="name">Tên A-Z</option>
+              </select>
+            </div>
+            <details
+              class="category-filter"
+              open
+            >
+              <summary>Nhãn hàng</summary>
+              <div>
+                ${brands.map((b) => checkbox("data-category-brand", b, b)).join("")}
+              </div>
+            </details>
+            <details
+              class="category-filter"
+              open
+            >
+              <summary>Lọc giá</summary>
+              <div>
+                ${priceRanges
+                  .map(([id, text]) => checkbox("data-category-price", id, text))
+                  .join("")}
+              </div>
+            </details>
+          </aside>
+          <div class="category-main">
+            <img
+              class="category-banner"
+              src="${bannerSrc}"
+              alt="Banner danh mục ${esc(label)}"
+            />
+            <div
+              class="category-chips"
+              id="category-chips"
+            ></div>
+            <p
+              class="muted"
+              id="category-count"
+              aria-live="polite"
+            ></p>
+            <div
+              class="grid category-grid"
+              id="category-grid"
+            ></div>
+          </div>
+        </div>
+      </div>
+    </section>
+  `;
+  document.getElementById("main").hidden = true;
+  detailRoot.hidden = true;
+  categoryRoot.hidden = false;
+  activeProduct = null;
+  document.title = label + " — KhaiHoanShop";
+  refreshCategory();
+  window.scrollTo({ top: 0, behavior: "instant" });
+}
+categoryRoot.addEventListener("change", (event) => {
+  const t = event.target,
+    s = categoryState,
+    flip = (list, value) =>
+      t.checked ? [...new Set([...list, value])] : list.filter((v) => v !== value);
+  if (t.id === "category-sort") s.sort = t.value;
+  else if (t.dataset.categoryBrand !== undefined)
+    s.brands = flip(s.brands, t.dataset.categoryBrand);
+  else if (t.dataset.categoryPrice !== undefined)
+    s.prices = flip(s.prices, t.dataset.categoryPrice);
+  else return;
+  refreshCategory();
+});
+categoryRoot.addEventListener("click", (event) => {
+  const clear = event.target.closest("[data-category-clear]");
+  if (!clear) return;
+  categoryState.search = "";
+  if (clear.dataset.categoryClear === "all") {
+    categoryState.brands = [];
+    categoryState.prices = [];
+    categoryRoot
+      .querySelectorAll('input[type="checkbox"]')
+      .forEach((box) => (box.checked = false));
+  }
+  refreshCategory();
+});
 function route() {
+  if (location.hash.startsWith("#danh-muc/")) {
+    const [slug, query = ""] = location.hash.slice(10).split("?");
+    let category = "";
+    try {
+      category = decodeURIComponent(slug);
+    } catch {}
+    if (Object.hasOwn(categories, category)) {
+      renderCategory(category, new URLSearchParams(query).get("q") || "");
+      return;
+    }
+    showHome();
+    toast("Không tìm thấy danh mục. Vui lòng chọn danh mục khác.");
+    return;
+  }
   if (location.hash.startsWith("#san-pham/")) {
     let id;
     try {
@@ -3164,7 +4022,7 @@ function route() {
     toast("Không tìm thấy sản phẩm. Vui lòng chọn sản phẩm khác.");
     return;
   }
-  const wasDetail = !detailRoot.hidden;
+  const wasDetail = !detailRoot.hidden || !categoryRoot.hidden;
   showHome();
   if (wasDetail) {
     const target = document.getElementById(location.hash.slice(1));
@@ -3186,12 +4044,7 @@ document.addEventListener("click", (event) => {
   const category = target.closest("[data-category]");
   if (category) {
     event.preventDefault();
-    showHome();
-    location.hash = "tat-ca";
-    document.getElementById("filter-category").value = category.dataset.category;
-    document.getElementById("catalog-search").value = "";
-    catalog();
-    document.getElementById("tat-ca").scrollIntoView();
+    location.hash = "danh-muc/" + category.dataset.category;
   }
   const remove = target.closest("[data-remove]");
   if (remove) {
@@ -3201,6 +4054,10 @@ document.addEventListener("click", (event) => {
   if (target.closest("[data-login]")) {
     event.preventDefault();
     document.getElementById("login-dialog").showModal();
+  }
+  if (target.closest("[data-register]")) {
+    event.preventDefault();
+    document.getElementById("register-dialog").showModal();
   }
   const close = target.closest("[data-close]");
   if (close) close.closest("dialog").close();
@@ -3266,11 +4123,37 @@ document.addEventListener("change", (event) => {
 document
   .getElementById("cart-button")
   .addEventListener("click", () => document.getElementById("cart-dialog").showModal());
+document.getElementById("place-order").addEventListener("click", () => {
+  if (!cart.length || orderPlaced) return;
+  orderPlaced = true;
+  document.getElementById("order-status").textContent = "Đặt hàng thành công";
+  refreshCart();
+});
+
 document.getElementById("login-form").addEventListener("submit", (event) => {
   event.preventDefault();
   document.getElementById("login-status").textContent =
     "Đây là form minh họa. Chưa xác thực hoặc lưu tài khoản.";
 });
+const registerForm = document.getElementById("register-form");
+
+registerForm.addEventListener("input", () => {
+  registerForm.elements.confirmPassword.setCustomValidity("");
+  document.getElementById("register-status").textContent = "";
+});
+
+registerForm.addEventListener("submit", (event) => {
+  event.preventDefault();
+  const fields = registerForm.elements;
+  if (fields.password.value !== fields.confirmPassword.value) {
+    fields.confirmPassword.setCustomValidity("Mật khẩu xác nhận không khớp.");
+    fields.confirmPassword.reportValidity();
+    return;
+  }
+  document.getElementById("register-status").textContent =
+    "Đây là form minh họa. Chưa tạo hoặc lưu tài khoản.";
+});
+
 window.addEventListener("hashchange", route);
 route();
 

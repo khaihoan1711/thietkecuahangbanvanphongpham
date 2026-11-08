@@ -8,7 +8,11 @@ export const metadata: Metadata = {
   description: "Đăng nhập vào tài khoản KhaiHoanShop.",
 };
 
-export default function LoginFormPage() {
+export default function LoginFormPage({
+  searchParams,
+}: {
+  searchParams?: { next?: string };
+}) {
   return (
     <>
       <Header currentPath="/dang-nhap" />
@@ -21,7 +25,7 @@ export default function LoginFormPage() {
             <h1 className="mb-6 font-display text-3xl font-semibold leading-tight text-ink">
               Đăng nhập
             </h1>
-            <LoginForm />
+            <LoginForm next={searchParams?.next} />
           </div>
         </div>
       </main>

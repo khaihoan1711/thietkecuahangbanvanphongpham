@@ -1,14 +1,17 @@
 "use client";
 
 import { useState } from "react";
-import Field from "@/components/account/Field";
+import Field from "@/components/ui/Field";
 import { btnBase, btnPrimary } from "@/components/ui/buttons";
+import { useAuth } from "@/context/AuthContext";
+import { useToast } from "@/context/ToastContext";
 
 type FormValues = {
   currentPassword: string;
   newPassword: string;
   confirmPassword: string;
 };
+
 type Errors = Partial<Record<keyof FormValues, string>>;
 
 const emptyForm: FormValues = {
@@ -17,7 +20,10 @@ const emptyForm: FormValues = {
   confirmPassword: "",
 };
 
+// Đổi mật khẩu: kiểm tra mật khẩu hiện tại với tài khoản trong LocalStorage.
 export default function PasswordSection() {
+  const { changePassword } = useAuth();
+  const { showToast } = useToast();
   const [values, setValues] = useState<FormValues>(emptyForm);
   const [errors, setErrors] = useState<Errors>({});
   const [success, setSuccess] = useState(false);
@@ -33,26 +39,46 @@ export default function PasswordSection() {
     setSuccess(false);
 
     const newErrors: Errors = {};
-    if (values.currentPassword === "")
+
+    if (values.currentPassword === "") {
       newErrors.currentPassword = "Vui lòng nhập mật khẩu hiện tại";
-    if (values.newPassword === "") newErrors.newPassword = "Vui lòng nhập mật khẩu mới";
-    else if (values.newPassword.length < 6)
+    }
+
+    if (values.newPassword === "") {
+      newErrors.newPassword = "Vui lòng nhập mật khẩu mới";
+    } else if (values.newPassword.length < 6) {
       newErrors.newPassword = "Mật khẩu mới phải có ít nhất 6 ký tự";
-    if (values.confirmPassword === "")
+    }
+
+    if (values.confirmPassword === "") {
       newErrors.confirmPassword = "Vui lòng xác nhận mật khẩu mới";
-    else if (values.confirmPassword !== values.newPassword)
+    } else if (values.confirmPassword !== values.newPassword) {
       newErrors.confirmPassword = "Mật khẩu xác nhận không khớp";
+    }
+
     setErrors(newErrors);
 
     const firstInvalid = (
       ["currentPassword", "newPassword", "confirmPassword"] as const
-    ).find((f) => newErrors[f]);
-    if (firstInvalid) return document.getElementById(firstInvalid)?.focus();
+    ).find((field) => newErrors[field]);
 
-    // TODO (real authentication): the backend must check the current password and save the new one.
-    // Passwords are never stored or verified in the browser.
+    if (firstInvalid) {
+      document.getElementById(firstInvalid)?.focus();
+      return;
+    }
+
+    const result = changePassword(values.currentPassword, values.newPassword);
+
+    if (!result.ok) {
+      setErrors({ currentPassword: result.message });
+      showToast(result.message, "error");
+      document.getElementById("currentPassword")?.focus();
+      return;
+    }
+
     setValues(emptyForm);
     setSuccess(true);
+    showToast("Đổi mật khẩu thành công.");
   }
 
   return (
@@ -62,6 +88,7 @@ export default function PasswordSection() {
       className="space-y-5"
     >
       <h2 className="font-display text-2xl font-semibold text-ink">Đổi mật khẩu</h2>
+
       <Field
         id="currentPassword"
         label="Mật khẩu hiện tại"
@@ -89,12 +116,14 @@ export default function PasswordSection() {
         error={errors.confirmPassword}
         onChange={(value) => handleChange("confirmPassword", value)}
       />
+
       <button
         type="submit"
         className={`${btnBase} ${btnPrimary}`}
       >
         Đổi mật khẩu
       </button>
+
       {success && (
         <p
           role="status"

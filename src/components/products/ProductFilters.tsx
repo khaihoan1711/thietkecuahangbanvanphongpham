@@ -1,4 +1,4 @@
-import { categoryInfo } from "@/data/products";
+import { useCatalog } from "@/context/CatalogContext";
 import type { ProductCategory } from "@/types/product";
 
 const priceRanges = [
@@ -27,6 +27,8 @@ export default function ProductFilters({
   onPriceChange: (price: string) => void;
   onReset: () => void;
 }) {
+  const { categories } = useCatalog();
+
   return (
     <aside
       aria-label="Bộ lọc sản phẩm"
@@ -44,23 +46,18 @@ export default function ProductFilters({
             />{" "}
             Tất cả sản phẩm
           </label>
-          {(
-            Object.entries(categoryInfo) as [
-              ProductCategory,
-              (typeof categoryInfo)[ProductCategory],
-            ][]
-          ).map(([key, info]) => (
+          {categories.map((item) => (
             <label
-              key={key}
+              key={item.id}
               className="flex min-h-10 cursor-pointer items-center gap-3 text-sm"
             >
               <input
                 type="radio"
-                checked={category === key}
-                onChange={() => onCategoryChange(key)}
+                checked={category === item.id}
+                onChange={() => onCategoryChange(item.id)}
                 className="h-4 w-4 accent-primary"
               />{" "}
-              {info.label}
+              {item.label}
             </label>
           ))}
         </div>

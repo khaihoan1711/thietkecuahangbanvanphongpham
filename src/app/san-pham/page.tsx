@@ -2,8 +2,6 @@ import type { Metadata } from "next";
 import Header from "@/components/layout/Header";
 import Footer from "@/components/layout/Footer";
 import ProductListing from "@/components/products/ProductListing";
-import { allProducts, categoryInfo } from "@/data/products";
-import type { ProductCategory } from "@/types/product";
 
 export const metadata: Metadata = {
   title: "Sản phẩm — KhaiHoanShop",
@@ -16,10 +14,8 @@ export default function ProductListingPage({
   searchParams?: { q?: string; category?: string };
 }) {
   const q = typeof searchParams?.q === "string" ? searchParams.q : "";
-  const rawCategory =
-    typeof searchParams?.category === "string" ? searchParams.category : "all";
   const category =
-    rawCategory in categoryInfo ? (rawCategory as ProductCategory) : "all";
+    typeof searchParams?.category === "string" ? searchParams.category : "all";
 
   return (
     <>
@@ -39,7 +35,6 @@ export default function ProductListingPage({
             </p>
           </div>
           <ProductListing
-            products={allProducts}
             initialSearch={q}
             initialCategory={category}
           />

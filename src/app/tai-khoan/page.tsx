@@ -8,7 +8,11 @@ export const metadata: Metadata = {
   description: "Quản lý thông tin tài khoản và đơn hàng của bạn tại KhaiHoanShop.",
 };
 
-export default function AccountPage() {
+export default function AccountPage({
+  searchParams,
+}: {
+  searchParams?: { tab?: string };
+}) {
   return (
     <>
       <Header currentPath="/tai-khoan" />
@@ -20,7 +24,7 @@ export default function AccountPage() {
           <h1 className="mb-8 font-display text-3xl font-semibold leading-tight text-ink md:text-title">
             Tài khoản của tôi
           </h1>
-          <AccountView />
+          <AccountView initialTab={searchParams?.tab} />
         </div>
       </main>
       <Footer />

@@ -1,8 +1,11 @@
 "use client";
 
 import Link from "next/link";
+import { useRouter } from "next/navigation";
 import { useState } from "react";
 import { btnBase, btnPrimary } from "@/components/ui/buttons";
+import { useAuth } from "@/context/AuthContext";
+import { useToast } from "@/context/ToastContext";
 import { isValidEmail } from "@/lib/validation";
 
 type Errors = { email?: string; password?: string };
@@ -12,16 +15,30 @@ const fieldStyle =
 const fieldOk = "border-line focus:border-primary focus:ring-primary-soft";
 const fieldBad = "border-sale focus:border-sale focus:ring-sale/20";
 
-export default function LoginForm() {
+// Chỉ cho phép quay lại các đường dẫn nội bộ của website (tránh chuyển hướng ra trang khác).
+function safeNext(next?: string) {
+  if (next && next.startsWith("/") && !next.startsWith("//")) {
+    return next;
+  }
+
+  return null;
+}
+
+// `next` là trang cần quay lại sau khi đăng nhập (ví dụ khi bị chuyển từ trang Admin).
+export default function LoginForm({ next }: { next?: string }) {
+  const router = useRouter();
+  const { users, login } = useAuth();
+  const { showToast } = useToast();
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const [remember, setRemember] = useState(false);
+  const [remember, setRemember] = useState(true);
   const [errors, setErrors] = useState<Errors>({});
-  const [success, setSuccess] = useState(false);
+  // Lỗi đăng nhập trả về từ kho tài khoản (sai mật khẩu, tài khoản bị khóa...)
+  const [formError, setFormError] = useState("");
 
   function handleSubmit(event: React.FormEvent) {
     event.preventDefault();
-    setSuccess(false);
+    setFormError("");
 
     const newErrors: Errors = {};
     if (email.trim() === "") newErrors.email = "Vui lòng nhập email";
@@ -33,10 +50,22 @@ export default function LoginForm() {
     if (newErrors.email) return document.getElementById("email")?.focus();
     if (newErrors.password) return document.getElementById("password")?.focus();
 
-    // TODO (real authentication): send { email, password, remember } to the backend / Auth provider here.
-    // Until then nothing is saved: no user, no password, no "logged in" state.
-    setPassword("");
-    setSuccess(true);
+    // Kiểm tra với danh sách tài khoản trong LocalStorage.
+    const result = login(email, password, remember);
+
+    if (!result.ok) {
+      setFormError(result.message);
+      showToast(result.message, "error");
+      return;
+    }
+
+    showToast("Đăng nhập thành công!");
+
+    // Admin vào khu quản trị, người dùng thường về trang chủ (trừ khi có trang cần quay lại).
+    const role = users.find((user) => user.email === email.trim().toLowerCase())?.role;
+    const fallback = role === "admin" ? "/quan-tri" : "/";
+
+    router.push(safeNext(next) ?? fallback);
   }
 
   return (
@@ -131,14 +160,21 @@ export default function LoginForm() {
         Đăng nhập
       </button>
 
-      {success && (
+      {formError && (
         <p
-          role="status"
-          className="rounded-lg bg-primary-soft px-4 py-3 text-sm font-medium text-primary"
+          role="alert"
+          className="rounded-lg bg-red-50 px-4 py-3 text-sm font-medium text-red-700"
         >
-          Đăng nhập thành công!
+          {formError}
         </p>
       )}
+
+      {/* Tài khoản mẫu để thử website (chỉ có trong bản demo dùng LocalStorage) */}
+      <div className="rounded-lg bg-surface px-4 py-3 text-sm text-ink-muted">
+        <p className="font-semibold text-ink">Tài khoản mẫu để thử:</p>
+        <p>Admin: admin@khaihoanshop.vn / Admin@123</p>
+        <p>Người dùng: nguyenvana@example.com / User@123</p>
+      </div>
 
       <p className="text-center text-ink-muted">
         Chưa có tài khoản?{" "}

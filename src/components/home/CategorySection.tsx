@@ -1,12 +1,11 @@
+"use client";
+
 import Link from "next/link";
-import { categoryInfo } from "@/data/products";
-import type { ProductCategory } from "@/types/product";
+import { useCatalog } from "@/context/CatalogContext";
 
 export default function CategorySection() {
-  const categories = Object.entries(categoryInfo) as [
-    ProductCategory,
-    (typeof categoryInfo)[ProductCategory],
-  ][];
+  const { categories } = useCatalog();
+
   return (
     <section className="py-12">
       <div className="mx-auto w-full max-w-container px-4 md:px-6 lg:px-8">
@@ -27,18 +26,18 @@ export default function CategorySection() {
           </Link>
         </div>
         <div className="grid grid-cols-2 gap-3 sm:grid-cols-3 lg:grid-cols-6">
-          {categories.map(([key, info]) => (
+          {categories.map((category) => (
             <Link
-              key={key}
-              href={`/san-pham?category=${key}`}
+              key={category.id}
+              href={`/danh-muc/${category.id}`}
               className="group rounded-xl border border-line bg-white p-5 text-center transition hover:-translate-y-1 hover:border-primary/30 hover:shadow-card"
             >
               <span className="mx-auto inline-flex h-16 w-16 items-center justify-center rounded-2xl bg-surface text-3xl font-bold text-navy transition group-hover:bg-primary-soft group-hover:text-primary">
-                {info.icon}
+                {category.icon}
               </span>
-              <strong className="mt-3 block text-sm text-ink">{info.label}</strong>
+              <strong className="mt-3 block text-sm text-ink">{category.label}</strong>
               <span className="mt-1 hidden text-xs text-ink-muted md:block">
-                {info.short}
+                {category.short}
               </span>
             </Link>
           ))}
