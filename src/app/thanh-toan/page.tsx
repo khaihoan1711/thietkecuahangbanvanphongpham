@@ -10,7 +10,7 @@ export default function CheckoutPage() {
       <Header />
       <main className="bg-surface/60 py-10 lg:py-12">
         <div className="mx-auto w-full max-w-container px-4 md:px-6 lg:px-8">
-          <h1 className="mb-7 text-3xl font-black text-navy">Thanh toán</h1>
+          <h1 className="mb-7 text-3xl font-bold text-navy">Thanh toán</h1>
           <CheckoutView />
         </div>
       </main>

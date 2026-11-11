@@ -1,4 +1,5 @@
 import Link from "next/link";
+import HeroSlider from "@/components/home/HeroSlider";
 import Icon from "@/components/ui/Icon";
 
 export default function HeroSection() {
@@ -14,20 +15,7 @@ export default function HeroSection() {
         >
           KhaiHoanShop — Đồng hành cùng bạn đến trường
         </h1>
-        <Link
-          href="/san-pham"
-          aria-label="Khám phá đồ dùng học tập KhaiHoanShop"
-          className="block overflow-hidden rounded-2xl border border-blue-100 bg-white shadow-soft md:rounded-3xl"
-        >
-          <img
-            src="/images/stationery/banner.png"
-            alt="KhaiHoanShop — Đồng hành cùng bạn đến trường, với balo, vở, bút và dụng cụ học tập"
-            width={3168}
-            height={1344}
-            fetchPriority="high"
-            className="block h-auto w-full"
-          />
-        </Link>
+        <HeroSlider />
         <div className="mt-5 flex flex-wrap justify-center gap-3">
           <Link
             href="/san-pham"

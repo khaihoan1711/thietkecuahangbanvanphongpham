@@ -73,11 +73,21 @@ function exportPens(
     return JSON.stringify(value, null, 2).replace(/</g, "\\u003c");
   }
 
-  const styles = [read("scripts/layout.css"), read("scripts/storefront.css")];
+  const styles = [
+    read("scripts/layout.css"),
+    read("scripts/storefront.css"),
+    read("scripts/admin.css"),
+  ];
+  // Thứ tự quan trọng: dữ liệu và kho (store.js) đứng trước, storefront.js đứng cuối
+  // vì nó khởi động trang (gọi route()).
   const scripts = [
-    `const products = ${json(products)};`,
+    `const seedProducts = ${json(products)};`,
     `const productImages = ${json(productImages)};`,
     read("scripts/cart-options.js"),
+    read("scripts/store.js"),
+    read("scripts/ui.js"),
+    read("scripts/account.js"),
+    read("scripts/admin.js"),
     read("scripts/storefront.js"),
   ];
 

@@ -33,7 +33,7 @@ export default function ProductDetailView({ productId }: { productId: string }) 
         id="main-content"
         className="py-24 text-center"
       >
-        <p className="text-2xl font-black text-navy">Không tìm thấy sản phẩm</p>
+        <p className="text-2xl font-bold text-navy">Không tìm thấy sản phẩm</p>
         <p className="mt-2 text-ink-muted">
           Sản phẩm này không tồn tại hoặc đã bị xóa.
         </p>
@@ -63,7 +63,7 @@ export default function ProductDetailView({ productId }: { productId: string }) 
     <main id="main-content">
       <section className="border-b border-blue-100 bg-gradient-to-r from-blue-100 via-white to-sky-100 py-8 text-center md:py-12">
         <div className="mx-auto max-w-container px-4 md:px-6 lg:px-8">
-          <p className="text-2xl font-black uppercase text-navy">{category}</p>
+          <p className="text-2xl font-bold uppercase text-navy">{category}</p>
           <nav
             aria-label="Đường dẫn sản phẩm"
             className="mt-4 flex flex-wrap justify-center gap-x-2 gap-y-1 text-sm text-ink-muted"
@@ -120,7 +120,7 @@ export default function ProductDetailView({ productId }: { productId: string }) 
               </h1>
               <p className="mt-3 text-sm text-ink-muted">Chưa có đánh giá</p>
               <div className="mt-6 flex flex-wrap items-baseline gap-3">
-                <span className="text-4xl font-black text-primary">
+                <span className="text-4xl font-bold text-primary">
                   {formatVND(product.price)}
                 </span>
                 {product.oldPrice && (

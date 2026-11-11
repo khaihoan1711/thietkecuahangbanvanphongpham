@@ -24,7 +24,7 @@ export default function CategoryPageView({
   if (!category) {
     return (
       <div className="rounded-xl border border-line bg-white px-6 py-16 text-center">
-        <p className="text-2xl font-black text-navy">Không tìm thấy danh mục</p>
+        <p className="text-2xl font-bold text-navy">Không tìm thấy danh mục</p>
         <p className="mt-2 text-ink-muted">
           Danh mục này không tồn tại hoặc đã bị xóa.
         </p>
@@ -81,7 +81,7 @@ export default function CategoryPageView({
         </ol>
       </nav>
 
-      <h1 className="my-6 text-center text-3xl font-black text-ink md:text-5xl lg:pl-[284px]">
+      <h1 className="my-6 text-center text-3xl font-bold text-ink md:text-5xl lg:pl-[284px]">
         {category.label}
       </h1>
 
@@ -89,7 +89,7 @@ export default function CategoryPageView({
         key={`${category.id}-${initialSearch}`}
         products={categoryProducts}
         initialSearch={initialSearch}
-        bannerSrc="/images/stationery/banner.png"
+        bannerSrc="/images/stationery/slide-1.jpg"
         bannerAlt={`Banner danh mục ${category.label}`}
       />
     </>

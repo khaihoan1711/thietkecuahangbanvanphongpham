@@ -90,14 +90,14 @@ export default function DashboardView() {
 
       <div className="mt-6 grid gap-6 xl:grid-cols-[2fr_1fr]">
         <section className="rounded-xl border border-line bg-white p-5">
-          <h3 className="text-lg font-black text-navy">Doanh thu 6 tháng gần nhất</h3>
+          <h3 className="text-lg font-bold text-navy">Doanh thu 6 tháng gần nhất</h3>
           <div className="mt-4">
             <RevenueChart data={getMonthlyRevenue(orders)} />
           </div>
         </section>
 
         <section className="rounded-xl border border-line bg-white p-5">
-          <h3 className="text-lg font-black text-navy">Sản phẩm sắp hết hàng</h3>
+          <h3 className="text-lg font-bold text-navy">Sản phẩm sắp hết hàng</h3>
 
           {lowStock.length === 0 ? (
             <p className="mt-4 text-sm text-ink-muted">Tồn kho các sản phẩm đều ổn.</p>
@@ -121,7 +121,7 @@ export default function DashboardView() {
 
       <section className="mt-6">
         <div className="mb-3 flex items-center justify-between gap-4">
-          <h3 className="text-lg font-black text-navy">Đơn hàng gần đây</h3>
+          <h3 className="text-lg font-bold text-navy">Đơn hàng gần đây</h3>
           <Link
             href="/quan-tri/don-hang"
             className="text-sm font-semibold text-primary hover:underline"

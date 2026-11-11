@@ -133,7 +133,7 @@ export default function CategoryForm({
           }}
         />
 
-        <div className="flex flex-wrap justify-end gap-3 border-t border-line pt-5">
+        <div className="sticky bottom-0 -mx-5 -mb-5 flex flex-wrap justify-end gap-3 border-t border-line bg-white px-5 py-4 sm:-mx-6 sm:px-6">
           <button
             type="button"
             onClick={onClose}
@@ -145,7 +145,7 @@ export default function CategoryForm({
             type="submit"
             className={`${btnBase} ${btnPrimary}`}
           >
-            {isEditing ? "Lưu thay đổi" : "Thêm danh mục"}
+            {isEditing ? "Xác nhận cập nhật" : "Xác nhận thêm danh mục"}
           </button>
         </div>
       </form>

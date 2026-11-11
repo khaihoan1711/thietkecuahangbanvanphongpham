@@ -3,10 +3,10 @@
 // nên mọi thao tác đều được bọc trong try/catch để website không bị lỗi.
 
 export const STORAGE_KEYS = {
-  products: "khaihoanshop-products",
+  products: "khaihoanshop-products-v3",
   categories: "khaihoanshop-categories",
-  users: "khaihoanshop-users",
-  orders: "khaihoanshop-orders",
+  users: "khaihoanshop-users-v3",
+  orders: "khaihoanshop-orders-v2",
   // Lưu id người đang đăng nhập
   session: "khaihoanshop-session",
   cart: "khaihoanstatinery-cart",

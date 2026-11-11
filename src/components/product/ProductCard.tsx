@@ -70,16 +70,7 @@ export default function ProductCard({ product }: { product: Product }) {
           )}
         </div>
 
-        {product.units ? (
-          <Link
-            href={detailUrl}
-            className="mt-auto flex min-h-10 w-full items-center justify-center rounded-lg bg-primary px-3 py-2 text-sm font-bold text-white hover:bg-primary-dark"
-          >
-            Chọn mua
-          </Link>
-        ) : (
-          <AddToCartButton productId={product.id} />
-        )}
+        <AddToCartButton productId={product.id} />
       </div>
     </article>
   );

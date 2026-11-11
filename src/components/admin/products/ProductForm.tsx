@@ -354,7 +354,7 @@ export default function ProductForm({
                   label="Đường dẫn ảnh"
                   value={values.image}
                   error={errors.image}
-                  placeholder="/images/stationery/ten-anh.svg hoặc https://..."
+                  placeholder="/images/products/ten-anh.jpg hoặc https://..."
                   onChange={(value) => setField("image", value)}
                 />
               )}
@@ -424,7 +424,7 @@ export default function ProductForm({
           </p>
         )}
 
-        <div className="flex flex-wrap justify-end gap-3 border-t border-line pt-5">
+        <div className="sticky bottom-0 -mx-5 -mb-5 flex flex-wrap justify-end gap-3 border-t border-line bg-white px-5 py-4 sm:-mx-6 sm:px-6">
           <button
             type="button"
             onClick={onClose}
@@ -436,7 +436,7 @@ export default function ProductForm({
             type="submit"
             className={`${btnBase} ${btnPrimary}`}
           >
-            {isEditing ? "Lưu thay đổi" : "Thêm sản phẩm"}
+            {isEditing ? "Xác nhận cập nhật" : "Xác nhận thêm sản phẩm"}
           </button>
         </div>
       </form>

@@ -60,7 +60,7 @@ export default function Modal({ title, onClose, children, size = "md" }: ModalPr
         className={`flex max-h-[92vh] w-full flex-col overflow-hidden rounded-t-2xl bg-white shadow-card sm:rounded-2xl ${sizeStyle[size]}`}
       >
         <div className="flex items-center justify-between gap-4 border-b border-line px-5 py-4 sm:px-6">
-          <h2 className="text-xl font-black text-navy">{title}</h2>
+          <h2 className="text-xl font-bold text-navy">{title}</h2>
           <button
             type="button"
             aria-label="Đóng"

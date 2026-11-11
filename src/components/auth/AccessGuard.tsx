@@ -36,7 +36,7 @@ export default function AccessGuard({ role, children }: AccessGuardProps) {
   if (role && currentUser.role !== role) {
     return (
       <div className="mx-auto max-w-md py-24 text-center">
-        <p className="text-2xl font-black text-navy">Bạn không có quyền truy cập</p>
+        <p className="text-2xl font-bold text-navy">Bạn không có quyền truy cập</p>
         <p className="mt-2 text-ink-muted">
           Trang này chỉ dành cho {role === "admin" ? "quản trị viên" : "người dùng"}.
         </p>

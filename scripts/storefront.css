@@ -2,10 +2,6 @@
   object-fit: contain;
   background: white;
 }
-.choose-product {
-  display: block;
-  text-align: center;
-}
 .gallery-main {
   position: relative;
 }

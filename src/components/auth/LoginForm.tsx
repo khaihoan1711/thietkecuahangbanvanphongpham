@@ -169,13 +169,6 @@ export default function LoginForm({ next }: { next?: string }) {
         </p>
       )}
 
-      {/* Tài khoản mẫu để thử website (chỉ có trong bản demo dùng LocalStorage) */}
-      <div className="rounded-lg bg-surface px-4 py-3 text-sm text-ink-muted">
-        <p className="font-semibold text-ink">Tài khoản mẫu để thử:</p>
-        <p>Admin: admin@khaihoanshop.vn / Admin@123</p>
-        <p>Người dùng: nguyenvana@example.com / User@123</p>
-      </div>
-
       <p className="text-center text-ink-muted">
         Chưa có tài khoản?{" "}
         <Link

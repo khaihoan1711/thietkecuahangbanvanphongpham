@@ -26,7 +26,7 @@ export default function ProductListingPage({
             <p className="text-sm font-bold uppercase tracking-wider text-primary">
               Cửa hàng
             </p>
-            <h1 className="mt-1 text-3xl font-black text-navy md:text-4xl">
+            <h1 className="mt-1 text-3xl font-bold text-navy md:text-4xl">
               Tất cả sản phẩm
             </h1>
             <p className="mt-2 max-w-2xl text-ink-muted">

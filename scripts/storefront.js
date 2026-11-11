@@ -1,27 +1,8 @@
-// Đổi đường dẫn ảnh thành ảnh nhúng để HTML có thể mở độc lập.
-for (const product of products) {
-  product.image = productImages[product.image];
-  product.images = (product.images || []).map((image) => productImages[image]);
+// ============================================================
+// TRANG BÁN HÀNG: danh sách sản phẩm, giỏ hàng, chi tiết sản phẩm, trang danh mục và điều hướng.
+// Dữ liệu lấy từ store.js, các trang tài khoản và quản trị nằm ở account.js và admin.js.
+// ============================================================
 
-  for (const color of product.colors || []) {
-    color.image = productImages[color.image];
-  }
-}
-
-const categories = {
-  but: ["Bút viết", "✎"],
-  "vo-so": ["Vở & Sổ", "▤"],
-  giay: ["Giấy văn phòng", "▱"],
-  "dung-cu": ["Dụng cụ", "⌁"],
-  "hoa-pham": ["Họa phẩm", "◉"],
-  balo: ["Balo & Hộp bút", "▣"],
-};
-const money = (n) => new Intl.NumberFormat("vi-VN").format(n) + "₫";
-const esc = (s) =>
-  String(s).replace(
-    /[&<>"']/g,
-    (c) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" })[c],
-  );
 const card = (p) => /* HTML */ `
   <article class="card">
     <div class="card-art">
@@ -31,11 +12,11 @@ const card = (p) => /* HTML */ `
       >
         <img
           loading="lazy"
-          src="${p.image}"
+          src="${imageSrc(p.image)}"
           alt="${esc(p.alt)}"
         />
       </a>
-      <span class="badge">${categories[p.category][0]}</span>
+      <span class="badge">${esc(categoryLabel(p.category))}</span>
       ${p.isNew ? '<span class="badge new">MỚI</span>' : ""}${p.oldPrice
         ? /* HTML */ `
             <span class="badge sale">
@@ -56,69 +37,23 @@ const card = (p) => /* HTML */ `
             `
           : ""}
       </div>
-      ${p.units
-        ? /* HTML */ `
-            <a
-              class="add choose-product"
-              href="#san-pham/${encodeURIComponent(p.id)}"
-            >
-              Chọn mua
-            </a>
-          `
-        : /* HTML */ `
-            <button
-              class="add"
-              data-add="${esc(p.id)}"
-            >
-              + Thêm vào giỏ
-            </button>
-          `}
+      <button
+        class="add"
+        data-add="${esc(p.id)}"
+      >
+        + Thêm vào giỏ
+      </button>
     </div>
   </article>
 `;
 const render = (id, list) =>
   (document.getElementById(id).innerHTML = list.map(card).join(""));
-render("featured-grid", products.filter((p) => p.isHot).slice(0, 8));
-render(
-  "best-grid",
-  products
-    .filter((p) => p.isBestSeller || p.rank)
-    .sort((a, b) => (a.rank ?? 0) - (b.rank ?? 0))
-    .slice(0, 8),
-);
-render(
-  "new-grid",
-  products.filter((p) => p.isNew),
-);
-render("sale-grid", products.filter((p) => p.oldPrice > p.price).slice(0, 8));
-render(
-  "pen-grid",
-  products.filter((p) => p.category === "but"),
-);
-document.getElementById("categories").innerHTML = Object.entries(categories)
-  .map(
-    ([id, [label, icon]]) => /* HTML */ `
-      <button
-        class="category"
-        data-category="${id}"
-      >
-        <b aria-hidden="true">${icon}</b>
-        <span>${label}</span>
-      </button>
-    `,
-  )
-  .join("");
-document.getElementById("category-menu").innerHTML = Object.entries(categories)
-  .map(
-    ([id, [label, icon]]) => /* HTML */ `
-      <button data-category="${id}">${icon} ${label}</button>
-    `,
-  )
-  .join("");
+// ---------- Menu danh mục xổ xuống ----------
+
+// Mục con của menu cho các danh mục mặc định. Danh mục Admin thêm mới chỉ hiện một liên kết.
 const menuGroups = [
   {
     category: "but",
-    label: "Bút viết",
     children: [
       {
         label: "Bút bi",
@@ -131,115 +66,170 @@ const menuGroups = [
       { label: "Bút gel", q: "bút gel" },
       { label: "Bút chì", q: "bút chì" },
       { label: "Bút dạ quang", q: "dạ quang" },
+      { label: "Bút lông bảng", q: "lông bảng" },
       { label: "Bút xóa", q: "bút xóa" },
     ],
   },
   {
     category: "vo-so",
-    label: "Vở & Sổ",
     children: [
-      { label: "Vở học sinh", q: "vở" },
-      {
-        label: "Sổ tay",
-        q: "sổ",
-        children: [
-          { label: "Sổ lò xo", q: "sổ lò xo" },
-          { label: "Sổ bìa da", q: "bìa da" },
-        ],
-      },
+      { label: "Tập học sinh", q: "tập" },
+      { label: "Sổ lò xo", q: "sổ lò xo" },
+      { label: "Sổ còng", q: "sổ còng" },
     ],
   },
   {
     category: "giay",
-    label: "Giấy văn phòng",
     children: [
       { label: "Giấy in A4", q: "giấy in" },
-      { label: "Giấy note", q: "giấy note" },
-      { label: "Giấy thủ công", q: "thủ công" },
+      { label: "Ream giấy A4", q: "ream" },
+      { label: "Giấy ghi chú", q: "ghi chú" },
+      { label: "Giấy phân trang", q: "phân trang" },
+      { label: "Bìa hồ sơ", q: "bìa" },
     ],
   },
   {
     category: "dung-cu",
-    label: "Dụng cụ",
     children: [
-      { label: "Kéo văn phòng", q: "kéo" },
-      { label: "Dập ghim", q: "dập ghim" },
+      { label: "Kéo", q: "kéo" },
+      { label: "Bấm kim & kim bấm", q: "kim" },
+      { label: "Kẹp bướm", q: "kẹp bướm" },
       { label: "Băng keo", q: "băng keo" },
-      { label: "Thước & hình học", q: "thước" },
-      { label: "Bảng trắng", q: "bảng trắng" },
+      { label: "Gôm tẩy", q: "gôm" },
+      {
+        label: "Thước & compa",
+        q: "thước",
+        children: [
+          { label: "Thước kẻ", q: "thước" },
+          { label: "Compa", q: "compa" },
+        ],
+      },
+      { label: "Máy tính", q: "máy tính" },
     ],
   },
   {
     category: "hoa-pham",
-    label: "Họa phẩm",
     children: [
       { label: "Màu nước", q: "màu nước" },
-      { label: "Sáp dầu", q: "sáp" },
+      { label: "Sáp màu", q: "sáp" },
+      { label: "Bút chì màu", q: "chì màu" },
+      { label: "Bút lông màu", q: "lông màu" },
       { label: "Cọ vẽ", q: "cọ" },
     ],
   },
   {
     category: "balo",
-    label: "Balo & Hộp bút",
     children: [
-      { label: "Balo", q: "balo" },
-      { label: "Hộp bút", q: "hộp bút" },
+      { label: "Balo & cặp", q: "balo" },
+      { label: "Hộp bút", q: "hộp" },
+      { label: "Bóp viết", q: "bóp" },
     ],
   },
 ];
 const categoryHref = (category, q) =>
   "#danh-muc/" + category + (q ? "?q=" + encodeURIComponent(q) : "");
-const subLink = (group, item) =>
-  `<a href="${categoryHref(group.category, item.q)}">${esc(item.label)}${
+const subLink = (categoryId, item) =>
+  `<a href="${categoryHref(categoryId, item.q)}">${esc(item.label)}${
     item.children ? '<span aria-hidden="true">›</span>' : ""
   }</a>`;
-document.getElementById("mega-menu").innerHTML =
-  '<li><a class="mega-top" href="#">Trang chủ</a></li>' +
-  menuGroups
+
+// Phiên bản dữ liệu đã dùng để vẽ menu và trang chủ (so với dataVersion trong store.js).
+let navVersion = -1;
+let renderedVersion = -1;
+
+// Vẽ thanh menu danh mục. Danh mục lấy từ kho dữ liệu nên Admin thêm, sửa, xóa là menu đổi theo.
+function renderNav() {
+  const groupsHtml = categories
+    .map((category) => {
+      const configured = menuGroups.find((group) => group.category === category.id);
+      const children = configured ? configured.children : [];
+      const dropdown = children.length
+        ? `<ul class="mega-drop">${children
+            .map(
+              (item) =>
+                `<li class="${item.children ? "has-sub" : ""}">${subLink(category.id, item)}${
+                  item.children
+                    ? `<ul class="mega-sub">${item.children
+                        .map((child) => `<li>${subLink(category.id, child)}</li>`)
+                        .join("")}</ul>`
+                    : ""
+                }</li>`,
+            )
+            .join("")}</ul>`
+        : "";
+
+      return (
+        `<li class="mega-item"><a class="mega-top" href="${categoryHref(category.id)}">${esc(category.label)}` +
+        (children.length ? '<i aria-hidden="true"></i>' : "") +
+        `</a>${dropdown}</li>`
+      );
+    })
+    .join("");
+
+  document.getElementById("mega-menu").innerHTML =
+    '<li><a class="mega-top" href="#">Trang chủ</a></li>' +
+    groupsHtml +
+    '<li><a class="mega-top" href="#khuyen-mai">Khuyến mãi</a></li>' +
+    '<li><a class="mega-top" href="#tin-tuc">Tin tức</a></li>' +
+    '<li><a class="mega-top" href="#lien-he">Liên hệ</a></li>';
+  document.getElementById("category-menu").innerHTML = categories
     .map(
-      (group) =>
-        `<li class="mega-item"><a class="mega-top" href="${categoryHref(group.category)}">${esc(group.label)}<i aria-hidden="true"></i></a>` +
-        `<ul class="mega-drop">${group.children
-          .map(
-            (item) =>
-              `<li class="${item.children ? "has-sub" : ""}">${subLink(group, item)}${
-                item.children
-                  ? `<ul class="mega-sub">${item.children
-                      .map((child) => `<li>${subLink(group, child)}</li>`)
-                      .join("")}</ul>`
-                  : ""
-              }</li>`,
-          )
-          .join("")}</ul></li>`,
+      (category) =>
+        `<button data-category="${esc(category.id)}">${esc(category.icon)} ${esc(category.label)}</button>`,
     )
-    .join("") +
-  '<li><a class="mega-top" href="#khuyen-mai">Khuyến mãi</a></li>' +
-  '<li><a class="mega-top" href="#tin-tuc">Tin tức</a></li>' +
-  '<li><a class="mega-top" href="#lien-he">Liên hệ</a></li>';
+    .join("");
+  navVersion = dataVersion;
+}
+
 // Các banner dùng chung một ảnh đã nhúng sẵn ở đầu trang để HTML không bị nặng thêm.
 const bannerSrc = document.querySelector(".shop-banner").src;
-document.querySelectorAll("img[data-banner]").forEach((img) => (img.src = bannerSrc));
-render(
-  "notebook-grid",
-  products.filter((p) => p.category === "vo-so").slice(0, 8),
-);
-render(
-  "office-grid",
-  products.filter((p) => p.category === "giay" || p.category === "dung-cu").slice(0, 8),
-);
-document.getElementById("filter-category").innerHTML += Object.entries(categories)
-  .map(
-    ([id, [label]]) => /* HTML */ `
-      <option value="${id}">${label}</option>
-    `,
-  )
-  .join("");
-const simplify = (s) =>
-  s
-    .toLowerCase()
-    .normalize("NFD")
-    .replace(/[\u0300-\u036f]/g, "")
-    .replace(/đ/g, "d");
+
+// Vẽ các khu sản phẩm của trang chủ. Gọi lại khi Admin thay đổi dữ liệu.
+function renderHome() {
+  render("featured-grid", products.filter((p) => p.isHot).slice(0, 8));
+  render(
+    "best-grid",
+    products
+      .filter((p) => p.isBestSeller || p.rank)
+      .sort((a, b) => (a.rank ?? 0) - (b.rank ?? 0))
+      .slice(0, 8),
+  );
+  render(
+    "new-grid",
+    products.filter((p) => p.isNew),
+  );
+  render("sale-grid", products.filter((p) => p.oldPrice > p.price).slice(0, 8));
+  document.getElementById("categories").innerHTML = categories
+    .map(
+      (category) => /* HTML */ `
+        <button
+          class="category"
+          data-category="${esc(category.id)}"
+        >
+          <b aria-hidden="true">${esc(category.icon)}</b>
+          <span>${esc(category.label)}</span>
+        </button>
+      `,
+    )
+    .join("");
+
+  // Danh sách danh mục trong ô lọc, giữ nguyên lựa chọn hiện tại nếu còn.
+  const filterSelect = document.getElementById("filter-category");
+  const kept = filterSelect.value || "all";
+
+  filterSelect.innerHTML =
+    '<option value="all">Tất cả danh mục</option>' +
+    categories
+      .map(
+        (category) =>
+          `<option value="${esc(category.id)}">${esc(category.label)}</option>`,
+      )
+      .join("");
+  filterSelect.value = categoryExists(kept) ? kept : "all";
+  catalog();
+  renderedVersion = dataVersion;
+}
+
 function catalog() {
   const q = simplify(document.getElementById("catalog-search").value.trim()),
     cat = document.getElementById("filter-category").value,
@@ -267,7 +257,8 @@ function catalog() {
     .getElementById(id)
     .addEventListener(id === "catalog-search" ? "input" : "change", catalog),
 );
-catalog();
+renderNav();
+renderHome();
 document.getElementById("header-search").addEventListener("submit", (e) => {
   e.preventDefault();
   showHome();
@@ -279,7 +270,7 @@ document.getElementById("header-search").addEventListener("submit", (e) => {
 });
 let cart = [];
 try {
-  const saved = JSON.parse(localStorage.getItem("khaihoanshop-html-cart") || "[]");
+  const saved = JSON.parse(localStorage.getItem(STORAGE_KEYS.cart) || "[]");
   cart = normalizeCart(
     Array.isArray(saved)
       ? saved.map(
@@ -299,33 +290,66 @@ let activeProduct = null,
   activeImages = [],
   activeSelection = {},
   activeImage = "";
-let orderPlaced = false;
 
 function save() {
-  orderPlaced = false;
-  document.getElementById("order-status").textContent = "";
   try {
-    localStorage.setItem("khaihoanshop-html-cart", JSON.stringify(cart));
+    localStorage.setItem(STORAGE_KEYS.cart, JSON.stringify(cart));
   } catch {}
   refreshCart();
   if (activeProduct) syncDetail();
 }
-function refreshCart() {
-  document.getElementById("place-order").disabled = cart.length === 0 || orderPlaced;
-  document.getElementById("cart-count").textContent = cart.reduce(
-    (sum, item) => sum + item.quantity,
+function clearCart() {
+  cart = [];
+  save();
+}
+
+// Các dòng trong giỏ hàng. Sản phẩm đã bị Admin xóa thì được bỏ qua.
+function cartLines() {
+  return cart.flatMap((item) => {
+    const base = getProduct(item.productId);
+
+    if (!base) {
+      return [];
+    }
+
+    return [
+      { base, product: selectedProduct(base, item), quantity: item.quantity, item },
+    ];
+  });
+}
+
+// Tạm tính, phí vận chuyển, giảm giá và tổng cộng của một danh sách dòng giỏ hàng.
+function calculateTotals(lines) {
+  const subtotal = lines.reduce(
+    (sum, line) => sum + line.product.price * line.quantity,
     0,
   );
-  document.getElementById("cart-lines").innerHTML = cart.length
-    ? cart
-        .map((item) => {
-          const base = products.find((p) => p.id === item.productId),
-            p = selectedProduct(base, item),
-            key = cartKey(item);
+
+  return {
+    subtotal,
+    shipping: SHIPPING_FEE,
+    discount: DISCOUNT,
+    total: subtotal + SHIPPING_FEE - DISCOUNT,
+  };
+}
+
+function refreshCart() {
+  const lines = cartLines();
+
+  document.getElementById("place-order").disabled = lines.length === 0;
+  document.getElementById("cart-count").textContent = lines.reduce(
+    (sum, line) => sum + line.quantity,
+    0,
+  );
+  document.getElementById("cart-lines").innerHTML = lines.length
+    ? lines
+        .map((line) => {
+          const p = line.product,
+            key = cartKey(line.item);
           return /* HTML */ `
             <div class="cart-line">
               <img
-                src="${p.image}"
+                src="${imageSrc(p.image)}"
                 alt="${esc(p.alt)}"
               />
               <div class="info">
@@ -336,15 +360,15 @@ function refreshCart() {
                   <strong>${esc(p.name)}</strong>
                 </a>
                 <div class="muted">${esc(p.pack)}</div>
-                <div class="muted">${money(p.price)} × ${item.quantity}</div>
-                <strong>${money(p.price * item.quantity)}</strong>
+                <div class="muted">${money(p.price)} × ${line.quantity}</div>
+                <strong>${money(p.price * line.quantity)}</strong>
               </div>
               <input
                 aria-label="Số lượng ${esc(p.name)} ${esc(p.pack)}"
                 type="number"
                 min="1"
-                max="${maxCartQuantity(base, cart, item)}"
-                value="${item.quantity}"
+                max="${maxCartQuantity(line.base, cart, line.item)}"
+                value="${line.quantity}"
                 data-qty="${esc(key)}"
               />
               <button
@@ -360,33 +384,41 @@ function refreshCart() {
         .join("")
     : '<p class="empty">Giỏ hàng đang trống. Chọn món đồ bạn yêu thích nhé!</p>';
   document.getElementById("cart-total").textContent =
-    "Tạm tính: " +
-    money(
-      cart.reduce(
-        (sum, item) =>
-          sum +
-          selectedProduct(
-            products.find((p) => p.id === item.productId),
-            item,
-          ).price *
-            item.quantity,
-        0,
-      ),
-    );
+    "Tạm tính: " + money(calculateTotals(lines).subtotal);
 }
 refreshCart();
-let toastTimer;
-function toast(text) {
-  const el = document.getElementById("toast");
-  el.textContent = text;
-  el.hidden = false;
-  clearTimeout(toastTimer);
-  toastTimer = setTimeout(() => (el.hidden = true), 2400);
+
+// Các khung hiển thị: mỗi lúc chỉ hiện một khung (trang chủ, chi tiết, danh mục, trang thường, quản trị).
+const VIEW_ROOTS = {
+  home: "main",
+  product: "product-detail",
+  category: "category-page",
+  page: "page-view",
+  admin: "admin-root",
+};
+let currentView = "home";
+
+function showView(name) {
+  currentView = name;
+
+  for (const [key, id] of Object.entries(VIEW_ROOTS)) {
+    document.getElementById(id).hidden = key !== name;
+  }
+
+  // Khu quản trị có khung riêng nên ẩn phần đầu và chân trang của cửa hàng.
+  document.body.classList.toggle("is-admin", name === "admin");
 }
+
+// Vẽ lại menu và trang chủ nếu dữ liệu đã thay đổi (ví dụ Admin vừa sửa sản phẩm).
+function syncStorefront() {
+  if (navVersion !== dataVersion) renderNav();
+  if (renderedVersion !== dataVersion) renderHome();
+  refreshCart();
+}
+
 function showHome() {
-  document.getElementById("main").hidden = false;
-  detailRoot.hidden = true;
-  categoryRoot.hidden = true;
+  showView("home");
+  syncStorefront();
   activeProduct = null;
   document.title = "KhaiHoanShop | KhaiHoan Stationery";
 }
@@ -421,7 +453,7 @@ function syncQuantity(value) {
 }
 function syncDetail() {
   const p = selectedProduct(activeProduct, activeSelection);
-  document.getElementById("detail-image").src = activeImage;
+  document.getElementById("detail-image").src = imageSrc(activeImage);
   document.getElementById("selected-price").textContent = money(p.price);
   const old = document.getElementById("selected-old-price");
   old.textContent = p.oldPrice ? money(p.oldPrice) : "";
@@ -478,7 +510,7 @@ function renderDetail(product) {
   activeSelection = selectionFor(product);
   activeImage = selectedProduct(product).image;
   activeImages = [...new Set([product.image, ...(product.images || [])])];
-  const category = categories[product.category][0],
+  const category = categoryLabel(product.category),
     isPen = !!product.units;
   const related = [
     ...products.filter((p) => p.id !== product.id && p.category === product.category),
@@ -511,7 +543,7 @@ function renderDetail(product) {
           <div class="gallery-main">
             <img
               id="detail-image"
-              src="${activeImage}"
+              src="${imageSrc(activeImage)}"
               alt="${esc(product.alt)}"
             />
             ${activeImages.length > 1
@@ -532,7 +564,7 @@ function renderDetail(product) {
                     aria-pressed="${activeImage === image}"
                   >
                     <img
-                      src="${image}"
+                      src="${imageSrc(image)}"
                       alt="${esc(product.name)} — ảnh ${i + 1}"
                     />
                   </button>
@@ -728,9 +760,7 @@ function renderDetail(product) {
       </div>
     </section>
   `;
-  document.getElementById("main").hidden = true;
-  categoryRoot.hidden = true;
-  detailRoot.hidden = false;
+  showView("product");
   document.title = product.name + " — KhaiHoanShop";
   syncDetail();
   window.scrollTo({ top: 0, behavior: "instant" });
@@ -743,7 +773,13 @@ const priceRanges = [
   ["100-200", "100.000₫ - 200.000₫", 100000, 200000],
   ["over-200", "Trên 200.000₫", 200000, Infinity],
 ];
-let categoryState = { category: "", search: "", brands: [], prices: [], sort: "featured" };
+let categoryState = {
+  category: "",
+  search: "",
+  brands: [],
+  prices: [],
+  sort: "featured",
+};
 function categoryProducts() {
   const s = categoryState,
     needle = simplify(s.search.trim());
@@ -751,13 +787,14 @@ function categoryProducts() {
     (p) =>
       p.category === s.category &&
       (!needle ||
-        simplify(p.name + " " + p.brand + " " + p.sku + " " + p.shortDescription).includes(
-          needle,
-        )) &&
+        simplify(
+          p.name + " " + p.brand + " " + p.sku + " " + p.shortDescription,
+        ).includes(needle)) &&
       (!s.brands.length || s.brands.includes(p.brand)) &&
       (!s.prices.length ||
         priceRanges.some(
-          ([id, , min, max]) => s.prices.includes(id) && p.price >= min && p.price < max,
+          ([id, , min, max]) =>
+            s.prices.includes(id) && p.price >= min && p.price < max,
         )),
   );
   if (s.sort === "asc") list.sort((a, b) => a.price - b.price);
@@ -785,7 +822,7 @@ function refreshCategory() {
 }
 function renderCategory(category, search) {
   categoryState = { category, search, brands: [], prices: [], sort: "featured" };
-  const label = categories[category][0],
+  const label = categoryLabel(category),
     brands = [
       ...new Set(products.filter((p) => p.category === category).map((p) => p.brand)),
     ].sort();
@@ -869,9 +906,7 @@ function renderCategory(category, search) {
       </div>
     </section>
   `;
-  document.getElementById("main").hidden = true;
-  detailRoot.hidden = true;
-  categoryRoot.hidden = false;
+  showView("category");
   activeProduct = null;
   document.title = label + " — KhaiHoanShop";
   refreshCategory();
@@ -904,40 +939,56 @@ categoryRoot.addEventListener("click", (event) => {
   refreshCategory();
 });
 function route() {
-  if (location.hash.startsWith("#danh-muc/")) {
-    const [slug, query = ""] = location.hash.slice(10).split("?");
+  const hash = location.hash;
+
+  if (navVersion !== dataVersion) renderNav();
+
+  if (/^#quan-tri(\/|$)/.test(hash)) {
+    renderAdminPage(hash.slice(10).split("?")[0]);
+    return;
+  }
+  if (/^#tai-khoan(\/|$)/.test(hash)) {
+    renderAccountPage(hash.slice(11).split("?")[0]);
+    return;
+  }
+  if (/^#thanh-toan(\/|$)/.test(hash)) {
+    renderCheckoutPage();
+    return;
+  }
+  if (hash.startsWith("#danh-muc/")) {
+    const [slug, query = ""] = hash.slice(10).split("?");
     let category = "";
     try {
       category = decodeURIComponent(slug);
     } catch {}
-    if (Object.hasOwn(categories, category)) {
+    if (categoryExists(category)) {
       renderCategory(category, new URLSearchParams(query).get("q") || "");
       return;
     }
     showHome();
-    toast("Không tìm thấy danh mục. Vui lòng chọn danh mục khác.");
+    toast("Không tìm thấy danh mục. Vui lòng chọn danh mục khác.", "error");
     return;
   }
-  if (location.hash.startsWith("#san-pham/")) {
+  if (hash.startsWith("#san-pham/")) {
     let id;
     try {
-      id = decodeURIComponent(location.hash.slice(10));
+      id = decodeURIComponent(hash.slice(10));
     } catch {
       id = "";
     }
-    const product = products.find((p) => p.id === id);
+    const product = getProduct(id);
     if (product) {
       renderDetail(product);
       return;
     }
     showHome();
-    toast("Không tìm thấy sản phẩm. Vui lòng chọn sản phẩm khác.");
+    toast("Không tìm thấy sản phẩm. Vui lòng chọn sản phẩm khác.", "error");
     return;
   }
-  const wasDetail = !detailRoot.hidden || !categoryRoot.hidden;
+  const wasOtherView = currentView !== "home";
   showHome();
-  if (wasDetail) {
-    const target = document.getElementById(location.hash.slice(1));
+  if (wasOtherView) {
+    const target = document.getElementById(hash.slice(1));
     if (target) target.scrollIntoView();
     else window.scrollTo({ top: 0, behavior: "instant" });
   }
@@ -965,11 +1016,11 @@ document.addEventListener("click", (event) => {
   }
   if (target.closest("[data-login]")) {
     event.preventDefault();
-    document.getElementById("login-dialog").showModal();
+    openLoginModal();
   }
   if (target.closest("[data-register]")) {
     event.preventDefault();
-    document.getElementById("register-dialog").showModal();
+    openRegisterModal();
   }
   const close = target.closest("[data-close]");
   if (close) close.closest("dialog").close();
@@ -1035,36 +1086,79 @@ document.addEventListener("change", (event) => {
 document
   .getElementById("cart-button")
   .addEventListener("click", () => document.getElementById("cart-dialog").showModal());
+// Nút "Đặt hàng" trong giỏ hàng: sang trang thanh toán để nhập thông tin giao hàng.
 document.getElementById("place-order").addEventListener("click", () => {
-  if (!cart.length || orderPlaced) return;
-  orderPlaced = true;
-  document.getElementById("order-status").textContent = "Đặt hàng thành công";
-  refreshCart();
+  if (!cartLines().length) return;
+  document.getElementById("cart-dialog").close();
+  goTo("#thanh-toan");
 });
 
-document.getElementById("login-form").addEventListener("submit", (event) => {
-  event.preventDefault();
-  document.getElementById("login-status").textContent =
-    "Đây là form minh họa. Chưa xác thực hoặc lưu tài khoản.";
-});
-const registerForm = document.getElementById("register-form");
+// ---------- Slideshow banner: 3 ảnh, tự chuyển sau 5 giây ----------
+function initHeroSlider() {
+  const INTERVAL = 5000;
+  const slider = document.getElementById("hero-slider");
+  const slides = [...slider.querySelectorAll(".slide")];
+  const dots = [...slider.querySelectorAll(".slider-dots button")];
+  const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+  let current = 0;
+  let timer = null;
+  let paused = false;
 
-registerForm.addEventListener("input", () => {
-  registerForm.elements.confirmPassword.setCustomValidity("");
-  document.getElementById("register-status").textContent = "";
-});
+  function show(index) {
+    current = (index + slides.length) % slides.length;
+    slides.forEach((slide, slideIndex) => {
+      const isActive = slideIndex === current;
 
-registerForm.addEventListener("submit", (event) => {
-  event.preventDefault();
-  const fields = registerForm.elements;
-  if (fields.password.value !== fields.confirmPassword.value) {
-    fields.confirmPassword.setCustomValidity("Mật khẩu xác nhận không khớp.");
-    fields.confirmPassword.reportValidity();
-    return;
+      slide.classList.toggle("active", isActive);
+      slide.setAttribute("aria-hidden", String(!isActive));
+      slide.tabIndex = isActive ? 0 : -1;
+    });
+    dots.forEach((dot, dotIndex) =>
+      dot.setAttribute("aria-current", String(dotIndex === current)),
+    );
   }
-  document.getElementById("register-status").textContent =
-    "Đây là form minh họa. Chưa tạo hoặc lưu tài khoản.";
-});
+
+  // Đặt lại đồng hồ 5 giây (gọi sau mỗi lần người dùng tự bấm chuyển ảnh).
+  function restart() {
+    clearInterval(timer);
+
+    if (reduceMotion) {
+      return;
+    }
+
+    timer = setInterval(() => {
+      const homeIsVisible = !document.getElementById("main").hidden;
+
+      if (!paused && !document.hidden && homeIsVisible) {
+        show(current + 1);
+      }
+    }, INTERVAL);
+  }
+
+  dots.forEach((dot, dotIndex) =>
+    dot.addEventListener("click", () => {
+      show(dotIndex);
+      restart();
+    }),
+  );
+  slider.querySelector(".prev").addEventListener("click", () => {
+    show(current - 1);
+    restart();
+  });
+  slider.querySelector(".next").addEventListener("click", () => {
+    show(current + 1);
+    restart();
+  });
+  // Rê chuột hoặc dùng bàn phím trên slideshow thì tạm dừng.
+  slider.addEventListener("mouseenter", () => (paused = true));
+  slider.addEventListener("mouseleave", () => (paused = false));
+  slider.addEventListener("focusin", () => (paused = true));
+  slider.addEventListener("focusout", () => (paused = false));
+  show(0);
+  restart();
+}
+initHeroSlider();
 
 window.addEventListener("hashchange", route);
+renderAccountLinks();
 route();

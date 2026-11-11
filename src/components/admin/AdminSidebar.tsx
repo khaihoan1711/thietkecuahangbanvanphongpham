@@ -40,9 +40,7 @@ export default function AdminSidebar({ open, onClose }: AdminSidebarProps) {
             onClick={onClose}
             className="block leading-none"
           >
-            <span className="block text-xl font-black tracking-tight">
-              KhaiHoanShop
-            </span>
+            <span className="block text-xl font-bold tracking-tight">KhaiHoanShop</span>
             <span className="mt-1 block text-[11px] font-bold uppercase tracking-[0.22em] text-yellow">
               Quản trị
             </span>

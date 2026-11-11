@@ -42,19 +42,18 @@ function readInfo(source) {
     throw new Error(
       "Không tìm thấy tên cửa hàng trong Footer.tsx. HTML được giữ nguyên.",
     );
+  // Thông tin liên hệ nằm trong khối `const contact = { ... }` ở đầu Footer.tsx.
   const contact = (name) =>
-    extract(
-      source,
-      new RegExp(`<Icon\\b[^>]*\\bname=["']${name}["'][^>]*\\/>([^<]+)<\\/li>`),
-      name,
-    );
+    extract(source, new RegExp(`\\b${name}:\\s*"([^"]+)"`), name);
   return {
     name: text(brand[1]),
     tagline: text(brand[2]),
     description: extract(source, /<\/Link>\s*<p\b[^>]*>([^<]+)<\/p>/, "mô tả cửa hàng"),
     phone: contact("phone"),
-    email: contact("mail"),
-    hours: contact("clock"),
+    email: contact("email"),
+    facebookUrl: contact("facebookUrl"),
+    facebookLabel: contact("facebookLabel"),
+    hours: contact("hours"),
     copyright: extract(source, /<div\b[^>]*>\s*(©[^<]+)<\/div>/, "bản quyền"),
   };
 }
@@ -83,10 +82,14 @@ function updateFooter(footer, data) {
     (_, opening) => `${opening}${escapeHTML(data.description)}</p>`,
     "mô tả",
   );
+  // Số điện thoại và giờ làm việc là chữ thường; email mở Gmail, Facebook mở trang cửa hàng.
+  const gmailUrl = "https://mail.google.com/mail/?view=cm&fs=1&to=" + data.email;
+  const link = (href, label) =>
+    `<a href="${escapeHTML(href)}" target="_blank" rel="noopener noreferrer">${escapeHTML(label)}</a>`;
   replaceRequired(
-    /(<strong>Liên hệ cửa hàng<\/strong>\s*<p\b[^>]*>)[\s\S]*?<\/p>/,
-    (_, opening) =>
-      `${opening}${escapeHTML(data.phone)}<br>${escapeHTML(data.email)}<br>${escapeHTML(data.hours)}</p>`,
+    /(<strong>Liên hệ cửa hàng<\/strong>\s*)<p\b[^>]*>[\s\S]*?<\/p>/,
+    (_, heading) =>
+      `${heading}<p class="contact-list">${escapeHTML(data.phone)}<br>${link(gmailUrl, data.email)}<br>${link(data.facebookUrl, data.facebookLabel)}<br>${escapeHTML(data.hours)}</p>`,
     "thông tin liên hệ",
   );
   replaceRequired(
@@ -142,10 +145,20 @@ function startPreview({
       catalogSource,
       otherSource,
       path.join(project, "templates/storefront.html"),
-      path.join(project, "public/images/stationery/banner.png"),
-      ...["layout.css", "storefront.js", "storefront.css", "cart-options.js"].map(
-        (file) => path.join(project, "scripts", file),
+      ...["slide-1.jpg", "slide-2.jpg", "slide-3.jpg"].map((file) =>
+        path.join(project, "public/images/stationery", file),
       ),
+      ...[
+        "layout.css",
+        "storefront.css",
+        "admin.css",
+        "cart-options.js",
+        "store.js",
+        "ui.js",
+        "account.js",
+        "admin.js",
+        "storefront.js",
+      ].map((file) => path.join(project, "scripts", file)),
       ...new Set(
         products
           .flatMap((product) => [

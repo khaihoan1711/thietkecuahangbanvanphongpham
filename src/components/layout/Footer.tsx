@@ -1,6 +1,20 @@
 import Link from "next/link";
 import Icon from "@/components/ui/Icon";
 
+// Thông tin liên hệ cửa hàng. Bản HTML đọc các giá trị này khi chạy npm run html:sync.
+const contact = {
+  phone: "0365392002",
+  email: "khaihoanhuetran@gmail.com",
+  facebookUrl: "https://www.facebook.com/khai.hoan.05",
+  facebookLabel: "Facebook KhaiHoanShop",
+  hours: "08:00 - 21:00, Thứ 2 - Chủ nhật",
+};
+
+// Bấm vào email sẽ mở trang soạn thư của Gmail (trên web) gửi tới cửa hàng.
+const gmailUrl = "https://mail.google.com/mail/?view=cm&fs=1&to=" + contact.email;
+
+const contactLinkStyle = "hover:text-white hover:underline";
+
 export default function Footer() {
   const policies = [
     "Hướng dẫn đặt hàng",
@@ -50,7 +64,7 @@ export default function Footer() {
         <div>
           <Link
             href="/"
-            className="text-2xl font-black text-white"
+            className="text-2xl font-bold text-white"
           >
             KhaiHoanShop{" "}
             <span className="mt-1 block text-xs uppercase tracking-widest text-white/70">
@@ -67,21 +81,42 @@ export default function Footer() {
                 name="phone"
                 size={17}
               />{" "}
-              0365392002
+              {contact.phone}
             </li>
             <li className="flex gap-2">
               <Icon
                 name="mail"
                 size={17}
               />{" "}
-              khaihoanhuetran@gmail.com
+              <a
+                href={gmailUrl}
+                target="_blank"
+                rel="noopener noreferrer"
+                className={contactLinkStyle}
+              >
+                {contact.email}
+              </a>
+            </li>
+            <li className="flex gap-2">
+              <Icon
+                name="facebook"
+                size={17}
+              />{" "}
+              <a
+                href={contact.facebookUrl}
+                target="_blank"
+                rel="noopener noreferrer"
+                className={contactLinkStyle}
+              >
+                {contact.facebookLabel}
+              </a>
             </li>
             <li className="flex gap-2">
               <Icon
                 name="clock"
                 size={17}
               />{" "}
-              08:00 - 21:00, Thứ 2 - Chủ nhật
+              {contact.hours}
             </li>
           </ul>
         </div>
@@ -122,7 +157,9 @@ export default function Footer() {
             {["facebook", "instagram", "youtube"].map((name) => (
               <a
                 key={name}
-                href="#"
+                href={name === "facebook" ? contact.facebookUrl : "#"}
+                target={name === "facebook" ? "_blank" : undefined}
+                rel={name === "facebook" ? "noopener noreferrer" : undefined}
                 aria-label={name}
                 className="inline-flex h-11 w-11 items-center justify-center rounded-full border border-white/15 hover:bg-white/10"
               >

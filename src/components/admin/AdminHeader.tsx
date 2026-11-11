@@ -29,7 +29,7 @@ export default function AdminHeader({ onMenuClick }: { onMenuClick: () => void }
         ☰
       </button>
 
-      <h1 className="flex-1 truncate text-lg font-black text-navy md:text-xl">
+      <h1 className="flex-1 truncate text-lg font-bold text-navy md:text-xl">
         {getAdminPageTitle(pathname)}
       </h1>
 

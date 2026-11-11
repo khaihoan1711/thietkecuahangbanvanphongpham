@@ -14,7 +14,7 @@ export default function CategorySection() {
             <p className="text-sm font-bold uppercase tracking-wider text-primary">
               Mua theo danh mục
             </p>
-            <h2 className="mt-1 text-2xl font-black text-navy md:text-3xl">
+            <h2 className="mt-1 text-2xl font-bold text-navy md:text-3xl">
               Danh mục sản phẩm
             </h2>
           </div>

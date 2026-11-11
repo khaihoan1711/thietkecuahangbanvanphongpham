@@ -1,353 +1,1209 @@
 [
   {
-    "id": "vo-4-o-ly-96",
-    "sku": "TT-V001",
-    "name": "Vở 4 ô ly 96 trang School Day",
-    "brand": "PaperGo",
-    "pack": "1 quyển",
-    "category": "vo-so",
-    "shortDescription": "Vở 96 trang, giấy sáng dịu, đường kẻ 4 ô ly rõ nét.",
-    "image": "/images/stationery/vo-4-o-ly-96.svg",
-    "alt": "Vở bốn ô ly School Day",
-    "price": 14000,
-    "oldPrice": 16000,
-    "rank": 2,
-    "description": [
-      "Thiết kế dành cho học sinh tiểu học với dòng kẻ đều và dễ quan sát.",
-      "Bìa cán mờ, họa tiết trẻ trung, gáy ghim chắc chắn."
+    "id": "but-gel-thien-long-gel-070",
+    "sku": "GEL-070",
+    "name": "Bút gel Thiên Long Soft Touch GEL-070",
+    "brand": "Thiên Long",
+    "pack": "1 cây",
+    "category": "but",
+    "shortDescription": "Bút gel đầu bi 0.5mm, thân bút mềm mại cầm êm tay, mực xanh khô nhanh.",
+    "image": "/images/products/but/but-gel-thien-long-gel-070-1.jpg",
+    "images": [
+      "/images/products/but/but-gel-thien-long-gel-070-1.jpg",
+      "/images/products/but/but-gel-thien-long-gel-070-2.jpg"
     ],
-    "isNew": false,
-    "isHot": true
-  },
-  {
-    "id": "vo-ke-ngang-a5",
-    "sku": "TT-V002",
-    "name": "Vở kẻ ngang A5 Minimal",
-    "brand": "PaperGo",
-    "pack": "1 quyển",
-    "category": "vo-so",
-    "shortDescription": "Vở A5 120 trang, phong cách tối giản, giấy 70gsm.",
-    "image": "/images/stationery/vo-ke-ngang-a5.svg",
-    "alt": "Vở kẻ ngang A5 Minimal",
-    "price": 22000,
+    "alt": "Bút gel Thiên Long Soft Touch GEL-070",
+    "price": 12600,
+    "oldPrice": 17000,
     "description": [
-      "Phù hợp ghi bài, ghi chú công việc hoặc sử dụng làm sổ học ngoại ngữ.",
-      "Giấy có độ trắng vừa phải, viết bút bi và bút gel rõ nét."
+      "Thân bút thiết kế vừa vặn, cầm êm khi viết lâu, nét chữ rõ ràng và đều.",
+      "Mực gel khô nhanh, hạn chế lem nhòe, phù hợp học tập và làm việc hằng ngày."
     ],
     "isNew": true,
     "isHot": false
   },
   {
-    "id": "so-lo-xo-b5",
-    "sku": "TT-V003",
-    "name": "Sổ lò xo B5 Study Plan",
-    "brand": "NoteLab",
-    "pack": "1 quyển",
-    "category": "vo-so",
-    "shortDescription": "Sổ B5 160 trang, lò xo đôi, bìa cứng bền đẹp.",
-    "image": "/images/stationery/so-lo-xo-b5.svg",
-    "alt": "Sổ lò xo B5 Study Plan",
-    "price": 48000,
-    "oldPrice": 55000,
-    "rank": 4,
+    "id": "but-da-quang-thien-long-hl-029",
+    "sku": "HL-029",
+    "name": "Bút dạ quang Thiên Long Hi!Line Neon HL-029",
+    "brand": "Thiên Long",
+    "pack": "1 cây",
+    "category": "but",
+    "shortDescription": "Bút dạ quang màu neon tươi sáng, giúp làm nổi bật nội dung quan trọng.",
+    "image": "/images/products/but/but-da-quang-thien-long-hl-029-1.jpg",
+    "images": [
+      "/images/products/but/but-da-quang-thien-long-hl-029-1.jpg",
+      "/images/products/but/but-da-quang-thien-long-hl-029-2.jpg"
+    ],
+    "alt": "Bút dạ quang Thiên Long Hi!Line Neon HL-029",
+    "price": 12750,
+    "oldPrice": 17000,
     "description": [
-      "Trang giấy kẻ ngang dễ ghi chép, phù hợp lập kế hoạch học tập và công việc.",
-      "Lò xo đôi giúp mở phẳng trang và lật giấy thuận tiện."
+      "Màu neon rực rỡ, highlight rõ nét mà không làm lem chữ.",
+      "Thiết kế hiện đại, dễ cầm, phù hợp ghi chú trong học tập và công việc."
     ],
     "isNew": false,
-    "isHot": false
+    "isHot": true
   },
   {
-    "id": "so-tay-bia-da",
-    "sku": "TT-V004",
-    "name": "Sổ tay bìa da Office A5",
-    "brand": "OfficePro",
-    "pack": "1 quyển",
-    "category": "vo-so",
-    "shortDescription": "Sổ tay bìa da PU, khổ A5, phong cách lịch sự.",
-    "image": "/images/stationery/so-tay-bia-da.svg",
-    "alt": "Sổ tay bìa da khổ A5",
-    "price": 89000,
-    "description": [
-      "Thiết kế gọn gàng phù hợp họp, ghi chú công việc và làm quà tặng.",
-      "Bìa PU dễ lau, dây đánh dấu trang và giấy kẻ ngang."
+    "id": "but-long-bang-thien-long-wb-03",
+    "sku": "WB-03",
+    "name": "Bút lông bảng Thiên Long WB-03",
+    "brand": "Thiên Long",
+    "pack": "1 cây",
+    "category": "but",
+    "shortDescription": "Bút lông bảng nét 2.5mm, viết trơn êm trên bảng trắng, mực xanh, đỏ, đen.",
+    "image": "/images/products/but/but-long-bang-thien-long-wb-03-1.jpg",
+    "images": [
+      "/images/products/but/but-long-bang-thien-long-wb-03-1.jpg",
+      "/images/products/but/but-long-bang-thien-long-wb-03-2.jpg"
     ],
-    "isNew": false,
-    "isHot": false
-  },
-  {
-    "id": "giay-a4-70",
-    "sku": "TT-G001",
-    "name": "Giấy in A4 70gsm Bright",
-    "brand": "PaperGo",
-    "pack": "Ream 500 tờ",
-    "category": "giay",
-    "shortDescription": "Giấy A4 70gsm cho nhu cầu in ấn văn phòng hằng ngày.",
-    "image": "/images/stationery/giay-a4-70.svg",
-    "alt": "Ream giấy in A4 70gsm",
-    "price": 76000,
-    "oldPrice": 82000,
+    "alt": "Bút lông bảng Thiên Long WB-03",
+    "price": 8100,
+    "oldPrice": 10500,
     "rank": 3,
     "description": [
-      "Bề mặt giấy tương đối mịn, phù hợp máy in laser và máy in phun phổ thông.",
-      "Quy cách 500 tờ/ream, dễ bảo quản và dùng cho văn phòng, trường học."
+      "Viết tốt trên bảng trắng, thủy tinh và các bề mặt nhẵn bóng, dễ lau sạch.",
+      "Bề rộng nét viết 2.5mm, đóng hộp 10 cây, phù hợp lớp học và phòng họp."
+    ],
+    "isNew": false,
+    "isHot": true,
+    "isBestSeller": true
+  },
+  {
+    "id": "but-chi-bam-thien-long-joyee-pc-038",
+    "sku": "PC-038/JO",
+    "name": "Bút chì bấm Thiên Long Joyee PC-038/JO 0.5mm",
+    "brand": "Thiên Long",
+    "pack": "1 cây",
+    "category": "but",
+    "shortDescription": "Bút chì bấm ngòi 0.5mm, họa tiết nhân vật đáng yêu, viết mượt.",
+    "image": "/images/products/but/but-chi-bam-thien-long-joyee-pc-038-1.jpg",
+    "images": [
+      "/images/products/but/but-chi-bam-thien-long-joyee-pc-038-1.jpg",
+      "/images/products/but/but-chi-bam-thien-long-joyee-pc-038-2.jpg"
+    ],
+    "alt": "Bút chì bấm Thiên Long Joyee PC-038/JO 0.5mm",
+    "price": 7500,
+    "oldPrice": 11000,
+    "description": [
+      "Ngòi chì 0.5mm cho nét thanh mảnh, rõ ràng, phù hợp ghi chép và vẽ phác thảo.",
+      "Cơ chế bấm tiện lợi giúp thay ngòi nhanh, thân bút nhỏ gọn dễ cầm."
+    ],
+    "isNew": true,
+    "isHot": false
+  },
+  {
+    "id": "tap-diem-10-96-trang-tp-nb-072",
+    "sku": "TP-NB-072",
+    "name": "Tập học sinh 96 trang 4 ô ly ngang 60 gsm Điểm 10",
+    "brand": "Thiên Long",
+    "pack": "1 cuốn",
+    "category": "vo-so",
+    "shortDescription": "Giấy chống lóa định lượng 60gsm, kẻ ô ly rõ nét, gáy dập ghim chắc chắn.",
+    "image": "/images/products/vo-so/tap-diem-10-96-trang-tp-nb-072-1.jpg",
+    "images": [
+      "/images/products/vo-so/tap-diem-10-96-trang-tp-nb-072-1.jpg",
+      "/images/products/vo-so/tap-diem-10-96-trang-tp-nb-072-2.jpg"
+    ],
+    "alt": "Tập học sinh 96 trang 4 ô ly ngang 60 gsm Điểm 10",
+    "price": 11000,
+    "rank": 1,
+    "description": [
+      "Tập học sinh 96 trang, ô ly ngang rõ nét, dùng cho học sinh tiểu học và trung học.",
+      "Mặt giấy chống lóa giúp đọc viết thoải mái, gáy dập ghim bền chắc."
+    ],
+    "isNew": false,
+    "isHot": false,
+    "isBestSeller": true
+  },
+  {
+    "id": "tap-hong-ha-school-200-trang",
+    "sku": "TAP-HH-200",
+    "name": "Tập học sinh Hồng Hà School 200 trang",
+    "brand": "Hồng Hà",
+    "pack": "1 cuốn",
+    "category": "vo-so",
+    "shortDescription": "Giấy bãi bằng trắng tự nhiên 80gsm, dòng kẻ sắc nét, không thấm lem mực.",
+    "image": "/images/products/vo-so/tap-hong-ha-school-200-trang-1.jpg",
+    "alt": "Tập học sinh Hồng Hà School 200 trang",
+    "price": 15000,
+    "description": [
+      "Tập 200 trang dày dặn, dùng được cả năm học cho nhiều môn.",
+      "Giấy trắng tự nhiên, viết bút bi và bút mực đều đẹp."
+    ],
+    "isNew": false,
+    "isHot": false
+  },
+  {
+    "id": "so-lo-xo-klong-b5-120-trang",
+    "sku": "SO-KL-B5",
+    "name": "Sổ lò xo Klong Caro/Grid B5 120 trang",
+    "brand": "Klong",
+    "pack": "1 cuốn",
+    "category": "vo-so",
+    "shortDescription": "Ruột ô vuông caro tiện ghi chép khoa học, giấy 100gsm dày dặn chống thấm.",
+    "image": "/images/products/vo-so/so-lo-xo-klong-b5-120-trang-1.jpg",
+    "images": [
+      "/images/products/vo-so/so-lo-xo-klong-b5-120-trang-1.jpg",
+      "/images/products/vo-so/so-lo-xo-klong-b5-120-trang-2.jpg"
+    ],
+    "alt": "Sổ lò xo Klong Caro/Grid B5 120 trang",
+    "price": 25000,
+    "oldPrice": 30000,
+    "description": [
+      "Sổ lò xo khổ B5, lật phẳng trang dễ viết, phù hợp ghi bài và lập kế hoạch.",
+      "Ruột caro giúp kẻ bảng, vẽ sơ đồ và trình bày công thức gọn gàng."
+    ],
+    "isNew": false,
+    "isHot": false
+  },
+  {
+    "id": "so-cong-binder-campus-a5",
+    "sku": "SO-CB-A5",
+    "name": "Sổ còng Binder Campus A5 kèm 100 tờ",
+    "brand": "Campus",
+    "pack": "1 cuốn",
+    "category": "vo-so",
+    "shortDescription": "Gáy còng nhựa gập 360 độ, dễ thay giấy nạp (refill), bìa nhựa dẻo bền đẹp.",
+    "image": "/images/products/vo-so/so-cong-binder-campus-a5-1.jpg",
+    "images": [
+      "/images/products/vo-so/so-cong-binder-campus-a5-1.jpg",
+      "/images/products/vo-so/so-cong-binder-campus-a5-2.jpg"
+    ],
+    "alt": "Sổ còng Binder Campus A5 kèm 100 tờ",
+    "price": 60000,
+    "description": [
+      "Sổ còng khổ A5 kèm 100 tờ giấy, thêm hoặc bớt trang tùy nhu cầu.",
+      "Bìa nhựa dẻo bền, gập 360 độ tiện viết khi cầm tay."
+    ],
+    "isNew": true,
+    "isHot": false
+  },
+  {
+    "id": "tap-thien-long-kindays-96-trang-nb-130",
+    "sku": "NB-130",
+    "name": "Tập học sinh 96 trang 4 ô ly vuông 100 gsm Thiên Long KINDAYS NB-130",
+    "brand": "Thiên Long",
+    "pack": "1 cuốn",
+    "category": "vo-so",
+    "shortDescription": "Tập học sinh cao cấp 96 trang (cả bìa), giấy 100gsm, bìa hoạt hình KINDAYS.",
+    "image": "/images/products/vo-so/tap-thien-long-kindays-96-trang-nb-130-1.jpg",
+    "images": [
+      "/images/products/vo-so/tap-thien-long-kindays-96-trang-nb-130-1.jpg",
+      "/images/products/vo-so/tap-thien-long-kindays-96-trang-nb-130-2.jpg"
+    ],
+    "alt": "Tập học sinh 96 trang 4 ô ly vuông 100 gsm Thiên Long KINDAYS NB-130",
+    "price": 15000,
+    "oldPrice": 21000,
+    "description": [
+      "Giấy 100gsm sáng, mịn, ô ly vuông rõ nét, viết êm và ít lem.",
+      "Bìa hoạt hình dễ thương, giao mẫu ngẫu nhiên."
     ],
     "isNew": false,
     "isHot": true
   },
   {
-    "id": "giay-a4-80",
-    "sku": "TT-G002",
-    "name": "Giấy in A4 80gsm Premium",
-    "brand": "PaperGo",
+    "id": "tap-thien-long-buddies-travel-96-trang-nb-152",
+    "sku": "NB-152",
+    "name": "Tập học sinh 96 trang ô ly ngang 2mm 70 gsm Thiên Long NB-152",
+    "brand": "Thiên Long",
+    "pack": "1 cuốn",
+    "category": "vo-so",
+    "shortDescription": "Tập 96 trang, ô ly ngang 2mm, giấy 70gsm độ trắng 90-92% ISO, bìa hoạt hình.",
+    "image": "/images/products/vo-so/tap-thien-long-buddies-travel-96-trang-nb-152-1.jpg",
+    "images": [
+      "/images/products/vo-so/tap-thien-long-buddies-travel-96-trang-nb-152-1.jpg",
+      "/images/products/vo-so/tap-thien-long-buddies-travel-96-trang-nb-152-2.jpg"
+    ],
+    "alt": "Tập học sinh 96 trang ô ly ngang 2mm 70 gsm Thiên Long NB-152",
+    "price": 11300,
+    "oldPrice": 16000,
+    "description": [
+      "Giấy mịn hỗ trợ viết êm, phù hợp học sinh tiểu học và trung học.",
+      "Bìa hình hoạt hình đáng yêu, giao mẫu ngẫu nhiên."
+    ],
+    "isNew": false,
+    "isHot": false
+  },
+  {
+    "id": "tap-thien-long-joyee-chong-loa-200-trang-nb-147",
+    "sku": "NB-147",
+    "name": "Tập học sinh chống lóa 200 trang 4 ô ly ngang Thiên Long Joyee NB-147",
+    "brand": "Thiên Long",
+    "pack": "1 cuốn",
+    "category": "vo-so",
+    "shortDescription": "Tập 200 trang chống lóa, độ trắng tự nhiên 74-78% ISO, bìa họa tiết dễ thương.",
+    "image": "/images/products/vo-so/tap-thien-long-joyee-chong-loa-200-trang-nb-147-1.jpg",
+    "images": [
+      "/images/products/vo-so/tap-thien-long-joyee-chong-loa-200-trang-nb-147-1.jpg",
+      "/images/products/vo-so/tap-thien-long-joyee-chong-loa-200-trang-nb-147-2.jpg"
+    ],
+    "alt": "Tập học sinh chống lóa 200 trang 4 ô ly ngang Thiên Long Joyee NB-147",
+    "price": 17500,
+    "oldPrice": 24000,
+    "description": [
+      "Giấy chống lóa giúp bảo vệ thị lực khi viết lâu, ô ly ngang 2mm rõ ràng.",
+      "Bìa màu nhẹ nhàng, giao mẫu ngẫu nhiên."
+    ],
+    "isNew": false,
+    "isHot": false
+  },
+  {
+    "id": "so-lo-xo-thien-long-a5-120-trang",
+    "sku": "SO-LX-A5",
+    "name": "Sổ lò xo kẻ ngang 120 trang A5 Thiên Long",
+    "brand": "Thiên Long",
+    "pack": "1 cuốn",
+    "category": "vo-so",
+    "shortDescription": "Sổ lò xo A5 120 trang, kẻ ngang, bìa dễ thương nhiều mẫu.",
+    "image": "/images/products/vo-so/so-lo-xo-thien-long-a5-120-trang-1.jpg",
+    "images": [
+      "/images/products/vo-so/so-lo-xo-thien-long-a5-120-trang-1.jpg",
+      "/images/products/vo-so/so-lo-xo-thien-long-a5-120-trang-2.jpg"
+    ],
+    "alt": "Sổ lò xo kẻ ngang 120 trang A5 Thiên Long",
+    "price": 26500,
+    "oldPrice": 35000,
+    "description": [
+      "Khổ A5 nhỏ gọn, tiện ghi chép bài học, lên kế hoạch và viết nhật ký.",
+      "Lò xo đôi chắc chắn giúp lật trang nhẹ nhàng."
+    ],
+    "isNew": false,
+    "isHot": false
+  },
+  {
+    "id": "tap-to-net-thien-long-diem-10-tp-ttn01",
+    "sku": "TP-TTN01",
+    "name": "Tập tô nét Thiên Long Điểm 10 TP-TTN01",
+    "brand": "Thiên Long",
+    "pack": "1 cuốn",
+    "category": "vo-so",
+    "shortDescription": "Tập tô nét 32 trang giúp bé làm quen các nét cơ bản trước khi vào lớp 1.",
+    "image": "/images/products/vo-so/tap-to-net-thien-long-diem-10-tp-ttn01-1.jpg",
+    "images": [
+      "/images/products/vo-so/tap-to-net-thien-long-diem-10-tp-ttn01-1.jpg",
+      "/images/products/vo-so/tap-to-net-thien-long-diem-10-tp-ttn01-2.jpg"
+    ],
+    "alt": "Tập tô nét Thiên Long Điểm 10 TP-TTN01",
+    "price": 12800,
+    "oldPrice": 18000,
+    "description": [
+      "Khổ 170 x 240mm, giấy 80gsm độ trắng 90%, nội dung tô nét theo bộ chữ cái tiếng Việt.",
+      "Phù hợp bé chuẩn bị vào lớp 1 luyện cầm bút và viết đúng nét."
+    ],
+    "isNew": false,
+    "isHot": false
+  },
+  {
+    "id": "tap-thien-long-buddies-travel-200-trang-nb-153",
+    "sku": "NB-153",
+    "name": "Tập dán gáy 200 trang ô ly ngang 2mm 70 gsm Thiên Long NB-153",
+    "brand": "Thiên Long",
+    "pack": "1 cuốn",
+    "category": "vo-so",
+    "shortDescription": "Tập 200 trang, ô ly ngang 2mm, giấy 70gsm, đáp ứng ghi chép và luyện chữ lâu dài.",
+    "image": "/images/products/vo-so/tap-thien-long-buddies-travel-200-trang-nb-153-1.jpg",
+    "images": [
+      "/images/products/vo-so/tap-thien-long-buddies-travel-200-trang-nb-153-1.jpg",
+      "/images/products/vo-so/tap-thien-long-buddies-travel-200-trang-nb-153-2.jpg"
+    ],
+    "alt": "Tập dán gáy 200 trang ô ly ngang 2mm 70 gsm Thiên Long NB-153",
+    "price": 19900,
+    "oldPrice": 28000,
+    "description": [
+      "Giấy 70gsm độ trắng 90-92% ISO, viết mượt và ít lem.",
+      "Bìa giao ngẫu nhiên theo từng lốc, hình hoạt hình vui nhộn."
+    ],
+    "isNew": false,
+    "isHot": false
+  },
+  {
+    "id": "giay-in-double-a-a4-70gsm",
+    "sku": "GVP-DP-A470",
+    "name": "Giấy in Double A A4 70gsm (500 tờ)",
+    "brand": "Double A",
     "pack": "Ream 500 tờ",
     "category": "giay",
-    "shortDescription": "Giấy A4 80gsm dày hơn, phù hợp in tài liệu hai mặt.",
-    "image": "/images/stationery/giay-a4-80.svg",
-    "alt": "Ream giấy A4 80gsm",
-    "price": 94000,
+    "shortDescription": "Độ trắng sáng cao, bề mặt láng mịn, in 2 mặt không kẹt giấy.",
+    "image": "/images/products/giay/giay-in-double-a-a4-70gsm-1.jpg",
+    "alt": "Giấy in Double A A4 70gsm (500 tờ)",
+    "price": 85000,
+    "rank": 2,
     "description": [
-      "Định lượng 80gsm tạo cảm giác chắc tay, phù hợp hợp đồng, báo cáo và tài liệu quan trọng.",
-      "Bề mặt mịn giúp bản in rõ và hạn chế kẹt giấy khi sử dụng đúng cách."
+      "Giấy A4 70gsm, ream 500 tờ, phù hợp in tài liệu hằng ngày.",
+      "Bề mặt láng, chạy êm trên máy in và máy photocopy."
     ],
-    "isNew": true,
-    "isHot": false
+    "isNew": false,
+    "isHot": false,
+    "isBestSeller": true
   },
   {
-    "id": "note-pastel-5",
-    "sku": "TT-G003",
-    "name": "Giấy note Pastel 5 màu",
-    "brand": "NoteLab",
-    "pack": "5 xấp",
+    "id": "giay-in-double-a-a4-80gsm",
+    "sku": "GVP-DP-A480",
+    "name": "Giấy in Double A A4 80gsm (500 tờ)",
+    "brand": "Double A",
+    "pack": "Ream 500 tờ",
     "category": "giay",
-    "shortDescription": "Giấy ghi chú pastel nhiều màu, kích thước 76 x 76mm.",
-    "image": "/images/stationery/note-pastel-5.svg",
-    "alt": "Bộ giấy note pastel năm màu",
-    "price": 28000,
-    "oldPrice": 32000,
+    "shortDescription": "Định lượng dày dặn 80gsm, chuyên dùng in hợp đồng, tài liệu cao cấp.",
+    "image": "/images/products/giay/giay-in-double-a-a4-80gsm-1.jpg",
+    "alt": "Giấy in Double A A4 80gsm (500 tờ)",
+    "price": 95000,
+    "oldPrice": 105000,
     "description": [
-      "Thích hợp ghi việc cần làm, đánh dấu trang hoặc trang trí góc học tập.",
-      "Keo dán vừa phải, dễ bóc và dán lại trên nhiều bề mặt phẳng."
+      "Giấy A4 80gsm dày hơn, ít xuyên mực khi in hai mặt.",
+      "Phù hợp in hợp đồng, báo cáo và hồ sơ cần vẻ ngoài chỉn chu."
+    ],
+    "isNew": false,
+    "isHot": true
+  },
+  {
+    "id": "giay-in-paperone-a4-70gsm",
+    "sku": "GVP-PP-A470",
+    "name": "Giấy in PaperOne A4 70gsm (500 tờ)",
+    "brand": "PaperOne",
+    "pack": "Ream 500 tờ",
+    "category": "giay",
+    "shortDescription": "Giấy nhập khẩu chất lượng cao, thân thiện môi trường, chống quăn mép khi in.",
+    "image": "/images/products/giay/giay-in-paperone-a4-70gsm-1.jpg",
+    "alt": "Giấy in PaperOne A4 70gsm (500 tờ)",
+    "price": 80000,
+    "description": [
+      "Giấy A4 70gsm, ream 500 tờ, bề mặt mịn cho bản in sắc nét.",
+      "Hạn chế kẹt giấy và quăn mép khi in số lượng lớn."
     ],
     "isNew": false,
     "isHot": false
   },
   {
-    "id": "giay-thu-cong-20",
-    "sku": "TT-G004",
-    "name": "Giấy thủ công 20 màu",
-    "brand": "ColorJoy",
-    "pack": "Tập 20 tờ",
+    "id": "giay-note-phan-trang-5-mau-pronoti",
+    "sku": "GVP-NT-5M",
+    "name": "Giấy note phân trang 5 màu Pronoti",
+    "brand": "Pronoti",
+    "pack": "1 xấp",
     "category": "giay",
-    "shortDescription": "Tập giấy màu dùng cắt dán, thủ công và trang trí.",
-    "image": "/images/stationery/giay-thu-cong-20.svg",
-    "alt": "Tập giấy thủ công nhiều màu",
+    "shortDescription": "5 dải màu dạ quang nổi bật, tiện đánh dấu mục lục hồ sơ, tài liệu và sách.",
+    "image": "/images/products/giay/giay-note-phan-trang-5-mau-pronoti-1.jpg",
+    "alt": "Giấy note phân trang 5 màu Pronoti",
+    "price": 15000,
+    "description": [
+      "Mỗi xấp có 5 màu để phân loại nội dung nhanh gọn.",
+      "Keo dán vừa phải, bóc ra không làm rách trang."
+    ],
+    "isNew": true,
+    "isHot": false
+  },
+  {
+    "id": "giay-a4-70gsm-thien-long-copy-plus-pp-003",
+    "sku": "PP-003",
+    "name": "Ream giấy A4 70 gsm Thiên Long Copy Plus PP-003 (500 tờ)",
+    "brand": "Thiên Long",
+    "pack": "Ream 500 tờ",
+    "category": "giay",
+    "shortDescription": "Giấy A4 70gsm, 500 tờ/ream, chạy tốt trên máy in và máy photocopy.",
+    "image": "/images/products/giay/giay-a4-70gsm-thien-long-copy-plus-pp-003-1.jpg",
+    "images": [
+      "/images/products/giay/giay-a4-70gsm-thien-long-copy-plus-pp-003-1.jpg",
+      "/images/products/giay/giay-a4-70gsm-thien-long-copy-plus-pp-003-2.jpg"
+    ],
+    "alt": "Ream giấy A4 70 gsm Thiên Long Copy Plus PP-003 (500 tờ)",
+    "price": 75900,
+    "oldPrice": 87000,
+    "description": [
+      "Copy Plus phù hợp mọi nhu cầu in ấn và photocopy hằng ngày.",
+      "Đóng gói 500 tờ mỗi ream, nguồn giấy nhập khẩu."
+    ],
+    "isNew": false,
+    "isHot": true
+  },
+  {
+    "id": "giay-a4-80gsm-ik-copy",
+    "sku": "IK-COPY-A4-80",
+    "name": "Ream giấy A4 80 gsm IK Copy (500 tờ)",
+    "brand": "IK Copy",
+    "pack": "Ream 500 tờ",
+    "category": "giay",
+    "shortDescription": "Giấy A4 80gsm nhập khẩu Indonesia, đều màu, không gợn sóng, chữ in không lem.",
+    "image": "/images/products/giay/giay-a4-80gsm-ik-copy-1.jpg",
+    "images": [
+      "/images/products/giay/giay-a4-80gsm-ik-copy-1.jpg",
+      "/images/products/giay/giay-a4-80gsm-ik-copy-2.jpg"
+    ],
+    "alt": "Ream giấy A4 80 gsm IK Copy (500 tờ)",
+    "price": 87400,
+    "oldPrice": 103000,
+    "description": [
+      "Giấy láng, không tách lớp, in hai mặt vẫn sắc nét.",
+      "Quy cách 500 tờ/ream, định lượng 80gsm dày dặn."
+    ],
+    "isNew": true,
+    "isHot": false
+  },
+  {
+    "id": "giay-ghi-chu-neon-thien-long",
+    "sku": "SN-006",
+    "name": "Giấy ghi chú Neon Thiên Long (xấp 100 tờ)",
+    "brand": "Thiên Long",
+    "pack": "1 xấp 100 tờ",
+    "category": "giay",
+    "shortDescription": "Giấy ghi chú màu neon, 100 tờ/xấp, định lượng 100gsm dày dặn.",
+    "image": "/images/products/giay/giay-ghi-chu-neon-thien-long-1.jpg",
+    "images": [
+      "/images/products/giay/giay-ghi-chu-neon-thien-long-1.jpg",
+      "/images/products/giay/giay-ghi-chu-neon-thien-long-2.jpg"
+    ],
+    "alt": "Giấy ghi chú Neon Thiên Long (xấp 100 tờ)",
+    "price": 10800,
+    "oldPrice": 12000,
+    "description": [
+      "Dán và gỡ ra dễ dàng nhờ lớp keo mỏng, không để lại vết.",
+      "Màu neon nổi bật giúp ghi chú không bị bỏ sót."
+    ],
+    "isNew": false,
+    "isHot": false
+  },
+  {
+    "id": "giay-phan-trang-thien-long-sn-011",
+    "sku": "SN-011",
+    "name": "Giấy phân trang Thiên Long SN-011 (12x45mm, 100 tờ)",
+    "brand": "Thiên Long",
+    "pack": "1 xấp",
+    "category": "giay",
+    "shortDescription": "Giấy phân trang 5 màu, khổ 12x45mm, 100 tờ, tiện đánh dấu sách và tài liệu.",
+    "image": "/images/products/giay/giay-phan-trang-thien-long-sn-011-1.jpg",
+    "images": [
+      "/images/products/giay/giay-phan-trang-thien-long-sn-011-1.jpg",
+      "/images/products/giay/giay-phan-trang-thien-long-sn-011-2.jpg"
+    ],
+    "alt": "Giấy phân trang Thiên Long SN-011 (12x45mm, 100 tờ)",
+    "price": 8700,
+    "oldPrice": 12000,
+    "description": [
+      "Các dải màu giúp phân loại nội dung nhanh trong sách vở và hồ sơ.",
+      "Keo dán vừa phải, có thể bóc ra dán lại."
+    ],
+    "isNew": false,
+    "isHot": false
+  },
+  {
+    "id": "bia-30-la-a4-thien-long-db-002",
+    "sku": "DB-002",
+    "name": "Bìa học sinh 30 lá A4 Thiên Long DB-002",
+    "brand": "Flexoffice",
+    "pack": "1 cái",
+    "category": "giay",
+    "shortDescription": "Bìa 30 lá A4, sức chứa 150 tờ giấy 80gsm, chất liệu nhựa PP chống nước.",
+    "image": "/images/products/giay/bia-30-la-a4-thien-long-db-002-1.jpg",
+    "images": [
+      "/images/products/giay/bia-30-la-a4-thien-long-db-002-1.jpg",
+      "/images/products/giay/bia-30-la-a4-thien-long-db-002-2.jpg"
+    ],
+    "alt": "Bìa học sinh 30 lá A4 Thiên Long DB-002",
+    "price": 46080,
+    "oldPrice": 51200,
+    "description": [
+      "Cover dày 0.6mm, lá bìa trong suốt 0.03mm bảo vệ tài liệu tốt.",
+      "Kích thước 310 x 232 x 20 mm, nhiều cặp màu để chọn."
+    ],
+    "isNew": false,
+    "isHot": false
+  },
+  {
+    "id": "bia-bao-thu-a4-travel-file-flexoffice",
+    "sku": "FO-BT002",
+    "name": "Bìa bao thư A4 Travel File Thiên Long Flexoffice",
+    "brand": "Flexoffice",
+    "pack": "1 cái",
+    "category": "giay",
+    "shortDescription": "Bìa bao thư A4 trong suốt, nhựa PP, chứa tới 100 tờ A4.",
+    "image": "/images/products/giay/bia-bao-thu-a4-travel-file-flexoffice-1.jpg",
+    "images": [
+      "/images/products/giay/bia-bao-thu-a4-travel-file-flexoffice-1.jpg",
+      "/images/products/giay/bia-bao-thu-a4-travel-file-flexoffice-2.jpg"
+    ],
+    "alt": "Bìa bao thư A4 Travel File Thiên Long Flexoffice",
+    "price": 2500,
+    "oldPrice": 3300,
+    "description": [
+      "Kích thước 340 x 240mm, mỏng nhẹ, tiện mang theo giấy tờ.",
+      "Chất liệu nhựa PP chống nước, bảo vệ tài liệu khi di chuyển."
+    ],
+    "isNew": false,
+    "isHot": false
+  },
+  {
+    "id": "gom-tay-4b-deli",
+    "sku": "DCHT-ER-4B",
+    "name": "Gôm tẩy 4B Deli chuyên dụng",
+    "brand": "Deli",
+    "pack": "1 cục",
+    "category": "dung-cu",
+    "shortDescription": "Tẩy sạch vết chì mềm không làm mòn hay rách giấy, tạo ít vụn.",
+    "image": "/images/products/dung-cu/gom-tay-4b-deli-1.jpg",
+    "images": [
+      "/images/products/dung-cu/gom-tay-4b-deli-1.jpg",
+      "/images/products/dung-cu/gom-tay-4b-deli-2.jpg"
+    ],
+    "alt": "Gôm tẩy 4B Deli chuyên dụng",
+    "price": 5000,
+    "description": [
+      "Gôm 4B chuyên dụng cho học sinh và người vẽ, tẩy sạch nét chì.",
+      "Ít vụn, giữ giấy phẳng khi tẩy."
+    ],
+    "isNew": false,
+    "isHot": false
+  },
+  {
+    "id": "thuoc-ke-nhua-thien-long-sr-02-20cm",
+    "sku": "DCHT-TK-TL20",
+    "name": "Thước kẻ nhựa Thiên Long SR-02 20cm",
+    "brand": "Thiên Long",
+    "pack": "1 cây",
+    "category": "dung-cu",
+    "shortDescription": "Nhựa dẻo trong suốt, vạch chia cm và mm in rõ ràng khó phai.",
+    "image": "/images/products/dung-cu/thuoc-ke-nhua-thien-long-sr-02-20cm-1.jpg",
+    "alt": "Thước kẻ nhựa Thiên Long SR-02 20cm",
+    "price": 6000,
+    "description": [
+      "Thước dài 20cm, trong suốt dễ quan sát khi kẻ.",
+      "Vạch chia in rõ, không dễ phai khi dùng lâu."
+    ],
+    "isNew": false,
+    "isHot": false
+  },
+  {
+    "id": "bo-compa-chi-kim-deli",
+    "sku": "DCHT-CB-DL",
+    "name": "Bộ compa chì kim kèm ruột Deli",
+    "brand": "Deli",
+    "pack": "1 bộ",
+    "category": "dung-cu",
+    "shortDescription": "Khung kim loại chắc chắn, quay hình tròn chính xác, kèm sẵn ruột chì.",
+    "image": "/images/products/dung-cu/bo-compa-chi-kim-deli-1.jpg",
+    "images": [
+      "/images/products/dung-cu/bo-compa-chi-kim-deli-1.jpg",
+      "/images/products/dung-cu/bo-compa-chi-kim-deli-2.jpg"
+    ],
+    "alt": "Bộ compa chì kim kèm ruột Deli",
     "price": 25000,
     "description": [
-      "Bảng màu đa dạng, phù hợp hoạt động mỹ thuật ở trường và DIY tại nhà.",
-      "Giấy dễ cắt, gấp và dán bằng keo thông dụng."
+      "Compa chì kim dùng cho vẽ hình học và bài tập toán.",
+      "Kèm ruột chì thay thế, đóng gói gọn trong hộp."
     ],
     "isNew": false,
     "isHot": false
   },
   {
-    "id": "keo-van-phong-18",
-    "sku": "TT-D001",
-    "name": "Kéo văn phòng 18cm",
-    "brand": "OfficePro",
-    "pack": "1 cây",
-    "category": "dung-cu",
-    "shortDescription": "Kéo 18cm, tay cầm nhựa, dùng cắt giấy và vật liệu mỏng.",
-    "image": "/images/stationery/keo-van-phong-18.svg",
-    "alt": "Kéo văn phòng 18cm",
-    "price": 42000,
-    "description": [
-      "Thiết kế tay cầm vừa tay, thích hợp cho bàn làm việc, lớp học và gia đình.",
-      "Lưỡi thép không gỉ cho đường cắt gọn trên giấy và bìa mỏng."
-    ],
-    "isNew": false,
-    "isHot": false
-  },
-  {
-    "id": "dap-ghim-mini",
-    "sku": "TT-D002",
-    "name": "Dập ghim Mini No.10",
-    "brand": "OfficePro",
+    "id": "keo-hoc-sinh-colokit-sc-c04",
+    "sku": "SC-C04",
+    "name": "Kéo học sinh kẹo ngọt Colokit SC-C04",
+    "brand": "Colokit",
     "pack": "1 cái",
     "category": "dung-cu",
-    "shortDescription": "Dập ghim nhỏ gọn, phù hợp ghim tài liệu hằng ngày.",
-    "image": "/images/stationery/dap-ghim-mini.svg",
-    "alt": "Dập ghim mini màu đỏ",
-    "price": 39000,
-    "oldPrice": 45000,
+    "shortDescription": "Kéo học sinh dài 135mm, mũi bo tròn an toàn, cán nhựa ABS, lưỡi thép không gỉ.",
+    "image": "/images/products/dung-cu/keo-hoc-sinh-colokit-sc-c04-1.jpg",
+    "images": [
+      "/images/products/dung-cu/keo-hoc-sinh-colokit-sc-c04-1.jpg",
+      "/images/products/dung-cu/keo-hoc-sinh-colokit-sc-c04-2.jpg"
+    ],
+    "alt": "Kéo học sinh kẹo ngọt Colokit SC-C04",
+    "price": 26730,
+    "oldPrice": 29700,
     "description": [
-      "Kích thước gọn, dễ đặt trong ngăn bàn hoặc hộp dụng cụ học tập.",
-      "Sử dụng kim ghim No.10 phổ biến, thao tác nhẹ và ổn định."
+      "Mũi kéo bo tròn phù hợp học sinh tiểu học khi cắt giấy thủ công.",
+      "Thiết kế kẹo ngọt vui mắt, nhẹ tay (38g)."
+    ],
+    "isNew": false,
+    "isHot": false
+  },
+  {
+    "id": "keo-van-phong-thien-long-sc-021",
+    "sku": "SC-021",
+    "name": "Kéo văn phòng Thiên Long SC-021",
+    "brand": "Thiên Long",
+    "pack": "1 cái",
+    "category": "dung-cu",
+    "shortDescription": "Kéo văn phòng dài 210mm, lưỡi thép không gỉ, cán nhựa PP/TPR.",
+    "image": "/images/products/dung-cu/keo-van-phong-thien-long-sc-021-1.jpg",
+    "images": [
+      "/images/products/dung-cu/keo-van-phong-thien-long-sc-021-1.jpg",
+      "/images/products/dung-cu/keo-van-phong-thien-long-sc-021-2.jpg"
+    ],
+    "alt": "Kéo văn phòng Thiên Long SC-021",
+    "price": 30500,
+    "oldPrice": 44600,
+    "description": [
+      "Kiểu dáng trang nhã, cầm êm tay, phù hợp học sinh, sinh viên, văn phòng và gia đình.",
+      "Lưỡi thép sắc bén, cắt giấy gọn gàng."
+    ],
+    "isNew": false,
+    "isHot": false
+  },
+  {
+    "id": "bam-kim-mini-so-10-thien-long",
+    "sku": "ST-020",
+    "name": "Bấm kim mini số 10 Thiên Long",
+    "brand": "Thiên Long",
+    "pack": "1 cái",
+    "category": "dung-cu",
+    "shortDescription": "Bấm kim mini số 10 nhỏ gọn, bấm nhẹ, có dụng cụ gỡ kim đi kèm.",
+    "image": "/images/products/dung-cu/bam-kim-mini-so-10-thien-long-1.jpg",
+    "images": [
+      "/images/products/dung-cu/bam-kim-mini-so-10-thien-long-1.jpg",
+      "/images/products/dung-cu/bam-kim-mini-so-10-thien-long-2.jpg"
+    ],
+    "alt": "Bấm kim mini số 10 Thiên Long",
+    "price": 12400,
+    "oldPrice": 18000,
+    "description": [
+      "Thiết kế nhỏ gọn, màu sắc bắt mắt, dùng cho học sinh và văn phòng.",
+      "Bấm nhẹ, ít kẹt ghim, giao màu ngẫu nhiên."
+    ],
+    "isNew": false,
+    "isHot": false
+  },
+  {
+    "id": "kim-bam-so-10-flexoffice-fo-sts02",
+    "sku": "FO-STS02",
+    "name": "Kim bấm số 10 Flexoffice FO-STS02",
+    "brand": "Flexoffice",
+    "pack": "1 hộp",
+    "category": "dung-cu",
+    "shortDescription": "Kim bấm số 10 bằng thép cao cấp, sáng bóng, không gỉ.",
+    "image": "/images/products/dung-cu/kim-bam-so-10-flexoffice-fo-sts02-1.jpg",
+    "images": [
+      "/images/products/dung-cu/kim-bam-so-10-flexoffice-fo-sts02-1.jpg",
+      "/images/products/dung-cu/kim-bam-so-10-flexoffice-fo-sts02-2.jpg"
+    ],
+    "alt": "Kim bấm số 10 Flexoffice FO-STS02",
+    "price": 2500,
+    "oldPrice": 3888,
+    "description": [
+      "Độ cứng cao, bấm giấy chắc và đều.",
+      "Dùng cho các loại bấm kim số 10."
+    ],
+    "isNew": false,
+    "isHot": false
+  },
+  {
+    "id": "kep-buom-flexoffice-25mm-fo-dc03",
+    "sku": "FO-DC03",
+    "name": "Kẹp bướm Flexoffice 25mm FO-DC03",
+    "brand": "Flexoffice",
+    "pack": "Hộp 12 cái",
+    "category": "dung-cu",
+    "shortDescription": "Kẹp bướm kim loại phủ niken 25mm, kẹp giữ chặt giấy tờ và tài liệu.",
+    "image": "/images/products/dung-cu/kep-buom-flexoffice-25mm-fo-dc03-1.jpg",
+    "images": [
+      "/images/products/dung-cu/kep-buom-flexoffice-25mm-fo-dc03-1.jpg",
+      "/images/products/dung-cu/kep-buom-flexoffice-25mm-fo-dc03-2.jpg"
+    ],
+    "alt": "Kẹp bướm Flexoffice 25mm FO-DC03",
+    "price": 11900,
+    "oldPrice": 17300,
+    "description": [
+      "Phần cạnh bằng kim loại phủ niken không gỉ, hai ngón tay dễ cầm.",
+      "Dùng kẹp tập tài liệu dày gọn gàng."
+    ],
+    "isNew": false,
+    "isHot": false
+  },
+  {
+    "id": "bang-keo-duc-opp-flexoffice-fo-bkd06",
+    "sku": "FO-BKD06",
+    "name": "Băng keo đục OPP Flexoffice FO-BKD06",
+    "brand": "Flexoffice",
+    "pack": "1 cuộn",
+    "category": "dung-cu",
+    "shortDescription": "Băng keo đục OPP rộng 48mm, dài 52 yard, dán chắc và bền dai.",
+    "image": "/images/products/dung-cu/bang-keo-duc-opp-flexoffice-fo-bkd06-1.jpg",
+    "alt": "Băng keo đục OPP Flexoffice FO-BKD06",
+    "price": 8580,
+    "oldPrice": 14300,
+    "description": [
+      "Làm từ màng BOPP bền dai, dùng đóng gói thùng hàng.",
+      "Thân thiện môi trường, bám dính tốt."
+    ],
+    "isNew": false,
+    "isHot": false
+  },
+  {
+    "id": "dao-roc-giay-flexoffice-fo-kn03b",
+    "sku": "FO-KN03B",
+    "name": "Dao rọc giấy Flexoffice FO-KN03B",
+    "brand": "Flexoffice",
+    "pack": "1 cái",
+    "category": "dung-cu",
+    "shortDescription": "Dao rọc giấy thân bọc nhựa, lưỡi thép, bao bì sang trọng.",
+    "image": "/images/products/dung-cu/dao-roc-giay-flexoffice-fo-kn03b-1.jpg",
+    "images": [
+      "/images/products/dung-cu/dao-roc-giay-flexoffice-fo-kn03b-1.jpg",
+      "/images/products/dung-cu/dao-roc-giay-flexoffice-fo-kn03b-2.jpg"
+    ],
+    "alt": "Dao rọc giấy Flexoffice FO-KN03B",
+    "price": 16800,
+    "oldPrice": 24400,
+    "description": ["Thân dao dài 142mm, lưỡi thép sắc bén.", "Giao màu ngẫu nhiên."],
+    "isNew": false,
+    "isHot": false
+  },
+  {
+    "id": "may-tinh-van-phong-thien-long-flexio-cal-009",
+    "sku": "CAL-009",
+    "name": "Máy tính văn phòng Thiên Long Flexio CAL-009",
+    "brand": "Flexio",
+    "pack": "1 cái",
+    "category": "dung-cu",
+    "shortDescription": "Máy tính văn phòng màn hình LCD, tự tắt nguồn, độ bền phím khoảng 500.000 lần bấm.",
+    "image": "/images/products/dung-cu/may-tinh-van-phong-thien-long-flexio-cal-009-1.jpg",
+    "images": [
+      "/images/products/dung-cu/may-tinh-van-phong-thien-long-flexio-cal-009-1.jpg",
+      "/images/products/dung-cu/may-tinh-van-phong-thien-long-flexio-cal-009-2.jpg"
+    ],
+    "alt": "Máy tính văn phòng Thiên Long Flexio CAL-009",
+    "price": 61380,
+    "oldPrice": 102300,
+    "description": [
+      "Kích thước 140.5 x 86.5mm nhỏ gọn, dùng pin AAA.",
+      "Bảo hành 12 tháng (1 đổi 1 trong 2 tháng đầu)."
     ],
     "isNew": false,
     "isHot": true
   },
   {
-    "id": "thuoc-20cm",
-    "sku": "TT-D003",
-    "name": "Thước nhựa trong 20cm",
-    "brand": "StudyMate",
-    "pack": "1 cây",
+    "id": "gom-tay-thien-long-joyee-e-027",
+    "sku": "E-027/JO",
+    "name": "Gôm tẩy Thiên Long Joyee E-027/JO",
+    "brand": "Thiên Long",
+    "pack": "1 cục",
     "category": "dung-cu",
-    "shortDescription": "Thước 20cm trong suốt, vạch chia rõ và dễ đọc.",
-    "image": "/images/stationery/thuoc-20cm.svg",
-    "alt": "Thước nhựa trong 20cm",
-    "price": 9000,
+    "shortDescription": "Gôm tẩy mềm dẻo, tẩy sạch nét chì, ít vụn, hạn chế rách giấy.",
+    "image": "/images/products/dung-cu/gom-tay-thien-long-joyee-e-027-1.jpg",
+    "images": [
+      "/images/products/dung-cu/gom-tay-thien-long-joyee-e-027-1.jpg",
+      "/images/products/dung-cu/gom-tay-thien-long-joyee-e-027-2.jpg"
+    ],
+    "alt": "Gôm tẩy Thiên Long Joyee E-027/JO",
+    "price": 4400,
+    "oldPrice": 6000,
     "description": [
-      "Phù hợp đo, kẻ trong học tập và công việc văn phòng.",
-      "Chất liệu nhựa trong giúp quan sát nội dung bên dưới khi kẻ."
+      "Đạt tiêu chuẩn an toàn châu Âu EN 71/3, họa tiết nhân vật Joyee dễ thương.",
+      "Giao mẫu ngẫu nhiên."
     ],
     "isNew": false,
     "isHot": false
   },
   {
-    "id": "bo-hinh-hoc",
-    "sku": "TT-D004",
-    "name": "Bộ dụng cụ hình học 5 món",
-    "brand": "StudyMate",
-    "pack": "Hộp 5 món",
+    "id": "bam-kim-tro-luc-so-10-thien-long",
+    "sku": "ST-023",
+    "name": "Bấm kim trợ lực số 10 Thiên Long",
+    "brand": "Thiên Long",
+    "pack": "1 cái",
     "category": "dung-cu",
-    "shortDescription": "Bộ compa, thước thẳng, ê-ke và thước đo góc.",
-    "image": "/images/stationery/bo-hinh-hoc.svg",
-    "alt": "Bộ dụng cụ hình học năm món",
-    "price": 52000,
+    "shortDescription": "Bấm kim trợ lực số 10, lực bấm nhẹ hơn 50%, có dụng cụ gỡ kim.",
+    "image": "/images/products/dung-cu/bam-kim-tro-luc-so-10-thien-long-1.jpg",
+    "images": [
+      "/images/products/dung-cu/bam-kim-tro-luc-so-10-thien-long-1.jpg",
+      "/images/products/dung-cu/bam-kim-tro-luc-so-10-thien-long-2.jpg"
+    ],
+    "alt": "Bấm kim trợ lực số 10 Thiên Long",
+    "price": 26000,
+    "oldPrice": 38000,
     "description": [
-      "Bộ dụng cụ cơ bản phục vụ môn Toán, vẽ kỹ thuật và các bài tập hình học.",
-      "Đóng hộp gọn gàng, thuận tiện mang theo trong balo."
+      "Thiết kế nhỏ gọn, cơ chế bấm an toàn dễ sử dụng.",
+      "Nhẹ tay khi bấm nhiều lần, ít kẹt ghim."
+    ],
+    "isNew": false,
+    "isHot": false
+  },
+  {
+    "id": "mau-nuoc-pentel-12-mau",
+    "sku": "HP-WAT-PL12",
+    "name": "Màu nước Pentel Water Colours 12 màu",
+    "brand": "Pentel",
+    "pack": "Hộp 12 tuýp",
+    "category": "hoa-pham",
+    "shortDescription": "Dạng tuýp dễ pha trộn, sắc tố trong trẻo, tan nhanh trong nước và bền màu.",
+    "image": "/images/products/hoa-pham/mau-nuoc-pentel-12-mau-1.jpg",
+    "images": [
+      "/images/products/hoa-pham/mau-nuoc-pentel-12-mau-1.jpg",
+      "/images/products/hoa-pham/mau-nuoc-pentel-12-mau-2.jpg"
+    ],
+    "alt": "Màu nước Pentel Water Colours 12 màu",
+    "price": 75000,
+    "description": [
+      "Bộ 12 tuýp màu nước Pentel dùng cho học tập và vẽ sáng tạo.",
+      "Màu trong trẻo, dễ pha để tạo nhiều sắc độ."
     ],
     "isNew": true,
     "isHot": false
   },
   {
-    "id": "mau-nuoc-12",
-    "sku": "TT-H001",
-    "name": "Màu nước Water Joy 12 màu",
-    "brand": "ColorJoy",
-    "pack": "Hộp 12 màu",
+    "id": "but-mau-acrylic-colokit-junior",
+    "sku": "ACM-C033",
+    "name": "Bút màu Acrylic Markers Thiên Long Colokit Junior",
+    "brand": "Colokit",
+    "pack": "Bộ 12/24/36 màu",
     "category": "hoa-pham",
-    "shortDescription": "Hộp màu nước 12 màu kèm cọ, phù hợp học mỹ thuật.",
-    "image": "/images/stationery/mau-nuoc-12.svg",
-    "alt": "Hộp màu nước 12 màu",
-    "price": 78000,
-    "oldPrice": 89000,
+    "shortDescription": "Bút màu acrylic cho bé, màu tươi sáng, thân bút vừa tay trẻ.",
+    "image": "/images/products/hoa-pham/but-mau-acrylic-colokit-junior-1.jpg",
+    "images": [
+      "/images/products/hoa-pham/but-mau-acrylic-colokit-junior-1.jpg",
+      "/images/products/hoa-pham/but-mau-acrylic-colokit-junior-2.jpg"
+    ],
+    "alt": "Bút màu Acrylic Markers Thiên Long Colokit Junior",
+    "price": 30000,
+    "oldPrice": 40000,
     "description": [
-      "Màu dễ hòa nước, phù hợp luyện tập tô màu, minh họa và sáng tạo thủ công.",
-      "Hộp nhựa gọn, có nắp dùng làm khay pha màu tiện lợi."
+      "Mực acrylic chất lượng cao, giúp bé thỏa sức sáng tạo.",
+      "Thân bút có nắp bảo vệ, dễ cầm và điều khiển nét vẽ."
+    ],
+    "isNew": true,
+    "isHot": false
+  },
+  {
+    "id": "vo-ve-a4-sketch-book-thien-long-diem-10-tp-skb005",
+    "sku": "TP-SKB005",
+    "name": "Vở vẽ A4 Sketch Book for Art Thiên Long Điểm 10 TP-SKB005",
+    "brand": "Thiên Long",
+    "pack": "1 quyển",
+    "category": "hoa-pham",
+    "shortDescription": "Vở vẽ A4 24 trang, giấy ruột 150gsm độ trắng 90%.",
+    "image": "/images/products/hoa-pham/vo-ve-a4-sketch-book-thien-long-diem-10-tp-skb005-1.jpg",
+    "images": [
+      "/images/products/hoa-pham/vo-ve-a4-sketch-book-thien-long-diem-10-tp-skb005-1.jpg",
+      "/images/products/hoa-pham/vo-ve-a4-sketch-book-thien-long-diem-10-tp-skb005-2.jpg"
+    ],
+    "alt": "Vở vẽ A4 Sketch Book for Art Thiên Long Điểm 10 TP-SKB005",
+    "price": 16100,
+    "oldPrice": 23000,
+    "description": [
+      "Kích thước 297 x 207mm, giấy dày phù hợp bút chì màu và màu nước nhẹ.",
+      "Dành cho học sinh và người mới tập vẽ."
+    ],
+    "isNew": false,
+    "isHot": false
+  },
+  {
+    "id": "tui-2-co-ve-colokit-brw-c01",
+    "sku": "BRW-C01",
+    "name": "Túi 2 cọ vẽ phẳng và tròn Thiên Long Colokit BRW-C01",
+    "brand": "Colokit",
+    "pack": "Túi 2 cây",
+    "category": "hoa-pham",
+    "shortDescription": "Túi 2 cọ vẽ: phẳng số 4 và tròn số 5, dùng cho màu nước và acrylic.",
+    "image": "/images/products/hoa-pham/tui-2-co-ve-colokit-brw-c01-1.jpg",
+    "images": [
+      "/images/products/hoa-pham/tui-2-co-ve-colokit-brw-c01-1.jpg",
+      "/images/products/hoa-pham/tui-2-co-ve-colokit-brw-c01-2.jpg"
+    ],
+    "alt": "Túi 2 cọ vẽ phẳng và tròn Thiên Long Colokit BRW-C01",
+    "price": 11400,
+    "oldPrice": 16300,
+    "description": [
+      "Lông cọ mềm giữ nước tốt, phù hợp màu nước và màu acrylic.",
+      "Cán cọ nhẹ, dễ điều khiển nét vẽ."
+    ],
+    "isNew": false,
+    "isHot": false
+  },
+  {
+    "id": "but-chi-mau-wood-free-colokit",
+    "sku": "CPC-C031/AK",
+    "name": "Bút chì màu Wood Free Thiên Long Colokit 12/18/24 màu",
+    "brand": "Colokit",
+    "pack": "Hộp 12/18/24 cây",
+    "category": "hoa-pham",
+    "shortDescription": "Bút chì màu thân lục giác, đạt tiêu chuẩn an toàn châu Âu EN 71/3.",
+    "image": "/images/products/hoa-pham/but-chi-mau-wood-free-colokit-1.jpg",
+    "images": [
+      "/images/products/hoa-pham/but-chi-mau-wood-free-colokit-1.jpg",
+      "/images/products/hoa-pham/but-chi-mau-wood-free-colokit-2.jpg"
+    ],
+    "alt": "Bút chì màu Wood Free Thiên Long Colokit 12/18/24 màu",
+    "price": 20700,
+    "oldPrice": 29700,
+    "description": [
+      "Chì màu lên màu tươi, ít gãy khi gọt.",
+      "Có hộp 12, 18 và 24 màu để chọn."
     ],
     "isNew": false,
     "isHot": true
   },
   {
-    "id": "sap-dau-24",
-    "sku": "TT-H002",
-    "name": "Sáp dầu Color Joy 24 màu",
-    "brand": "ColorJoy",
+    "id": "sap-24-mau-colokit-cr-c09",
+    "sku": "CR-C09",
+    "name": "Sáp 24 màu Thiên Long Colokit CR-C09",
+    "brand": "Colokit",
     "pack": "Hộp 24 cây",
     "category": "hoa-pham",
-    "shortDescription": "Sáp dầu màu tươi, bám giấy tốt, dễ phối màu.",
-    "image": "/images/stationery/sap-dau-24.svg",
-    "alt": "Hộp sáp dầu 24 màu",
-    "price": 68000,
+    "shortDescription": "Hộp 24 cây sáp màu thông dụng, màu tươi, tô đều và mịn.",
+    "image": "/images/products/hoa-pham/sap-24-mau-colokit-cr-c09-1.jpg",
+    "images": [
+      "/images/products/hoa-pham/sap-24-mau-colokit-cr-c09-1.jpg",
+      "/images/products/hoa-pham/sap-24-mau-colokit-cr-c09-2.jpg"
+    ],
+    "alt": "Sáp 24 màu Thiên Long Colokit CR-C09",
+    "price": 30300,
+    "oldPrice": 40400,
     "description": [
-      "Bảng màu 24 sắc phù hợp học sinh, vẽ tranh và làm bài mỹ thuật.",
-      "Thân sáp bọc giấy giúp cầm sạch tay và dễ nhận biết màu."
+      "Bao bì thiết kế theo tông màu Colokit, phù hợp sở thích của các bé.",
+      "Mỗi cây một màu, tổng 24 màu."
     ],
     "isNew": false,
     "isHot": false
   },
   {
-    "id": "bo-co-6",
-    "sku": "TT-H003",
-    "name": "Bộ cọ vẽ 6 size",
-    "brand": "ColorJoy",
-    "pack": "Bộ 6 cây",
+    "id": "but-long-mau-fiber-brush-colokit-classic",
+    "sku": "FP-C025/PKM",
+    "name": "Bút lông màu Fiber pen Brush Thiên Long Colokit Classic 12/24 màu",
+    "brand": "Colokit",
+    "pack": "Hộp 12/24 cây",
     "category": "hoa-pham",
-    "shortDescription": "Bộ 6 cọ đầu tròn và đầu dẹt cho nhiều nét vẽ.",
-    "image": "/images/stationery/bo-co-6.svg",
-    "alt": "Bộ cọ vẽ sáu kích thước",
-    "price": 56000,
-    "description": [
-      "Phù hợp màu nước, gouache và acrylic dành cho người mới bắt đầu.",
-      "Cán gỗ nhẹ, nhiều kích thước hỗ trợ tô mảng và đi chi tiết."
+    "shortDescription": "Bút lông màu đầu cọ mềm, cho nét thanh mảnh hoặc đậm tùy lực tay.",
+    "image": "/images/products/hoa-pham/but-long-mau-fiber-brush-colokit-classic-1.jpg",
+    "images": [
+      "/images/products/hoa-pham/but-long-mau-fiber-brush-colokit-classic-1.jpg",
+      "/images/products/hoa-pham/but-long-mau-fiber-brush-colokit-classic-2.jpg"
     ],
-    "isNew": true,
-    "isHot": false
-  },
-  {
-    "id": "hop-but-canvas",
-    "sku": "TT-A001",
-    "name": "Hộp bút Canvas Basic",
-    "brand": "StudyMate",
-    "pack": "1 cái",
-    "category": "balo",
-    "shortDescription": "Hộp bút vải canvas ngăn rộng, khóa kéo chắc chắn.",
-    "image": "/images/stationery/hop-but-canvas.svg",
-    "alt": "Hộp bút canvas màu be",
-    "price": 65000,
-    "oldPrice": 75000,
+    "alt": "Bút lông màu Fiber pen Brush Thiên Long Colokit Classic 12/24 màu",
+    "price": 42800,
+    "oldPrice": 58000,
     "description": [
-      "Thiết kế tối giản, đủ chỗ cho bút viết, thước ngắn và phụ kiện học tập.",
-      "Chất liệu canvas dễ phối với balo và phù hợp nhiều độ tuổi."
-    ],
-    "isNew": false,
-    "isHot": false
-  },
-  {
-    "id": "balo-school-lite",
-    "sku": "TT-A002",
-    "name": "Balo School Lite 18L",
-    "brand": "StudyMate",
-    "pack": "1 cái",
-    "category": "balo",
-    "shortDescription": "Balo 18L nhẹ, nhiều ngăn, phù hợp đi học hằng ngày.",
-    "image": "/images/stationery/balo-school-lite.svg",
-    "alt": "Balo học sinh School Lite",
-    "price": 329000,
-    "oldPrice": 379000,
-    "description": [
-      "Ngăn chính rộng, có ngăn phụ phía trước và hai túi hông cho bình nước.",
-      "Quai đeo có lớp đệm, thiết kế đơn giản và dễ sử dụng."
+      "Mực lên màu tươi và đều, phù hợp tô màu, minh họa và lettering.",
+      "Có bản 12 màu và 24 màu."
     ],
     "isNew": false,
     "isHot": true
   },
   {
-    "id": "bang-trang-a4",
-    "sku": "TT-D005",
-    "name": "Bảng trắng mini A4",
-    "brand": "StudyMate",
-    "pack": "1 bảng + 1 bút",
-    "category": "dung-cu",
-    "shortDescription": "Bảng trắng mini khổ A4 dùng ghi chú và học tập.",
-    "image": "/images/stationery/bang-trang-a4.svg",
-    "alt": "Bảng trắng mini khổ A4",
-    "price": 72000,
+    "id": "mau-nuoc-nen-solid-colokit",
+    "sku": "WACO-C016",
+    "name": "Màu nước nén Solid Water Color Thiên Long Colokit 12/18/24 màu",
+    "brand": "Colokit",
+    "pack": "Hộp 12/18/24 màu",
+    "category": "hoa-pham",
+    "shortDescription": "Màu nước nén dạng viên, đạt tiêu chuẩn châu Âu EN 71/3.",
+    "image": "/images/products/hoa-pham/mau-nuoc-nen-solid-colokit-1.jpg",
+    "images": [
+      "/images/products/hoa-pham/mau-nuoc-nen-solid-colokit-1.jpg",
+      "/images/products/hoa-pham/mau-nuoc-nen-solid-colokit-2.jpg"
+    ],
+    "alt": "Màu nước nén Solid Water Color Thiên Long Colokit 12/18/24 màu",
+    "price": 67800,
+    "oldPrice": 99000,
     "description": [
-      "Bề mặt dễ viết và lau với bút lông bảng thông dụng.",
-      "Kích thước nhỏ gọn phù hợp học từ vựng, làm nháp và ghi việc cần nhớ."
+      "Dễ loang màu, chống mờ nhiều lớp, pha trộn thành nhiều màu.",
+      "Hộp gọn, tiện mang đi vẽ ngoài trời."
+    ],
+    "isNew": false,
+    "isHot": true
+  },
+  {
+    "id": "mau-gouache-tuyp-12ml-colokit",
+    "sku": "GOU-C001",
+    "name": "Bộ màu Gouache dạng tuýp 12ml Thiên Long Colokit 12/18/24 màu",
+    "brand": "Colokit",
+    "pack": "Bộ 12/18/24 màu",
+    "category": "hoa-pham",
+    "shortDescription": "Bộ màu Gouache dạng tuýp 12ml, màu hệ nước, dễ pha trộn.",
+    "image": "/images/products/hoa-pham/mau-gouache-tuyp-12ml-colokit-1.jpg",
+    "images": [
+      "/images/products/hoa-pham/mau-gouache-tuyp-12ml-colokit-1.jpg",
+      "/images/products/hoa-pham/mau-gouache-tuyp-12ml-colokit-2.jpg"
+    ],
+    "alt": "Bộ màu Gouache dạng tuýp 12ml Thiên Long Colokit 12/18/24 màu",
+    "price": 80800,
+    "oldPrice": 101000,
+    "description": [
+      "Độ che phủ vừa phải, phù hợp vẽ tranh trên giấy dày.",
+      "Có bản 12, 18 và 24 màu."
     ],
     "isNew": false,
     "isHot": false
   },
   {
-    "id": "bang-keo-trong",
-    "sku": "TT-D006",
-    "name": "Băng keo trong 18mm",
-    "brand": "OfficePro",
-    "pack": "Lốc 6 cuộn",
-    "category": "dung-cu",
-    "shortDescription": "Băng keo trong dùng đóng gói nhẹ và dán giấy.",
-    "image": "/images/stationery/bang-keo-trong.svg",
-    "alt": "Lốc băng keo trong sáu cuộn",
-    "price": 36000,
+    "id": "balo-chong-gu-clever-hippo-fancy",
+    "sku": "BALO-CL-A01",
+    "name": "Balo chống gù Clever Hippo Fancy",
+    "brand": "Clever Hippo",
+    "pack": "1 cái",
+    "category": "balo",
+    "shortDescription": "Đệm lưng thoáng khí công thái học, quai đeo trợ lực giảm tải trọng cho vai.",
+    "image": "/images/products/balo/balo-chong-gu-clever-hippo-fancy-1.jpg",
+    "images": [
+      "/images/products/balo/balo-chong-gu-clever-hippo-fancy-1.jpg",
+      "/images/products/balo/balo-chong-gu-clever-hippo-fancy-2.jpg"
+    ],
+    "alt": "Balo chống gù Clever Hippo Fancy",
+    "price": 450000,
+    "oldPrice": 600000,
+    "rank": 5,
     "description": [
-      "Độ bám ổn định trên giấy, bìa carton mỏng và bề mặt sạch.",
-      "Lốc 6 cuộn phù hợp văn phòng, trường học hoặc sử dụng tại nhà."
+      "Balo chống gù dòng Fancy, nhiều họa tiết cho bé chọn.",
+      "Quai đeo điều chỉnh được, đệm lưng giúp giảm áp lực lên cột sống."
+    ],
+    "isNew": false,
+    "isHot": true,
+    "isBestSeller": true
+  },
+  {
+    "id": "balo-chong-gu-thien-long-baby-gon-bp-016",
+    "sku": "BP-016/BG",
+    "name": "Cặp - Balo chống gù Thiên Long Baby Gon BP-016/BG",
+    "brand": "Thiên Long",
+    "pack": "1 cái",
+    "category": "balo",
+    "shortDescription": "Balo chống gù kích thước 26 x 37 x 15cm, tải trọng tối đa 8kg, chống thấm nước.",
+    "image": "/images/products/balo/balo-chong-gu-thien-long-baby-gon-bp-016-1.jpg",
+    "images": [
+      "/images/products/balo/balo-chong-gu-thien-long-baby-gon-bp-016-1.jpg",
+      "/images/products/balo/balo-chong-gu-thien-long-baby-gon-bp-016-2.jpg"
+    ],
+    "alt": "Cặp - Balo chống gù Thiên Long Baby Gon BP-016/BG",
+    "price": 250200,
+    "oldPrice": 417000,
+    "description": [
+      "Vải Nylon, Polyester phủ PU và PVC chống thấm, đệm mousse foam êm lưng.",
+      "Trọng lượng 700g, nhiều màu xanh, lá, vàng."
+    ],
+    "isNew": false,
+    "isHot": true
+  },
+  {
+    "id": "balo-thien-long-lite-bp-038",
+    "sku": "BP-038",
+    "name": "Cặp - Balo Thiên Long Lite BP-038 siêu nhẹ 440g",
+    "brand": "Thiên Long",
+    "pack": "1 cái",
+    "category": "balo",
+    "shortDescription": "Balo siêu nhẹ 440g, vải polyester phủ PU chống thấm nước, tải trọng tối đa 8kg.",
+    "image": "/images/products/balo/balo-thien-long-lite-bp-038-1.jpg",
+    "images": [
+      "/images/products/balo/balo-thien-long-lite-bp-038-1.jpg",
+      "/images/products/balo/balo-thien-long-lite-bp-038-2.jpg"
+    ],
+    "alt": "Cặp - Balo Thiên Long Lite BP-038 siêu nhẹ 440g",
+    "price": 237500,
+    "oldPrice": 324000,
+    "description": [
+      "Kích thước 28 x 12 x 38cm, quai đeo êm, khóa kéo nylon trơn.",
+      "Có màu xanh, hồng và đen."
+    ],
+    "isNew": false,
+    "isHot": true
+  },
+  {
+    "id": "balo-thien-long-charmie-bp-039",
+    "sku": "BP-039",
+    "name": "Cặp - Balo Thiên Long Charmie BP-039 chống sốc laptop 14 inch",
+    "brand": "Thiên Long",
+    "pack": "1 cái",
+    "category": "balo",
+    "shortDescription": "Balo siêu nhẹ, chống sốc laptop 14 inch, tải trọng tối đa 10kg.",
+    "image": "/images/products/balo/balo-thien-long-charmie-bp-039-1.jpg",
+    "images": [
+      "/images/products/balo/balo-thien-long-charmie-bp-039-1.jpg",
+      "/images/products/balo/balo-thien-long-charmie-bp-039-2.jpg"
+    ],
+    "alt": "Cặp - Balo Thiên Long Charmie BP-039 chống sốc laptop 14 inch",
+    "price": 287500,
+    "oldPrice": 392000,
+    "description": [
+      "Kích thước 29 x 16 x 42cm, trọng lượng 495g, vải polyester phủ PU.",
+      "Nhiều ngăn tiện lợi cho nhu cầu dùng hằng ngày."
+    ],
+    "isNew": true,
+    "isHot": false
+  },
+  {
+    "id": "hop-but-diem-10-tp-pca016",
+    "sku": "TP-PCA016",
+    "name": "Hộp bút Điểm 10 TP-PCA016",
+    "brand": "Thiên Long",
+    "pack": "1 hộp",
+    "category": "balo",
+    "shortDescription": "Hộp bút dạng hộp đơn có 2 ngăn, in hình cá tính, nhựa bền.",
+    "image": "/images/products/balo/hop-but-diem-10-tp-pca016-1.jpg",
+    "images": [
+      "/images/products/balo/hop-but-diem-10-tp-pca016-1.jpg",
+      "/images/products/balo/hop-but-diem-10-tp-pca016-2.jpg"
+    ],
+    "alt": "Hộp bút Điểm 10 TP-PCA016",
+    "price": 37400,
+    "oldPrice": 53600,
+    "description": [
+      "Đựng được thước, bút, compa, gôm và nhiều đồ dùng học tập.",
+      "Thiết kế nhỏ gọn, tiện lợi."
+    ],
+    "isNew": false,
+    "isHot": false
+  },
+  {
+    "id": "tui-bop-viet-thien-long-joyee-pca-025",
+    "sku": "PCA-025/JO",
+    "name": "Túi - Bóp viết Thiên Long Joyee họa tiết thú cưng PCA-025/JO",
+    "brand": "Thiên Long",
+    "pack": "1 cái",
+    "category": "balo",
+    "shortDescription": "Bóp viết dây kéo họa tiết thú cưng, mặt nhựa trong, chống thấm nhẹ.",
+    "image": "/images/products/balo/tui-bop-viet-thien-long-joyee-pca-025-1.jpg",
+    "images": [
+      "/images/products/balo/tui-bop-viet-thien-long-joyee-pca-025-1.jpg",
+      "/images/products/balo/tui-bop-viet-thien-long-joyee-pca-025-2.jpg"
+    ],
+    "alt": "Túi - Bóp viết Thiên Long Joyee họa tiết thú cưng PCA-025/JO",
+    "price": 75000,
+    "oldPrice": 102000,
+    "description": [
+      "Ngăn chứa rộng rãi, giữ form tốt, dễ vệ sinh.",
+      "Có màu xanh và hồng."
+    ],
+    "isNew": true,
+    "isHot": false
+  },
+  {
+    "id": "hop-viet-diem-10-doraemon-pca-011",
+    "sku": "PCA-011/DO",
+    "name": "Hộp viết Điểm 10 Doraemon PCA-011/DO",
+    "brand": "Thiên Long",
+    "pack": "1 hộp",
+    "category": "balo",
+    "shortDescription": "Hộp bút nhựa cứng bọc nhựa mềm, in hình Doraemon, có 2 ngăn và hốc chuốt bút chì.",
+    "image": "/images/products/balo/hop-viet-diem-10-doraemon-pca-011-1.jpg",
+    "images": [
+      "/images/products/balo/hop-viet-diem-10-doraemon-pca-011-1.jpg",
+      "/images/products/balo/hop-viet-diem-10-doraemon-pca-011-2.jpg"
+    ],
+    "alt": "Hộp viết Điểm 10 Doraemon PCA-011/DO",
+    "price": 46000,
+    "oldPrice": 66000,
+    "description": [
+      "Hộp bút cao cấp đựng được nhiều dụng cụ học tập.",
+      "Có sẵn hốc chuốt bút chì (gồm 2 lưỡi chuốt)."
+    ],
+    "isNew": false,
+    "isHot": false
+  },
+  {
+    "id": "tui-bop-viet-thien-long-pokemon-premium-pca-024",
+    "sku": "PCA-024/PKM",
+    "name": "Túi - Bóp đựng bút viết Thiên Long Pokémon Premium PCA-024/PKM",
+    "brand": "Thiên Long",
+    "pack": "1 cái",
+    "category": "balo",
+    "shortDescription": "Bóp đựng bút dây kéo hình Pikachu và Eevee, chống bám bụi, dễ vệ sinh.",
+    "image": "/images/products/balo/tui-bop-viet-thien-long-pokemon-premium-pca-024-1.jpg",
+    "images": [
+      "/images/products/balo/tui-bop-viet-thien-long-pokemon-premium-pca-024-1.jpg",
+      "/images/products/balo/tui-bop-viet-thien-long-pokemon-premium-pca-024-2.jpg"
+    ],
+    "alt": "Túi - Bóp đựng bút viết Thiên Long Pokémon Premium PCA-024/PKM",
+    "price": 87000,
+    "oldPrice": 111000,
+    "description": [
+      "Màu sắc tươi sáng, thiết kế sắc nét cho các bé yêu thích Pokémon.",
+      "Có màu xanh và vàng."
     ],
     "isNew": false,
     "isHot": false

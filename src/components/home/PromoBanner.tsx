@@ -14,7 +14,7 @@ export default function PromoBanner() {
               <p className="text-xs font-bold uppercase tracking-[0.18em] text-white/70">
                 Chọn món yêu thích · Giá thêm xinh
               </p>
-              <h2 className="mt-3 text-3xl font-black leading-tight md:text-4xl">
+              <h2 className="mt-3 text-3xl font-bold leading-tight md:text-4xl">
                 Góc ưu đãi của KhaiHoanShop
               </h2>
               <p className="mt-3 max-w-xl text-white/80">

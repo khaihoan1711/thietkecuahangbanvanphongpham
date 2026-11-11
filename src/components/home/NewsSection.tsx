@@ -28,7 +28,7 @@ export default function NewsSection() {
           <p className="text-sm font-bold uppercase tracking-wider text-primary">
             Góc chia sẻ
           </p>
-          <h2 className="mt-1 text-2xl font-black text-navy md:text-3xl">
+          <h2 className="mt-1 text-2xl font-bold text-navy md:text-3xl">
             Tin tức mới nhất
           </h2>
         </div>

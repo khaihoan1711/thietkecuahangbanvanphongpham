@@ -75,7 +75,7 @@ function CartRow({ product, quantity, item, maximum }: CartLine) {
             +
           </button>
         </div>
-        <span className="font-black text-navy">
+        <span className="font-bold text-navy">
           {formatVND(product.price * quantity)}
         </span>
         <button
@@ -109,7 +109,7 @@ export default function CartView() {
       <div className="rounded-xl border border-line bg-white px-6 py-16 text-center">
         <p
           role="status"
-          className="text-2xl font-black text-primary"
+          className="text-2xl font-bold text-primary"
         >
           Đặt hàng thành công!
         </p>
@@ -137,7 +137,7 @@ export default function CartView() {
   if (!lines.length)
     return (
       <div className="rounded-xl border border-line bg-white px-6 py-16 text-center">
-        <p className="text-2xl font-black text-navy">Giỏ hàng của bạn đang trống</p>
+        <p className="text-2xl font-bold text-navy">Giỏ hàng của bạn đang trống</p>
         <Link
           href="/san-pham"
           className="mt-6 inline-flex rounded-lg bg-primary px-6 py-3 font-bold text-white"
@@ -200,7 +200,7 @@ export default function CartView() {
         ))}
       </ul>
       <aside className="rounded-xl border border-line bg-white p-6 lg:sticky lg:top-40">
-        <h2 className="text-xl font-black text-navy">Tổng đơn hàng</h2>
+        <h2 className="text-xl font-bold text-navy">Tổng đơn hàng</h2>
         <dl className="mt-5 space-y-3 text-sm">
           <div className="flex justify-between">
             <dt className="text-ink-muted">Tạm tính</dt>
@@ -216,7 +216,7 @@ export default function CartView() {
           </div>
           <div className="flex justify-between border-t border-line pt-4 text-lg">
             <dt className="font-bold">Tổng cộng</dt>
-            <dd className="font-black text-primary">{formatVND(total)}</dd>
+            <dd className="font-bold text-primary">{formatVND(total)}</dd>
           </div>
         </dl>
         <button

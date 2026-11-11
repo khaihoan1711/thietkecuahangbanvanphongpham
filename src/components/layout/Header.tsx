@@ -22,7 +22,7 @@ export default function Header({ currentPath = "/" }: { currentPath?: string }) 
           aria-label="KhaiHoanShop — Trang chủ"
           className="shrink-0 leading-none"
         >
-          <span className="block text-[21px] font-black tracking-tight text-navy md:text-[29px]">
+          <span className="block text-[21px] font-bold tracking-tight text-navy md:text-[29px]">
             KhaiHoanShop
           </span>
           <span className="block text-[12px] font-bold uppercase tracking-[0.22em] text-primary">

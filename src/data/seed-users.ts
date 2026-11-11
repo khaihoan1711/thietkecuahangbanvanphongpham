@@ -2,18 +2,18 @@ import type { User } from "@/types/store";
 
 // Tài khoản mẫu để thử đăng nhập (chỉ mô phỏng, lưu trong LocalStorage):
 //
-//   Admin : admin@khaihoanshop.vn   / Admin@123
-//   User  : nguyenvana@example.com  / User@123
-//   User  : tranthib@example.com    / User@123
-//   User  : lethic@example.com      / User@123
-//   Bị khóa: phamvand@example.com   / User@123  (để thử mở khóa trong trang Admin)
+//   Admin : khaihoanhuetran@gmail.com   (mật khẩu đặt ở bên dưới)
+//   User  : nguyenvana@gmail.com  / User@123
+//   User  : tranthib@gmail.com    / User@123
+//   User  : lethic@gmail.com      / User@123
+//   Bị khóa: phamvand@gmail.com   / User@123  (để thử mở khóa trong trang Admin)
 export const seedUsers: User[] = [
   {
     id: "u-admin",
     fullName: "Quản trị viên",
-    email: "admin@khaihoanshop.vn",
+    email: "khaihoanhuetran@gmail.com",
     phone: "0365392002",
-    password: "Admin@123",
+    password: "Hoan1711@",
     role: "admin",
     isLocked: false,
     createdAt: "2026-05-01T08:00:00.000Z",
@@ -21,7 +21,7 @@ export const seedUsers: User[] = [
   {
     id: "u-nguyenvana",
     fullName: "Nguyễn Văn A",
-    email: "nguyenvana@example.com",
+    email: "nguyenvana@gmail.com",
     phone: "0901234567",
     password: "User@123",
     role: "user",
@@ -37,7 +37,7 @@ export const seedUsers: User[] = [
   {
     id: "u-tranthib",
     fullName: "Trần Thị B",
-    email: "tranthib@example.com",
+    email: "tranthib@gmail.com",
     phone: "0912345678",
     password: "User@123",
     role: "user",
@@ -53,7 +53,7 @@ export const seedUsers: User[] = [
   {
     id: "u-lethic",
     fullName: "Lê Thị C",
-    email: "lethic@example.com",
+    email: "lethic@gmail.com",
     phone: "0987654321",
     password: "User@123",
     role: "user",
@@ -69,7 +69,7 @@ export const seedUsers: User[] = [
   {
     id: "u-phamvand",
     fullName: "Phạm Văn D",
-    email: "phamvand@example.com",
+    email: "phamvand@gmail.com",
     phone: "0935551122",
     password: "User@123",
     role: "user",

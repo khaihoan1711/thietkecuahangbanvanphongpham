@@ -22,7 +22,7 @@ const mobileLinks = [
 ];
 
 const topLinkStyle =
-  "flex h-[50px] items-center px-3 text-[13px] font-bold uppercase tracking-wide transition hover:text-primary";
+  "flex h-[50px] items-center whitespace-nowrap px-2 text-[12px] xl:px-3 xl:text-[13px] font-bold uppercase tracking-wide transition hover:text-primary";
 
 // Thanh menu chính: danh mục lấy từ kho dữ liệu (Admin thêm/sửa/xóa là menu đổi theo).
 // Danh mục mặc định có menu xổ xuống (xem src/data/menu.ts), danh mục mới chỉ là một liên kết.
@@ -59,7 +59,7 @@ export default function CategoryNav({ currentPath }: { currentPath: string }) {
             >
               <Link
                 href={categoryHref(category.id)}
-                className={`flex h-[50px] items-center gap-1.5 px-3 text-[13px] font-bold uppercase tracking-wide transition group-hover:text-primary group-focus-within:text-primary ${
+                className={`flex h-[50px] items-center gap-1.5 whitespace-nowrap px-2 text-[12px] xl:px-3 xl:text-[13px] font-bold uppercase tracking-wide transition group-hover:text-primary group-focus-within:text-primary ${
                   currentPath === `/danh-muc/${category.id}`
                     ? "text-primary"
                     : "text-ink"
@@ -122,7 +122,7 @@ export default function CategoryNav({ currentPath }: { currentPath: string }) {
           {extraLinks.map(([label, href]) => (
             <li
               key={label}
-              className="flex"
+              className="hidden xl:flex"
             >
               <Link
                 href={href}

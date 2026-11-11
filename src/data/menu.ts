@@ -34,6 +34,7 @@ export const menuGroups: MenuGroup[] = [
       { label: "Bút gel", q: "bút gel" },
       { label: "Bút chì", q: "bút chì" },
       { label: "Bút dạ quang", q: "dạ quang" },
+      { label: "Bút lông bảng", q: "lông bảng" },
       { label: "Bút xóa", q: "bút xóa" },
     ],
   },
@@ -41,15 +42,9 @@ export const menuGroups: MenuGroup[] = [
     category: "vo-so",
     label: "Vở & Sổ",
     children: [
-      { label: "Vở học sinh", q: "vở" },
-      {
-        label: "Sổ tay",
-        q: "sổ",
-        children: [
-          { label: "Sổ lò xo", q: "sổ lò xo" },
-          { label: "Sổ bìa da", q: "bìa da" },
-        ],
-      },
+      { label: "Tập học sinh", q: "tập" },
+      { label: "Sổ lò xo", q: "sổ lò xo" },
+      { label: "Sổ còng", q: "sổ còng" },
     ],
   },
   {
@@ -57,19 +52,30 @@ export const menuGroups: MenuGroup[] = [
     label: "Giấy văn phòng",
     children: [
       { label: "Giấy in A4", q: "giấy in" },
-      { label: "Giấy note", q: "giấy note" },
-      { label: "Giấy thủ công", q: "thủ công" },
+      { label: "Ream giấy A4", q: "ream" },
+      { label: "Giấy ghi chú", q: "ghi chú" },
+      { label: "Giấy phân trang", q: "phân trang" },
+      { label: "Bìa hồ sơ", q: "bìa" },
     ],
   },
   {
     category: "dung-cu",
     label: "Dụng cụ",
     children: [
-      { label: "Kéo văn phòng", q: "kéo" },
-      { label: "Dập ghim", q: "dập ghim" },
+      { label: "Kéo", q: "kéo" },
+      { label: "Bấm kim & kim bấm", q: "kim" },
+      { label: "Kẹp bướm", q: "kẹp bướm" },
       { label: "Băng keo", q: "băng keo" },
-      { label: "Thước & hình học", q: "thước" },
-      { label: "Bảng trắng", q: "bảng trắng" },
+      { label: "Gôm tẩy", q: "gôm" },
+      {
+        label: "Thước & compa",
+        q: "thước",
+        children: [
+          { label: "Thước kẻ", q: "thước" },
+          { label: "Compa", q: "compa" },
+        ],
+      },
+      { label: "Máy tính", q: "máy tính" },
     ],
   },
   {
@@ -77,7 +83,9 @@ export const menuGroups: MenuGroup[] = [
     label: "Họa phẩm",
     children: [
       { label: "Màu nước", q: "màu nước" },
-      { label: "Sáp dầu", q: "sáp" },
+      { label: "Sáp màu", q: "sáp" },
+      { label: "Bút chì màu", q: "chì màu" },
+      { label: "Bút lông màu", q: "lông màu" },
       { label: "Cọ vẽ", q: "cọ" },
     ],
   },
@@ -85,8 +93,9 @@ export const menuGroups: MenuGroup[] = [
     category: "balo",
     label: "Balo & Hộp bút",
     children: [
-      { label: "Balo", q: "balo" },
-      { label: "Hộp bút", q: "hộp bút" },
+      { label: "Balo & cặp", q: "balo" },
+      { label: "Hộp bút", q: "hộp" },
+      { label: "Bóp viết", q: "bóp" },
     ],
   },
 ];

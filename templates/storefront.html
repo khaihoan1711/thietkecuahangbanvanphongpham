@@ -24,20 +24,10 @@
       <div class="top">
         <div class="wrap">
           <span>Chào mừng đến KhaiHoanShop · Giao hàng toàn quốc</span>
-          <span class="links">
-            <a
-              href="#"
-              data-login
-            >
-              Đăng nhập
-            </a>
-            <a
-              href="#"
-              data-register
-            >
-              Đăng ký
-            </a>
-          </span>
+          <span
+            class="links"
+            id="account-links"
+          ></span>
         </div>
       </div>
       <div class="wrap head">
@@ -113,20 +103,77 @@
       <section class="hero-area">
         <div class="wrap">
           <h1 class="sr-only">KhaiHoanShop — Đồng hành cùng bạn đến trường</h1>
-          <a
-            class="banner-link"
-            href="#tat-ca"
-            aria-label="Khám phá đồ dùng học tập KhaiHoanShop"
+          <div
+            class="slider"
+            id="hero-slider"
+            role="group"
+            aria-roledescription="carousel"
+            aria-label="Banner nổi bật"
           >
-            <img
-              class="shop-banner"
-              src="/images/stationery/banner.png"
-              width="3168"
-              height="1344"
-              fetchpriority="high"
-              alt="KhaiHoanShop — Đồng hành cùng bạn đến trường, với balo, vở, bút và dụng cụ học tập"
-            />
-          </a>
+            <a
+              class="slide active"
+              href="#tat-ca"
+            >
+              <img
+                class="shop-banner"
+                src="/images/stationery/slide-1.jpg"
+                width="2000"
+                height="848"
+                fetchpriority="high"
+                alt="KhaiHoanShop — Đồng hành cùng bạn đến trường, với balo, vở, bút và dụng cụ học tập"
+              />
+            </a>
+            <a
+              class="slide"
+              href="#san-pham-moi"
+            >
+              <img
+                src="/images/stationery/slide-2.jpg"
+                width="2000"
+                height="848"
+                alt="Hàng mới về, học tập hứng khởi — xem sản phẩm mới"
+              />
+            </a>
+            <a
+              class="slide"
+              href="#khuyen-mai"
+            >
+              <img
+                src="/images/stationery/slide-3.jpg"
+                width="2000"
+                height="848"
+                alt="Ưu đãi từ hãng, giảm đến 40% — săn ưu đãi ngay"
+              />
+            </a>
+            <button
+              type="button"
+              class="slider-arrow prev"
+              aria-label="Ảnh trước"
+            >
+              ‹
+            </button>
+            <button
+              type="button"
+              class="slider-arrow next"
+              aria-label="Ảnh tiếp theo"
+            >
+              ›
+            </button>
+            <div class="slider-dots">
+              <button
+                type="button"
+                aria-label="Xem ảnh 1"
+              ></button>
+              <button
+                type="button"
+                aria-label="Xem ảnh 2"
+              ></button>
+              <button
+                type="button"
+                aria-label="Xem ảnh 3"
+              ></button>
+            </div>
+          </div>
           <div class="buttons banner-actions">
             <a
               class="btn"
@@ -293,126 +340,6 @@
         </div>
       </section>
       <section
-        class="section surface"
-        id="but-viet"
-      >
-        <div class="wrap">
-          <div class="section-head">
-            <div>
-              <span class="eyebrow">Thiên Long · Bizner</span>
-              <h2>Bút viết</h2>
-            </div>
-            <a
-              class="pill"
-              href="#danh-muc/but"
-            >
-              Xem tất cả →
-            </a>
-          </div>
-          <div class="showcase">
-            <a
-              class="showcase-banner"
-              href="#danh-muc/but"
-              aria-label="Bút viết — KhaiHoanShop"
-            >
-              <img
-                data-banner
-                style="object-position: 96% 50%"
-                alt="Bút viết — KhaiHoanShop"
-              />
-              <span>
-                <strong>Bút viết cho học tập & văn phòng</strong>
-                Xem tất cả →
-              </span>
-            </a>
-            <div
-              class="showcase-row"
-              id="pen-grid"
-            ></div>
-          </div>
-        </div>
-      </section>
-      <section
-        class="section"
-        id="vo-so"
-      >
-        <div class="wrap">
-          <div class="section-head">
-            <div>
-              <span class="eyebrow">Cho học tập</span>
-              <h2>Vở & sổ</h2>
-            </div>
-            <a
-              class="pill"
-              href="#danh-muc/vo-so"
-            >
-              Xem tất cả →
-            </a>
-          </div>
-          <div class="showcase">
-            <a
-              class="showcase-banner"
-              href="#danh-muc/vo-so"
-              aria-label="Vở & sổ — KhaiHoanShop"
-            >
-              <img
-                data-banner
-                style="object-position: 78% 40%"
-                alt="Vở & sổ — KhaiHoanShop"
-              />
-              <span>
-                <strong>Vở & sổ cho năm học mới</strong>
-                Xem tất cả →
-              </span>
-            </a>
-            <div
-              class="showcase-row"
-              id="notebook-grid"
-            ></div>
-          </div>
-        </div>
-      </section>
-      <section
-        class="section surface"
-        id="van-phong"
-      >
-        <div class="wrap">
-          <div class="section-head">
-            <div>
-              <span class="eyebrow">Cho văn phòng</span>
-              <h2>Giấy & dụng cụ văn phòng</h2>
-            </div>
-            <a
-              class="pill"
-              href="#danh-muc/giay"
-            >
-              Xem tất cả →
-            </a>
-          </div>
-          <div class="showcase">
-            <a
-              class="showcase-banner"
-              href="#danh-muc/giay"
-              aria-label="Giấy và dụng cụ văn phòng — KhaiHoanShop"
-            >
-              <img
-                data-banner
-                style="object-position: 70% 90%"
-                alt="Giấy và dụng cụ văn phòng — KhaiHoanShop"
-              />
-              <span>
-                <strong>Giấy & dụng cụ văn phòng</strong>
-                Xem tất cả →
-              </span>
-            </a>
-            <div
-              class="showcase-row"
-              id="office-grid"
-            ></div>
-          </div>
-        </div>
-      </section>
-      <section
         class="section"
         id="tat-ca"
       >
@@ -507,6 +434,14 @@
       hidden
       aria-labelledby="detail-title"
     ></main>
+    <main
+      id="page-view"
+      hidden
+    ></main>
+    <div
+      id="admin-root"
+      hidden
+    ></div>
     <footer id="lien-he">
       <div class="wrap">
         <div class="footer-grid">
@@ -522,10 +457,24 @@
           </div>
           <div>
             <strong>Liên hệ cửa hàng</strong>
-            <p>
+            <p class="contact-list">
               0365392002
               <br />
-              khaihoanhuetran@gmail.com
+              <a
+                href="https://mail.google.com/mail/?view=cm&amp;fs=1&amp;to=khaihoanhuetran@gmail.com"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                khaihoanhuetran@gmail.com
+              </a>
+              <br />
+              <a
+                href="https://www.facebook.com/khai.hoan.05"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                Facebook KhaiHoanShop
+              </a>
               <br />
               08:00 - 21:00, Thứ 2 - Chủ nhật
             </p>
@@ -582,136 +531,9 @@
           Tiếp tục mua sắm
         </button>
       </div>
-      <p
-        id="order-status"
-        role="status"
-        class="purchase-message"
-      ></p>
     </dialog>
-    <dialog
-      id="login-dialog"
-      aria-labelledby="login-title"
-    >
-      <div class="dialog-head">
-        <h2 id="login-title">Đăng nhập</h2>
-        <button
-          class="close"
-          data-close
-          aria-label="Đóng đăng nhập"
-        >
-          ×
-        </button>
-      </div>
-      <form
-        class="login-form"
-        id="login-form"
-      >
-        <label>
-          Email
-          <input
-            type="email"
-            required
-            autocomplete="email"
-          />
-        </label>
-        <label>
-          Mật khẩu
-          <input
-            type="password"
-            required
-            autocomplete="current-password"
-          />
-        </label>
-        <button
-          class="btn"
-          type="submit"
-        >
-          Đăng nhập
-        </button>
-        <p
-          id="login-status"
-          role="status"
-          class="muted"
-        ></p>
-      </form>
-    </dialog>
-
-    <dialog
-      id="register-dialog"
-      aria-labelledby="register-title"
-    >
-      <div class="dialog-head">
-        <h2 id="register-title">Đăng ký</h2>
-        <button
-          class="close"
-          data-close
-          aria-label="Đóng đăng ký"
-        >
-          ×
-        </button>
-      </div>
-      <form
-        class="login-form"
-        id="register-form"
-      >
-        <label>
-          Họ và tên
-          <input
-            name="fullName"
-            required
-            autocomplete="name"
-          />
-        </label>
-        <label>
-          Email
-          <input
-            name="email"
-            type="email"
-            required
-            autocomplete="email"
-          />
-        </label>
-        <label>
-          Số điện thoại
-          <input
-            name="phone"
-            type="tel"
-            required
-            autocomplete="tel"
-          />
-        </label>
-        <label>
-          Mật khẩu
-          <input
-            name="password"
-            type="password"
-            required
-            minlength="6"
-            autocomplete="new-password"
-          />
-        </label>
-        <label>
-          Xác nhận mật khẩu
-          <input
-            name="confirmPassword"
-            type="password"
-            required
-            minlength="6"
-            autocomplete="new-password"
-          />
-        </label>
-        <button
-          class="btn"
-          type="submit"
-        >
-          Đăng ký
-        </button>
-        <p
-          id="register-status"
-          role="status"
-          class="muted"
-        ></p>
-      </form>
+    <dialog id="modal-dialog">
+      <div id="modal-content"></div>
     </dialog>
     <div
       id="toast"

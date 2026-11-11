@@ -16,7 +16,7 @@ export default function StatCard({
       <div className="flex items-start justify-between gap-3">
         <div className="min-w-0">
           <p className="text-sm font-semibold text-ink-muted">{label}</p>
-          <p className="mt-2 truncate text-2xl font-black text-navy">{value}</p>
+          <p className="mt-2 truncate text-2xl font-bold text-navy">{value}</p>
         </div>
         <span
           aria-hidden="true"
