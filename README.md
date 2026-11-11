@@ -1,82 +1,156 @@
-# KhaiHoan Stationery — KhaiHoanShop
+## KhaiHoanShop - Website bán văn phòng phẩm
 
-KhaiHoanShop — website bán văn phòng phẩm, dụng cụ học tập và họa phẩm. Trang chủ sử dụng tông xanh dương, nền xanh nhạt, banner KhaiHoanShop và các khu sản phẩm bán chạy, mới, khuyến mãi.
+## 1. Giới thiệu
 
-## Công nghệ
+KhaiHoanShop là Website bán văn phòng phẩm, dụng cụ học tập và họa phẩm.
 
-- HTML/CSS thông qua JSX/TSX
-- JavaScript / TypeScript
-- React 18
-- Next.js 14
-- Tailwind CSS 3
-- LocalStorage để lưu giỏ hàng tạm thời trên trình duyệt
+Website được xây dựng theo hướng Front-end, giao diện đơn giản, dễ sử dụng và hỗ trợ hiển thị trên máy tính và thiết bị di động.
 
-## Chức năng chính
+## 2. Công nghệ sử dụng
 
-- Trang chủ có banner, danh mục, sản phẩm bán chạy, sản phẩm mới, khuyến mãi và tin tức
-- Danh sách sản phẩm có tìm kiếm, lọc theo danh mục, thương hiệu, giá và sắp xếp
-- Trang chi tiết sản phẩm
-- Thêm/xóa/cập nhật số lượng trong giỏ hàng bằng LocalStorage
-- Trang thanh toán Front-end có kiểm tra dữ liệu nhập
-- Đăng ký, đăng nhập, đăng xuất; giữ trạng thái đăng nhập khi tải lại trang
-- Quản lý tài khoản: sửa thông tin, đổi mật khẩu, địa chỉ, lịch sử và theo dõi đơn hàng
-- Đặt hàng từ giỏ hàng hoặc trang thanh toán, đơn hàng được lưu vào LocalStorage
-- Khu quản trị `/quan-tri` (chỉ Admin): dashboard, quản lý sản phẩm, danh mục, đơn hàng, người dùng
-- Responsive cho máy tính và thiết bị di động
+HTML/CSS thông qua JSX/TSX.
 
-## Tài khoản mẫu
+JavaScript.
 
-| Quyền   | Email                     | Mật khẩu                           |
-| ------- | ------------------------- | ---------------------------------- |
-| Admin   | khaihoanhuetran@gmail.com | đặt trong `src/data/seed-users.ts` |
-| User    | nguyenvana@gmail.com      | User@123                           |
-| Bị khóa | phamvand@gmail.com        | User@123                           |
+TypeScript.
 
-Trong trang Tổng quan của Admin có nút "Khôi phục dữ liệu mẫu" để đưa mọi dữ liệu về ban đầu.
+React 18.
 
-## Cách dữ liệu được lưu (không có backend)
+Next.js 14.
 
-Toàn bộ dữ liệu nằm trong LocalStorage của trình duyệt, dùng các khóa sau:
+Tailwind CSS 3.
 
-- `khaihoanshop-products-v3`: sản phẩm
-- `khaihoanshop-categories`: danh mục
-- `khaihoanshop-users-v3`: tài khoản (mật khẩu lưu dạng chữ thường vì chỉ để mô phỏng)
-- `khaihoanshop-orders-v2`: đơn hàng
-- `khaihoanshop-session`: người đang đăng nhập
-- `khaihoanstatinery-cart`: giỏ hàng
+LocalStorage để lưu giỏ hàng tạm thời.
 
-Dữ liệu mẫu nằm trong `src/data/products.ts`, `src/data/seed-users.ts` và `src/data/seed-orders.ts`.
-Admin thêm, sửa, xóa sản phẩm hoặc danh mục thì trang bán hàng đổi theo ngay.
+## 3. Chức năng chính
 
-## Chạy dự án
+## Trang chủ
+
+Banner.
+
+Danh mục sản phẩm.
+
+Sản phẩm bán chạy.
+
+Sản phẩm mới.
+
+Sản phẩm khuyến mãi.
+
+Tin tức.
+
+## Danh sách sản phẩm
+
+Hiển thị danh sách sản phẩm.
+
+Tìm kiếm sản phẩm.
+
+Lọc theo danh mục.
+
+Lọc theo thương hiệu.
+
+Lọc theo giá.
+
+Sắp xếp sản phẩm.
+
+## Chi tiết sản phẩm
+
+Hiển thị hình ảnh sản phẩm.
+
+Tên sản phẩm.
+
+Giá sản phẩm.
+
+Mô tả sản phẩm.
+
+Thêm sản phẩm vào giỏ hàng.
+
+## Giỏ hàng
+
+Thêm sản phẩm.
+
+Xóa sản phẩm.
+
+Cập nhật số lượng.
+
+Tính tổng tiền.
+
+Lưu giỏ hàng bằng LocalStorage.
+
+##  Thanh toán
+
+Thêm vào giỏ hàng
+
+Đặt hàng
+
+##  Đăng nhập và đăng ký
+
+Giao diện đăng nhập.
+
+Giao diện đăng ký.
+
+##  Responsive
+
+Hỗ trợ hiển thị trên máy tính.
+
+Hỗ trợ hiển thị trên thiết bị di động.
+
+## 4. Dữ liệu sản phẩm
+
+Dữ liệu sản phẩm hiện được lưu trong:
+
+src/data/products.ts
+
+Dữ liệu này được sử dụng để hiển thị, tìm kiếm, lọc, xem chi tiết và thêm sản phẩm vào giỏ hàng.
+
+## 5. Phạm vi dự án
+
+Dự án tập trung vào phần Front-end của Website bán văn phòng phẩm.
+
+Hiện tại dự án chưa có:
+
+Backend.
+
+Cơ sở dữ liệu.
+
+Xác thực tài khoản thật.
+
+Quản lý đơn hàng thực tế.
+
+Thanh toán trực tuyến thực tế.
+
+##  6. Kết quả
+
+Website cung cấp các chức năng cơ bản của một Website bán văn phòng phẩm như xem sản phẩm, tìm kiếm, lọc, xem chi tiết, giỏ hàng, thanh toán Front-end, đăng nhập, đăng ký và Responsive trên nhiều thiết bị.
+
+## 7. Chức năng bổ sung (phần Người dùng và Quản trị)
+
+Phần này được thêm sau bản ban đầu, vẫn chỉ là Front-end và lưu dữ liệu bằng LocalStorage.
+
+- Đăng ký, đăng nhập, đăng xuất; giữ trạng thái đăng nhập khi tải lại trang.
+- Quản lý tài khoản: sửa thông tin, đổi mật khẩu, địa chỉ, lịch sử và theo dõi đơn hàng.
+- Đặt hàng từ giỏ hàng hoặc trang thanh toán; đơn hàng được lưu vào LocalStorage.
+- Khu quản trị `/quan-tri` (chỉ Admin): dashboard, quản lý sản phẩm, danh mục, đơn hàng, người dùng.
+- Trang chủ có slideshow 3 ảnh tự chuyển sau 5 giây.
+- Danh mục 60 sản phẩm thật, ảnh nằm trong `public/images/stationery` và `public/images/products` (nguồn ảnh ghi trong `public/images/products/CREDITS.md`).
+- Chân trang có liên kết Gmail và Facebook.
+
+Tài khoản Admin mẫu và dữ liệu mẫu nằm trong `src/data/seed-users.ts`, `src/data/seed-orders.ts`. Trong trang Tổng quan của Admin có nút "Khôi phục dữ liệu mẫu".
+
+## 8. Bản HTML mở thẳng bằng Chrome
+
+File `khaihoanstationery.html` là bản độc lập, chỉ cần bấm đúp để mở bằng Chrome, không cần chạy `npm`. Mở khu quản trị bằng `khaihoanstationery.html#quan-tri`.
+
+File này được ghép tự động từ `templates/storefront.html`, `scripts/*.css` và `scripts/*.js`. Sau khi sửa các file nguồn, chạy:
+
+```bash
+npm run html:sync
+```
+
+## 9. Chạy dự án
 
 ```bash
 npm install
 npm run dev
 ```
 
-Mở `http://localhost:3000`.
-
-## Bản HTML mở thẳng bằng Chrome
-
-File `khaihoanstationery.html` là bản độc lập: ảnh, CSS và JavaScript đều nằm trong một file nên chỉ cần bấm đúp để mở bằng Chrome, không cần chạy `npm`. Bản này có đủ phần User (đăng ký, đăng nhập, tài khoản, thanh toán, đơn hàng) và Admin (mở bằng `khaihoanstationery.html#quan-tri`), dùng cùng tài khoản mẫu ở trên.
-
-File này được ghép tự động từ `templates/storefront.html`, `scripts/*.css` và `scripts/*.js`. Sửa các file nguồn đó rồi chạy:
-
-```bash
-npm run html:sync
-```
-
-Dữ liệu của bản HTML lưu trong LocalStorage với các khóa bắt đầu bằng `khaihoanshop-html-`, tách riêng với bản Next.js.
-
-## Lưu ý
-
-Đây là đồ án Front-end. Không có backend, API hay database. Đăng nhập và phân quyền chỉ là mô phỏng ở trình duyệt nên không bảo mật thật sự.
-
-## Thư mục dự án
-
-Giải nén vào thư mục `khaihoanstatinery`, mở thư mục này và chạy `npm install`, sau đó `npm run dev`. Tên cửa hàng hiển thị là KhaiHoanShop.
-
-## Sản phẩm và ảnh
-
-Cửa hàng có 60 sản phẩm thật chia đều ở 6 danh mục. Ảnh nằm trong `public/images/products/`, danh sách nguồn từng ảnh (thienlong.vn, các cửa hàng văn phòng phẩm và ảnh do chủ cửa hàng cung cấp) ghi trong `public/images/products/CREDITS.md`. Bản quyền ảnh thuộc về các nguồn đó, chỉ dùng cho đồ án học tập.
+Mở `http://localhost:3000`. Kiểm tra bản build bằng `npm run build`.
