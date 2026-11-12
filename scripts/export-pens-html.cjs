@@ -56,8 +56,8 @@ function exportPens(
 
   const productImages = { ...images };
   let html = read("templates/storefront.html");
-  html = html.replace(/src="(\/images\/[^\"]+)"/g, (_, source) => {
-    return `src="${embedImage(source)}"`;
+  html = html.replace(/(src|href)="(\/images\/[^\"]+)"/g, (_, attribute, source) => {
+    return `${attribute}="${embedImage(source)}"`;
   });
 
   // Giữ thông tin liên hệ đã được đồng bộ từ Footer.tsx.

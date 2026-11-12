@@ -145,6 +145,7 @@ function startPreview({
       catalogSource,
       otherSource,
       path.join(project, "templates/storefront.html"),
+      path.join(project, "public/images/logo-icon.png"),
       ...["slide-1.jpg", "slide-2.jpg", "slide-3.jpg"].map((file) =>
         path.join(project, "public/images/stationery", file),
       ),
