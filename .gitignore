@@ -13,3 +13,6 @@ next-env.d.ts
 
 # OS / editor
 .DS_Store
+
+# Ảnh gốc của cửa hàng: chỉ giữ trên máy, không đưa lên GitHub
+sanpham&anh/
