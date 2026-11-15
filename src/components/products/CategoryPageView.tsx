@@ -89,7 +89,7 @@ export default function CategoryPageView({
         key={`${category.id}-${initialSearch}`}
         products={categoryProducts}
         initialSearch={initialSearch}
-        bannerSrc="/images/stationery/slide-1.jpg"
+        bannerSrc="/images/products/slide-1.jpg"
         bannerAlt={`Banner danh mục ${category.label}`}
       />
     </>

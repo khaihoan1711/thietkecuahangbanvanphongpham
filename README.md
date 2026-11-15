@@ -131,7 +131,7 @@ Phần này được thêm sau bản ban đầu, vẫn chỉ là Front-end và l
 - Đặt hàng từ giỏ hàng hoặc trang thanh toán; đơn hàng được lưu vào LocalStorage.
 - Khu quản trị `/quan-tri` (chỉ Admin): dashboard, quản lý sản phẩm, danh mục, đơn hàng, người dùng.
 - Trang chủ có slideshow 3 ảnh tự chuyển sau 5 giây.
-- Danh mục 60 sản phẩm thật, ảnh nằm trong `public/images/stationery` và `public/images/products` (nguồn ảnh ghi trong `public/images/products/CREDITS.md`).
+- Danh mục 60 sản phẩm thật, ảnh (kể cả 3 ảnh slideshow và logo) nằm trong `public/images/products` (nguồn ảnh ghi trong `public/images/products/CREDITS.md`).
 - Chân trang có liên kết Gmail và Facebook.
 
 Tài khoản Admin mẫu và dữ liệu mẫu nằm trong `src/data/seed-users.ts`, `src/data/seed-orders.ts`. Trong trang Tổng quan của Admin có nút "Khôi phục dữ liệu mẫu".

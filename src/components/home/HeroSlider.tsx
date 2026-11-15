@@ -6,17 +6,17 @@ import { useEffect, useState } from "react";
 // Ba ảnh banner của slideshow. Mỗi ảnh dẫn tới một khu vực trên trang.
 const slides = [
   {
-    src: "/images/stationery/slide-1.jpg",
+    src: "/images/products/slide-1.jpg",
     href: "/san-pham",
     alt: "KhaiHoanShop — Đồng hành cùng bạn đến trường, với balo, vở, bút và dụng cụ học tập",
   },
   {
-    src: "/images/stationery/slide-2.jpg",
+    src: "/images/products/slide-2.jpg",
     href: "#san-pham-moi",
     alt: "Hàng mới về, học tập hứng khởi — xem sản phẩm mới",
   },
   {
-    src: "/images/stationery/slide-3.jpg",
+    src: "/images/products/slide-3.jpg",
     href: "#san-pham-khuyen-mai",
     alt: "Ưu đãi từ hãng, giảm đến 40% — săn ưu đãi ngay",
   },
