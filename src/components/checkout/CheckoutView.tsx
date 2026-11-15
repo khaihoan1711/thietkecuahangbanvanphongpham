@@ -12,6 +12,7 @@ import { calculateTotals } from "@/data/cart";
 import { formatVND } from "@/lib/format";
 import { cartKey } from "@/lib/product-options";
 import { getCartLines, toOrderItems } from "@/lib/cart-lines";
+import { isValidEmail } from "@/lib/validation";
 
 type FormValues = {
   fullName: string;
@@ -61,8 +62,8 @@ function validate(values: FormValues): Errors {
     errors.phone = "Số điện thoại không hợp lệ (ví dụ: 0901234567)";
   }
 
-  if (!errors.email && !/^\S+@\S+\.\S+$/.test(values.email.trim())) {
-    errors.email = "Email không hợp lệ (ví dụ: ten@email.com)";
+  if (!errors.email && !isValidEmail(values.email)) {
+    errors.email = "Email phải là địa chỉ Gmail (ví dụ: ten@gmail.com)";
   }
 
   return errors;

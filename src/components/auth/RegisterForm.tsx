@@ -47,7 +47,7 @@ function validate(values: FormValues): Errors {
 
   if (values.email.trim() === "") errors.email = "Vui lòng nhập email";
   else if (!isValidEmail(values.email))
-    errors.email = "Email không hợp lệ (ví dụ: ten@email.com)";
+    errors.email = "Email phải là địa chỉ Gmail (ví dụ: ten@gmail.com)";
 
   if (values.phone.trim() === "") errors.phone = "Vui lòng nhập số điện thoại";
   else if (!isValidPhone(values.phone))

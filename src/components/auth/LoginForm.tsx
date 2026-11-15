@@ -6,7 +6,7 @@ import { useState } from "react";
 import { btnBase, btnPrimary } from "@/components/ui/buttons";
 import { useAuth } from "@/context/AuthContext";
 import { useToast } from "@/context/ToastContext";
-import { isValidEmail } from "@/lib/validation";
+import { isEmailFormat } from "@/lib/validation";
 
 type Errors = { email?: string; password?: string };
 
@@ -42,8 +42,8 @@ export default function LoginForm({ next }: { next?: string }) {
 
     const newErrors: Errors = {};
     if (email.trim() === "") newErrors.email = "Vui lòng nhập email";
-    else if (!isValidEmail(email))
-      newErrors.email = "Email không hợp lệ (ví dụ: ten@email.com)";
+    else if (!isEmailFormat(email))
+      newErrors.email = "Email không hợp lệ (ví dụ: ten@gmail.com)";
     if (password === "") newErrors.password = "Vui lòng nhập mật khẩu";
     setErrors(newErrors);
 

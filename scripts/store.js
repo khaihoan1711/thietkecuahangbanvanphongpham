@@ -91,7 +91,13 @@ function formatDateTime(iso) {
   return formatDate(iso) + " " + pad(date.getHours()) + ":" + pad(date.getMinutes());
 }
 
+// Email của khách bắt buộc là Gmail: ten@gmail.com (không phân biệt chữ hoa/thường).
 function isValidEmail(email) {
+  return /^[a-z0-9._%+-]+@gmail\.com$/i.test(String(email).trim());
+}
+
+// Chỉ kiểm tra định dạng chung, dùng cho ô đăng nhập để tài khoản cũ vẫn đăng nhập được.
+function isEmailFormat(email) {
   return /^\S+@\S+\.\S+$/.test(String(email).trim());
 }
 

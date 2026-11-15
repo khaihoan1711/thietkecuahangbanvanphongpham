@@ -33,7 +33,7 @@ export default function ProfileSection({ user }: { user: User }) {
     if (email.trim() === "") {
       newErrors.email = "Vui lòng nhập email";
     } else if (!isValidEmail(email)) {
-      newErrors.email = "Email không hợp lệ (ví dụ: ten@email.com)";
+      newErrors.email = "Email phải là địa chỉ Gmail (ví dụ: ten@gmail.com)";
     }
 
     if (phone.trim() === "") {

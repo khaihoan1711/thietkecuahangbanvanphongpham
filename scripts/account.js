@@ -190,8 +190,8 @@ formHandlers.login = (form) => {
 
   if (values.email.trim() === "") {
     errors.email = "Vui lòng nhập email";
-  } else if (!isValidEmail(values.email)) {
-    errors.email = "Email không hợp lệ (ví dụ: ten@email.com)";
+  } else if (!isEmailFormat(values.email)) {
+    errors.email = "Email không hợp lệ (ví dụ: ten@gmail.com)";
   }
 
   if (values.password === "") {
@@ -228,7 +228,7 @@ formHandlers.register = (form) => {
   if (values.email.trim() === "") {
     errors.email = "Vui lòng nhập email";
   } else if (!isValidEmail(values.email)) {
-    errors.email = "Email không hợp lệ (ví dụ: ten@email.com)";
+    errors.email = "Email phải là địa chỉ Gmail (ví dụ: ten@gmail.com)";
   }
 
   if (values.phone.trim() === "") {
@@ -586,7 +586,7 @@ formHandlers.profile = (form) => {
   if (values.email.trim() === "") {
     errors.email = "Vui lòng nhập email";
   } else if (!isValidEmail(values.email)) {
-    errors.email = "Email không hợp lệ (ví dụ: ten@email.com)";
+    errors.email = "Email phải là địa chỉ Gmail (ví dụ: ten@gmail.com)";
   }
 
   if (values.phone.trim() === "") {
@@ -891,7 +891,7 @@ formHandlers.checkout = (form) => {
   }
 
   if (!errors.email && !isValidEmail(values.email)) {
-    errors.email = "Email không hợp lệ (ví dụ: ten@email.com)";
+    errors.email = "Email phải là địa chỉ Gmail (ví dụ: ten@gmail.com)";
   }
 
   const errorLine = form.querySelector("[data-form-error]");
