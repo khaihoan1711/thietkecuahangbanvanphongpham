@@ -74,6 +74,7 @@ const styles = [
 const scripts = [
   `const seedProducts = ${json(products)};`,
   `const productImages = ${json(productImages)};`,
+  `const movedImages = ${read("src/data/moved-images.json").trim()};`,
   read("scripts/cart-options.js"),
   read("scripts/store.js"),
   read("scripts/ui.js"),

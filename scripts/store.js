@@ -106,8 +106,9 @@ function clone(value) {
 
 // Ảnh sản phẩm mẫu được nhúng sẵn trong file HTML (productImages),
 // ảnh Admin tải lên là dữ liệu base64 nên dùng trực tiếp.
+// movedImages: đường dẫn ảnh cũ (còn lưu trong LocalStorage) -> đường dẫn mới.
 function imageSrc(path) {
-  return productImages[path] || path;
+  return productImages[movedImages[path] || path] || path;
 }
 
 // ---------- Dữ liệu mẫu ----------
