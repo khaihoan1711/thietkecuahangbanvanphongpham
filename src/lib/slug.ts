@@ -1,10 +1,15 @@
-// "Bút viết cao cấp" -> "but-viet-cao-cap"
-export function slugify(text: string) {
+// Chữ thường, bỏ dấu tiếng Việt: "Bút Đỏ" -> "but do". Dùng cho ô tìm kiếm và tạo mã.
+export function simplify(text: string) {
   return text
     .toLowerCase()
     .normalize("NFD")
-    .replace(/[̀-ͯ]/g, "")
-    .replace(/đ/g, "d")
+    .replace(/[\u0300-\u036f]/g, "")
+    .replace(/đ/g, "d");
+}
+
+// "Bút viết cao cấp" -> "but-viet-cao-cap"
+export function slugify(text: string) {
+  return simplify(text)
     .replace(/[^a-z0-9]+/g, "-")
     .replace(/^-+|-+$/g, "");
 }

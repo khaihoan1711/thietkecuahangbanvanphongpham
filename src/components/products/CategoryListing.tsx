@@ -4,6 +4,7 @@ import { useState, type ReactNode } from "react";
 import Link from "next/link";
 import ProductCard from "@/components/product/ProductCard";
 import Icon from "@/components/ui/Icon";
+import { simplify } from "@/lib/slug";
 import type { Product } from "@/types/product";
 
 const priceRanges = [
@@ -20,9 +21,6 @@ const sortOptions = [
   { value: "name", label: "Tên A-Z" },
 ];
 
-function simplify(text: string) {
-  return text.toLowerCase().normalize("NFD").replace(/[̀-ͯ]/g, "").replace(/đ/g, "d");
-}
 function toggle(list: string[], value: string) {
   return list.includes(value)
     ? list.filter((item) => item !== value)

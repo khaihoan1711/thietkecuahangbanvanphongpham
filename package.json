@@ -6,9 +6,7 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "html:sync": "node scripts/sync-html.cjs --once",
-    "html:watch": "node scripts/sync-html.cjs",
-    "html:products": "node scripts/export-pens-html.cjs"
+    "html:sync": "node scripts/build-html.cjs"
   },
   "dependencies": {
     "next": "14.2.15",

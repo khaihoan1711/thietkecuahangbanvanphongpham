@@ -1,4 +1,4 @@
-// Generated from src/lib/product-options.ts; shared logic for the standalone HTML.
+// Bản chép tay của src/lib/product-options.ts cho bản HTML. Sửa một bên thì sửa cả bên kia.
 
 function selectionFor(product, selection = {}) {
   return {

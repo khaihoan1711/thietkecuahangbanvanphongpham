@@ -5,15 +5,9 @@ import { useCatalog } from "@/context/CatalogContext";
 import ProductCard from "@/components/product/ProductCard";
 import ProductFilters from "@/components/products/ProductFilters";
 import ProductToolbar from "@/components/products/ProductToolbar";
+import { simplify } from "@/lib/slug";
 import type { ProductCategory } from "@/types/product";
 
-function simplify(text: string) {
-  return text
-    .toLowerCase()
-    .normalize("NFD")
-    .replace(/[\u0300-\u036f]/g, "")
-    .replace(/đ/g, "d");
-}
 function toggle<T>(list: T[], value: T) {
   return list.includes(value)
     ? list.filter((item) => item !== value)

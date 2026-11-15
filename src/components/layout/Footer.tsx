@@ -1,7 +1,7 @@
 import Link from "next/link";
 import Icon from "@/components/ui/Icon";
 
-// Thông tin liên hệ cửa hàng. Bản HTML đọc các giá trị này khi chạy npm run html:sync.
+// Thông tin liên hệ cửa hàng. Bản HTML có chân trang riêng trong templates/storefront.html.
 const contact = {
   phone: "0365392002",
   email: "khaihoanhuetran@gmail.com",

@@ -9,6 +9,7 @@ import { btnBase, btnPrimary } from "@/components/ui/buttons";
 import { useCatalog } from "@/context/CatalogContext";
 import { useToast } from "@/context/ToastContext";
 import { formatVND } from "@/lib/format";
+import { simplify } from "@/lib/slug";
 import type { Product } from "@/types/product";
 
 // Từ mức này trở xuống được coi là sắp hết hàng
@@ -25,10 +26,6 @@ const stockFilters: { value: StockFilter; label: string }[] = [
 
 const filterStyle =
   "h-11 rounded-lg border border-line bg-white px-3 text-sm text-ink focus:border-primary focus:outline-none focus:ring-[3px] focus:ring-primary-soft";
-
-function simplify(text: string) {
-  return text.toLowerCase().normalize("NFD").replace(/[̀-ͯ]/g, "").replace(/đ/g, "d");
-}
 
 function matchesStock(product: Product, filter: StockFilter) {
   if (filter === "unlimited") return product.stock === undefined;

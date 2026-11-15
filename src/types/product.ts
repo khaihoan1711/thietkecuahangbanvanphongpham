@@ -1,5 +1,3 @@
-export type Region = "bac" | "trung" | "nam";
-
 // Mã danh mục (ví dụ "but", "vo-so"). Admin có thể thêm danh mục mới nên đây là chuỗi tự do.
 export type ProductCategory = string;
 

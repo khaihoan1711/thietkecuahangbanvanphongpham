@@ -384,12 +384,6 @@ function categoryLabel(id) {
   return category ? category.label : id;
 }
 
-function categoryIcon(id) {
-  const category = getCategory(id);
-
-  return category ? category.icon : "◆";
-}
-
 // Thêm mới hoặc cập nhật (nếu mã sản phẩm đã có).
 function saveProduct(product) {
   const exists = products.some((item) => item.id === product.id);

@@ -53,14 +53,6 @@ export function getSaleProducts(products: Product[]) {
   );
 }
 
-export function getProductsByCategory(
-  products: Product[],
-  category: string,
-  count = 8,
-) {
-  return products.filter((product) => product.category === category).slice(0, count);
-}
-
 export function getRelatedProducts(products: Product[], product: Product, count = 4) {
   const sameCategory = products.filter(
     (item) => item.id !== product.id && item.category === product.category,

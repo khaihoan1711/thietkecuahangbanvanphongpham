@@ -8,6 +8,7 @@ import ConfirmDialog from "@/components/ui/ConfirmDialog";
 import { useAuth } from "@/context/AuthContext";
 import { useToast } from "@/context/ToastContext";
 import { formatDate } from "@/lib/format";
+import { simplify } from "@/lib/slug";
 import type { User } from "@/types/store";
 
 type PendingAction =
@@ -17,10 +18,6 @@ type PendingAction =
 
 const filterStyle =
   "h-11 rounded-lg border border-line bg-white px-3 text-sm text-ink focus:border-primary focus:outline-none focus:ring-[3px] focus:ring-primary-soft";
-
-function simplify(text: string) {
-  return text.toLowerCase().normalize("NFD").replace(/[̀-ͯ]/g, "").replace(/đ/g, "d");
-}
 
 // Nội dung hộp thoại xác nhận cho từng thao tác.
 function describeAction(action: PendingAction) {

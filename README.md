@@ -76,19 +76,19 @@ Tính tổng tiền.
 
 Lưu giỏ hàng bằng LocalStorage.
 
-##  Thanh toán
+## Thanh toán
 
 Thêm vào giỏ hàng
 
 Đặt hàng
 
-##  Đăng nhập và đăng ký
+## Đăng nhập và đăng ký
 
 Giao diện đăng nhập.
 
 Giao diện đăng ký.
 
-##  Responsive
+## Responsive
 
 Hỗ trợ hiển thị trên máy tính.
 
@@ -118,7 +118,7 @@ Quản lý đơn hàng thực tế.
 
 Thanh toán trực tuyến thực tế.
 
-##  6. Kết quả
+## 6. Kết quả
 
 Website cung cấp các chức năng cơ bản của một Website bán văn phòng phẩm như xem sản phẩm, tìm kiếm, lọc, xem chi tiết, giỏ hàng, thanh toán Front-end, đăng nhập, đăng ký và Responsive trên nhiều thiết bị.
 
@@ -140,7 +140,7 @@ Tài khoản Admin mẫu và dữ liệu mẫu nằm trong `src/data/seed-users.
 
 File `khaihoanstationery.html` là bản độc lập, chỉ cần bấm đúp để mở bằng Chrome, không cần chạy `npm`. Mở khu quản trị bằng `khaihoanstationery.html#quan-tri`.
 
-File này được ghép tự động từ `templates/storefront.html`, `scripts/*.css` và `scripts/*.js`. Sau khi sửa các file nguồn, chạy:
+File này được ghép tự động (bằng `scripts/build-html.cjs`) từ `templates/storefront.html`, `scripts/*.css`, `scripts/*.js` và dữ liệu `src/data/*.json`. Bản HTML là một bản cài đặt riêng của cùng giao diện: khi sửa giao diện, chân trang hay thông tin liên hệ bên Next.js, cần sửa cả file tương ứng trong `templates/` hoặc `scripts/`. Sau khi sửa, chạy:
 
 ```bash
 npm run html:sync
