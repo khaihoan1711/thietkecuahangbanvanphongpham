@@ -200,3 +200,43 @@ button:disabled {
     margin-left: 52px;
   }
 }
+/* Mã QR chuyển khoản: chỉ hiện khi chọn "Chuyển khoản ngân hàng" */
+.bank-qr-slot {
+  display: none;
+}
+fieldset:has(input[value="bank"]:checked) .bank-qr-slot {
+  display: block;
+}
+.bank-qr {
+  display: flex;
+  align-items: flex-start;
+  gap: 20px;
+  margin-top: 16px;
+  padding: 18px;
+  border: 1px solid #176bc04d;
+  border-radius: 12px;
+  background: #e6f2ff80;
+  text-align: left;
+}
+.bank-qr img {
+  flex-shrink: 0;
+  width: 208px;
+  height: auto;
+  padding: 12px;
+  background: white;
+  border-radius: 8px;
+  box-shadow: 0 2px 12px #17233314;
+}
+.bank-qr p {
+  margin: 0 0 6px;
+}
+.notice-box .bank-qr {
+  max-width: 560px;
+  margin: 20px auto;
+}
+@media (max-width: 560px) {
+  .bank-qr {
+    flex-direction: column;
+    align-items: center;
+  }
+}

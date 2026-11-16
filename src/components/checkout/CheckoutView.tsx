@@ -2,6 +2,7 @@
 
 import Link from "next/link";
 import { useEffect, useState } from "react";
+import BankTransferQR from "@/components/checkout/BankTransferQR";
 import { btnBase, btnPrimary } from "@/components/ui/buttons";
 import { useAuth } from "@/context/AuthContext";
 import { useCart } from "@/context/CartContext";
@@ -13,6 +14,7 @@ import { formatVND } from "@/lib/format";
 import { cartKey } from "@/lib/product-options";
 import { getCartLines, toOrderItems } from "@/lib/cart-lines";
 import { isValidEmail } from "@/lib/validation";
+import type { Order } from "@/types/store";
 
 type FormValues = {
   fullName: string;
@@ -84,8 +86,8 @@ export default function CheckoutView() {
   const [values, setValues] = useState<FormValues>(emptyForm);
   const [errors, setErrors] = useState<Errors>({});
   const [payment, setPayment] = useState<"cod" | "bank">("cod");
-  // Mã đơn hàng vừa đặt (sau khi đặt, giỏ hàng được làm trống)
-  const [placedOrderId, setPlacedOrderId] = useState<string | null>(null);
+  // Đơn hàng vừa đặt (sau khi đặt, giỏ hàng được làm trống)
+  const [placedOrder, setPlacedOrder] = useState<Order | null>(null);
 
   // Người dùng đã đăng nhập thì điền sẵn thông tin giao hàng đã lưu trong tài khoản.
   useEffect(() => {
@@ -113,7 +115,7 @@ export default function CheckoutView() {
   // Join each cart line with its product. Ids that no longer exist are skipped.
   const lines = getCartLines(items, products);
 
-  if (placedOrderId && lines.length === 0) {
+  if (placedOrder && lines.length === 0) {
     return (
       <div className="rounded-xl border border-line bg-white px-6 py-16 text-center">
         <p
@@ -123,8 +125,16 @@ export default function CheckoutView() {
           Đặt hàng thành công! Cảm ơn bạn đã mua sắm tại KhaiHoanShop.
         </p>
         <p className="mt-2 text-ink-muted">
-          Mã đơn hàng của bạn là <strong className="text-ink">{placedOrderId}</strong>.
+          Mã đơn hàng của bạn là <strong className="text-ink">{placedOrder.id}</strong>.
         </p>
+        {placedOrder.payment === "bank" && (
+          <div className="mx-auto mt-6 max-w-xl text-left">
+            <BankTransferQR
+              amount={placedOrder.total}
+              orderId={placedOrder.id}
+            />
+          </div>
+        )}
         <div className="mt-6 flex flex-wrap justify-center gap-3">
           {currentUser && (
             <Link
@@ -206,7 +216,7 @@ export default function CheckoutView() {
     });
 
     clearCart();
-    setPlacedOrderId(order.id);
+    setPlacedOrder(order);
     showToast(`Đặt hàng thành công. Mã đơn: ${order.id}`);
   }
 
@@ -331,7 +341,7 @@ export default function CheckoutView() {
               </label>
             ))}
           </div>
-          {/* Bank transfer is a selectable option only: no payment gateway and no bank details yet. */}
+          {payment === "bank" && <BankTransferQR amount={total} />}
         </fieldset>
       </div>
 

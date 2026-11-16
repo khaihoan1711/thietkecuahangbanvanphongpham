@@ -57,7 +57,10 @@ for (const product of products) {
   }
 }
 
-// Chỉ ảnh sản phẩm (chưa gồm ảnh trong template) được đưa vào productImages.
+// Ảnh QR chuyển khoản được vẽ bằng JavaScript nên cũng cần có trong productImages.
+embedImage("/images/products/qr-chuyen-khoan.png");
+
+// Ảnh sản phẩm và ảnh QR (chưa gồm ảnh trong template) được đưa vào productImages.
 const productImages = { ...images };
 
 function json(value) {

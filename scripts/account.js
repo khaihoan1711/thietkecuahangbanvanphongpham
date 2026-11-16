@@ -683,6 +683,63 @@ formHandlers.password = (form) => {
 // Mã đơn hàng vừa đặt (sau khi đặt, giỏ hàng được làm trống)
 let placedOrderId = null;
 
+// Thông tin chuyển khoản của cửa hàng (ảnh QR là mã VietQR của tài khoản này,
+// được nhúng sẵn trong file HTML).
+const BANK = {
+  qrImage: "/images/products/qr-chuyen-khoan.png",
+  name: "Vietcombank",
+  accountName: "DUONG KHAI HOAN",
+  accountNumber: "1029119451",
+};
+
+// Khung mã QR cho "Chuyển khoản ngân hàng". Chưa đặt hàng thì chưa có mã đơn.
+function bankQrHtml(amount, orderId) {
+  const content = orderId
+    ? "<strong>" + esc(orderId) + "</strong>"
+    : '<span class="muted">mã đơn hàng (hiện ra sau khi bấm Đặt hàng)</span>';
+
+  return /* HTML */ `
+    <div class="bank-qr">
+      <img
+        src="${imageSrc(BANK.qrImage)}"
+        width="525"
+        height="525"
+        alt="Mã QR chuyển khoản ${esc(BANK.name)} — ${esc(BANK.accountName)}"
+      />
+      <div>
+        <p>
+          <strong>
+            Quét mã QR bằng ứng dụng ngân hàng hoặc chuyển khoản theo thông tin sau
+          </strong>
+        </p>
+        <p>
+          <span class="muted">Ngân hàng:</span>
+          <strong>${esc(BANK.name)}</strong>
+        </p>
+        <p>
+          <span class="muted">Chủ tài khoản:</span>
+          <strong>${esc(BANK.accountName)}</strong>
+        </p>
+        <p>
+          <span class="muted">Số tài khoản:</span>
+          <strong>${esc(BANK.accountNumber)}</strong>
+        </p>
+        <p>
+          <span class="muted">Số tiền:</span>
+          <strong class="price">${money(amount)}</strong>
+        </p>
+        <p>
+          <span class="muted">Nội dung chuyển khoản:</span>
+          ${content}
+        </p>
+        <p class="muted">
+          Cửa hàng sẽ xác nhận và giao hàng sau khi nhận được tiền chuyển khoản.
+        </p>
+      </div>
+    </div>
+  `;
+}
+
 const checkoutFields = [
   ["fullName", "Họ và tên", "Vui lòng nhập họ và tên"],
   ["phone", "Số điện thoại", "Vui lòng nhập số điện thoại"],
@@ -702,6 +759,9 @@ function renderCheckoutPage() {
 
   // Vừa đặt xong: giỏ hàng đã trống nên hiện thông báo thành công.
   if (placedOrderId && lines.length === 0) {
+    const placed = orders.find((order) => order.id === placedOrderId);
+    const bankQr =
+      placed && placed.payment === "bank" ? bankQrHtml(placed.total, placed.id) : "";
     const orderLink = currentUser()
       ? '<a class="btn" href="#tai-khoan/orders">Xem đơn hàng của tôi</a>'
       : "";
@@ -715,6 +775,7 @@ function renderCheckoutPage() {
             <strong>${esc(placedOrderId)}</strong>
             .
           </p>
+          ${bankQr}
           <div class="buttons center">
             ${orderLink}
             <a
@@ -822,6 +883,7 @@ function renderCheckoutPage() {
                 />
                 Chuyển khoản ngân hàng
               </label>
+              <div class="bank-qr-slot">${bankQrHtml(totals.total)}</div>
             </fieldset>
           </div>
           <aside class="panel checkout-summary">
