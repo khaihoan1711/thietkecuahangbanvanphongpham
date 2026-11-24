@@ -1,15 +1,10 @@
 import { formatVND } from "@/lib/format";
+import { BANK, vietQrImage } from "@/lib/vietqr";
 
-// Thông tin chuyển khoản của cửa hàng (ảnh QR là mã VietQR của tài khoản này).
-const bank = {
-  qrImage: "/images/products/qr-chuyen-khoan.png",
-  name: "Vietcombank",
-  accountName: "DUONG KHAI HOAN",
-  accountNumber: "1029119451",
-};
-
-// Khung mã QR hiện ra khi khách chọn "Chuyển khoản ngân hàng".
-// Trước khi đặt hàng chưa có mã đơn, nên chỉ nhắc khách ghi mã đơn sau khi đặt.
+// Khung chuyển khoản ngân hàng.
+// - Chưa đặt hàng (chưa có mã đơn): chỉ hiện thông tin tài khoản, chưa có mã QR,
+//   để khách không chuyển tiền thiếu mã đơn.
+// - Đã có mã đơn: mã QR có sẵn đúng số tiền và nội dung chuyển khoản là mã đơn.
 export default function BankTransferQR({
   amount,
   orderId,
@@ -18,23 +13,25 @@ export default function BankTransferQR({
   orderId?: string;
 }) {
   const rows = [
-    ["Ngân hàng", bank.name],
-    ["Chủ tài khoản", bank.accountName],
-    ["Số tài khoản", bank.accountNumber],
+    ["Ngân hàng", BANK.name],
+    ["Chủ tài khoản", BANK.accountName],
+    ["Số tài khoản", BANK.accountNumber],
   ];
 
   return (
     <div className="mt-5 flex flex-col items-center gap-5 rounded-xl border border-primary/30 bg-primary-soft/50 p-5 sm:flex-row sm:items-start">
-      <img
-        src={bank.qrImage}
-        alt={`Mã QR chuyển khoản ${bank.name} — ${bank.accountName}`}
-        width={525}
-        height={525}
-        className="w-52 shrink-0 rounded-lg bg-white p-3 shadow-soft"
-      />
+      {orderId && (
+        <img
+          src={vietQrImage(amount, orderId)}
+          alt={`Mã QR chuyển khoản ${formatVND(amount)} cho đơn ${orderId}`}
+          className="w-56 shrink-0 rounded-lg bg-white shadow-soft [image-rendering:pixelated]"
+        />
+      )}
       <div className="space-y-2 text-ink">
         <p className="font-semibold text-navy">
-          Quét mã QR bằng ứng dụng ngân hàng hoặc chuyển khoản theo thông tin sau
+          {orderId
+            ? "Quét mã QR bằng ứng dụng ngân hàng: số tiền và nội dung đã có sẵn"
+            : "Thông tin chuyển khoản"}
         </p>
         <dl className="space-y-1">
           {rows.map(([label, value]) => (
@@ -53,15 +50,15 @@ export default function BankTransferQR({
               {orderId ? (
                 <strong>{orderId}</strong>
               ) : (
-                <span className="text-ink-muted">
-                  mã đơn hàng (hiện ra sau khi bấm Đặt hàng)
-                </span>
+                <span className="text-ink-muted">mã đơn hàng</span>
               )}
             </dd>
           </div>
         </dl>
         <p className="text-sm text-ink-muted">
-          Cửa hàng sẽ xác nhận và giao hàng sau khi nhận được tiền chuyển khoản.
+          {orderId
+            ? "Cửa hàng sẽ xác nhận và giao hàng sau khi nhận được tiền chuyển khoản."
+            : "Mã QR có sẵn số tiền và mã đơn hàng sẽ hiện ngay sau khi bạn bấm Đặt hàng."}
         </p>
       </div>
     </div>

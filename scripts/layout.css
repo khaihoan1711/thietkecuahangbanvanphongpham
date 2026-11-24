@@ -111,6 +111,17 @@ header {
   color: var(--primary);
   margin-top: 4px;
 }
+/* Logo KHS đặt bên trái tên cửa hàng ở đầu trang */
+.brand {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+.brand-mark {
+  flex-shrink: 0;
+  width: 56px;
+  height: 56px;
+}
 .search {
   display: flex;
   flex: 1;
@@ -663,6 +674,13 @@ dialog::backdrop {
   }
   .logo {
     font-size: 21px;
+  }
+  .brand {
+    gap: 10px;
+  }
+  .brand-mark {
+    width: 44px;
+    height: 44px;
   }
   .actions {
     margin-left: auto;

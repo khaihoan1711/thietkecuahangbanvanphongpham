@@ -527,6 +527,9 @@ function ordersPanelHtml(user) {
             ? '<div class="order-card-detail">' +
               orderTrackerHtml(order.status) +
               orderDetailHtml(order) +
+              (order.payment === "bank" && order.status === "pending"
+                ? bankQrHtml(order.total, order.id)
+                : "") +
               "</div>"
             : ""}
         </li>
@@ -683,35 +686,35 @@ formHandlers.password = (form) => {
 // Mã đơn hàng vừa đặt (sau khi đặt, giỏ hàng được làm trống)
 let placedOrderId = null;
 
-// Thông tin chuyển khoản của cửa hàng (ảnh QR là mã VietQR của tài khoản này,
-// được nhúng sẵn trong file HTML).
-const BANK = {
-  qrImage: "/images/products/qr-chuyen-khoan.png",
-  name: "Vietcombank",
-  accountName: "DUONG KHAI HOAN",
-  accountNumber: "1029119451",
-};
-
-// Khung mã QR cho "Chuyển khoản ngân hàng". Chưa đặt hàng thì chưa có mã đơn.
+// Khung chuyển khoản ngân hàng (BANK và vietQrImage nằm trong scripts/vietqr.js).
+// - Chưa đặt hàng (chưa có mã đơn): chỉ hiện thông tin tài khoản, chưa có mã QR,
+//   để khách không chuyển tiền thiếu mã đơn.
+// - Đã có mã đơn: mã QR có sẵn đúng số tiền và nội dung chuyển khoản là mã đơn.
 function bankQrHtml(amount, orderId) {
+  const qr = orderId
+    ? '<img src="' +
+      vietQrImage(amount, orderId) +
+      '" alt="Mã QR chuyển khoản ' +
+      esc(money(amount)) +
+      " cho đơn " +
+      esc(orderId) +
+      '" />'
+    : "";
   const content = orderId
     ? "<strong>" + esc(orderId) + "</strong>"
-    : '<span class="muted">mã đơn hàng (hiện ra sau khi bấm Đặt hàng)</span>';
+    : '<span class="muted">mã đơn hàng</span>';
+  const heading = orderId
+    ? "Quét mã QR bằng ứng dụng ngân hàng: số tiền và nội dung đã có sẵn"
+    : "Thông tin chuyển khoản";
+  const note = orderId
+    ? "Cửa hàng sẽ xác nhận và giao hàng sau khi nhận được tiền chuyển khoản."
+    : "Mã QR có sẵn số tiền và mã đơn hàng sẽ hiện ngay sau khi bạn bấm Đặt hàng.";
 
   return /* HTML */ `
     <div class="bank-qr">
-      <img
-        src="${imageSrc(BANK.qrImage)}"
-        width="525"
-        height="525"
-        alt="Mã QR chuyển khoản ${esc(BANK.name)} — ${esc(BANK.accountName)}"
-      />
+      ${qr}
       <div>
-        <p>
-          <strong>
-            Quét mã QR bằng ứng dụng ngân hàng hoặc chuyển khoản theo thông tin sau
-          </strong>
-        </p>
+        <p><strong>${heading}</strong></p>
         <p>
           <span class="muted">Ngân hàng:</span>
           <strong>${esc(BANK.name)}</strong>
@@ -732,9 +735,7 @@ function bankQrHtml(amount, orderId) {
           <span class="muted">Nội dung chuyển khoản:</span>
           ${content}
         </p>
-        <p class="muted">
-          Cửa hàng sẽ xác nhận và giao hàng sau khi nhận được tiền chuyển khoản.
-        </p>
+        <p class="muted">${note}</p>
       </div>
     </div>
   `;

@@ -2,6 +2,7 @@
 
 import Link from "next/link";
 import { useState } from "react";
+import BankTransferQR from "@/components/checkout/BankTransferQR";
 import OrderDetailContent from "@/components/order/OrderDetailContent";
 import OrderTracker from "@/components/order/OrderTracker";
 import ConfirmDialog from "@/components/ui/ConfirmDialog";
@@ -104,6 +105,12 @@ export default function OrdersSection({ user }: { user: User }) {
                   <div className="mt-4 space-y-5 border-t border-line pt-5">
                     <OrderTracker status={order.status} />
                     <OrderDetailContent order={order} />
+                    {order.payment === "bank" && order.status === "pending" && (
+                      <BankTransferQR
+                        amount={order.total}
+                        orderId={order.id}
+                      />
+                    )}
                   </div>
                 )}
               </li>

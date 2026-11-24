@@ -20,13 +20,22 @@ export default function Header({ currentPath = "/" }: { currentPath?: string }) 
         <Link
           href="/"
           aria-label="KhaiHoanShop — Trang chủ"
-          className="shrink-0 leading-none"
+          className="flex shrink-0 items-center gap-2.5 leading-none md:gap-3"
         >
-          <span className="block text-[21px] font-bold tracking-tight text-navy md:text-[29px]">
-            KhaiHoanShop
-          </span>
-          <span className="block text-[12px] font-bold uppercase tracking-[0.22em] text-primary">
-            Stationery
+          <img
+            src="/images/products/logo-icon.png"
+            alt=""
+            width={128}
+            height={128}
+            className="h-11 w-11 md:h-14 md:w-14"
+          />
+          <span>
+            <span className="block text-[21px] font-bold tracking-tight text-navy md:text-[29px]">
+              KhaiHoanShop
+            </span>
+            <span className="block text-[12px] font-bold uppercase tracking-[0.22em] text-primary">
+              Stationery
+            </span>
           </span>
         </Link>
 

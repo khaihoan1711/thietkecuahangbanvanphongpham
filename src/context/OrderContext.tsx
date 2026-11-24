@@ -28,9 +28,24 @@ type OrderContextValue = {
 
 const OrderContext = createContext<OrderContextValue | null>(null);
 
-// "DH-1012" -> 1012
-function orderNumber(order: Order) {
-  return Number(order.id.replace(/\D/g, "")) || 0;
+// Mã đơn hàng mới, ví dụ "DHMIDC3K8A7F".
+// Không có máy chủ nên mỗi trình duyệt tự tạo mã: dùng thời điểm đặt (mili giây, hệ 36)
+// cộng 2 ký tự ngẫu nhiên để mã của các khách không trùng nhau. Chỉ gồm chữ in hoa
+// và số để ngân hàng nào cũng giữ nguyên khi dùng làm nội dung chuyển khoản.
+function newOrderId(existing: Order[]) {
+  let id = "";
+
+  do {
+    const time = Date.now().toString(36).toUpperCase();
+    const random = Math.floor(Math.random() * 36 * 36)
+      .toString(36)
+      .toUpperCase()
+      .padStart(2, "0");
+
+    id = "DH" + time + random;
+  } while (existing.some((order) => order.id === id));
+
+  return id;
 }
 
 export function OrderProvider({ children }: { children: ReactNode }) {
@@ -42,13 +57,9 @@ export function OrderProvider({ children }: { children: ReactNode }) {
   );
 
   function placeOrder(input: NewOrderInput): Order {
-    const highest = orders.reduce(
-      (max, order) => Math.max(max, orderNumber(order)),
-      1000,
-    );
     const order: Order = {
       ...input,
-      id: `DH-${highest + 1}`,
+      id: newOrderId(orders),
       status: "pending",
       createdAt: new Date().toISOString(),
     };

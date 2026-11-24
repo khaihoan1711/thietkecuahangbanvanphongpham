@@ -57,10 +57,7 @@ for (const product of products) {
   }
 }
 
-// Ảnh QR chuyển khoản được vẽ bằng JavaScript nên cũng cần có trong productImages.
-embedImage("/images/products/qr-chuyen-khoan.png");
-
-// Ảnh sản phẩm và ảnh QR (chưa gồm ảnh trong template) được đưa vào productImages.
+// Chỉ ảnh sản phẩm (chưa gồm ảnh trong template) được đưa vào productImages.
 const productImages = { ...images };
 
 function json(value) {
@@ -78,6 +75,9 @@ const scripts = [
   `const seedProducts = ${json(products)};`,
   `const productImages = ${json(productImages)};`,
   `const movedImages = ${read("src/data/moved-images.json").trim()};`,
+  // Thư viện tạo mã QR (qrcode-generator, giấy phép MIT) và mã VietQR của cửa hàng.
+  read("node_modules/qrcode-generator/qrcode.js"),
+  read("scripts/vietqr.js"),
   read("scripts/cart-options.js"),
   read("scripts/store.js"),
   read("scripts/ui.js"),
