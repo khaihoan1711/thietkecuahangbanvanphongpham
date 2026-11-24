@@ -64,7 +64,7 @@ function makeOrder(
   };
 }
 
-// Đơn hàng mẫu trải đều từ tháng 6 đến tháng 11/2026 để biểu đồ doanh thu có dữ liệu.
+// Đơn hàng mẫu từ tháng 6 đến tháng 11/2026 để Dashboard có dữ liệu.
 export const seedOrders: Order[] = [
   makeOrder("DH-1001", "u-nguyenvana", "2026-06-12T09:00:00.000Z", "delivered", [
     ["tap-diem-10-96-trang-tp-nb-072", 10],
@@ -112,5 +112,40 @@ export const seedOrders: Order[] = [
   ]),
   makeOrder("DH-1012", "u-tranthib", "2026-11-07T16:05:00.000Z", "pending", [
     ["hop-but-diem-10-tp-pca016", 2],
+  ]),
+  // Thêm sau: đơn đã giao từ 28/09/2026 đến nay (biểu đồ doanh thu tính từ ngày này).
+  makeOrder("DH-2001", "u-nguyenvana", "2026-09-28T02:30:00.000Z", "delivered", [
+    ["tap-diem-10-96-trang-tp-nb-072", 10],
+    ["but-bi-tl-027", 10],
+  ]),
+  makeOrder("DH-2002", "u-tranthib", "2026-09-30T08:10:00.000Z", "delivered", [
+    ["giay-in-double-a-a4-80gsm", 2],
+    ["bam-kim-mini-so-10-thien-long", 1],
+  ]),
+  makeOrder("DH-2003", "u-lethic", "2026-10-05T03:20:00.000Z", "delivered", [
+    ["balo-thien-long-charmie-bp-039", 1],
+    ["hop-but-diem-10-tp-pca016", 1],
+  ]),
+  makeOrder("DH-2004", "u-nguyenvana", "2026-10-19T12:45:00.000Z", "delivered", [
+    ["may-tinh-van-phong-thien-long-flexio-cal-009", 1],
+    ["but-gel-thien-long-gel-070", 5],
+  ]),
+  makeOrder("DH-2005", "u-tranthib", "2026-10-26T01:15:00.000Z", "delivered", [
+    ["mau-gouache-tuyp-12ml-colokit", 1],
+    ["but-long-mau-fiber-brush-colokit-classic", 2],
+  ]),
+  makeOrder("DH-2006", "u-lethic", "2026-11-03T07:00:00.000Z", "delivered", [
+    ["balo-chong-gu-clever-hippo-fancy", 1],
+  ]),
+  makeOrder("DH-2007", "u-nguyenvana", "2026-11-10T04:30:00.000Z", "delivered", [
+    ["giay-a4-80gsm-ik-copy", 3],
+    ["kep-buom-flexoffice-25mm-fo-dc03", 2],
+  ]),
+  makeOrder("DH-2008", "u-tranthib", "2026-11-16T09:40:00.000Z", "delivered", [
+    ["tap-thien-long-kindays-96-trang-nb-130", 20],
+  ]),
+  makeOrder("DH-2009", "u-lethic", "2026-11-21T02:05:00.000Z", "delivered", [
+    ["so-cong-binder-campus-a5", 2],
+    ["but-xoa-cp-02", 3],
   ]),
 ];

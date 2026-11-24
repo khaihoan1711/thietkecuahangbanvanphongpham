@@ -33,6 +33,7 @@ export default function DashboardView() {
     .sort((a, b) => b.createdAt.localeCompare(a.createdAt))
     .slice(0, RECENT_ORDER_COUNT);
   const pendingCount = orders.filter((order) => order.status === "pending").length;
+  const revenueByMonth = getMonthlyRevenue(orders);
   const lowStock = products
     .filter(
       (product) => product.stock !== undefined && product.stock <= LOW_STOCK_LIMIT,
@@ -90,9 +91,22 @@ export default function DashboardView() {
 
       <div className="mt-6 grid gap-6 xl:grid-cols-[2fr_1fr]">
         <section className="rounded-xl border border-line bg-white p-5">
-          <h3 className="text-lg font-bold text-navy">Doanh thu 6 tháng gần nhất</h3>
+          <div className="flex flex-wrap items-end justify-between gap-2">
+            <div>
+              <h3 className="text-lg font-bold text-navy">Doanh thu theo tháng</h3>
+              <p className="text-sm text-ink-muted">
+                Đơn đã giao, từ 28/09/2026 đến {formatDate(new Date().toISOString())}
+              </p>
+            </div>
+            <p className="text-right">
+              <span className="block text-sm text-ink-muted">Tổng trong giai đoạn</span>
+              <strong className="text-xl text-primary">
+                {formatVND(revenueByMonth.reduce((sum, item) => sum + item.revenue, 0))}
+              </strong>
+            </p>
+          </div>
           <div className="mt-4">
-            <RevenueChart data={getMonthlyRevenue(orders)} />
+            <RevenueChart data={revenueByMonth} />
           </div>
         </section>
 

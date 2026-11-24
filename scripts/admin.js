@@ -234,10 +234,10 @@ function pageHeaderHtml(title, description, actionHtml = "") {
 
 // ---------- Dashboard ----------
 
-// 1.250.000 -> "1,3 tr", 85.000 -> "85k"
+// 1.250.000 -> "1,25 tr", 85.000 -> "85k"
 function formatShort(value) {
   if (value >= 1000000) {
-    return (value / 1000000).toFixed(1).replace(".0", "").replace(".", ",") + " tr";
+    return String(Math.round((value / 1000000) * 100) / 100).replace(".", ",") + " tr";
   }
 
   if (value >= 1000) {
@@ -247,81 +247,181 @@ function formatShort(value) {
   return String(value);
 }
 
-// Biểu đồ cột doanh thu theo tháng, vẽ bằng SVG (không cần thư viện biểu đồ).
-function revenueChartHtml(data) {
-  const chartHeight = 180;
-  const barWidth = 44;
-  const slotWidth = 90;
-  const width = data.length * slotWidth;
-  const max = Math.max(...data.map((item) => item.revenue), 1);
-  const gridLines = [0, 0.5, 1]
-    .map((ratio) => {
-      const y = 30 + chartHeight * ratio;
+// Làm tròn mức cao nhất của trục dọc thành số "đẹp" (1, 2, 2,5, 5 × 10^n).
+function niceMax(value) {
+  if (value <= 0) {
+    return 100000;
+  }
+
+  const power = 10 ** Math.floor(Math.log10(value));
+  const step = [1, 2, 2.5, 5, 10].find((item) => item * power >= value) || 10;
+
+  return step * power;
+}
+
+// Đường cong mềm đi qua các điểm. Tiếp tuyến nằm ngang tại mỗi điểm
+// nên đường cong không bao giờ vượt quá điểm cao nhất hay thấp nhất.
+function smoothPath(points) {
+  return points
+    .map((point, index) => {
+      if (index === 0) {
+        return "M " + point.x + " " + point.y;
+      }
+
+      const previous = points[index - 1];
+      const handle = (point.x - previous.x) * 0.45;
 
       return (
-        '<line x1="0" x2="' +
-        width +
-        '" y1="' +
-        y +
-        '" y2="' +
-        y +
-        '" stroke="#E6E8EC"' +
-        (ratio === 1 ? "" : ' stroke-dasharray="4 4"') +
-        "/>"
+        "C " +
+        (previous.x + handle) +
+        " " +
+        previous.y +
+        " " +
+        (point.x - handle) +
+        " " +
+        point.y +
+        " " +
+        point.x +
+        " " +
+        point.y
       );
     })
-    .join("");
-  const bars = data
-    .map((item, index) => {
-      const barHeight = Math.round((item.revenue / max) * chartHeight);
-      const x = index * slotWidth + (slotWidth - barWidth) / 2;
-      const y = 30 + chartHeight - barHeight;
-      const center = x + barWidth / 2;
+    .join(" ");
+}
+
+// Biểu đồ vùng ("sơ đồ núi") doanh thu theo tháng, vẽ bằng SVG, không cần thư viện.
+function revenueChartHtml(data) {
+  const width = 640;
+  const height = 280;
+  const pad = { top: 36, right: 28, bottom: 44, left: 64 };
+  const plotW = width - pad.left - pad.right;
+  const plotH = height - pad.top - pad.bottom;
+  const baseY = pad.top + plotH;
+  // Chừa khoảng trống hai bên để nhãn ở điểm đầu/cuối không bị cắt.
+  const inset = 36;
+  const top = niceMax(Math.max(...data.map((item) => item.revenue)) * 1.15);
+  const gap = data.length > 1 ? (plotW - inset * 2) / (data.length - 1) : 0;
+  const points = data.map((item, index) => ({
+    ...item,
+    x: data.length > 1 ? pad.left + inset + index * gap : pad.left + plotW / 2,
+    y: baseY - (item.revenue / top) * plotH,
+  }));
+  const line = smoothPath(points);
+  const first = points[0];
+  const last = points[points.length - 1];
+  const area =
+    line + " L " + last.x + " " + baseY + " L " + first.x + " " + baseY + " Z";
+  const grid = [0, 0.25, 0.5, 0.75, 1]
+    .map((ratio) => {
+      const y = baseY - ratio * plotH;
 
       return /* HTML */ `
-        <g>
-          <rect
-            x="${x}"
-            y="${y}"
-            width="${barWidth}"
-            height="${barHeight}"
-            rx="6"
-            fill="#176bc0"
-          >
-            <title>${esc(item.label)}: ${money(item.revenue)}</title>
-          </rect>
-          <text
-            x="${center}"
-            y="${y - 8}"
-            text-anchor="middle"
-            font-size="13"
-            font-weight="700"
-            fill="#14365b"
-          >
-            ${item.revenue > 0 ? formatShort(item.revenue) : ""}
-          </text>
-          <text
-            x="${center}"
-            y="${chartHeight + 40}"
-            text-anchor="middle"
-            font-size="13"
-            fill="#68707B"
-          >
-            ${esc(item.label)}
-          </text>
-        </g>
+        <line
+          x1="${pad.left}"
+          x2="${width - pad.right}"
+          y1="${y}"
+          y2="${y}"
+          stroke="#E6E8EC"
+          ${ratio === 0 ? "" : 'stroke-dasharray="4 6"'}
+        />
+        <text
+          x="${pad.left - 12}"
+          y="${y + 4}"
+          text-anchor="end"
+          font-size="12"
+          fill="#68707B"
+        >
+          ${ratio === 0 ? "0" : formatShort(ratio * top)}
+        </text>
       `;
     })
     .join("");
+  const dots = points
+    .map(
+      (point) => /* HTML */ `
+        <line
+          x1="${point.x}"
+          x2="${point.x}"
+          y1="${point.y}"
+          y2="${baseY}"
+          stroke="#176bc0"
+          stroke-opacity="0.25"
+          stroke-dasharray="3 4"
+        />
+        <circle
+          cx="${point.x}"
+          cy="${point.y}"
+          r="6"
+          fill="white"
+          stroke="#176bc0"
+          stroke-width="3"
+        >
+          <title>${esc(point.label)}: ${money(point.revenue)}</title>
+        </circle>
+        <text
+          x="${point.x}"
+          y="${point.y - 14}"
+          text-anchor="middle"
+          font-size="14"
+          font-weight="700"
+          fill="#14365b"
+        >
+          ${formatShort(point.revenue)}
+        </text>
+        <text
+          x="${point.x}"
+          y="${baseY + 26}"
+          text-anchor="middle"
+          font-size="13"
+          fill="#68707B"
+        >
+          ${esc(point.label)}
+        </text>
+      `,
+    )
+    .join("");
+  const summary = data
+    .map((item) => item.label + ": " + money(item.revenue))
+    .join(", ");
 
   return /* HTML */ `
     <svg
-      viewBox="0 0 ${width} ${chartHeight + 50}"
+      viewBox="0 0 ${width} ${height}"
       role="img"
-      aria-label="Biểu đồ doanh thu theo tháng"
+      aria-label="Biểu đồ doanh thu theo tháng. ${esc(summary)}"
       class="revenue-chart"
     >
-      ${gridLines} ${bars}
+      <defs>
+        <linearGradient
+          id="revenue-fill"
+          x1="0"
+          x2="0"
+          y1="0"
+          y2="1"
+        >
+          <stop
+            offset="0%"
+            stop-color="#176bc0"
+            stop-opacity="0.38"
+          />
+          <stop
+            offset="100%"
+            stop-color="#176bc0"
+            stop-opacity="0.03"
+          />
+        </linearGradient>
+      </defs>
+      ${grid}
+      ${points.length > 1 ? '<path d="' + area + '" fill="url(#revenue-fill)"/>' : ""}
+      <path
+        d="${line}"
+        fill="none"
+        stroke="#176bc0"
+        stroke-width="3"
+        stroke-linecap="round"
+        stroke-linejoin="round"
+      />
+      ${dots}
     </svg>
   `;
 }
@@ -341,6 +441,7 @@ function statCardHtml(label, value, icon, note = "") {
 
 function dashboardHtml() {
   const pendingCount = orders.filter((order) => order.status === "pending").length;
+  const revenueByMonth = getMonthlyRevenue();
   const recent = [...orders]
     .sort((a, b) => b.createdAt.localeCompare(a.createdAt))
     .slice(0, 5);
@@ -403,8 +504,21 @@ function dashboardHtml() {
     </div>
     <div class="admin-two-col">
       <section class="panel">
-        <h3>Doanh thu 6 tháng gần nhất</h3>
-        ${revenueChartHtml(getMonthlyRevenue())}
+        <div class="chart-head">
+          <div>
+            <h3>Doanh thu theo tháng</h3>
+            <p class="muted">
+              Đơn đã giao, từ 28/09/2026 đến ${formatDate(new Date().toISOString())}
+            </p>
+          </div>
+          <p class="chart-total">
+            <span class="muted">Tổng trong giai đoạn</span>
+            <strong>
+              ${money(revenueByMonth.reduce((sum, item) => sum + item.revenue, 0))}
+            </strong>
+          </p>
+        </div>
+        ${revenueChartHtml(revenueByMonth)}
       </section>
       <section class="panel">
         <h3>Sản phẩm sắp hết hàng</h3>

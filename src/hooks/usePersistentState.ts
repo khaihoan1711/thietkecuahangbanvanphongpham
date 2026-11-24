@@ -10,10 +10,12 @@ import { readJson, writeJson } from "@/lib/storage";
 // - Chỉ ghi lại LocalStorage khi `isReady` là true, để không ghi đè dữ liệu cũ bằng dữ liệu mẫu.
 // - Khi một tab khác thay đổi dữ liệu, tab này cũng được cập nhật theo.
 // - Nếu dữ liệu đã lưu bị hỏng (không qua được `isValid`) thì quay về dữ liệu mẫu.
+// - `upgrade` (không bắt buộc) chỉnh dữ liệu đã lưu khi đọc lên, ví dụ thêm dữ liệu mẫu mới.
 export function usePersistentState<T>(
   key: string,
   seed: T,
   isValid: (value: unknown) => boolean = () => true,
+  upgrade: (saved: T) => T = (saved) => saved,
 ) {
   const [value, setValue] = useState<T>(seed);
   const [isReady, setIsReady] = useState(false);
@@ -22,7 +24,7 @@ export function usePersistentState<T>(
   useEffect(() => {
     const saved = readJson<unknown>(key, seed);
 
-    setValue(isValid(saved) ? (saved as T) : seed);
+    setValue(isValid(saved) ? upgrade(saved as T) : seed);
     setIsReady(true);
   }, [key]);
 

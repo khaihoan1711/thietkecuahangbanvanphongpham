@@ -48,12 +48,23 @@ function newOrderId(existing: Order[]) {
   return id;
 }
 
+// Trình duyệt đã lưu đơn hàng từ trước vẫn nhận thêm các đơn mẫu mới (theo mã đơn).
+// Không đơn nào bị xóa hay sửa, nên đơn thật của khách được giữ nguyên.
+function addMissingSeedOrders(saved: Order[]) {
+  const missing = seedOrders.filter(
+    (seed) => !saved.some((order) => order.id === seed.id),
+  );
+
+  return missing.length ? [...saved, ...missing] : saved;
+}
+
 export function OrderProvider({ children }: { children: ReactNode }) {
   const { adjustStock } = useCatalog();
   const [orders, setOrders, isReady] = usePersistentState<Order[]>(
     STORAGE_KEYS.orders,
     seedOrders,
     Array.isArray,
+    addMissingSeedOrders,
   );
 
   function placeOrder(input: NewOrderInput): Order {
