@@ -30,7 +30,7 @@ export default function PenDetail({ product }: { product: Product }) {
   function buy() {
     if (!isReady || available < 1) return;
     const amount = clean(quantity);
-    addToCart(product.id, amount, { unitId, colorId });
+    if (!addToCart(product.id, amount, { unitId, colorId })) return;
     setQuantity("1");
     setMessage(`Đã thêm ${amount} ${selected.pack.toLowerCase()} vào giỏ hàng.`);
   }

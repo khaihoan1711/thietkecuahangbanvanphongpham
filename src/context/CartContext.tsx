@@ -1,7 +1,9 @@
 "use client";
 
 import { createContext, useContext, useEffect, useState } from "react";
+import { useAuth } from "@/context/AuthContext";
 import { useCatalog } from "@/context/CatalogContext";
+import { useToast } from "@/context/ToastContext";
 import { readJson, STORAGE_KEYS, writeJson } from "@/lib/storage";
 import {
   cartKey,
@@ -15,7 +17,8 @@ type CartContextValue = {
   items: CartItem[];
   totalQuantity: number;
   isReady: boolean;
-  addToCart: (id: string, quantity: number, selection?: ProductSelection) => void;
+  // Trả về false nếu không thêm được (tài khoản quản trị viên không được mua hàng)
+  addToCart: (id: string, quantity: number, selection?: ProductSelection) => boolean;
   setQuantity: (id: string, quantity: number, selection?: ProductSelection) => void;
   removeFromCart: (id: string, selection?: ProductSelection) => void;
   // Xóa toàn bộ giỏ hàng (dùng sau khi đặt hàng thành công)
@@ -24,9 +27,15 @@ type CartContextValue = {
 
 const CartContext = createContext<CartContextValue | null>(null);
 
+// Thông báo khi tài khoản quản trị viên cố mua hàng.
+export const ADMIN_CANNOT_BUY =
+  "Tài khoản quản trị viên không thể mua hàng. Vui lòng dùng tài khoản khách hàng.";
+
 export function CartProvider({ children }: { children: React.ReactNode }) {
   // Sản phẩm lấy từ kho dữ liệu chung, nên Admin sửa giá hoặc tồn kho thì giỏ hàng cũng cập nhật.
   const { products, isReady: catalogReady, getProduct } = useCatalog();
+  const { isAdmin } = useAuth();
+  const { showToast } = useToast();
   const [items, setItems] = useState<CartItem[]>([]);
   const [isReady, setIsReady] = useState(false);
 
@@ -68,7 +77,13 @@ export function CartProvider({ children }: { children: React.ReactNode }) {
   }
 
   function addToCart(id: string, quantity: number, selection: ProductSelection = {}) {
+    if (isAdmin) {
+      showToast(ADMIN_CANNOT_BUY, "error");
+      return false;
+    }
+
     updateCart(id, quantity, selection, true);
+    return true;
   }
 
   function setQuantity(id: string, quantity: number, selection: ProductSelection = {}) {

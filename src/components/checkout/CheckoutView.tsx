@@ -5,7 +5,7 @@ import { useEffect, useState } from "react";
 import BankTransferQR from "@/components/checkout/BankTransferQR";
 import { btnBase, btnPrimary } from "@/components/ui/buttons";
 import { useAuth } from "@/context/AuthContext";
-import { useCart } from "@/context/CartContext";
+import { ADMIN_CANNOT_BUY, useCart } from "@/context/CartContext";
 import { useCatalog } from "@/context/CatalogContext";
 import { useOrders } from "@/context/OrderContext";
 import { useToast } from "@/context/ToastContext";
@@ -80,7 +80,7 @@ const fieldBad = "border-sale focus:border-sale focus:ring-sale/20";
 export default function CheckoutView() {
   const { items, isReady, clearCart } = useCart();
   const { products } = useCatalog();
-  const { currentUser } = useAuth();
+  const { currentUser, isAdmin } = useAuth();
   const { placeOrder } = useOrders();
   const { showToast } = useToast();
   const [values, setValues] = useState<FormValues>(emptyForm);
@@ -110,6 +110,26 @@ export default function CheckoutView() {
   // Wait for localStorage, otherwise the empty message would flash on every page load
   if (!isReady) {
     return <p className="py-16 text-ink-muted">Đang tải giỏ hàng…</p>;
+  }
+
+  // Tài khoản quản trị viên không được đặt hàng.
+  if (isAdmin) {
+    return (
+      <div className="rounded-xl border border-line bg-white px-6 py-16 text-center">
+        <p
+          role="status"
+          className="font-display text-2xl font-semibold text-navy"
+        >
+          {ADMIN_CANNOT_BUY}
+        </p>
+        <Link
+          href="/quan-tri"
+          className={`${btnBase} ${btnPrimary} mt-6`}
+        >
+          Về trang quản trị
+        </Link>
+      </div>
+    );
   }
 
   // Join each cart line with its product. Ids that no longer exist are skipped.

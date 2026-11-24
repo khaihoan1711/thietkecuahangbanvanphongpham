@@ -8083,6 +8083,10 @@ function isAdmin() {
   return Boolean(user) && user.role === "admin";
 }
 
+// Thông báo khi tài khoản quản trị viên cố mua hàng.
+const ADMIN_CANNOT_BUY =
+  "Tài khoản quản trị viên không thể mua hàng. Vui lòng dùng tài khoản khách hàng.";
+
 // "Ghi nhớ đăng nhập" lưu ở localStorage, nếu không thì chỉ lưu đến khi đóng tab.
 function startSession(userId, remember) {
   try {
@@ -9604,6 +9608,27 @@ function renderCheckoutPage() {
   document.title = "Thanh toán — KhaiHoanShop";
   window.scrollTo({ top: 0, behavior: "instant" });
 
+  // Tài khoản quản trị viên không được đặt hàng.
+  if (isAdmin()) {
+    pageRoot.innerHTML = /* HTML */ `
+      <section class="page-section">
+        <div class="wrap notice-box">
+          <h1 role="status">${esc(ADMIN_CANNOT_BUY)}</h1>
+          <div class="buttons center">
+            <a
+              class="btn"
+              href="#quan-tri"
+            >
+              Về trang quản trị
+            </a>
+          </div>
+        </div>
+      </section>
+    `;
+
+    return;
+  }
+
   // Vừa đặt xong: giỏ hàng đã trống nên hiện thông báo thành công.
   if (placedOrderId && lines.length === 0) {
     const placed = orders.find((order) => order.id === placedOrderId);
@@ -9786,6 +9811,11 @@ actions["open-cart"] = () => {
 };
 
 formHandlers.checkout = (form) => {
+  if (isAdmin()) {
+    toast(ADMIN_CANNOT_BUY, "error");
+    return;
+  }
+
   const values = readForm(form);
   const errors = {};
 
@@ -12541,6 +12571,11 @@ function route() {
 document.addEventListener("click", (event) => {
   const target = event.target;
   const add = target.closest("[data-add]");
+  // Tài khoản quản trị viên không được thêm sản phẩm vào giỏ.
+  if ((add || target.closest("[data-purchase]")) && isAdmin()) {
+    toast(ADMIN_CANNOT_BUY, "error");
+    return;
+  }
   if (add) {
     const p = products.find((p) => p.id === add.dataset.add);
     if (p) {
@@ -12633,6 +12668,10 @@ document
   .addEventListener("click", () => document.getElementById("cart-dialog").showModal());
 // Nút "Đặt hàng" trong giỏ hàng: sang trang thanh toán để nhập thông tin giao hàng.
 document.getElementById("place-order").addEventListener("click", () => {
+  if (isAdmin()) {
+    toast(ADMIN_CANNOT_BUY, "error");
+    return;
+  }
   if (!cartLines().length) return;
   document.getElementById("cart-dialog").close();
   goTo("#thanh-toan");

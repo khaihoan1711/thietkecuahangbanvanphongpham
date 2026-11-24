@@ -4,7 +4,7 @@ import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
 import { useAuth } from "@/context/AuthContext";
-import { useCart } from "@/context/CartContext";
+import { ADMIN_CANNOT_BUY, useCart } from "@/context/CartContext";
 import { useCatalog } from "@/context/CatalogContext";
 import { useOrders } from "@/context/OrderContext";
 import { useToast } from "@/context/ToastContext";
@@ -94,7 +94,7 @@ export default function CartView() {
   const router = useRouter();
   const { items, isReady, clearCart } = useCart();
   const { products } = useCatalog();
-  const { currentUser } = useAuth();
+  const { currentUser, isAdmin } = useAuth();
   const { placeOrder } = useOrders();
   const { showToast } = useToast();
   // Mã đơn hàng vừa đặt (sau khi đặt, giỏ hàng được làm trống)
@@ -152,6 +152,11 @@ export default function CartView() {
 
   // Đặt hàng nhanh bằng thông tin và địa chỉ đã lưu trong tài khoản.
   function handleQuickOrder() {
+    if (isAdmin) {
+      showToast(ADMIN_CANNOT_BUY, "error");
+      return;
+    }
+
     if (!currentUser) {
       showToast("Vui lòng đăng nhập để đặt hàng.", "error");
       router.push("/dang-nhap?next=/gio-hang");
@@ -219,19 +224,30 @@ export default function CartView() {
             <dd className="font-bold text-primary">{formatVND(total)}</dd>
           </div>
         </dl>
-        <button
-          type="button"
-          onClick={handleQuickOrder}
-          className="mt-6 flex min-h-12 w-full items-center justify-center rounded-lg bg-primary px-5 font-bold text-white hover:bg-primary-dark"
-        >
-          Đặt hàng
-        </button>
-        <Link
-          href="/thanh-toan"
-          className="mt-3 flex min-h-12 items-center justify-center rounded-lg border border-primary bg-white px-5 font-bold text-primary hover:bg-primary-soft"
-        >
-          Tiến hành thanh toán
-        </Link>
+        {isAdmin ? (
+          <p
+            role="status"
+            className="mt-6 rounded-lg border border-yellow bg-yellow-soft px-4 py-3 text-sm font-semibold text-navy"
+          >
+            {ADMIN_CANNOT_BUY}
+          </p>
+        ) : (
+          <>
+            <button
+              type="button"
+              onClick={handleQuickOrder}
+              className="mt-6 flex min-h-12 w-full items-center justify-center rounded-lg bg-primary px-5 font-bold text-white hover:bg-primary-dark"
+            >
+              Đặt hàng
+            </button>
+            <Link
+              href="/thanh-toan"
+              className="mt-3 flex min-h-12 items-center justify-center rounded-lg border border-primary bg-white px-5 font-bold text-primary hover:bg-primary-soft"
+            >
+              Tiến hành thanh toán
+            </Link>
+          </>
+        )}
         <Link
           href="/san-pham"
           className="mt-4 block text-center text-sm font-semibold text-navy hover:underline"

@@ -758,6 +758,27 @@ function renderCheckoutPage() {
   document.title = "Thanh toán — KhaiHoanShop";
   window.scrollTo({ top: 0, behavior: "instant" });
 
+  // Tài khoản quản trị viên không được đặt hàng.
+  if (isAdmin()) {
+    pageRoot.innerHTML = /* HTML */ `
+      <section class="page-section">
+        <div class="wrap notice-box">
+          <h1 role="status">${esc(ADMIN_CANNOT_BUY)}</h1>
+          <div class="buttons center">
+            <a
+              class="btn"
+              href="#quan-tri"
+            >
+              Về trang quản trị
+            </a>
+          </div>
+        </div>
+      </section>
+    `;
+
+    return;
+  }
+
   // Vừa đặt xong: giỏ hàng đã trống nên hiện thông báo thành công.
   if (placedOrderId && lines.length === 0) {
     const placed = orders.find((order) => order.id === placedOrderId);
@@ -940,6 +961,11 @@ actions["open-cart"] = () => {
 };
 
 formHandlers.checkout = (form) => {
+  if (isAdmin()) {
+    toast(ADMIN_CANNOT_BUY, "error");
+    return;
+  }
+
   const values = readForm(form);
   const errors = {};
 

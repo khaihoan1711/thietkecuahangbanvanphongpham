@@ -16,7 +16,7 @@ export default function ProductPurchase({ productId }: { productId: string }) {
   }
   function purchase(buyNow: boolean) {
     const value = amount();
-    addToCart(productId, value);
+    if (!addToCart(productId, value)) return;
     setQuantity(String(value));
     setMessage(`Đã thêm ${value} sản phẩm vào giỏ hàng.`);
     if (buyNow) router.push("/thanh-toan");

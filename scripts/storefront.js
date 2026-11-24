@@ -996,6 +996,11 @@ function route() {
 document.addEventListener("click", (event) => {
   const target = event.target;
   const add = target.closest("[data-add]");
+  // Tài khoản quản trị viên không được thêm sản phẩm vào giỏ.
+  if ((add || target.closest("[data-purchase]")) && isAdmin()) {
+    toast(ADMIN_CANNOT_BUY, "error");
+    return;
+  }
   if (add) {
     const p = products.find((p) => p.id === add.dataset.add);
     if (p) {
@@ -1088,6 +1093,10 @@ document
   .addEventListener("click", () => document.getElementById("cart-dialog").showModal());
 // Nút "Đặt hàng" trong giỏ hàng: sang trang thanh toán để nhập thông tin giao hàng.
 document.getElementById("place-order").addEventListener("click", () => {
+  if (isAdmin()) {
+    toast(ADMIN_CANNOT_BUY, "error");
+    return;
+  }
   if (!cartLines().length) return;
   document.getElementById("cart-dialog").close();
   goTo("#thanh-toan");

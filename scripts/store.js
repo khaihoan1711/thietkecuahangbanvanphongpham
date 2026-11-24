@@ -514,6 +514,10 @@ function isAdmin() {
   return Boolean(user) && user.role === "admin";
 }
 
+// Thông báo khi tài khoản quản trị viên cố mua hàng.
+const ADMIN_CANNOT_BUY =
+  "Tài khoản quản trị viên không thể mua hàng. Vui lòng dùng tài khoản khách hàng.";
+
 // "Ghi nhớ đăng nhập" lưu ở localStorage, nếu không thì chỉ lưu đến khi đóng tab.
 function startSession(userId, remember) {
   try {
