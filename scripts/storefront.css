@@ -240,3 +240,47 @@ fieldset:has(input[value="bank"]:checked) .bank-qr-slot {
     align-items: center;
   }
 }
+/* Nút trái tim (yêu thích) ở góc ảnh sản phẩm */
+.fav-button {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  z-index: 1;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 36px;
+  height: 36px;
+  padding: 0;
+  border: 0;
+  border-radius: 50%;
+  background: #fffffff2;
+  color: #68707b;
+  box-shadow: 0 2px 12px #17233314;
+  transition:
+    transform 0.2s,
+    color 0.2s;
+}
+.fav-button:hover {
+  transform: scale(1.1);
+  color: #ef4444;
+}
+.fav-button[aria-pressed="true"] {
+  color: #ef4444;
+}
+.fav-button[aria-pressed="true"] svg {
+  fill: currentColor;
+}
+/* Nhãn "MỚI" nằm dưới nút trái tim */
+.card-art .badge.new {
+  top: 56px;
+}
+/* Số sản phẩm yêu thích ở đầu trang */
+#favorites-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+}
+.fav-count {
+  background: #ef4444;
+}

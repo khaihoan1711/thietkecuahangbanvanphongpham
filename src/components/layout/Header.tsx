@@ -1,5 +1,6 @@
 import Link from "next/link";
 import CartLink from "@/components/layout/CartLink";
+import FavoritesLink from "@/components/layout/FavoritesLink";
 import CategoryNav from "@/components/layout/CategoryNav";
 import HeaderAccount from "@/components/layout/HeaderAccount";
 import Icon from "@/components/ui/Icon";
@@ -70,6 +71,7 @@ export default function Header({ currentPath = "/" }: { currentPath?: string }) 
         </form>
 
         <div className="ml-auto flex items-center gap-1 lg:ml-0">
+          <FavoritesLink />
           <CartLink />
         </div>
       </div>

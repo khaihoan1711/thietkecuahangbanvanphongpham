@@ -1,6 +1,7 @@
 import Link from "next/link";
 import AddToCartButton from "@/components/product/AddToCartButton";
 import CategoryBadge from "@/components/product/CategoryBadge";
+import FavoriteButton from "@/components/product/FavoriteButton";
 import { formatVND } from "@/lib/format";
 import type { Product } from "@/types/product";
 
@@ -28,8 +29,13 @@ export default function ProductCard({ product }: { product: Product }) {
           category={product.category}
           className="absolute left-3 top-3 bg-white/95 shadow-soft"
         />
+        <FavoriteButton
+          productId={product.id}
+          productName={product.name}
+          className="absolute right-3 top-3"
+        />
         {product.isNew && (
-          <span className="absolute right-3 top-3 rounded-full bg-navy px-2.5 py-1 text-xs font-bold text-white">
+          <span className="absolute right-3 top-14 rounded-full bg-navy px-2.5 py-1 text-xs font-bold text-white">
             MỚI
           </span>
         )}

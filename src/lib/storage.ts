@@ -10,6 +10,8 @@ export const STORAGE_KEYS = {
   // Lưu id người đang đăng nhập
   session: "khaihoanshop-session",
   cart: "khaihoanstatinery-cart",
+  // Mã các sản phẩm yêu thích
+  favorites: "khaihoanshop-favorites",
 } as const;
 
 // Đọc một giá trị JSON. Trả về `fallback` nếu chưa có hoặc dữ liệu bị hỏng.

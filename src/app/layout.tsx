@@ -3,6 +3,7 @@ import "./globals.css";
 import { AuthProvider } from "@/context/AuthContext";
 import { CartProvider } from "@/context/CartContext";
 import { CatalogProvider } from "@/context/CatalogContext";
+import { FavoritesProvider } from "@/context/FavoritesContext";
 import { OrderProvider } from "@/context/OrderContext";
 import { ToastProvider } from "@/context/ToastContext";
 
@@ -21,7 +22,9 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
           <CatalogProvider>
             <AuthProvider>
               <OrderProvider>
-                <CartProvider>{children}</CartProvider>
+                <CartProvider>
+                  <FavoritesProvider>{children}</FavoritesProvider>
+                </CartProvider>
               </OrderProvider>
             </AuthProvider>
           </CatalogProvider>

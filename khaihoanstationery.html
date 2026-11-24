@@ -1727,6 +1727,50 @@ fieldset:has(input[value="bank"]:checked) .bank-qr-slot {
     align-items: center;
   }
 }
+/* Nút trái tim (yêu thích) ở góc ảnh sản phẩm */
+.fav-button {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  z-index: 1;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 36px;
+  height: 36px;
+  padding: 0;
+  border: 0;
+  border-radius: 50%;
+  background: #fffffff2;
+  color: #68707b;
+  box-shadow: 0 2px 12px #17233314;
+  transition:
+    transform 0.2s,
+    color 0.2s;
+}
+.fav-button:hover {
+  transform: scale(1.1);
+  color: #ef4444;
+}
+.fav-button[aria-pressed="true"] {
+  color: #ef4444;
+}
+.fav-button[aria-pressed="true"] svg {
+  fill: currentColor;
+}
+/* Nhãn "MỚI" nằm dưới nút trái tim */
+.card-art .badge.new {
+  top: 56px;
+}
+/* Số sản phẩm yêu thích ở đầu trang */
+#favorites-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+}
+.fav-count {
+  background: #ef4444;
+}
 
 /* ============================================================
    Giao diện cho: thanh tài khoản, hộp thoại, form, trang tài khoản,
@@ -3011,6 +3055,37 @@ body.is-admin {
           </button>
         </form>
         <div class="actions">
+          <a
+            class="action"
+            id="favorites-link"
+            href="#yeu-thich"
+            aria-label="Sản phẩm yêu thích"
+            title="Sản phẩm yêu thích"
+          >
+            <svg
+              viewBox="0 0 24 24"
+              width="20"
+              height="20"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="1.75"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              aria-hidden="true"
+            >
+              <path
+                d="M19 14c1.49-1.46 3-3.21 3-5.5A5.5 5.5 0 0 0 16.5 3c-1.76 0-3 .5-4.5 2-1.5-1.5-2.74-2-4.5-2A5.5 5.5 0 0 0 2 8.5c0 2.3 1.5 4.05 3 5.5l7 7Z"
+              />
+            </svg>
+            Yêu thích
+            <span
+              class="count fav-count"
+              id="fav-count"
+              hidden
+            >
+              0
+            </span>
+          </a>
           <button
             class="action"
             id="cart-button"
@@ -7581,6 +7656,8 @@ const STORAGE_KEYS = {
   // Id người đang đăng nhập
   session: "khaihoanshop-html-session",
   cart: "khaihoanshop-html-cart",
+  // Mã các sản phẩm yêu thích
+  favorites: "khaihoanshop-html-favorites",
 };
 
 // Phí vận chuyển và giảm giá mẫu, dùng chung cho giỏ hàng và thanh toán.
@@ -11578,6 +11655,34 @@ actions["user-view"] = (button) => {
 // Dữ liệu lấy từ store.js, các trang tài khoản và quản trị nằm ở account.js và admin.js.
 // ============================================================
 
+// Biểu tượng trái tim (giống icon "heart" của bản Next.js).
+const HEART_ICON =
+  '<svg viewBox="0 0 24 24" width="19" height="19" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M19 14c1.49-1.46 3-3.21 3-5.5A5.5 5.5 0 0 0 16.5 3c-1.76 0-3 .5-4.5 2-1.5-1.5-2.74-2-4.5-2A5.5 5.5 0 0 0 2 8.5c0 2.3 1.5 4.05 3 5.5l7 7Z"/></svg>';
+
+// Nút trái tim ở góc ảnh sản phẩm: bấm để thêm hoặc bỏ khỏi danh sách yêu thích.
+function favoriteButtonHtml(p) {
+  const active = isFavorite(p.id);
+  const label =
+    (active ? "Bỏ " : "Thêm ") +
+    p.name +
+    (active ? " khỏi" : " vào") +
+    " danh sách yêu thích";
+
+  return (
+    '<button type="button" class="fav-button" data-fav="' +
+    esc(p.id) +
+    '" aria-pressed="' +
+    active +
+    '" aria-label="' +
+    esc(label) +
+    '" title="' +
+    (active ? "Bỏ yêu thích" : "Thêm vào yêu thích") +
+    '">' +
+    HEART_ICON +
+    "</button>"
+  );
+}
+
 const card = (p) => /* HTML */ `
   <article class="card">
     <div class="card-art">
@@ -11592,6 +11697,7 @@ const card = (p) => /* HTML */ `
         />
       </a>
       <span class="badge">${esc(categoryLabel(p.category))}</span>
+      ${favoriteButtonHtml(p)}
       ${p.isNew ? '<span class="badge new">MỚI</span>' : ""}${p.oldPrice
         ? /* HTML */ `
             <span class="badge sale">
@@ -11832,6 +11938,90 @@ function catalog() {
     .getElementById(id)
     .addEventListener(id === "catalog-search" ? "input" : "change", catalog),
 );
+// ---------- Sản phẩm yêu thích (lưu mã sản phẩm, sản phẩm vừa thêm đứng đầu) ----------
+let favorites = [];
+try {
+  const saved = JSON.parse(localStorage.getItem(STORAGE_KEYS.favorites) || "[]");
+  favorites = Array.isArray(saved) ? saved.filter((id) => typeof id === "string") : [];
+} catch {}
+
+function isFavorite(productId) {
+  return favorites.includes(productId);
+}
+
+// Sản phẩm yêu thích còn tồn tại (Admin có thể đã xóa sản phẩm).
+function favoriteProducts() {
+  return favorites.map((id) => products.find((p) => p.id === id)).filter(Boolean);
+}
+
+function refreshFavorites() {
+  const count = favoriteProducts().length;
+  const badge = document.getElementById("fav-count");
+
+  badge.textContent = count;
+  badge.hidden = count === 0;
+  document.querySelectorAll("[data-fav]").forEach((button) => {
+    const p = products.find((item) => item.id === button.dataset.fav);
+
+    if (p) button.outerHTML = favoriteButtonHtml(p);
+  });
+}
+
+function toggleFavorite(productId) {
+  const removing = isFavorite(productId);
+
+  favorites = removing
+    ? favorites.filter((id) => id !== productId)
+    : [productId, ...favorites];
+  try {
+    localStorage.setItem(STORAGE_KEYS.favorites, JSON.stringify(favorites));
+  } catch {}
+  toast(
+    removing
+      ? "Đã bỏ sản phẩm khỏi danh sách yêu thích."
+      : "Đã thêm sản phẩm vào danh sách yêu thích.",
+  );
+  // Đang ở trang yêu thích thì vẽ lại danh sách, còn lại chỉ đổi trạng thái nút.
+  if (location.hash === "#yeu-thich") renderFavoritesPage();
+  else refreshFavorites();
+}
+
+// Trang "Sản phẩm yêu thích".
+function renderFavoritesPage() {
+  const list = favoriteProducts();
+
+  showView("page");
+  document.title = "Sản phẩm yêu thích — KhaiHoanShop";
+  pageRoot.innerHTML =
+    list.length === 0
+      ? /* HTML */ `
+          <section class="page-section">
+            <div class="wrap notice-box">
+              <h1>Bạn chưa có sản phẩm yêu thích</h1>
+              <p>Bấm vào biểu tượng trái tim ở góc mỗi sản phẩm để lưu lại.</p>
+              <div class="buttons center">
+                <a
+                  class="btn"
+                  href="#tat-ca"
+                >
+                  Xem sản phẩm
+                </a>
+              </div>
+            </div>
+          </section>
+        `
+      : /* HTML */ `
+          <section class="page-section">
+            <div class="wrap">
+              <h1>Sản phẩm yêu thích</h1>
+              <p class="muted">${list.length} sản phẩm</p>
+              <div class="grid">${list.map(card).join("")}</div>
+            </div>
+          </section>
+        `;
+  refreshFavorites();
+}
+
 renderNav();
 renderHome();
 document.getElementById("header-search").addEventListener("submit", (e) => {
@@ -11962,6 +12152,7 @@ function refreshCart() {
     "Tạm tính: " + money(calculateTotals(lines).subtotal);
 }
 refreshCart();
+refreshFavorites();
 
 // Các khung hiển thị: mỗi lúc chỉ hiện một khung (trang chủ, chi tiết, danh mục, trang thường, quản trị).
 const VIEW_ROOTS = {
@@ -12530,6 +12721,10 @@ function route() {
     renderCheckoutPage();
     return;
   }
+  if (hash === "#yeu-thich") {
+    renderFavoritesPage();
+    return;
+  }
   if (hash.startsWith("#danh-muc/")) {
     const [slug, query = ""] = hash.slice(10).split("?");
     let category = "";
@@ -12570,6 +12765,11 @@ function route() {
 }
 document.addEventListener("click", (event) => {
   const target = event.target;
+  const fav = target.closest("[data-fav]");
+  if (fav) {
+    toggleFavorite(fav.dataset.fav);
+    return;
+  }
   const add = target.closest("[data-add]");
   // Tài khoản quản trị viên không được thêm sản phẩm vào giỏ.
   if ((add || target.closest("[data-purchase]")) && isAdmin()) {

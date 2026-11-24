@@ -12,6 +12,8 @@ const STORAGE_KEYS = {
   // Id người đang đăng nhập
   session: "khaihoanshop-html-session",
   cart: "khaihoanshop-html-cart",
+  // Mã các sản phẩm yêu thích
+  favorites: "khaihoanshop-html-favorites",
 };
 
 // Phí vận chuyển và giảm giá mẫu, dùng chung cho giỏ hàng và thanh toán.

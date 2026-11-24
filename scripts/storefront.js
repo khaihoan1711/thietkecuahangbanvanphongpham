@@ -3,6 +3,34 @@
 // Dữ liệu lấy từ store.js, các trang tài khoản và quản trị nằm ở account.js và admin.js.
 // ============================================================
 
+// Biểu tượng trái tim (giống icon "heart" của bản Next.js).
+const HEART_ICON =
+  '<svg viewBox="0 0 24 24" width="19" height="19" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M19 14c1.49-1.46 3-3.21 3-5.5A5.5 5.5 0 0 0 16.5 3c-1.76 0-3 .5-4.5 2-1.5-1.5-2.74-2-4.5-2A5.5 5.5 0 0 0 2 8.5c0 2.3 1.5 4.05 3 5.5l7 7Z"/></svg>';
+
+// Nút trái tim ở góc ảnh sản phẩm: bấm để thêm hoặc bỏ khỏi danh sách yêu thích.
+function favoriteButtonHtml(p) {
+  const active = isFavorite(p.id);
+  const label =
+    (active ? "Bỏ " : "Thêm ") +
+    p.name +
+    (active ? " khỏi" : " vào") +
+    " danh sách yêu thích";
+
+  return (
+    '<button type="button" class="fav-button" data-fav="' +
+    esc(p.id) +
+    '" aria-pressed="' +
+    active +
+    '" aria-label="' +
+    esc(label) +
+    '" title="' +
+    (active ? "Bỏ yêu thích" : "Thêm vào yêu thích") +
+    '">' +
+    HEART_ICON +
+    "</button>"
+  );
+}
+
 const card = (p) => /* HTML */ `
   <article class="card">
     <div class="card-art">
@@ -17,6 +45,7 @@ const card = (p) => /* HTML */ `
         />
       </a>
       <span class="badge">${esc(categoryLabel(p.category))}</span>
+      ${favoriteButtonHtml(p)}
       ${p.isNew ? '<span class="badge new">MỚI</span>' : ""}${p.oldPrice
         ? /* HTML */ `
             <span class="badge sale">
@@ -257,6 +286,90 @@ function catalog() {
     .getElementById(id)
     .addEventListener(id === "catalog-search" ? "input" : "change", catalog),
 );
+// ---------- Sản phẩm yêu thích (lưu mã sản phẩm, sản phẩm vừa thêm đứng đầu) ----------
+let favorites = [];
+try {
+  const saved = JSON.parse(localStorage.getItem(STORAGE_KEYS.favorites) || "[]");
+  favorites = Array.isArray(saved) ? saved.filter((id) => typeof id === "string") : [];
+} catch {}
+
+function isFavorite(productId) {
+  return favorites.includes(productId);
+}
+
+// Sản phẩm yêu thích còn tồn tại (Admin có thể đã xóa sản phẩm).
+function favoriteProducts() {
+  return favorites.map((id) => products.find((p) => p.id === id)).filter(Boolean);
+}
+
+function refreshFavorites() {
+  const count = favoriteProducts().length;
+  const badge = document.getElementById("fav-count");
+
+  badge.textContent = count;
+  badge.hidden = count === 0;
+  document.querySelectorAll("[data-fav]").forEach((button) => {
+    const p = products.find((item) => item.id === button.dataset.fav);
+
+    if (p) button.outerHTML = favoriteButtonHtml(p);
+  });
+}
+
+function toggleFavorite(productId) {
+  const removing = isFavorite(productId);
+
+  favorites = removing
+    ? favorites.filter((id) => id !== productId)
+    : [productId, ...favorites];
+  try {
+    localStorage.setItem(STORAGE_KEYS.favorites, JSON.stringify(favorites));
+  } catch {}
+  toast(
+    removing
+      ? "Đã bỏ sản phẩm khỏi danh sách yêu thích."
+      : "Đã thêm sản phẩm vào danh sách yêu thích.",
+  );
+  // Đang ở trang yêu thích thì vẽ lại danh sách, còn lại chỉ đổi trạng thái nút.
+  if (location.hash === "#yeu-thich") renderFavoritesPage();
+  else refreshFavorites();
+}
+
+// Trang "Sản phẩm yêu thích".
+function renderFavoritesPage() {
+  const list = favoriteProducts();
+
+  showView("page");
+  document.title = "Sản phẩm yêu thích — KhaiHoanShop";
+  pageRoot.innerHTML =
+    list.length === 0
+      ? /* HTML */ `
+          <section class="page-section">
+            <div class="wrap notice-box">
+              <h1>Bạn chưa có sản phẩm yêu thích</h1>
+              <p>Bấm vào biểu tượng trái tim ở góc mỗi sản phẩm để lưu lại.</p>
+              <div class="buttons center">
+                <a
+                  class="btn"
+                  href="#tat-ca"
+                >
+                  Xem sản phẩm
+                </a>
+              </div>
+            </div>
+          </section>
+        `
+      : /* HTML */ `
+          <section class="page-section">
+            <div class="wrap">
+              <h1>Sản phẩm yêu thích</h1>
+              <p class="muted">${list.length} sản phẩm</p>
+              <div class="grid">${list.map(card).join("")}</div>
+            </div>
+          </section>
+        `;
+  refreshFavorites();
+}
+
 renderNav();
 renderHome();
 document.getElementById("header-search").addEventListener("submit", (e) => {
@@ -387,6 +500,7 @@ function refreshCart() {
     "Tạm tính: " + money(calculateTotals(lines).subtotal);
 }
 refreshCart();
+refreshFavorites();
 
 // Các khung hiển thị: mỗi lúc chỉ hiện một khung (trang chủ, chi tiết, danh mục, trang thường, quản trị).
 const VIEW_ROOTS = {
@@ -955,6 +1069,10 @@ function route() {
     renderCheckoutPage();
     return;
   }
+  if (hash === "#yeu-thich") {
+    renderFavoritesPage();
+    return;
+  }
   if (hash.startsWith("#danh-muc/")) {
     const [slug, query = ""] = hash.slice(10).split("?");
     let category = "";
@@ -995,6 +1113,11 @@ function route() {
 }
 document.addEventListener("click", (event) => {
   const target = event.target;
+  const fav = target.closest("[data-fav]");
+  if (fav) {
+    toggleFavorite(fav.dataset.fav);
+    return;
+  }
   const add = target.closest("[data-add]");
   // Tài khoản quản trị viên không được thêm sản phẩm vào giỏ.
   if ((add || target.closest("[data-purchase]")) && isAdmin()) {
