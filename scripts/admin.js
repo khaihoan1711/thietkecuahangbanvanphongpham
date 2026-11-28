@@ -28,6 +28,8 @@ const adminState = {
   expandedCategoryId: null,
   // Trang thống kê: "sold" (số lượng bán) hoặc "revenue" (tiền hàng)
   salesSort: "sold",
+  // Trang thống kê: "since-start" (từ 28/09/2026) hoặc "all" (toàn bộ thời gian)
+  salesPeriod: "since-start",
 };
 
 function resetAdminFilters() {
@@ -38,6 +40,7 @@ function resetAdminFilters() {
   adminState.role = "all";
   adminState.expandedCategoryId = null;
   adminState.salesSort = "sold";
+  adminState.salesPeriod = "since-start";
 }
 
 // ---------- Khung trang quản trị ----------
@@ -214,7 +217,7 @@ function handleAdminFilter(event) {
   adminState[name] = event.target.value;
 
   // Trang thống kê không có bảng riêng để làm mới: vẽ lại cả trang theo cách sắp xếp mới.
-  if (name === "salesSort") {
+  if (name === "salesSort" || name === "salesPeriod") {
     rerenderAdmin();
     return;
   }
@@ -508,10 +511,10 @@ function dashboardHtml() {
       )}
       ${statCardHtml("Tổng người dùng", String(users.length), "☺")}
       ${statCardHtml(
-        "Tổng doanh thu",
+        "Doanh thu",
         money(getTotalRevenue()),
         "₫",
-        "Chỉ tính các đơn đã giao hàng",
+        "Đơn đã giao từ 28/09/2026 (khớp biểu đồ)",
       )}
     </div>
     <div class="admin-two-col">
@@ -524,7 +527,7 @@ function dashboardHtml() {
             </p>
           </div>
           <p class="chart-total">
-            <span class="muted">Tổng trong giai đoạn</span>
+            <span class="muted">Doanh thu giai đoạn</span>
             <strong>
               ${money(revenueByMonth.reduce((sum, item) => sum + item.revenue, 0))}
             </strong>
@@ -542,7 +545,11 @@ function dashboardHtml() {
         <h3>Sản phẩm bán chạy</h3>
         <a href="#quan-tri/thong-ke">Xem thống kê</a>
       </div>
-      ${topProductsHtml(getProductSales().slice(0, 5))}
+      ${topProductsHtml(
+        getProductSales()
+          .filter((item) => item.sold > 0)
+          .slice(0, 5),
+      )}
     </section>
     <section>
       <div class="admin-section-head">
@@ -624,23 +631,31 @@ function stockPillHtml(stock) {
   );
 }
 
-// Trang "Thống kê bán hàng": sản phẩm bán chạy, doanh số theo danh mục, sản phẩm chưa bán.
+// Trang "Thống kê bán hàng". Cách tính giống trang Tổng quan và biểu đồ doanh thu:
+// doanh thu chỉ gồm đơn đã giao; đơn chưa giao xong được tách riêng là "đang chờ thu".
 function salesStatsHtml() {
-  const sales = getProductSales();
+  const start = adminState.salesPeriod === "all" ? null : REVENUE_START;
+  const summary = getSalesSummary(start);
+  const sales = getProductSales(start);
   const rows = [...sales].sort((a, b) =>
     adminState.salesSort === "revenue"
-      ? b.revenue - a.revenue
-      : b.sold - a.sold || b.revenue - a.revenue,
+      ? b.revenue - a.revenue || b.sold - a.sold
+      : b.sold - a.sold || b.revenue - a.revenue || b.pending - a.pending,
   );
+  const number = (value) => value.toLocaleString("vi-VN");
   const totalSold = sales.reduce((sum, item) => sum + item.sold, 0);
-  const totalRevenue = sales.reduce((sum, item) => sum + item.revenue, 0);
-  const best = sales[0];
+  const totalPending = sales.reduce((sum, item) => sum + item.pending, 0);
+  const best = sales.find((item) => item.sold > 0);
   const notSold = products.filter(
     (product) => !sales.some((item) => item.productId === product.id),
   );
   const byCategory = new Map();
 
   for (const item of sales) {
+    if (item.revenue === 0) {
+      continue;
+    }
+
     const product = products.find((value) => value.id === item.productId);
     const label = product ? categoryLabel(product.category) : "Khác";
 
@@ -665,7 +680,8 @@ function salesStatsHtml() {
               <strong>${esc(item.name)}</strong>
             </div>
           </td>
-          <td><b class="sold">${item.sold.toLocaleString("vi-VN")}</b></td>
+          <td><b class="sold">${number(item.sold)}</b></td>
+          <td class="muted">${item.pending ? number(item.pending) : "—"}</td>
           <td>${item.orderCount}</td>
           <td><b>${money(item.revenue)}</b></td>
           <td>${stockPillHtml(product ? product.stock : undefined)}</td>
@@ -685,7 +701,7 @@ function salesStatsHtml() {
                   <strong>${esc(label)}</strong>
                   <span class="muted">
                     ${money(revenue)} ·
-                    ${Math.round((revenue / Math.max(1, totalRevenue)) * 100)}%
+                    ${Math.round((revenue / Math.max(1, summary.itemsTotal)) * 100)}%
                   </span>
                 </div>
                 <i><span style="width: ${(revenue / maxCategory) * 100}%"></span></i>
@@ -711,38 +727,71 @@ function salesStatsHtml() {
           )
           .join("") +
         "</ul>";
+  const periodSelect = /* HTML */ `
+    <label class="sales-sort">
+      Giai đoạn
+      <select data-admin-filter="salesPeriod">
+        <option
+          value="since-start"
+          ${adminState.salesPeriod === "all" ? "" : "selected"}
+        >
+          Từ 28/09/2026 đến nay
+        </option>
+        <option
+          value="all"
+          ${adminState.salesPeriod === "all" ? "selected" : ""}
+        >
+          Toàn bộ thời gian
+        </option>
+      </select>
+    </label>
+  `;
 
   return /* HTML */ `
     ${pageHeaderHtml(
       "Thống kê bán hàng",
-      "Tính các đơn chưa bị hủy, gồm cả đơn đang chờ xác nhận và đang giao. Đơn bị hủy đã được hoàn lại kho.",
+      "Doanh thu chỉ tính đơn đã giao, giống trang Tổng quan và biểu đồ doanh thu. Đơn chưa giao xong được tính riêng; đơn đã hủy không tính.",
+      periodSelect,
     )}
     <div class="stat-grid">
       ${statCardHtml(
-        "Sản phẩm đã bán",
-        totalSold.toLocaleString("vi-VN"),
-        "▤",
-        "Trong " + getSoldOrders().length + " đơn hàng",
+        "Doanh thu (đơn đã giao)",
+        money(summary.revenue),
+        "₫",
+        summary.deliveredCount + " đơn đã giao",
       )}
       ${statCardHtml(
-        "Tiền hàng đã bán",
-        money(totalRevenue),
-        "₫",
-        "Chưa tính phí giao hàng và giảm giá",
+        "Đang chờ thu",
+        money(summary.pendingRevenue),
+        "⏳",
+        summary.pendingCount + " đơn chờ xác nhận / đang giao",
+      )}
+      ${statCardHtml(
+        "Sản phẩm đã bán",
+        number(totalSold),
+        "▤",
+        "Thêm " + number(totalPending) + " sản phẩm trong đơn đang xử lý",
       )}
       ${statCardHtml(
         "Bán chạy nhất",
         best ? best.name : "Chưa có",
         "★",
-        best ? "Đã bán " + best.sold.toLocaleString("vi-VN") + " sản phẩm" : "",
-      )}
-      ${statCardHtml(
-        "Chưa bán được",
-        notSold.length + " sản phẩm",
-        "◌",
-        "Trên tổng " + products.length + " sản phẩm",
+        best ? "Đã bán " + number(best.sold) + " sản phẩm" : "",
       )}
     </div>
+    <p class="revenue-formula">
+      <span class="muted">Doanh thu =</span>
+      Tiền hàng
+      <b>${money(summary.itemsTotal)}</b>
+      <span class="muted">+</span>
+      Phí giao
+      <b>${money(summary.shippingTotal)}</b>
+      <span class="muted">−</span>
+      Giảm giá
+      <b>${money(summary.discountTotal)}</b>
+      <span class="muted">=</span>
+      <b class="sold">${money(summary.revenue)}</b>
+    </p>
     <section>
       <div class="admin-section-head">
         <h3>Sản phẩm bán chạy</h3>
@@ -753,7 +802,7 @@ function salesStatsHtml() {
               value="sold"
               ${adminState.salesSort === "sold" ? "selected" : ""}
             >
-              Số lượng bán
+              Số lượng đã bán
             </option>
             <option
               value="revenue"
@@ -765,19 +814,29 @@ function salesStatsHtml() {
         </label>
       </div>
       ${tableHtml(
-        ["#", "Sản phẩm", "Đã bán", "Số đơn", "Tiền hàng", "Tồn kho"],
+        [
+          "#",
+          "Sản phẩm",
+          "Đã bán",
+          "Đang xử lý",
+          "Số đơn đã giao",
+          "Tiền hàng",
+          "Tồn kho",
+        ],
         tableRows,
         rows.length,
-        "Chưa có sản phẩm nào được bán.",
+        "Chưa có sản phẩm nào được bán trong giai đoạn này.",
       )}
     </section>
     <div class="admin-two-col even">
       <section class="panel">
         <h3>Tiền hàng theo danh mục</h3>
+        <p class="muted">Các đơn đã giao trong giai đoạn</p>
         ${categoryHtml}
       </section>
       <section class="panel">
-        <h3>Sản phẩm chưa bán được (${notSold.length})</h3>
+        <h3>Sản phẩm chưa có đơn (${notSold.length})</h3>
+        <p class="muted">Không có trong đơn nào của giai đoạn</p>
         ${notSoldHtml}
       </section>
     </div>

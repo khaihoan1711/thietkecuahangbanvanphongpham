@@ -34,7 +34,9 @@ export default function DashboardView() {
     .slice(0, RECENT_ORDER_COUNT);
   const pendingCount = orders.filter((order) => order.status === "pending").length;
   const revenueByMonth = getMonthlyRevenue(orders);
-  const topProducts = getProductSales(orders).slice(0, 5);
+  const topProducts = getProductSales(orders)
+    .filter((item) => item.sold > 0)
+    .slice(0, 5);
   const lowStock = products
     .filter(
       (product) => product.stock !== undefined && product.stock <= LOW_STOCK_LIMIT,
@@ -83,10 +85,10 @@ export default function DashboardView() {
           icon="☺"
         />
         <StatCard
-          label="Tổng doanh thu"
+          label="Doanh thu"
           value={formatVND(getTotalRevenue(orders))}
           icon="₫"
-          note="Chỉ tính các đơn đã giao hàng"
+          note="Đơn đã giao từ 28/09/2026 (khớp biểu đồ)"
         />
       </div>
 
@@ -100,7 +102,7 @@ export default function DashboardView() {
               </p>
             </div>
             <p className="text-right">
-              <span className="block text-sm text-ink-muted">Tổng trong giai đoạn</span>
+              <span className="block text-sm text-ink-muted">Doanh thu giai đoạn</span>
               <strong className="text-xl text-primary">
                 {formatVND(revenueByMonth.reduce((sum, item) => sum + item.revenue, 0))}
               </strong>

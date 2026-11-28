@@ -772,23 +772,58 @@ function getUserOrders(user) {
 }
 
 // ---------- Thống kê cho Dashboard ----------
+// Bản chép tay của src/lib/stats.ts. Mọi số liệu bán hàng dùng CHUNG một cách tính:
+// - Doanh thu = tổng tiền các đơn ĐÃ GIAO (tiền hàng + phí giao − giảm giá).
+// - Đơn chờ xác nhận / đã xác nhận / đang giao: tiền "đang chờ thu", chưa là doanh thu.
+// - Đơn đã hủy: không tính (hàng đã được hoàn lại kho).
+// - Mặc định chỉ tính đơn đặt từ ngày REVENUE_START (giống biểu đồ doanh thu).
 
-// Doanh thu chỉ tính các đơn đã giao hàng thành công.
-function getTotalRevenue() {
-  return orders
-    .filter((order) => order.status === "delivered")
-    .reduce((sum, order) => sum + order.total, 0);
+// Ngày bắt đầu tính doanh thu (giờ Việt Nam). `null` nghĩa là toàn bộ thời gian.
+const REVENUE_START = new Date("2026-09-28T00:00:00+07:00");
+
+function inPeriod(order, start) {
+  return !start || new Date(order.createdAt) >= start;
+}
+
+function isPendingOrder(order) {
+  return order.status !== "delivered" && order.status !== "cancelled";
+}
+
+// Các đơn đã giao trong giai đoạn.
+function getRevenueOrders(start = REVENUE_START) {
+  return orders.filter(
+    (order) => order.status === "delivered" && inPeriod(order, start),
+  );
+}
+
+function getTotalRevenue(start = REVENUE_START) {
+  return getRevenueOrders(start).reduce((sum, order) => sum + order.total, 0);
+}
+
+// Doanh thu = tiền hàng + phí giao − giảm giá (đơn đã giao); kèm tiền đang chờ thu.
+function getSalesSummary(start = REVENUE_START) {
+  const delivered = getRevenueOrders(start);
+  const pending = orders.filter(
+    (order) => isPendingOrder(order) && inPeriod(order, start),
+  );
+  const sum = (list, pick) => list.reduce((total, order) => total + pick(order), 0);
+
+  return {
+    deliveredCount: delivered.length,
+    itemsTotal: sum(delivered, (order) => order.subtotal),
+    shippingTotal: sum(delivered, (order) => order.shippingFee),
+    discountTotal: sum(delivered, (order) => order.discount),
+    revenue: sum(delivered, (order) => order.total),
+    pendingCount: pending.length,
+    pendingRevenue: sum(pending, (order) => order.total),
+  };
 }
 
 function monthKey(date) {
   return date.getFullYear() + "-" + pad(date.getMonth() + 1);
 }
 
-// Biểu đồ doanh thu tính từ ngày này (giờ Việt Nam) đến hôm nay.
-const REVENUE_START = new Date("2026-09-28T00:00:00+07:00");
-
 // Doanh thu từng tháng, từ tháng của REVENUE_START đến tháng hiện tại (tháng cũ nhất đứng đầu).
-// Chỉ tính các đơn đã giao đặt từ ngày REVENUE_START trở đi.
 function getMonthlyRevenue() {
   const now = new Date();
   const result = [];
@@ -803,14 +838,10 @@ function getMonthlyRevenue() {
     date.setMonth(date.getMonth() + 1);
   }
 
-  for (const order of orders) {
-    const createdAt = new Date(order.createdAt);
-
-    if (order.status !== "delivered" || createdAt < REVENUE_START) {
-      continue;
-    }
-
-    const entry = result.find((item) => item.key === monthKey(createdAt));
+  for (const order of getRevenueOrders(REVENUE_START)) {
+    const entry = result.find(
+      (item) => item.key === monthKey(new Date(order.createdAt)),
+    );
 
     if (entry) {
       entry.revenue += order.total;
@@ -820,32 +851,20 @@ function getMonthlyRevenue() {
   return result;
 }
 
-// Đưa toàn bộ dữ liệu về dữ liệu mẫu và đăng xuất.
-function resetAllData() {
-  products = clone(seedProducts);
-  categories = clone(seedCategories);
-  users = clone(seedUsers);
-  orders = clone(seedOrders);
-  commit(STORAGE_KEYS.products, products);
-  commit(STORAGE_KEYS.categories, categories);
-  commit(STORAGE_KEYS.users, users);
-  commit(STORAGE_KEYS.orders, orders);
-  logoutUser();
-}
+// ---------- Thống kê theo sản phẩm ----------
 
-// ---------- Thống kê bán hàng theo sản phẩm ----------
-
-// Thống kê bán hàng tính các đơn chưa bị hủy (đơn hủy đã được hoàn lại kho).
-function getSoldOrders() {
-  return orders.filter((order) => order.status !== "cancelled");
-}
-
-// Doanh số từng sản phẩm, bán nhiều nhất đứng đầu.
-// sold: số sản phẩm đã bán (hộp 10 cây được tính là 10); revenue: tiền hàng của sản phẩm.
-function getProductSales() {
+// Doanh số từng sản phẩm, bán nhiều nhất (theo đơn đã giao) đứng đầu.
+// sold: số sản phẩm trong đơn đã giao (hộp 10 cây được tính là 10);
+// pending: số sản phẩm trong đơn chưa giao xong; revenue: tiền hàng trong đơn đã giao.
+function getProductSales(start = REVENUE_START) {
   const byProduct = new Map();
 
-  for (const order of getSoldOrders()) {
+  for (const order of orders) {
+    if (order.status === "cancelled" || !inPeriod(order, start)) {
+      continue;
+    }
+
+    const delivered = order.status === "delivered";
     const counted = new Set();
 
     for (const item of order.items) {
@@ -854,16 +873,22 @@ function getProductSales() {
         name: item.name,
         image: item.image,
         sold: 0,
+        pending: 0,
         orderCount: 0,
         revenue: 0,
       };
+      const units = item.quantity * item.stockUnits;
 
-      entry.sold += item.quantity * item.stockUnits;
-      entry.revenue += item.price * item.quantity;
+      if (delivered) {
+        entry.sold += units;
+        entry.revenue += item.price * item.quantity;
 
-      if (!counted.has(item.productId)) {
-        entry.orderCount += 1;
-        counted.add(item.productId);
+        if (!counted.has(item.productId)) {
+          entry.orderCount += 1;
+          counted.add(item.productId);
+        }
+      } else {
+        entry.pending += units;
       }
 
       byProduct.set(item.productId, entry);
@@ -871,6 +896,6 @@ function getProductSales() {
   }
 
   return [...byProduct.values()].sort(
-    (a, b) => b.sold - a.sold || b.revenue - a.revenue,
+    (a, b) => b.sold - a.sold || b.revenue - a.revenue || b.pending - a.pending,
   );
 }

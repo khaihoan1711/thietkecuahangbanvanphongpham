@@ -7,34 +7,44 @@ import StatCard from "@/components/admin/dashboard/StatCard";
 import { useCatalog } from "@/context/CatalogContext";
 import { useOrders } from "@/context/OrderContext";
 import { formatVND } from "@/lib/format";
-import { getProductSales, getSoldOrders } from "@/lib/stats";
+import { getProductSales, getSalesSummary, REVENUE_START } from "@/lib/stats";
 
 // Từ mức tồn kho này trở xuống được coi là sắp hết hàng
 const LOW_STOCK_LIMIT = 20;
 
 type SortBy = "sold" | "revenue";
+type Period = "since-start" | "all";
 
-// Trang "Thống kê bán hàng": sản phẩm bán chạy, doanh số theo danh mục, sản phẩm chưa bán.
+const number = (value: number) => value.toLocaleString("vi-VN");
+
+// Trang "Thống kê bán hàng". Cách tính giống trang Tổng quan và biểu đồ doanh thu:
+// doanh thu chỉ gồm đơn đã giao; đơn chưa giao xong được tách riêng là "đang chờ thu".
 export default function SalesStatsView() {
   const { products, getCategoryLabel } = useCatalog();
   const { orders } = useOrders();
   const [sortBy, setSortBy] = useState<SortBy>("sold");
+  const [period, setPeriod] = useState<Period>("since-start");
 
-  const sales = getProductSales(orders);
+  const start = period === "all" ? null : REVENUE_START;
+  const summary = getSalesSummary(orders, start);
+  const sales = getProductSales(orders, start);
   const rows = [...sales].sort((a, b) =>
     sortBy === "revenue"
-      ? b.revenue - a.revenue
-      : b.sold - a.sold || b.revenue - a.revenue,
+      ? b.revenue - a.revenue || b.sold - a.sold
+      : b.sold - a.sold || b.revenue - a.revenue || b.pending - a.pending,
   );
   const totalSold = sales.reduce((sum, item) => sum + item.sold, 0);
-  const totalRevenue = sales.reduce((sum, item) => sum + item.revenue, 0);
-  const soldOrderCount = getSoldOrders(orders).length;
-  const best = sales[0];
+  const totalPending = sales.reduce((sum, item) => sum + item.pending, 0);
+  const best = sales.find((item) => item.sold > 0);
 
-  // Doanh số theo danh mục (sản phẩm đã bị xóa được xếp vào "Khác").
+  // Tiền hàng (đơn đã giao) theo danh mục. Sản phẩm đã bị xóa được xếp vào "Khác".
   const byCategory = new Map<string, number>();
 
   for (const item of sales) {
+    if (item.revenue === 0) {
+      continue;
+    }
+
     const product = products.find((value) => value.id === item.productId);
     const label = product ? getCategoryLabel(product.category) : "Khác";
 
@@ -55,36 +65,65 @@ export default function SalesStatsView() {
     <div>
       <AdminPageHeader
         title="Thống kê bán hàng"
-        description="Tính các đơn chưa bị hủy, gồm cả đơn đang chờ xác nhận và đang giao. Đơn bị hủy đã được hoàn lại kho."
+        description="Doanh thu chỉ tính đơn đã giao, giống trang Tổng quan và biểu đồ doanh thu. Đơn chưa giao xong được tính riêng; đơn đã hủy không tính."
+        action={
+          <label className="flex items-center gap-2 text-sm text-ink-muted">
+            Giai đoạn
+            <select
+              value={period}
+              onChange={(event) => setPeriod(event.target.value as Period)}
+              className="min-h-10 rounded-lg border border-line bg-white px-3 text-sm text-ink"
+            >
+              <option value="since-start">Từ 28/09/2026 đến nay</option>
+              <option value="all">Toàn bộ thời gian</option>
+            </select>
+          </label>
+        }
       />
 
       <div className="grid gap-4 sm:grid-cols-2 xl:grid-cols-4">
         <StatCard
-          label="Sản phẩm đã bán"
-          value={totalSold.toLocaleString("vi-VN")}
-          icon="▤"
-          note={`Trong ${soldOrderCount} đơn hàng`}
+          label="Doanh thu (đơn đã giao)"
+          value={formatVND(summary.revenue)}
+          icon="₫"
+          note={`${summary.deliveredCount} đơn đã giao`}
         />
         <StatCard
-          label="Tiền hàng đã bán"
-          value={formatVND(totalRevenue)}
-          icon="₫"
-          note="Chưa tính phí giao hàng và giảm giá"
+          label="Đang chờ thu"
+          value={formatVND(summary.pendingRevenue)}
+          icon="⏳"
+          note={`${summary.pendingCount} đơn chờ xác nhận / đang giao`}
+        />
+        <StatCard
+          label="Sản phẩm đã bán"
+          value={number(totalSold)}
+          icon="▤"
+          note={`Thêm ${number(totalPending)} sản phẩm trong đơn đang xử lý`}
         />
         <StatCard
           label="Bán chạy nhất"
           value={best ? best.name : "Chưa có"}
           icon="★"
-          note={
-            best ? `Đã bán ${best.sold.toLocaleString("vi-VN")} sản phẩm` : undefined
-          }
+          note={best ? `Đã bán ${number(best.sold)} sản phẩm` : undefined}
         />
-        <StatCard
-          label="Chưa bán được"
-          value={`${notSold.length} sản phẩm`}
-          icon="◌"
-          note={`Trên tổng ${products.length} sản phẩm`}
-        />
+      </div>
+
+      {/* Cách ra con số doanh thu: khớp với biểu đồ ở trang Tổng quan */}
+      <div className="mt-4 flex flex-wrap items-center gap-x-3 gap-y-1 rounded-xl border border-line bg-white px-5 py-3 text-sm">
+        <span className="text-ink-muted">Doanh thu =</span>
+        <span>
+          Tiền hàng <strong>{formatVND(summary.itemsTotal)}</strong>
+        </span>
+        <span className="text-ink-muted">+</span>
+        <span>
+          Phí giao <strong>{formatVND(summary.shippingTotal)}</strong>
+        </span>
+        <span className="text-ink-muted">−</span>
+        <span>
+          Giảm giá <strong>{formatVND(summary.discountTotal)}</strong>
+        </span>
+        <span className="text-ink-muted">=</span>
+        <strong className="text-primary">{formatVND(summary.revenue)}</strong>
       </div>
 
       <section className="mt-6">
@@ -97,16 +136,24 @@ export default function SalesStatsView() {
               onChange={(event) => setSortBy(event.target.value as SortBy)}
               className="min-h-10 rounded-lg border border-line bg-white px-3 text-sm text-ink"
             >
-              <option value="sold">Số lượng bán</option>
+              <option value="sold">Số lượng đã bán</option>
               <option value="revenue">Tiền hàng</option>
             </select>
           </label>
         </div>
 
         <AdminTable
-          columns={["#", "Sản phẩm", "Đã bán", "Số đơn", "Tiền hàng", "Tồn kho"]}
+          columns={[
+            "#",
+            "Sản phẩm",
+            "Đã bán",
+            "Đang xử lý",
+            "Số đơn đã giao",
+            "Tiền hàng",
+            "Tồn kho",
+          ]}
           rowCount={rows.length}
-          emptyMessage="Chưa có sản phẩm nào được bán."
+          emptyMessage="Chưa có sản phẩm nào được bán trong giai đoạn này."
         >
           {rows.map((item, index) => {
             const stock = stockOf(item.productId);
@@ -125,7 +172,10 @@ export default function SalesStatsView() {
                   </div>
                 </td>
                 <td className="whitespace-nowrap px-4 py-3 font-bold text-primary">
-                  {item.sold.toLocaleString("vi-VN")}
+                  {number(item.sold)}
+                </td>
+                <td className="whitespace-nowrap px-4 py-3 text-ink-muted">
+                  {item.pending ? number(item.pending) : "—"}
                 </td>
                 <td className="px-4 py-3">{item.orderCount}</td>
                 <td className="whitespace-nowrap px-4 py-3 font-semibold">
@@ -157,6 +207,7 @@ export default function SalesStatsView() {
       <div className="mt-6 grid gap-6 xl:grid-cols-2">
         <section className="rounded-xl border border-line bg-white p-5">
           <h3 className="text-lg font-bold text-navy">Tiền hàng theo danh mục</h3>
+          <p className="text-sm text-ink-muted">Các đơn đã giao trong giai đoạn</p>
           {categoryRows.length === 0 ? (
             <p className="mt-4 text-sm text-ink-muted">Chưa có dữ liệu.</p>
           ) : (
@@ -167,7 +218,7 @@ export default function SalesStatsView() {
                     <span className="font-semibold text-ink">{label}</span>
                     <span className="text-ink-muted">
                       {formatVND(revenue)} ·{" "}
-                      {Math.round((revenue / Math.max(1, totalRevenue)) * 100)}%
+                      {Math.round((revenue / Math.max(1, summary.itemsTotal)) * 100)}%
                     </span>
                   </div>
                   <div className="mt-1.5 h-2.5 overflow-hidden rounded-full bg-surface">
@@ -184,8 +235,9 @@ export default function SalesStatsView() {
 
         <section className="rounded-xl border border-line bg-white p-5">
           <h3 className="text-lg font-bold text-navy">
-            Sản phẩm chưa bán được ({notSold.length})
+            Sản phẩm chưa có đơn ({notSold.length})
           </h3>
+          <p className="text-sm text-ink-muted">Không có trong đơn nào của giai đoạn</p>
           {notSold.length === 0 ? (
             <p className="mt-4 text-sm text-ink-muted">
               Sản phẩm nào cũng đã có người mua.

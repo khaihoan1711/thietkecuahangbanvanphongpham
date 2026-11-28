@@ -1372,3 +1372,20 @@ body.is-admin {
     grid-template-columns: 1fr;
   }
 }
+/* Cách ra con số doanh thu trên trang thống kê */
+.revenue-formula {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 4px 10px;
+  margin: 16px 0 24px;
+  padding: 12px 18px;
+  border: 1px solid var(--line);
+  border-radius: 12px;
+  background: white;
+  font-size: 14px;
+}
+.admin-two-col.even .panel > p.muted {
+  margin: -10px 0 0;
+  font-size: 14px;
+}
