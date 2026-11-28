@@ -14,6 +14,8 @@ const STORAGE_KEYS = {
   cart: "khaihoanshop-html-cart",
   // Mã các sản phẩm yêu thích
   favorites: "khaihoanshop-html-favorites",
+  // Đánh dấu đã gán tồn kho ban đầu cho sản phẩm đã lưu (xem bên dưới)
+  stockFilled: "khaihoanshop-html-stock-filled",
 };
 
 // Phí vận chuyển và giảm giá mẫu, dùng chung cho giỏ hàng và thanh toán.
@@ -391,6 +393,25 @@ function saveList(key, list) {
 }
 
 let products = loadList(STORAGE_KEYS.products, seedProducts);
+
+// Chạy một lần trên mỗi trình duyệt: sản phẩm đã lưu từ trước khi có số lượng tồn kho
+// nhận số tồn kho ban đầu, để khách mua hàng thì tồn kho giảm. Sau lần này,
+// Admin vẫn có thể để trống số lượng (không giới hạn) mà không bị đặt lại.
+try {
+  if (!localStorage.getItem(STORAGE_KEYS.stockFilled)) {
+    products = products.map((product) => {
+      const seed = seedProducts.find((item) => item.id === product.id);
+
+      return product.stock === undefined && seed && seed.stock !== undefined
+        ? { ...product, stock: seed.stock }
+        : product;
+    });
+    localStorage.setItem(STORAGE_KEYS.products, JSON.stringify(products));
+    localStorage.setItem(STORAGE_KEYS.stockFilled, "1");
+  }
+} catch {
+  // Trình duyệt chặn LocalStorage: dùng dữ liệu đang có.
+}
 let categories = loadList(STORAGE_KEYS.categories, seedCategories);
 let users = loadList(STORAGE_KEYS.users, seedUsers);
 let orders = loadList(STORAGE_KEYS.orders, seedOrders);
@@ -810,4 +831,46 @@ function resetAllData() {
   commit(STORAGE_KEYS.users, users);
   commit(STORAGE_KEYS.orders, orders);
   logoutUser();
+}
+
+// ---------- Thống kê bán hàng theo sản phẩm ----------
+
+// Thống kê bán hàng tính các đơn chưa bị hủy (đơn hủy đã được hoàn lại kho).
+function getSoldOrders() {
+  return orders.filter((order) => order.status !== "cancelled");
+}
+
+// Doanh số từng sản phẩm, bán nhiều nhất đứng đầu.
+// sold: số sản phẩm đã bán (hộp 10 cây được tính là 10); revenue: tiền hàng của sản phẩm.
+function getProductSales() {
+  const byProduct = new Map();
+
+  for (const order of getSoldOrders()) {
+    const counted = new Set();
+
+    for (const item of order.items) {
+      const entry = byProduct.get(item.productId) || {
+        productId: item.productId,
+        name: item.name,
+        image: item.image,
+        sold: 0,
+        orderCount: 0,
+        revenue: 0,
+      };
+
+      entry.sold += item.quantity * item.stockUnits;
+      entry.revenue += item.price * item.quantity;
+
+      if (!counted.has(item.productId)) {
+        entry.orderCount += 1;
+        counted.add(item.productId);
+      }
+
+      byProduct.set(item.productId, entry);
+    }
+  }
+
+  return [...byProduct.values()].sort(
+    (a, b) => b.sold - a.sold || b.revenue - a.revenue,
+  );
 }

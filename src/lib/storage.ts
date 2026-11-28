@@ -12,6 +12,8 @@ export const STORAGE_KEYS = {
   cart: "khaihoanstatinery-cart",
   // Mã các sản phẩm yêu thích
   favorites: "khaihoanshop-favorites",
+  // Đánh dấu đã gán tồn kho ban đầu cho sản phẩm đã lưu (xem CatalogContext)
+  stockFilled: "khaihoanshop-stock-filled",
 } as const;
 
 // Đọc một giá trị JSON. Trả về `fallback` nếu chưa có hoặc dữ liệu bị hỏng.

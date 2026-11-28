@@ -2999,6 +2999,153 @@ body.is-admin {
     display: none;
   }
 }
+/* ---------- Thống kê bán hàng ---------- */
+.top-products {
+  margin-bottom: 24px;
+}
+.top-list {
+  margin: 12px 0 0;
+  padding: 0;
+  list-style: none;
+}
+.top-list li {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 10px 0;
+  border-top: 1px solid var(--line);
+  font-size: 14px;
+}
+.top-list li:first-child {
+  border-top: 0;
+}
+.top-list strong {
+  flex: 1;
+  min-width: 0;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+.top-list b {
+  color: var(--primary);
+}
+.top-rank {
+  display: flex;
+  flex-shrink: 0;
+  align-items: center;
+  justify-content: center;
+  width: 28px;
+  height: 28px;
+  border-radius: 50%;
+  background: #e6f2ff;
+  color: var(--primary);
+  font-size: 12px;
+  font-weight: bold;
+}
+.top-list img,
+.sales-product img {
+  flex-shrink: 0;
+  width: 42px;
+  height: 42px;
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  background: white;
+  object-fit: contain;
+}
+.sales-product {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  min-width: 220px;
+}
+.sold {
+  color: var(--primary);
+}
+.stock-pill {
+  padding: 2px 10px;
+  border-radius: 20px;
+  font-size: 12px;
+  font-weight: bold;
+  white-space: nowrap;
+}
+.stock-pill.ok {
+  background: #e6f2ff;
+  color: var(--primary);
+}
+.stock-pill.low {
+  background: #fff6d9;
+  color: var(--dark);
+}
+.stock-pill.out {
+  background: #fee2e2;
+  color: #b91c1c;
+}
+.sales-sort {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 14px;
+}
+.sales-sort select {
+  min-height: 40px;
+  padding: 0 10px;
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  background: white;
+}
+.admin-two-col.even {
+  grid-template-columns: 1fr 1fr;
+  margin-top: 24px;
+}
+.category-bars,
+.not-sold {
+  margin: 12px 0 0;
+  padding: 0;
+  list-style: none;
+}
+.category-bars li {
+  margin-bottom: 12px;
+}
+.category-bars div {
+  display: flex;
+  justify-content: space-between;
+  gap: 12px;
+  font-size: 14px;
+}
+.category-bars i {
+  display: block;
+  height: 10px;
+  margin-top: 6px;
+  overflow: hidden;
+  border-radius: 10px;
+  background: #eef7ff;
+}
+.category-bars i span {
+  display: block;
+  height: 100%;
+  border-radius: 10px;
+  background: var(--primary);
+}
+.not-sold {
+  max-height: 320px;
+  overflow-y: auto;
+}
+.not-sold li {
+  display: flex;
+  justify-content: space-between;
+  gap: 12px;
+  padding: 8px 0;
+  border-top: 1px solid var(--line);
+  font-size: 14px;
+}
+.not-sold li:first-child {
+  border-top: 0;
+}
+@media (max-width: 900px) {
+  .admin-two-col.even {
+    grid-template-columns: 1fr;
+  }
+}
 
 </style>
   </head>
@@ -3860,6 +4007,7 @@ const seedProducts = [
     "alt": "Bút gel Thiên Long Soft Touch GEL-070",
     "price": 12600,
     "oldPrice": 17000,
+    "stock": 202,
     "description": [
       "Thân bút thiết kế vừa vặn, cầm êm khi viết lâu, nét chữ rõ ràng và đều.",
       "Mực gel khô nhanh, hạn chế lem nhòe, phù hợp học tập và làm việc hằng ngày."
@@ -3883,6 +4031,7 @@ const seedProducts = [
     "alt": "Bút dạ quang Thiên Long Hi!Line Neon HL-029",
     "price": 12750,
     "oldPrice": 17000,
+    "stock": 182,
     "description": [
       "Màu neon rực rỡ, highlight rõ nét mà không làm lem chữ.",
       "Thiết kế hiện đại, dễ cầm, phù hợp ghi chú trong học tập và công việc."
@@ -3906,6 +4055,7 @@ const seedProducts = [
     "alt": "Bút lông bảng Thiên Long WB-03",
     "price": 8100,
     "oldPrice": 10500,
+    "stock": 172,
     "rank": 3,
     "description": [
       "Viết tốt trên bảng trắng, thủy tinh và các bề mặt nhẵn bóng, dễ lau sạch.",
@@ -3931,6 +4081,7 @@ const seedProducts = [
     "alt": "Bút chì bấm Thiên Long Joyee PC-038/JO 0.5mm",
     "price": 7500,
     "oldPrice": 11000,
+    "stock": 209,
     "description": [
       "Ngòi chì 0.5mm cho nét thanh mảnh, rõ ràng, phù hợp ghi chép và vẽ phác thảo.",
       "Cơ chế bấm tiện lợi giúp thay ngòi nhanh, thân bút nhỏ gọn dễ cầm."
@@ -3953,6 +4104,7 @@ const seedProducts = [
     ],
     "alt": "Tập học sinh 96 trang 4 ô ly ngang 60 gsm Điểm 10",
     "price": 11000,
+    "stock": 171,
     "rank": 1,
     "description": [
       "Tập học sinh 96 trang, ô ly ngang rõ nét, dùng cho học sinh tiểu học và trung học.",
@@ -3973,6 +4125,7 @@ const seedProducts = [
     "image": "/images/products/vo-so/tap-hong-ha-school-200-trang-1.jpg",
     "alt": "Tập học sinh Hồng Hà School 200 trang",
     "price": 15000,
+    "stock": 201,
     "description": [
       "Tập 200 trang dày dặn, dùng được cả năm học cho nhiều môn.",
       "Giấy trắng tự nhiên, viết bút bi và bút mực đều đẹp."
@@ -3996,6 +4149,7 @@ const seedProducts = [
     "alt": "Sổ lò xo Klong Caro/Grid B5 120 trang",
     "price": 25000,
     "oldPrice": 30000,
+    "stock": 101,
     "description": [
       "Sổ lò xo khổ B5, lật phẳng trang dễ viết, phù hợp ghi bài và lập kế hoạch.",
       "Ruột caro giúp kẻ bảng, vẽ sơ đồ và trình bày công thức gọn gàng."
@@ -4018,6 +4172,7 @@ const seedProducts = [
     ],
     "alt": "Sổ còng Binder Campus A5 kèm 100 tờ",
     "price": 60000,
+    "stock": 69,
     "description": [
       "Sổ còng khổ A5 kèm 100 tờ giấy, thêm hoặc bớt trang tùy nhu cầu.",
       "Bìa nhựa dẻo bền, gập 360 độ tiện viết khi cầm tay."
@@ -4041,6 +4196,7 @@ const seedProducts = [
     "alt": "Tập học sinh 96 trang 4 ô ly vuông 100 gsm Thiên Long KINDAYS NB-130",
     "price": 15000,
     "oldPrice": 21000,
+    "stock": 153,
     "description": [
       "Giấy 100gsm sáng, mịn, ô ly vuông rõ nét, viết êm và ít lem.",
       "Bìa hoạt hình dễ thương, giao mẫu ngẫu nhiên."
@@ -4064,6 +4220,7 @@ const seedProducts = [
     "alt": "Tập học sinh 96 trang ô ly ngang 2mm 70 gsm Thiên Long NB-152",
     "price": 11300,
     "oldPrice": 16000,
+    "stock": 182,
     "description": [
       "Giấy mịn hỗ trợ viết êm, phù hợp học sinh tiểu học và trung học.",
       "Bìa hình hoạt hình đáng yêu, giao mẫu ngẫu nhiên."
@@ -4087,6 +4244,7 @@ const seedProducts = [
     "alt": "Tập học sinh chống lóa 200 trang 4 ô ly ngang Thiên Long Joyee NB-147",
     "price": 17500,
     "oldPrice": 24000,
+    "stock": 163,
     "description": [
       "Giấy chống lóa giúp bảo vệ thị lực khi viết lâu, ô ly ngang 2mm rõ ràng.",
       "Bìa màu nhẹ nhàng, giao mẫu ngẫu nhiên."
@@ -4110,6 +4268,7 @@ const seedProducts = [
     "alt": "Sổ lò xo kẻ ngang 120 trang A5 Thiên Long",
     "price": 26500,
     "oldPrice": 35000,
+    "stock": 132,
     "description": [
       "Khổ A5 nhỏ gọn, tiện ghi chép bài học, lên kế hoạch và viết nhật ký.",
       "Lò xo đôi chắc chắn giúp lật trang nhẹ nhàng."
@@ -4133,6 +4292,7 @@ const seedProducts = [
     "alt": "Tập tô nét Thiên Long Điểm 10 TP-TTN01",
     "price": 12800,
     "oldPrice": 18000,
+    "stock": 153,
     "description": [
       "Khổ 170 x 240mm, giấy 80gsm độ trắng 90%, nội dung tô nét theo bộ chữ cái tiếng Việt.",
       "Phù hợp bé chuẩn bị vào lớp 1 luyện cầm bút và viết đúng nét."
@@ -4156,6 +4316,7 @@ const seedProducts = [
     "alt": "Tập dán gáy 200 trang ô ly ngang 2mm 70 gsm Thiên Long NB-153",
     "price": 19900,
     "oldPrice": 28000,
+    "stock": 179,
     "description": [
       "Giấy 70gsm độ trắng 90-92% ISO, viết mượt và ít lem.",
       "Bìa giao ngẫu nhiên theo từng lốc, hình hoạt hình vui nhộn."
@@ -4174,6 +4335,7 @@ const seedProducts = [
     "image": "/images/products/giay/giay-in-double-a-a4-70gsm-1.jpg",
     "alt": "Giấy in Double A A4 70gsm (500 tờ)",
     "price": 85000,
+    "stock": 57,
     "rank": 2,
     "description": [
       "Giấy A4 70gsm, ream 500 tờ, phù hợp in tài liệu hằng ngày.",
@@ -4195,6 +4357,7 @@ const seedProducts = [
     "alt": "Giấy in Double A A4 80gsm (500 tờ)",
     "price": 95000,
     "oldPrice": 105000,
+    "stock": 53,
     "description": [
       "Giấy A4 80gsm dày hơn, ít xuyên mực khi in hai mặt.",
       "Phù hợp in hợp đồng, báo cáo và hồ sơ cần vẻ ngoài chỉn chu."
@@ -4213,6 +4376,7 @@ const seedProducts = [
     "image": "/images/products/giay/giay-in-paperone-a4-70gsm-1.jpg",
     "alt": "Giấy in PaperOne A4 70gsm (500 tờ)",
     "price": 80000,
+    "stock": 72,
     "description": [
       "Giấy A4 70gsm, ream 500 tờ, bề mặt mịn cho bản in sắc nét.",
       "Hạn chế kẹt giấy và quăn mép khi in số lượng lớn."
@@ -4231,6 +4395,7 @@ const seedProducts = [
     "image": "/images/products/giay/giay-note-phan-trang-5-mau-pronoti-1.jpg",
     "alt": "Giấy note phân trang 5 màu Pronoti",
     "price": 15000,
+    "stock": 185,
     "description": [
       "Mỗi xấp có 5 màu để phân loại nội dung nhanh gọn.",
       "Keo dán vừa phải, bóc ra không làm rách trang."
@@ -4254,6 +4419,7 @@ const seedProducts = [
     "alt": "Ream giấy A4 70 gsm Thiên Long Copy Plus PP-003 (500 tờ)",
     "price": 75900,
     "oldPrice": 87000,
+    "stock": 56,
     "description": [
       "Copy Plus phù hợp mọi nhu cầu in ấn và photocopy hằng ngày.",
       "Đóng gói 500 tờ mỗi ream, nguồn giấy nhập khẩu."
@@ -4277,6 +4443,7 @@ const seedProducts = [
     "alt": "Ream giấy A4 80 gsm IK Copy (500 tờ)",
     "price": 87400,
     "oldPrice": 103000,
+    "stock": 60,
     "description": [
       "Giấy láng, không tách lớp, in hai mặt vẫn sắc nét.",
       "Quy cách 500 tờ/ream, định lượng 80gsm dày dặn."
@@ -4300,6 +4467,7 @@ const seedProducts = [
     "alt": "Giấy ghi chú Neon Thiên Long (xấp 100 tờ)",
     "price": 10800,
     "oldPrice": 12000,
+    "stock": 197,
     "description": [
       "Dán và gỡ ra dễ dàng nhờ lớp keo mỏng, không để lại vết.",
       "Màu neon nổi bật giúp ghi chú không bị bỏ sót."
@@ -4323,6 +4491,7 @@ const seedProducts = [
     "alt": "Giấy phân trang Thiên Long SN-011 (12x45mm, 100 tờ)",
     "price": 8700,
     "oldPrice": 12000,
+    "stock": 203,
     "description": [
       "Các dải màu giúp phân loại nội dung nhanh trong sách vở và hồ sơ.",
       "Keo dán vừa phải, có thể bóc ra dán lại."
@@ -4346,6 +4515,7 @@ const seedProducts = [
     "alt": "Bìa học sinh 30 lá A4 Thiên Long DB-002",
     "price": 46080,
     "oldPrice": 51200,
+    "stock": 122,
     "description": [
       "Cover dày 0.6mm, lá bìa trong suốt 0.03mm bảo vệ tài liệu tốt.",
       "Kích thước 310 x 232 x 20 mm, nhiều cặp màu để chọn."
@@ -4369,6 +4539,7 @@ const seedProducts = [
     "alt": "Bìa bao thư A4 Travel File Thiên Long Flexoffice",
     "price": 2500,
     "oldPrice": 3300,
+    "stock": 165,
     "description": [
       "Kích thước 340 x 240mm, mỏng nhẹ, tiện mang theo giấy tờ.",
       "Chất liệu nhựa PP chống nước, bảo vệ tài liệu khi di chuyển."
@@ -4391,6 +4562,7 @@ const seedProducts = [
     ],
     "alt": "Gôm tẩy 4B Deli chuyên dụng",
     "price": 5000,
+    "stock": 178,
     "description": [
       "Gôm 4B chuyên dụng cho học sinh và người vẽ, tẩy sạch nét chì.",
       "Ít vụn, giữ giấy phẳng khi tẩy."
@@ -4409,6 +4581,7 @@ const seedProducts = [
     "image": "/images/products/dung-cu/thuoc-ke-nhua-thien-long-sr-02-20cm-1.jpg",
     "alt": "Thước kẻ nhựa Thiên Long SR-02 20cm",
     "price": 6000,
+    "stock": 193,
     "description": [
       "Thước dài 20cm, trong suốt dễ quan sát khi kẻ.",
       "Vạch chia in rõ, không dễ phai khi dùng lâu."
@@ -4431,6 +4604,7 @@ const seedProducts = [
     ],
     "alt": "Bộ compa chì kim kèm ruột Deli",
     "price": 25000,
+    "stock": 107,
     "description": [
       "Compa chì kim dùng cho vẽ hình học và bài tập toán.",
       "Kèm ruột chì thay thế, đóng gói gọn trong hộp."
@@ -4454,6 +4628,7 @@ const seedProducts = [
     "alt": "Kéo học sinh kẹo ngọt Colokit SC-C04",
     "price": 26730,
     "oldPrice": 29700,
+    "stock": 104,
     "description": [
       "Mũi kéo bo tròn phù hợp học sinh tiểu học khi cắt giấy thủ công.",
       "Thiết kế kẹo ngọt vui mắt, nhẹ tay (38g)."
@@ -4477,6 +4652,7 @@ const seedProducts = [
     "alt": "Kéo văn phòng Thiên Long SC-021",
     "price": 30500,
     "oldPrice": 44600,
+    "stock": 120,
     "description": [
       "Kiểu dáng trang nhã, cầm êm tay, phù hợp học sinh, sinh viên, văn phòng và gia đình.",
       "Lưỡi thép sắc bén, cắt giấy gọn gàng."
@@ -4500,6 +4676,7 @@ const seedProducts = [
     "alt": "Bấm kim mini số 10 Thiên Long",
     "price": 12400,
     "oldPrice": 18000,
+    "stock": 188,
     "description": [
       "Thiết kế nhỏ gọn, màu sắc bắt mắt, dùng cho học sinh và văn phòng.",
       "Bấm nhẹ, ít kẹt ghim, giao màu ngẫu nhiên."
@@ -4523,6 +4700,7 @@ const seedProducts = [
     "alt": "Kim bấm số 10 Flexoffice FO-STS02",
     "price": 2500,
     "oldPrice": 3888,
+    "stock": 160,
     "description": [
       "Độ cứng cao, bấm giấy chắc và đều.",
       "Dùng cho các loại bấm kim số 10."
@@ -4546,6 +4724,7 @@ const seedProducts = [
     "alt": "Kẹp bướm Flexoffice 25mm FO-DC03",
     "price": 11900,
     "oldPrice": 17300,
+    "stock": 148,
     "description": [
       "Phần cạnh bằng kim loại phủ niken không gỉ, hai ngón tay dễ cầm.",
       "Dùng kẹp tập tài liệu dày gọn gàng."
@@ -4565,6 +4744,7 @@ const seedProducts = [
     "alt": "Băng keo đục OPP Flexoffice FO-BKD06",
     "price": 8580,
     "oldPrice": 14300,
+    "stock": 201,
     "description": [
       "Làm từ màng BOPP bền dai, dùng đóng gói thùng hàng.",
       "Thân thiện môi trường, bám dính tốt."
@@ -4588,6 +4768,7 @@ const seedProducts = [
     "alt": "Dao rọc giấy Flexoffice FO-KN03B",
     "price": 16800,
     "oldPrice": 24400,
+    "stock": 149,
     "description": [
       "Thân dao dài 142mm, lưỡi thép sắc bén.",
       "Giao màu ngẫu nhiên."
@@ -4611,6 +4792,7 @@ const seedProducts = [
     "alt": "Máy tính văn phòng Thiên Long Flexio CAL-009",
     "price": 61380,
     "oldPrice": 102300,
+    "stock": 66,
     "description": [
       "Kích thước 140.5 x 86.5mm nhỏ gọn, dùng pin AAA.",
       "Bảo hành 12 tháng (1 đổi 1 trong 2 tháng đầu)."
@@ -4634,6 +4816,7 @@ const seedProducts = [
     "alt": "Gôm tẩy Thiên Long Joyee E-027/JO",
     "price": 4400,
     "oldPrice": 6000,
+    "stock": 201,
     "description": [
       "Đạt tiêu chuẩn an toàn châu Âu EN 71/3, họa tiết nhân vật Joyee dễ thương.",
       "Giao mẫu ngẫu nhiên."
@@ -4657,6 +4840,7 @@ const seedProducts = [
     "alt": "Bấm kim trợ lực số 10 Thiên Long",
     "price": 26000,
     "oldPrice": 38000,
+    "stock": 105,
     "description": [
       "Thiết kế nhỏ gọn, cơ chế bấm an toàn dễ sử dụng.",
       "Nhẹ tay khi bấm nhiều lần, ít kẹt ghim."
@@ -4679,6 +4863,7 @@ const seedProducts = [
     ],
     "alt": "Màu nước Pentel Water Colours 12 màu",
     "price": 75000,
+    "stock": 55,
     "description": [
       "Bộ 12 tuýp màu nước Pentel dùng cho học tập và vẽ sáng tạo.",
       "Màu trong trẻo, dễ pha để tạo nhiều sắc độ."
@@ -4702,6 +4887,7 @@ const seedProducts = [
     "alt": "Bút màu Acrylic Markers Thiên Long Colokit Junior",
     "price": 30000,
     "oldPrice": 40000,
+    "stock": 139,
     "description": [
       "Mực acrylic chất lượng cao, giúp bé thỏa sức sáng tạo.",
       "Thân bút có nắp bảo vệ, dễ cầm và điều khiển nét vẽ."
@@ -4725,6 +4911,7 @@ const seedProducts = [
     "alt": "Vở vẽ A4 Sketch Book for Art Thiên Long Điểm 10 TP-SKB005",
     "price": 16100,
     "oldPrice": 23000,
+    "stock": 186,
     "description": [
       "Kích thước 297 x 207mm, giấy dày phù hợp bút chì màu và màu nước nhẹ.",
       "Dành cho học sinh và người mới tập vẽ."
@@ -4748,6 +4935,7 @@ const seedProducts = [
     "alt": "Túi 2 cọ vẽ phẳng và tròn Thiên Long Colokit BRW-C01",
     "price": 11400,
     "oldPrice": 16300,
+    "stock": 197,
     "description": [
       "Lông cọ mềm giữ nước tốt, phù hợp màu nước và màu acrylic.",
       "Cán cọ nhẹ, dễ điều khiển nét vẽ."
@@ -4771,6 +4959,7 @@ const seedProducts = [
     "alt": "Bút chì màu Wood Free Thiên Long Colokit 12/18/24 màu",
     "price": 20700,
     "oldPrice": 29700,
+    "stock": 106,
     "description": [
       "Chì màu lên màu tươi, ít gãy khi gọt.",
       "Có hộp 12, 18 và 24 màu để chọn."
@@ -4794,6 +4983,7 @@ const seedProducts = [
     "alt": "Sáp 24 màu Thiên Long Colokit CR-C09",
     "price": 30300,
     "oldPrice": 40400,
+    "stock": 116,
     "description": [
       "Bao bì thiết kế theo tông màu Colokit, phù hợp sở thích của các bé.",
       "Mỗi cây một màu, tổng 24 màu."
@@ -4817,6 +5007,7 @@ const seedProducts = [
     "alt": "Bút lông màu Fiber pen Brush Thiên Long Colokit Classic 12/24 màu",
     "price": 42800,
     "oldPrice": 58000,
+    "stock": 112,
     "description": [
       "Mực lên màu tươi và đều, phù hợp tô màu, minh họa và lettering.",
       "Có bản 12 màu và 24 màu."
@@ -4840,6 +5031,7 @@ const seedProducts = [
     "alt": "Màu nước nén Solid Water Color Thiên Long Colokit 12/18/24 màu",
     "price": 67800,
     "oldPrice": 99000,
+    "stock": 71,
     "description": [
       "Dễ loang màu, chống mờ nhiều lớp, pha trộn thành nhiều màu.",
       "Hộp gọn, tiện mang đi vẽ ngoài trời."
@@ -4863,6 +5055,7 @@ const seedProducts = [
     "alt": "Bộ màu Gouache dạng tuýp 12ml Thiên Long Colokit 12/18/24 màu",
     "price": 80800,
     "oldPrice": 101000,
+    "stock": 72,
     "description": [
       "Độ che phủ vừa phải, phù hợp vẽ tranh trên giấy dày.",
       "Có bản 12, 18 và 24 màu."
@@ -4886,6 +5079,7 @@ const seedProducts = [
     "alt": "Balo chống gù Clever Hippo Fancy",
     "price": 450000,
     "oldPrice": 600000,
+    "stock": 26,
     "rank": 5,
     "description": [
       "Balo chống gù dòng Fancy, nhiều họa tiết cho bé chọn.",
@@ -4911,6 +5105,7 @@ const seedProducts = [
     "alt": "Cặp - Balo chống gù Thiên Long Baby Gon BP-016/BG",
     "price": 250200,
     "oldPrice": 417000,
+    "stock": 25,
     "description": [
       "Vải Nylon, Polyester phủ PU và PVC chống thấm, đệm mousse foam êm lưng.",
       "Trọng lượng 700g, nhiều màu xanh, lá, vàng."
@@ -4934,6 +5129,7 @@ const seedProducts = [
     "alt": "Cặp - Balo Thiên Long Lite BP-038 siêu nhẹ 440g",
     "price": 237500,
     "oldPrice": 324000,
+    "stock": 20,
     "description": [
       "Kích thước 28 x 12 x 38cm, quai đeo êm, khóa kéo nylon trơn.",
       "Có màu xanh, hồng và đen."
@@ -4957,6 +5153,7 @@ const seedProducts = [
     "alt": "Cặp - Balo Thiên Long Charmie BP-039 chống sốc laptop 14 inch",
     "price": 287500,
     "oldPrice": 392000,
+    "stock": 22,
     "description": [
       "Kích thước 29 x 16 x 42cm, trọng lượng 495g, vải polyester phủ PU.",
       "Nhiều ngăn tiện lợi cho nhu cầu dùng hằng ngày."
@@ -4980,6 +5177,7 @@ const seedProducts = [
     "alt": "Hộp bút Điểm 10 TP-PCA016",
     "price": 37400,
     "oldPrice": 53600,
+    "stock": 125,
     "description": [
       "Đựng được thước, bút, compa, gôm và nhiều đồ dùng học tập.",
       "Thiết kế nhỏ gọn, tiện lợi."
@@ -5003,6 +5201,7 @@ const seedProducts = [
     "alt": "Túi - Bóp viết Thiên Long Joyee họa tiết thú cưng PCA-025/JO",
     "price": 75000,
     "oldPrice": 102000,
+    "stock": 70,
     "description": [
       "Ngăn chứa rộng rãi, giữ form tốt, dễ vệ sinh.",
       "Có màu xanh và hồng."
@@ -5026,6 +5225,7 @@ const seedProducts = [
     "alt": "Hộp viết Điểm 10 Doraemon PCA-011/DO",
     "price": 46000,
     "oldPrice": 66000,
+    "stock": 110,
     "description": [
       "Hộp bút cao cấp đựng được nhiều dụng cụ học tập.",
       "Có sẵn hốc chuốt bút chì (gồm 2 lưỡi chuốt)."
@@ -5049,6 +5249,7 @@ const seedProducts = [
     "alt": "Túi - Bóp đựng bút viết Thiên Long Pokémon Premium PCA-024/PKM",
     "price": 87000,
     "oldPrice": 111000,
+    "stock": 59,
     "description": [
       "Màu sắc tươi sáng, thiết kế sắc nét cho các bé yêu thích Pokémon.",
       "Có màu xanh và vàng."
@@ -7658,6 +7859,8 @@ const STORAGE_KEYS = {
   cart: "khaihoanshop-html-cart",
   // Mã các sản phẩm yêu thích
   favorites: "khaihoanshop-html-favorites",
+  // Đánh dấu đã gán tồn kho ban đầu cho sản phẩm đã lưu (xem bên dưới)
+  stockFilled: "khaihoanshop-html-stock-filled",
 };
 
 // Phí vận chuyển và giảm giá mẫu, dùng chung cho giỏ hàng và thanh toán.
@@ -8035,6 +8238,25 @@ function saveList(key, list) {
 }
 
 let products = loadList(STORAGE_KEYS.products, seedProducts);
+
+// Chạy một lần trên mỗi trình duyệt: sản phẩm đã lưu từ trước khi có số lượng tồn kho
+// nhận số tồn kho ban đầu, để khách mua hàng thì tồn kho giảm. Sau lần này,
+// Admin vẫn có thể để trống số lượng (không giới hạn) mà không bị đặt lại.
+try {
+  if (!localStorage.getItem(STORAGE_KEYS.stockFilled)) {
+    products = products.map((product) => {
+      const seed = seedProducts.find((item) => item.id === product.id);
+
+      return product.stock === undefined && seed && seed.stock !== undefined
+        ? { ...product, stock: seed.stock }
+        : product;
+    });
+    localStorage.setItem(STORAGE_KEYS.products, JSON.stringify(products));
+    localStorage.setItem(STORAGE_KEYS.stockFilled, "1");
+  }
+} catch {
+  // Trình duyệt chặn LocalStorage: dùng dữ liệu đang có.
+}
 let categories = loadList(STORAGE_KEYS.categories, seedCategories);
 let users = loadList(STORAGE_KEYS.users, seedUsers);
 let orders = loadList(STORAGE_KEYS.orders, seedOrders);
@@ -8454,6 +8676,48 @@ function resetAllData() {
   commit(STORAGE_KEYS.users, users);
   commit(STORAGE_KEYS.orders, orders);
   logoutUser();
+}
+
+// ---------- Thống kê bán hàng theo sản phẩm ----------
+
+// Thống kê bán hàng tính các đơn chưa bị hủy (đơn hủy đã được hoàn lại kho).
+function getSoldOrders() {
+  return orders.filter((order) => order.status !== "cancelled");
+}
+
+// Doanh số từng sản phẩm, bán nhiều nhất đứng đầu.
+// sold: số sản phẩm đã bán (hộp 10 cây được tính là 10); revenue: tiền hàng của sản phẩm.
+function getProductSales() {
+  const byProduct = new Map();
+
+  for (const order of getSoldOrders()) {
+    const counted = new Set();
+
+    for (const item of order.items) {
+      const entry = byProduct.get(item.productId) || {
+        productId: item.productId,
+        name: item.name,
+        image: item.image,
+        sold: 0,
+        orderCount: 0,
+        revenue: 0,
+      };
+
+      entry.sold += item.quantity * item.stockUnits;
+      entry.revenue += item.price * item.quantity;
+
+      if (!counted.has(item.productId)) {
+        entry.orderCount += 1;
+        counted.add(item.productId);
+      }
+
+      byProduct.set(item.productId, entry);
+    }
+  }
+
+  return [...byProduct.values()].sort(
+    (a, b) => b.sold - a.sold || b.revenue - a.revenue,
+  );
 }
 
 // ============================================================
@@ -9977,6 +10241,7 @@ const adminSections = [
   { id: "danh-muc", label: "Danh mục", icon: "☰", href: "#quan-tri/danh-muc" },
   { id: "don-hang", label: "Đơn hàng", icon: "▣", href: "#quan-tri/don-hang" },
   { id: "nguoi-dung", label: "Người dùng", icon: "☺", href: "#quan-tri/nguoi-dung" },
+  { id: "thong-ke", label: "Thống kê", icon: "★", href: "#quan-tri/thong-ke" },
 ];
 
 // Bộ lọc và trạng thái hiện tại của các trang quản trị.
@@ -9988,6 +10253,8 @@ const adminState = {
   orderStatus: "all",
   role: "all",
   expandedCategoryId: null,
+  // Trang thống kê: "sold" (số lượng bán) hoặc "revenue" (tiền hàng)
+  salesSort: "sold",
 };
 
 function resetAdminFilters() {
@@ -9997,6 +10264,7 @@ function resetAdminFilters() {
   adminState.orderStatus = "all";
   adminState.role = "all";
   adminState.expandedCategoryId = null;
+  adminState.salesSort = "sold";
 }
 
 // ---------- Khung trang quản trị ----------
@@ -10132,6 +10400,7 @@ function adminSectionHtml(sectionId) {
   if (sectionId === "danh-muc") return categoriesSectionHtml();
   if (sectionId === "don-hang") return ordersSectionHtml();
   if (sectionId === "nguoi-dung") return usersSectionHtml();
+  if (sectionId === "thong-ke") return salesStatsHtml();
 
   return dashboardHtml();
 }
@@ -10170,6 +10439,13 @@ function handleAdminFilter(event) {
   }
 
   adminState[name] = event.target.value;
+
+  // Trang thống kê không có bảng riêng để làm mới: vẽ lại cả trang theo cách sắp xếp mới.
+  if (name === "salesSort") {
+    rerenderAdmin();
+    return;
+  }
+
   refreshAdminTable();
 }
 
@@ -10488,6 +10764,13 @@ function dashboardHtml() {
         ${lowStockHtml}
       </section>
     </div>
+    <section class="panel top-products">
+      <div class="admin-section-head">
+        <h3>Sản phẩm bán chạy</h3>
+        <a href="#quan-tri/thong-ke">Xem thống kê</a>
+      </div>
+      ${topProductsHtml(getProductSales().slice(0, 5))}
+    </section>
     <section>
       <div class="admin-section-head">
         <h3>Đơn hàng gần đây</h3>
@@ -10518,6 +10801,215 @@ actions["reset-data"] = () => {
     },
   });
 };
+
+// ---------- Thống kê bán hàng ----------
+
+// Danh sách ngắn sản phẩm bán chạy (dùng ở trang Tổng quan).
+function topProductsHtml(list) {
+  if (list.length === 0) {
+    return '<p class="muted">Chưa có sản phẩm nào được bán.</p>';
+  }
+
+  return (
+    '<ol class="top-list">' +
+    list
+      .map(
+        (item, index) => /* HTML */ `
+          <li>
+            <span class="top-rank">${index + 1}</span>
+            <img
+              src="${imageSrc(item.image)}"
+              alt=""
+            />
+            <strong>${esc(item.name)}</strong>
+            <span class="muted">
+              Đã bán
+              <b>${item.sold.toLocaleString("vi-VN")}</b>
+            </span>
+          </li>
+        `,
+      )
+      .join("") +
+    "</ol>"
+  );
+}
+
+// Nhãn tồn kho: "Hết hàng", "Còn 12" (sắp hết) hoặc "Còn 150".
+function stockPillHtml(stock) {
+  if (stock === undefined) {
+    return '<span class="muted">Không giới hạn</span>';
+  }
+
+  const kind = stock === 0 ? "out" : stock <= LOW_STOCK_LIMIT ? "low" : "ok";
+
+  return (
+    '<span class="stock-pill ' +
+    kind +
+    '">' +
+    (stock === 0 ? "Hết hàng" : "Còn " + stock) +
+    "</span>"
+  );
+}
+
+// Trang "Thống kê bán hàng": sản phẩm bán chạy, doanh số theo danh mục, sản phẩm chưa bán.
+function salesStatsHtml() {
+  const sales = getProductSales();
+  const rows = [...sales].sort((a, b) =>
+    adminState.salesSort === "revenue"
+      ? b.revenue - a.revenue
+      : b.sold - a.sold || b.revenue - a.revenue,
+  );
+  const totalSold = sales.reduce((sum, item) => sum + item.sold, 0);
+  const totalRevenue = sales.reduce((sum, item) => sum + item.revenue, 0);
+  const best = sales[0];
+  const notSold = products.filter(
+    (product) => !sales.some((item) => item.productId === product.id),
+  );
+  const byCategory = new Map();
+
+  for (const item of sales) {
+    const product = products.find((value) => value.id === item.productId);
+    const label = product ? categoryLabel(product.category) : "Khác";
+
+    byCategory.set(label, (byCategory.get(label) || 0) + item.revenue);
+  }
+
+  const categoryRows = [...byCategory.entries()].sort((a, b) => b[1] - a[1]);
+  const maxCategory = Math.max(1, ...categoryRows.map(([, revenue]) => revenue));
+  const tableRows = rows
+    .map((item, index) => {
+      const product = products.find((value) => value.id === item.productId);
+
+      return /* HTML */ `
+        <tr>
+          <td><b>${index + 1}</b></td>
+          <td>
+            <div class="sales-product">
+              <img
+                src="${imageSrc(item.image)}"
+                alt=""
+              />
+              <strong>${esc(item.name)}</strong>
+            </div>
+          </td>
+          <td><b class="sold">${item.sold.toLocaleString("vi-VN")}</b></td>
+          <td>${item.orderCount}</td>
+          <td><b>${money(item.revenue)}</b></td>
+          <td>${stockPillHtml(product ? product.stock : undefined)}</td>
+        </tr>
+      `;
+    })
+    .join("");
+  const categoryHtml =
+    categoryRows.length === 0
+      ? '<p class="muted">Chưa có dữ liệu.</p>'
+      : '<ul class="category-bars">' +
+        categoryRows
+          .map(
+            ([label, revenue]) => /* HTML */ `
+              <li>
+                <div>
+                  <strong>${esc(label)}</strong>
+                  <span class="muted">
+                    ${money(revenue)} ·
+                    ${Math.round((revenue / Math.max(1, totalRevenue)) * 100)}%
+                  </span>
+                </div>
+                <i><span style="width: ${(revenue / maxCategory) * 100}%"></span></i>
+              </li>
+            `,
+          )
+          .join("") +
+        "</ul>";
+  const notSoldHtml =
+    notSold.length === 0
+      ? '<p class="muted">Sản phẩm nào cũng đã có người mua.</p>'
+      : '<ul class="not-sold">' +
+        notSold
+          .map(
+            (product) =>
+              "<li><span>" +
+              esc(product.name) +
+              '</span><small class="muted">' +
+              (product.stock === undefined
+                ? "Không giới hạn"
+                : "Tồn " + product.stock) +
+              "</small></li>",
+          )
+          .join("") +
+        "</ul>";
+
+  return /* HTML */ `
+    ${pageHeaderHtml(
+      "Thống kê bán hàng",
+      "Tính các đơn chưa bị hủy, gồm cả đơn đang chờ xác nhận và đang giao. Đơn bị hủy đã được hoàn lại kho.",
+    )}
+    <div class="stat-grid">
+      ${statCardHtml(
+        "Sản phẩm đã bán",
+        totalSold.toLocaleString("vi-VN"),
+        "▤",
+        "Trong " + getSoldOrders().length + " đơn hàng",
+      )}
+      ${statCardHtml(
+        "Tiền hàng đã bán",
+        money(totalRevenue),
+        "₫",
+        "Chưa tính phí giao hàng và giảm giá",
+      )}
+      ${statCardHtml(
+        "Bán chạy nhất",
+        best ? best.name : "Chưa có",
+        "★",
+        best ? "Đã bán " + best.sold.toLocaleString("vi-VN") + " sản phẩm" : "",
+      )}
+      ${statCardHtml(
+        "Chưa bán được",
+        notSold.length + " sản phẩm",
+        "◌",
+        "Trên tổng " + products.length + " sản phẩm",
+      )}
+    </div>
+    <section>
+      <div class="admin-section-head">
+        <h3>Sản phẩm bán chạy</h3>
+        <label class="sales-sort">
+          Sắp xếp theo
+          <select data-admin-filter="salesSort">
+            <option
+              value="sold"
+              ${adminState.salesSort === "sold" ? "selected" : ""}
+            >
+              Số lượng bán
+            </option>
+            <option
+              value="revenue"
+              ${adminState.salesSort === "revenue" ? "selected" : ""}
+            >
+              Tiền hàng
+            </option>
+          </select>
+        </label>
+      </div>
+      ${tableHtml(
+        ["#", "Sản phẩm", "Đã bán", "Số đơn", "Tiền hàng", "Tồn kho"],
+        tableRows,
+        rows.length,
+        "Chưa có sản phẩm nào được bán.",
+      )}
+    </section>
+    <div class="admin-two-col even">
+      <section class="panel">
+        <h3>Tiền hàng theo danh mục</h3>
+        ${categoryHtml}
+      </section>
+      <section class="panel">
+        <h3>Sản phẩm chưa bán được (${notSold.length})</h3>
+        ${notSoldHtml}
+      </section>
+    </div>
+  `;
+}
 
 // ---------- Quản lý sản phẩm ----------
 
@@ -11718,12 +12210,9 @@ const card = (p) => /* HTML */ `
             `
           : ""}
       </div>
-      <button
-        class="add"
-        data-add="${esc(p.id)}"
-      >
-        + Thêm vào giỏ
-      </button>
+      ${p.stock === 0
+        ? '<button class="add" disabled>Hết hàng</button>'
+        : '<button class="add" data-add="' + esc(p.id) + '">+ Thêm vào giỏ</button>'}
     </div>
   </article>
 `;
@@ -12779,9 +13268,24 @@ document.addEventListener("click", (event) => {
   if (add) {
     const p = products.find((p) => p.id === add.dataset.add);
     if (p) {
-      cart = putCartItem(cart, p, 1, {}, true);
-      save();
-      toast("Đã thêm sản phẩm vào giỏ hàng");
+      // So số lượng trong giỏ trước và sau khi thêm để biết còn hàng hay không.
+      const key = cartKey({ productId: p.id, ...selectionFor(p, {}) });
+      const quantityOf = (list) =>
+        list.find((item) => cartKey(item) === key)?.quantity ?? 0;
+      const next = putCartItem(cart, p, 1, {}, true);
+
+      if (quantityOf(next) <= quantityOf(cart)) {
+        toast(
+          p.stock === 0
+            ? "Sản phẩm đã hết hàng."
+            : "Số lượng trong giỏ đã bằng số hàng còn lại trong kho.",
+          "error",
+        );
+      } else {
+        cart = next;
+        save();
+        toast("Đã thêm sản phẩm vào giỏ hàng");
+      }
     }
   }
   const category = target.closest("[data-category]");

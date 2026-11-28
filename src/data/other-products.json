@@ -15,6 +15,7 @@
     "alt": "Bút gel Thiên Long Soft Touch GEL-070",
     "price": 12600,
     "oldPrice": 17000,
+    "stock": 202,
     "description": [
       "Thân bút thiết kế vừa vặn, cầm êm khi viết lâu, nét chữ rõ ràng và đều.",
       "Mực gel khô nhanh, hạn chế lem nhòe, phù hợp học tập và làm việc hằng ngày."
@@ -38,6 +39,7 @@
     "alt": "Bút dạ quang Thiên Long Hi!Line Neon HL-029",
     "price": 12750,
     "oldPrice": 17000,
+    "stock": 182,
     "description": [
       "Màu neon rực rỡ, highlight rõ nét mà không làm lem chữ.",
       "Thiết kế hiện đại, dễ cầm, phù hợp ghi chú trong học tập và công việc."
@@ -61,6 +63,7 @@
     "alt": "Bút lông bảng Thiên Long WB-03",
     "price": 8100,
     "oldPrice": 10500,
+    "stock": 172,
     "rank": 3,
     "description": [
       "Viết tốt trên bảng trắng, thủy tinh và các bề mặt nhẵn bóng, dễ lau sạch.",
@@ -86,6 +89,7 @@
     "alt": "Bút chì bấm Thiên Long Joyee PC-038/JO 0.5mm",
     "price": 7500,
     "oldPrice": 11000,
+    "stock": 209,
     "description": [
       "Ngòi chì 0.5mm cho nét thanh mảnh, rõ ràng, phù hợp ghi chép và vẽ phác thảo.",
       "Cơ chế bấm tiện lợi giúp thay ngòi nhanh, thân bút nhỏ gọn dễ cầm."
@@ -108,6 +112,7 @@
     ],
     "alt": "Tập học sinh 96 trang 4 ô ly ngang 60 gsm Điểm 10",
     "price": 11000,
+    "stock": 171,
     "rank": 1,
     "description": [
       "Tập học sinh 96 trang, ô ly ngang rõ nét, dùng cho học sinh tiểu học và trung học.",
@@ -128,6 +133,7 @@
     "image": "/images/products/vo-so/tap-hong-ha-school-200-trang-1.jpg",
     "alt": "Tập học sinh Hồng Hà School 200 trang",
     "price": 15000,
+    "stock": 201,
     "description": [
       "Tập 200 trang dày dặn, dùng được cả năm học cho nhiều môn.",
       "Giấy trắng tự nhiên, viết bút bi và bút mực đều đẹp."
@@ -151,6 +157,7 @@
     "alt": "Sổ lò xo Klong Caro/Grid B5 120 trang",
     "price": 25000,
     "oldPrice": 30000,
+    "stock": 101,
     "description": [
       "Sổ lò xo khổ B5, lật phẳng trang dễ viết, phù hợp ghi bài và lập kế hoạch.",
       "Ruột caro giúp kẻ bảng, vẽ sơ đồ và trình bày công thức gọn gàng."
@@ -173,6 +180,7 @@
     ],
     "alt": "Sổ còng Binder Campus A5 kèm 100 tờ",
     "price": 60000,
+    "stock": 69,
     "description": [
       "Sổ còng khổ A5 kèm 100 tờ giấy, thêm hoặc bớt trang tùy nhu cầu.",
       "Bìa nhựa dẻo bền, gập 360 độ tiện viết khi cầm tay."
@@ -196,6 +204,7 @@
     "alt": "Tập học sinh 96 trang 4 ô ly vuông 100 gsm Thiên Long KINDAYS NB-130",
     "price": 15000,
     "oldPrice": 21000,
+    "stock": 153,
     "description": [
       "Giấy 100gsm sáng, mịn, ô ly vuông rõ nét, viết êm và ít lem.",
       "Bìa hoạt hình dễ thương, giao mẫu ngẫu nhiên."
@@ -219,6 +228,7 @@
     "alt": "Tập học sinh 96 trang ô ly ngang 2mm 70 gsm Thiên Long NB-152",
     "price": 11300,
     "oldPrice": 16000,
+    "stock": 182,
     "description": [
       "Giấy mịn hỗ trợ viết êm, phù hợp học sinh tiểu học và trung học.",
       "Bìa hình hoạt hình đáng yêu, giao mẫu ngẫu nhiên."
@@ -242,6 +252,7 @@
     "alt": "Tập học sinh chống lóa 200 trang 4 ô ly ngang Thiên Long Joyee NB-147",
     "price": 17500,
     "oldPrice": 24000,
+    "stock": 163,
     "description": [
       "Giấy chống lóa giúp bảo vệ thị lực khi viết lâu, ô ly ngang 2mm rõ ràng.",
       "Bìa màu nhẹ nhàng, giao mẫu ngẫu nhiên."
@@ -265,6 +276,7 @@
     "alt": "Sổ lò xo kẻ ngang 120 trang A5 Thiên Long",
     "price": 26500,
     "oldPrice": 35000,
+    "stock": 132,
     "description": [
       "Khổ A5 nhỏ gọn, tiện ghi chép bài học, lên kế hoạch và viết nhật ký.",
       "Lò xo đôi chắc chắn giúp lật trang nhẹ nhàng."
@@ -288,6 +300,7 @@
     "alt": "Tập tô nét Thiên Long Điểm 10 TP-TTN01",
     "price": 12800,
     "oldPrice": 18000,
+    "stock": 153,
     "description": [
       "Khổ 170 x 240mm, giấy 80gsm độ trắng 90%, nội dung tô nét theo bộ chữ cái tiếng Việt.",
       "Phù hợp bé chuẩn bị vào lớp 1 luyện cầm bút và viết đúng nét."
@@ -311,6 +324,7 @@
     "alt": "Tập dán gáy 200 trang ô ly ngang 2mm 70 gsm Thiên Long NB-153",
     "price": 19900,
     "oldPrice": 28000,
+    "stock": 179,
     "description": [
       "Giấy 70gsm độ trắng 90-92% ISO, viết mượt và ít lem.",
       "Bìa giao ngẫu nhiên theo từng lốc, hình hoạt hình vui nhộn."
@@ -329,6 +343,7 @@
     "image": "/images/products/giay/giay-in-double-a-a4-70gsm-1.jpg",
     "alt": "Giấy in Double A A4 70gsm (500 tờ)",
     "price": 85000,
+    "stock": 57,
     "rank": 2,
     "description": [
       "Giấy A4 70gsm, ream 500 tờ, phù hợp in tài liệu hằng ngày.",
@@ -350,6 +365,7 @@
     "alt": "Giấy in Double A A4 80gsm (500 tờ)",
     "price": 95000,
     "oldPrice": 105000,
+    "stock": 53,
     "description": [
       "Giấy A4 80gsm dày hơn, ít xuyên mực khi in hai mặt.",
       "Phù hợp in hợp đồng, báo cáo và hồ sơ cần vẻ ngoài chỉn chu."
@@ -368,6 +384,7 @@
     "image": "/images/products/giay/giay-in-paperone-a4-70gsm-1.jpg",
     "alt": "Giấy in PaperOne A4 70gsm (500 tờ)",
     "price": 80000,
+    "stock": 72,
     "description": [
       "Giấy A4 70gsm, ream 500 tờ, bề mặt mịn cho bản in sắc nét.",
       "Hạn chế kẹt giấy và quăn mép khi in số lượng lớn."
@@ -386,6 +403,7 @@
     "image": "/images/products/giay/giay-note-phan-trang-5-mau-pronoti-1.jpg",
     "alt": "Giấy note phân trang 5 màu Pronoti",
     "price": 15000,
+    "stock": 185,
     "description": [
       "Mỗi xấp có 5 màu để phân loại nội dung nhanh gọn.",
       "Keo dán vừa phải, bóc ra không làm rách trang."
@@ -409,6 +427,7 @@
     "alt": "Ream giấy A4 70 gsm Thiên Long Copy Plus PP-003 (500 tờ)",
     "price": 75900,
     "oldPrice": 87000,
+    "stock": 56,
     "description": [
       "Copy Plus phù hợp mọi nhu cầu in ấn và photocopy hằng ngày.",
       "Đóng gói 500 tờ mỗi ream, nguồn giấy nhập khẩu."
@@ -432,6 +451,7 @@
     "alt": "Ream giấy A4 80 gsm IK Copy (500 tờ)",
     "price": 87400,
     "oldPrice": 103000,
+    "stock": 60,
     "description": [
       "Giấy láng, không tách lớp, in hai mặt vẫn sắc nét.",
       "Quy cách 500 tờ/ream, định lượng 80gsm dày dặn."
@@ -455,6 +475,7 @@
     "alt": "Giấy ghi chú Neon Thiên Long (xấp 100 tờ)",
     "price": 10800,
     "oldPrice": 12000,
+    "stock": 197,
     "description": [
       "Dán và gỡ ra dễ dàng nhờ lớp keo mỏng, không để lại vết.",
       "Màu neon nổi bật giúp ghi chú không bị bỏ sót."
@@ -478,6 +499,7 @@
     "alt": "Giấy phân trang Thiên Long SN-011 (12x45mm, 100 tờ)",
     "price": 8700,
     "oldPrice": 12000,
+    "stock": 203,
     "description": [
       "Các dải màu giúp phân loại nội dung nhanh trong sách vở và hồ sơ.",
       "Keo dán vừa phải, có thể bóc ra dán lại."
@@ -501,6 +523,7 @@
     "alt": "Bìa học sinh 30 lá A4 Thiên Long DB-002",
     "price": 46080,
     "oldPrice": 51200,
+    "stock": 122,
     "description": [
       "Cover dày 0.6mm, lá bìa trong suốt 0.03mm bảo vệ tài liệu tốt.",
       "Kích thước 310 x 232 x 20 mm, nhiều cặp màu để chọn."
@@ -524,6 +547,7 @@
     "alt": "Bìa bao thư A4 Travel File Thiên Long Flexoffice",
     "price": 2500,
     "oldPrice": 3300,
+    "stock": 165,
     "description": [
       "Kích thước 340 x 240mm, mỏng nhẹ, tiện mang theo giấy tờ.",
       "Chất liệu nhựa PP chống nước, bảo vệ tài liệu khi di chuyển."
@@ -546,6 +570,7 @@
     ],
     "alt": "Gôm tẩy 4B Deli chuyên dụng",
     "price": 5000,
+    "stock": 178,
     "description": [
       "Gôm 4B chuyên dụng cho học sinh và người vẽ, tẩy sạch nét chì.",
       "Ít vụn, giữ giấy phẳng khi tẩy."
@@ -564,6 +589,7 @@
     "image": "/images/products/dung-cu/thuoc-ke-nhua-thien-long-sr-02-20cm-1.jpg",
     "alt": "Thước kẻ nhựa Thiên Long SR-02 20cm",
     "price": 6000,
+    "stock": 193,
     "description": [
       "Thước dài 20cm, trong suốt dễ quan sát khi kẻ.",
       "Vạch chia in rõ, không dễ phai khi dùng lâu."
@@ -586,6 +612,7 @@
     ],
     "alt": "Bộ compa chì kim kèm ruột Deli",
     "price": 25000,
+    "stock": 107,
     "description": [
       "Compa chì kim dùng cho vẽ hình học và bài tập toán.",
       "Kèm ruột chì thay thế, đóng gói gọn trong hộp."
@@ -609,6 +636,7 @@
     "alt": "Kéo học sinh kẹo ngọt Colokit SC-C04",
     "price": 26730,
     "oldPrice": 29700,
+    "stock": 104,
     "description": [
       "Mũi kéo bo tròn phù hợp học sinh tiểu học khi cắt giấy thủ công.",
       "Thiết kế kẹo ngọt vui mắt, nhẹ tay (38g)."
@@ -632,6 +660,7 @@
     "alt": "Kéo văn phòng Thiên Long SC-021",
     "price": 30500,
     "oldPrice": 44600,
+    "stock": 120,
     "description": [
       "Kiểu dáng trang nhã, cầm êm tay, phù hợp học sinh, sinh viên, văn phòng và gia đình.",
       "Lưỡi thép sắc bén, cắt giấy gọn gàng."
@@ -655,6 +684,7 @@
     "alt": "Bấm kim mini số 10 Thiên Long",
     "price": 12400,
     "oldPrice": 18000,
+    "stock": 188,
     "description": [
       "Thiết kế nhỏ gọn, màu sắc bắt mắt, dùng cho học sinh và văn phòng.",
       "Bấm nhẹ, ít kẹt ghim, giao màu ngẫu nhiên."
@@ -678,6 +708,7 @@
     "alt": "Kim bấm số 10 Flexoffice FO-STS02",
     "price": 2500,
     "oldPrice": 3888,
+    "stock": 160,
     "description": [
       "Độ cứng cao, bấm giấy chắc và đều.",
       "Dùng cho các loại bấm kim số 10."
@@ -701,6 +732,7 @@
     "alt": "Kẹp bướm Flexoffice 25mm FO-DC03",
     "price": 11900,
     "oldPrice": 17300,
+    "stock": 148,
     "description": [
       "Phần cạnh bằng kim loại phủ niken không gỉ, hai ngón tay dễ cầm.",
       "Dùng kẹp tập tài liệu dày gọn gàng."
@@ -720,6 +752,7 @@
     "alt": "Băng keo đục OPP Flexoffice FO-BKD06",
     "price": 8580,
     "oldPrice": 14300,
+    "stock": 201,
     "description": [
       "Làm từ màng BOPP bền dai, dùng đóng gói thùng hàng.",
       "Thân thiện môi trường, bám dính tốt."
@@ -743,6 +776,7 @@
     "alt": "Dao rọc giấy Flexoffice FO-KN03B",
     "price": 16800,
     "oldPrice": 24400,
+    "stock": 149,
     "description": ["Thân dao dài 142mm, lưỡi thép sắc bén.", "Giao màu ngẫu nhiên."],
     "isNew": false,
     "isHot": false
@@ -763,6 +797,7 @@
     "alt": "Máy tính văn phòng Thiên Long Flexio CAL-009",
     "price": 61380,
     "oldPrice": 102300,
+    "stock": 66,
     "description": [
       "Kích thước 140.5 x 86.5mm nhỏ gọn, dùng pin AAA.",
       "Bảo hành 12 tháng (1 đổi 1 trong 2 tháng đầu)."
@@ -786,6 +821,7 @@
     "alt": "Gôm tẩy Thiên Long Joyee E-027/JO",
     "price": 4400,
     "oldPrice": 6000,
+    "stock": 201,
     "description": [
       "Đạt tiêu chuẩn an toàn châu Âu EN 71/3, họa tiết nhân vật Joyee dễ thương.",
       "Giao mẫu ngẫu nhiên."
@@ -809,6 +845,7 @@
     "alt": "Bấm kim trợ lực số 10 Thiên Long",
     "price": 26000,
     "oldPrice": 38000,
+    "stock": 105,
     "description": [
       "Thiết kế nhỏ gọn, cơ chế bấm an toàn dễ sử dụng.",
       "Nhẹ tay khi bấm nhiều lần, ít kẹt ghim."
@@ -831,6 +868,7 @@
     ],
     "alt": "Màu nước Pentel Water Colours 12 màu",
     "price": 75000,
+    "stock": 55,
     "description": [
       "Bộ 12 tuýp màu nước Pentel dùng cho học tập và vẽ sáng tạo.",
       "Màu trong trẻo, dễ pha để tạo nhiều sắc độ."
@@ -854,6 +892,7 @@
     "alt": "Bút màu Acrylic Markers Thiên Long Colokit Junior",
     "price": 30000,
     "oldPrice": 40000,
+    "stock": 139,
     "description": [
       "Mực acrylic chất lượng cao, giúp bé thỏa sức sáng tạo.",
       "Thân bút có nắp bảo vệ, dễ cầm và điều khiển nét vẽ."
@@ -877,6 +916,7 @@
     "alt": "Vở vẽ A4 Sketch Book for Art Thiên Long Điểm 10 TP-SKB005",
     "price": 16100,
     "oldPrice": 23000,
+    "stock": 186,
     "description": [
       "Kích thước 297 x 207mm, giấy dày phù hợp bút chì màu và màu nước nhẹ.",
       "Dành cho học sinh và người mới tập vẽ."
@@ -900,6 +940,7 @@
     "alt": "Túi 2 cọ vẽ phẳng và tròn Thiên Long Colokit BRW-C01",
     "price": 11400,
     "oldPrice": 16300,
+    "stock": 197,
     "description": [
       "Lông cọ mềm giữ nước tốt, phù hợp màu nước và màu acrylic.",
       "Cán cọ nhẹ, dễ điều khiển nét vẽ."
@@ -923,6 +964,7 @@
     "alt": "Bút chì màu Wood Free Thiên Long Colokit 12/18/24 màu",
     "price": 20700,
     "oldPrice": 29700,
+    "stock": 106,
     "description": [
       "Chì màu lên màu tươi, ít gãy khi gọt.",
       "Có hộp 12, 18 và 24 màu để chọn."
@@ -946,6 +988,7 @@
     "alt": "Sáp 24 màu Thiên Long Colokit CR-C09",
     "price": 30300,
     "oldPrice": 40400,
+    "stock": 116,
     "description": [
       "Bao bì thiết kế theo tông màu Colokit, phù hợp sở thích của các bé.",
       "Mỗi cây một màu, tổng 24 màu."
@@ -969,6 +1012,7 @@
     "alt": "Bút lông màu Fiber pen Brush Thiên Long Colokit Classic 12/24 màu",
     "price": 42800,
     "oldPrice": 58000,
+    "stock": 112,
     "description": [
       "Mực lên màu tươi và đều, phù hợp tô màu, minh họa và lettering.",
       "Có bản 12 màu và 24 màu."
@@ -992,6 +1036,7 @@
     "alt": "Màu nước nén Solid Water Color Thiên Long Colokit 12/18/24 màu",
     "price": 67800,
     "oldPrice": 99000,
+    "stock": 71,
     "description": [
       "Dễ loang màu, chống mờ nhiều lớp, pha trộn thành nhiều màu.",
       "Hộp gọn, tiện mang đi vẽ ngoài trời."
@@ -1015,6 +1060,7 @@
     "alt": "Bộ màu Gouache dạng tuýp 12ml Thiên Long Colokit 12/18/24 màu",
     "price": 80800,
     "oldPrice": 101000,
+    "stock": 72,
     "description": [
       "Độ che phủ vừa phải, phù hợp vẽ tranh trên giấy dày.",
       "Có bản 12, 18 và 24 màu."
@@ -1038,6 +1084,7 @@
     "alt": "Balo chống gù Clever Hippo Fancy",
     "price": 450000,
     "oldPrice": 600000,
+    "stock": 26,
     "rank": 5,
     "description": [
       "Balo chống gù dòng Fancy, nhiều họa tiết cho bé chọn.",
@@ -1063,6 +1110,7 @@
     "alt": "Cặp - Balo chống gù Thiên Long Baby Gon BP-016/BG",
     "price": 250200,
     "oldPrice": 417000,
+    "stock": 25,
     "description": [
       "Vải Nylon, Polyester phủ PU và PVC chống thấm, đệm mousse foam êm lưng.",
       "Trọng lượng 700g, nhiều màu xanh, lá, vàng."
@@ -1086,6 +1134,7 @@
     "alt": "Cặp - Balo Thiên Long Lite BP-038 siêu nhẹ 440g",
     "price": 237500,
     "oldPrice": 324000,
+    "stock": 20,
     "description": [
       "Kích thước 28 x 12 x 38cm, quai đeo êm, khóa kéo nylon trơn.",
       "Có màu xanh, hồng và đen."
@@ -1109,6 +1158,7 @@
     "alt": "Cặp - Balo Thiên Long Charmie BP-039 chống sốc laptop 14 inch",
     "price": 287500,
     "oldPrice": 392000,
+    "stock": 22,
     "description": [
       "Kích thước 29 x 16 x 42cm, trọng lượng 495g, vải polyester phủ PU.",
       "Nhiều ngăn tiện lợi cho nhu cầu dùng hằng ngày."
@@ -1132,6 +1182,7 @@
     "alt": "Hộp bút Điểm 10 TP-PCA016",
     "price": 37400,
     "oldPrice": 53600,
+    "stock": 125,
     "description": [
       "Đựng được thước, bút, compa, gôm và nhiều đồ dùng học tập.",
       "Thiết kế nhỏ gọn, tiện lợi."
@@ -1155,6 +1206,7 @@
     "alt": "Túi - Bóp viết Thiên Long Joyee họa tiết thú cưng PCA-025/JO",
     "price": 75000,
     "oldPrice": 102000,
+    "stock": 70,
     "description": [
       "Ngăn chứa rộng rãi, giữ form tốt, dễ vệ sinh.",
       "Có màu xanh và hồng."
@@ -1178,6 +1230,7 @@
     "alt": "Hộp viết Điểm 10 Doraemon PCA-011/DO",
     "price": 46000,
     "oldPrice": 66000,
+    "stock": 110,
     "description": [
       "Hộp bút cao cấp đựng được nhiều dụng cụ học tập.",
       "Có sẵn hốc chuốt bút chì (gồm 2 lưỡi chuốt)."
@@ -1201,6 +1254,7 @@
     "alt": "Túi - Bóp đựng bút viết Thiên Long Pokémon Premium PCA-024/PKM",
     "price": 87000,
     "oldPrice": 111000,
+    "stock": 59,
     "description": [
       "Màu sắc tươi sáng, thiết kế sắc nét cho các bé yêu thích Pokémon.",
       "Có màu xanh và vàng."

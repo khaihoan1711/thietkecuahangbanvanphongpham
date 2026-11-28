@@ -56,3 +56,56 @@ export function getMonthlyRevenue(
 
   return result;
 }
+
+// ---------- Thống kê bán hàng theo sản phẩm ----------
+
+// Thống kê bán hàng tính các đơn chưa bị hủy (đơn hủy đã được hoàn lại kho).
+export function getSoldOrders(orders: Order[]) {
+  return orders.filter((order) => order.status !== "cancelled");
+}
+
+export interface ProductSales {
+  productId: string;
+  name: string;
+  image: string;
+  // Số sản phẩm đã bán (tính theo cái/cuốn..., hộp 10 cây được tính là 10)
+  sold: number;
+  // Số đơn hàng có sản phẩm này
+  orderCount: number;
+  // Tiền hàng của sản phẩm (chưa tính phí giao hàng và giảm giá của đơn)
+  revenue: number;
+}
+
+// Doanh số từng sản phẩm, bán nhiều nhất đứng đầu.
+export function getProductSales(orders: Order[]): ProductSales[] {
+  const byProduct = new Map<string, ProductSales>();
+
+  for (const order of getSoldOrders(orders)) {
+    const counted = new Set<string>();
+
+    for (const item of order.items) {
+      const entry = byProduct.get(item.productId) ?? {
+        productId: item.productId,
+        name: item.name,
+        image: item.image,
+        sold: 0,
+        orderCount: 0,
+        revenue: 0,
+      };
+
+      entry.sold += item.quantity * item.stockUnits;
+      entry.revenue += item.price * item.quantity;
+
+      if (!counted.has(item.productId)) {
+        entry.orderCount += 1;
+        counted.add(item.productId);
+      }
+
+      byProduct.set(item.productId, entry);
+    }
+  }
+
+  return [...byProduct.values()].sort(
+    (a, b) => b.sold - a.sold || b.revenue - a.revenue,
+  );
+}

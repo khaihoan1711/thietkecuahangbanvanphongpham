@@ -82,7 +82,29 @@ export function CartProvider({ children }: { children: React.ReactNode }) {
       return false;
     }
 
-    updateCart(id, quantity, selection, true);
+    const product = getProduct(id);
+
+    if (!product) {
+      return false;
+    }
+
+    // Số lượng đang có trong giỏ của đúng loại (đơn vị/màu) này, trước và sau khi thêm.
+    const key = cartKey({ productId: id, ...selectionFor(product, selection) });
+    const before = items.find((item) => cartKey(item) === key)?.quantity ?? 0;
+    const next = putCartItem(items, product, quantity, selection, true);
+    const after = next.find((item) => cartKey(item) === key)?.quantity ?? 0;
+
+    if (after <= before) {
+      showToast(
+        product.stock === 0
+          ? "Sản phẩm đã hết hàng."
+          : "Số lượng trong giỏ đã bằng số hàng còn lại trong kho.",
+        "error",
+      );
+      return false;
+    }
+
+    setItems(next);
     return true;
   }
 

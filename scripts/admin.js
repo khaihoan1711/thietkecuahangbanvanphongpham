@@ -14,6 +14,7 @@ const adminSections = [
   { id: "danh-muc", label: "Danh mục", icon: "☰", href: "#quan-tri/danh-muc" },
   { id: "don-hang", label: "Đơn hàng", icon: "▣", href: "#quan-tri/don-hang" },
   { id: "nguoi-dung", label: "Người dùng", icon: "☺", href: "#quan-tri/nguoi-dung" },
+  { id: "thong-ke", label: "Thống kê", icon: "★", href: "#quan-tri/thong-ke" },
 ];
 
 // Bộ lọc và trạng thái hiện tại của các trang quản trị.
@@ -25,6 +26,8 @@ const adminState = {
   orderStatus: "all",
   role: "all",
   expandedCategoryId: null,
+  // Trang thống kê: "sold" (số lượng bán) hoặc "revenue" (tiền hàng)
+  salesSort: "sold",
 };
 
 function resetAdminFilters() {
@@ -34,6 +37,7 @@ function resetAdminFilters() {
   adminState.orderStatus = "all";
   adminState.role = "all";
   adminState.expandedCategoryId = null;
+  adminState.salesSort = "sold";
 }
 
 // ---------- Khung trang quản trị ----------
@@ -169,6 +173,7 @@ function adminSectionHtml(sectionId) {
   if (sectionId === "danh-muc") return categoriesSectionHtml();
   if (sectionId === "don-hang") return ordersSectionHtml();
   if (sectionId === "nguoi-dung") return usersSectionHtml();
+  if (sectionId === "thong-ke") return salesStatsHtml();
 
   return dashboardHtml();
 }
@@ -207,6 +212,13 @@ function handleAdminFilter(event) {
   }
 
   adminState[name] = event.target.value;
+
+  // Trang thống kê không có bảng riêng để làm mới: vẽ lại cả trang theo cách sắp xếp mới.
+  if (name === "salesSort") {
+    rerenderAdmin();
+    return;
+  }
+
   refreshAdminTable();
 }
 
@@ -525,6 +537,13 @@ function dashboardHtml() {
         ${lowStockHtml}
       </section>
     </div>
+    <section class="panel top-products">
+      <div class="admin-section-head">
+        <h3>Sản phẩm bán chạy</h3>
+        <a href="#quan-tri/thong-ke">Xem thống kê</a>
+      </div>
+      ${topProductsHtml(getProductSales().slice(0, 5))}
+    </section>
     <section>
       <div class="admin-section-head">
         <h3>Đơn hàng gần đây</h3>
@@ -555,6 +574,215 @@ actions["reset-data"] = () => {
     },
   });
 };
+
+// ---------- Thống kê bán hàng ----------
+
+// Danh sách ngắn sản phẩm bán chạy (dùng ở trang Tổng quan).
+function topProductsHtml(list) {
+  if (list.length === 0) {
+    return '<p class="muted">Chưa có sản phẩm nào được bán.</p>';
+  }
+
+  return (
+    '<ol class="top-list">' +
+    list
+      .map(
+        (item, index) => /* HTML */ `
+          <li>
+            <span class="top-rank">${index + 1}</span>
+            <img
+              src="${imageSrc(item.image)}"
+              alt=""
+            />
+            <strong>${esc(item.name)}</strong>
+            <span class="muted">
+              Đã bán
+              <b>${item.sold.toLocaleString("vi-VN")}</b>
+            </span>
+          </li>
+        `,
+      )
+      .join("") +
+    "</ol>"
+  );
+}
+
+// Nhãn tồn kho: "Hết hàng", "Còn 12" (sắp hết) hoặc "Còn 150".
+function stockPillHtml(stock) {
+  if (stock === undefined) {
+    return '<span class="muted">Không giới hạn</span>';
+  }
+
+  const kind = stock === 0 ? "out" : stock <= LOW_STOCK_LIMIT ? "low" : "ok";
+
+  return (
+    '<span class="stock-pill ' +
+    kind +
+    '">' +
+    (stock === 0 ? "Hết hàng" : "Còn " + stock) +
+    "</span>"
+  );
+}
+
+// Trang "Thống kê bán hàng": sản phẩm bán chạy, doanh số theo danh mục, sản phẩm chưa bán.
+function salesStatsHtml() {
+  const sales = getProductSales();
+  const rows = [...sales].sort((a, b) =>
+    adminState.salesSort === "revenue"
+      ? b.revenue - a.revenue
+      : b.sold - a.sold || b.revenue - a.revenue,
+  );
+  const totalSold = sales.reduce((sum, item) => sum + item.sold, 0);
+  const totalRevenue = sales.reduce((sum, item) => sum + item.revenue, 0);
+  const best = sales[0];
+  const notSold = products.filter(
+    (product) => !sales.some((item) => item.productId === product.id),
+  );
+  const byCategory = new Map();
+
+  for (const item of sales) {
+    const product = products.find((value) => value.id === item.productId);
+    const label = product ? categoryLabel(product.category) : "Khác";
+
+    byCategory.set(label, (byCategory.get(label) || 0) + item.revenue);
+  }
+
+  const categoryRows = [...byCategory.entries()].sort((a, b) => b[1] - a[1]);
+  const maxCategory = Math.max(1, ...categoryRows.map(([, revenue]) => revenue));
+  const tableRows = rows
+    .map((item, index) => {
+      const product = products.find((value) => value.id === item.productId);
+
+      return /* HTML */ `
+        <tr>
+          <td><b>${index + 1}</b></td>
+          <td>
+            <div class="sales-product">
+              <img
+                src="${imageSrc(item.image)}"
+                alt=""
+              />
+              <strong>${esc(item.name)}</strong>
+            </div>
+          </td>
+          <td><b class="sold">${item.sold.toLocaleString("vi-VN")}</b></td>
+          <td>${item.orderCount}</td>
+          <td><b>${money(item.revenue)}</b></td>
+          <td>${stockPillHtml(product ? product.stock : undefined)}</td>
+        </tr>
+      `;
+    })
+    .join("");
+  const categoryHtml =
+    categoryRows.length === 0
+      ? '<p class="muted">Chưa có dữ liệu.</p>'
+      : '<ul class="category-bars">' +
+        categoryRows
+          .map(
+            ([label, revenue]) => /* HTML */ `
+              <li>
+                <div>
+                  <strong>${esc(label)}</strong>
+                  <span class="muted">
+                    ${money(revenue)} ·
+                    ${Math.round((revenue / Math.max(1, totalRevenue)) * 100)}%
+                  </span>
+                </div>
+                <i><span style="width: ${(revenue / maxCategory) * 100}%"></span></i>
+              </li>
+            `,
+          )
+          .join("") +
+        "</ul>";
+  const notSoldHtml =
+    notSold.length === 0
+      ? '<p class="muted">Sản phẩm nào cũng đã có người mua.</p>'
+      : '<ul class="not-sold">' +
+        notSold
+          .map(
+            (product) =>
+              "<li><span>" +
+              esc(product.name) +
+              '</span><small class="muted">' +
+              (product.stock === undefined
+                ? "Không giới hạn"
+                : "Tồn " + product.stock) +
+              "</small></li>",
+          )
+          .join("") +
+        "</ul>";
+
+  return /* HTML */ `
+    ${pageHeaderHtml(
+      "Thống kê bán hàng",
+      "Tính các đơn chưa bị hủy, gồm cả đơn đang chờ xác nhận và đang giao. Đơn bị hủy đã được hoàn lại kho.",
+    )}
+    <div class="stat-grid">
+      ${statCardHtml(
+        "Sản phẩm đã bán",
+        totalSold.toLocaleString("vi-VN"),
+        "▤",
+        "Trong " + getSoldOrders().length + " đơn hàng",
+      )}
+      ${statCardHtml(
+        "Tiền hàng đã bán",
+        money(totalRevenue),
+        "₫",
+        "Chưa tính phí giao hàng và giảm giá",
+      )}
+      ${statCardHtml(
+        "Bán chạy nhất",
+        best ? best.name : "Chưa có",
+        "★",
+        best ? "Đã bán " + best.sold.toLocaleString("vi-VN") + " sản phẩm" : "",
+      )}
+      ${statCardHtml(
+        "Chưa bán được",
+        notSold.length + " sản phẩm",
+        "◌",
+        "Trên tổng " + products.length + " sản phẩm",
+      )}
+    </div>
+    <section>
+      <div class="admin-section-head">
+        <h3>Sản phẩm bán chạy</h3>
+        <label class="sales-sort">
+          Sắp xếp theo
+          <select data-admin-filter="salesSort">
+            <option
+              value="sold"
+              ${adminState.salesSort === "sold" ? "selected" : ""}
+            >
+              Số lượng bán
+            </option>
+            <option
+              value="revenue"
+              ${adminState.salesSort === "revenue" ? "selected" : ""}
+            >
+              Tiền hàng
+            </option>
+          </select>
+        </label>
+      </div>
+      ${tableHtml(
+        ["#", "Sản phẩm", "Đã bán", "Số đơn", "Tiền hàng", "Tồn kho"],
+        tableRows,
+        rows.length,
+        "Chưa có sản phẩm nào được bán.",
+      )}
+    </section>
+    <div class="admin-two-col even">
+      <section class="panel">
+        <h3>Tiền hàng theo danh mục</h3>
+        ${categoryHtml}
+      </section>
+      <section class="panel">
+        <h3>Sản phẩm chưa bán được (${notSold.length})</h3>
+        ${notSoldHtml}
+      </section>
+    </div>
+  `;
+}
 
 // ---------- Quản lý sản phẩm ----------
 

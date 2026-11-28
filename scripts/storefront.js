@@ -66,12 +66,9 @@ const card = (p) => /* HTML */ `
             `
           : ""}
       </div>
-      <button
-        class="add"
-        data-add="${esc(p.id)}"
-      >
-        + Thêm vào giỏ
-      </button>
+      ${p.stock === 0
+        ? '<button class="add" disabled>Hết hàng</button>'
+        : '<button class="add" data-add="' + esc(p.id) + '">+ Thêm vào giỏ</button>'}
     </div>
   </article>
 `;
@@ -1127,9 +1124,24 @@ document.addEventListener("click", (event) => {
   if (add) {
     const p = products.find((p) => p.id === add.dataset.add);
     if (p) {
-      cart = putCartItem(cart, p, 1, {}, true);
-      save();
-      toast("Đã thêm sản phẩm vào giỏ hàng");
+      // So số lượng trong giỏ trước và sau khi thêm để biết còn hàng hay không.
+      const key = cartKey({ productId: p.id, ...selectionFor(p, {}) });
+      const quantityOf = (list) =>
+        list.find((item) => cartKey(item) === key)?.quantity ?? 0;
+      const next = putCartItem(cart, p, 1, {}, true);
+
+      if (quantityOf(next) <= quantityOf(cart)) {
+        toast(
+          p.stock === 0
+            ? "Sản phẩm đã hết hàng."
+            : "Số lượng trong giỏ đã bằng số hàng còn lại trong kho.",
+          "error",
+        );
+      } else {
+        cart = next;
+        save();
+        toast("Đã thêm sản phẩm vào giỏ hàng");
+      }
     }
   }
   const category = target.closest("[data-category]");

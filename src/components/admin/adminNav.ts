@@ -5,6 +5,7 @@ export const adminNavItems = [
   { href: "/quan-tri/danh-muc", label: "Danh mục", icon: "☰" },
   { href: "/quan-tri/don-hang", label: "Đơn hàng", icon: "▣" },
   { href: "/quan-tri/nguoi-dung", label: "Người dùng", icon: "☺" },
+  { href: "/quan-tri/thong-ke", label: "Thống kê", icon: "★" },
 ] as const;
 
 // Tìm tên trang theo đường dẫn hiện tại (hiển thị trên header).

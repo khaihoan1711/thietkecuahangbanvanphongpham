@@ -76,7 +76,10 @@ export default function ProductCard({ product }: { product: Product }) {
           )}
         </div>
 
-        <AddToCartButton productId={product.id} />
+        <AddToCartButton
+          productId={product.id}
+          soldOut={product.stock === 0}
+        />
       </div>
     </article>
   );

@@ -3,7 +3,7 @@
 import { createContext, useContext, type ReactNode } from "react";
 import { usePersistentState } from "@/hooks/usePersistentState";
 import { seedCategories, seedProducts } from "@/data/products";
-import { STORAGE_KEYS } from "@/lib/storage";
+import { readText, STORAGE_KEYS, writeText } from "@/lib/storage";
 import type { Product } from "@/types/product";
 import type { ActionResult, Category } from "@/types/store";
 
@@ -28,11 +28,31 @@ type CatalogContextValue = {
 
 const CatalogContext = createContext<CatalogContextValue | null>(null);
 
+// Chạy một lần trên mỗi trình duyệt: sản phẩm đã lưu từ trước khi có số lượng tồn kho
+// nhận số tồn kho ban đầu, để khách mua hàng thì tồn kho giảm. Sau lần này,
+// Admin vẫn có thể để trống số lượng (không giới hạn) mà không bị đặt lại.
+function fillMissingStock(saved: Product[]) {
+  if (readText(STORAGE_KEYS.stockFilled, "local")) {
+    return saved;
+  }
+
+  writeText(STORAGE_KEYS.stockFilled, "1", "local");
+
+  return saved.map((product) => {
+    const seed = seedProducts.find((item) => item.id === product.id);
+
+    return product.stock === undefined && seed?.stock !== undefined
+      ? { ...product, stock: seed.stock }
+      : product;
+  });
+}
+
 export function CatalogProvider({ children }: { children: ReactNode }) {
   const [products, setProducts, productsReady] = usePersistentState<Product[]>(
     STORAGE_KEYS.products,
     seedProducts,
     Array.isArray,
+    fillMissingStock,
   );
   const [categories, setCategories, categoriesReady] = usePersistentState<Category[]>(
     STORAGE_KEYS.categories,

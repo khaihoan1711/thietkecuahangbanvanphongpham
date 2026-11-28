@@ -13,7 +13,7 @@ import { useCatalog } from "@/context/CatalogContext";
 import { useOrders } from "@/context/OrderContext";
 import { useToast } from "@/context/ToastContext";
 import { formatDate, formatVND } from "@/lib/format";
-import { getMonthlyRevenue, getTotalRevenue } from "@/lib/stats";
+import { getMonthlyRevenue, getProductSales, getTotalRevenue } from "@/lib/stats";
 
 // Số đơn hàng gần đây hiển thị trên Dashboard
 const RECENT_ORDER_COUNT = 5;
@@ -34,6 +34,7 @@ export default function DashboardView() {
     .slice(0, RECENT_ORDER_COUNT);
   const pendingCount = orders.filter((order) => order.status === "pending").length;
   const revenueByMonth = getMonthlyRevenue(orders);
+  const topProducts = getProductSales(orders).slice(0, 5);
   const lowStock = products
     .filter(
       (product) => product.stock !== undefined && product.stock <= LOW_STOCK_LIMIT,
@@ -132,6 +133,48 @@ export default function DashboardView() {
           )}
         </section>
       </div>
+
+      <section className="mt-6 rounded-xl border border-line bg-white p-5">
+        <div className="flex items-center justify-between gap-4">
+          <h3 className="text-lg font-bold text-navy">Sản phẩm bán chạy</h3>
+          <Link
+            href="/quan-tri/thong-ke"
+            className="text-sm font-semibold text-primary hover:underline"
+          >
+            Xem thống kê
+          </Link>
+        </div>
+        {topProducts.length === 0 ? (
+          <p className="mt-4 text-sm text-ink-muted">Chưa có sản phẩm nào được bán.</p>
+        ) : (
+          <ol className="mt-4 divide-y divide-line">
+            {topProducts.map((item, index) => (
+              <li
+                key={item.productId}
+                className="flex items-center gap-3 py-2.5 text-sm"
+              >
+                <span className="flex h-7 w-7 shrink-0 items-center justify-center rounded-full bg-primary-soft text-xs font-bold text-primary">
+                  {index + 1}
+                </span>
+                <img
+                  src={item.image}
+                  alt=""
+                  className="h-10 w-10 shrink-0 rounded-lg border border-line bg-white object-contain"
+                />
+                <span className="min-w-0 flex-1 truncate font-semibold text-ink">
+                  {item.name}
+                </span>
+                <span className="shrink-0 text-ink-muted">
+                  Đã bán{" "}
+                  <strong className="text-primary">
+                    {item.sold.toLocaleString("vi-VN")}
+                  </strong>
+                </span>
+              </li>
+            ))}
+          </ol>
+        )}
+      </section>
 
       <section className="mt-6">
         <div className="mb-3 flex items-center justify-between gap-4">
